@@ -878,6 +878,175 @@ input[type="range"]::-moz-range-thumb{
 @media (prefers-color-scheme: dark){:root:not([data-theme="light"])[data-accent="crimson"]{--brand:#f2698f;--brand-dark:#f68fab;--brand-soft:#3a1520;}}
 [data-theme="dark"][data-accent="crimson"]{--brand:#f2698f;--brand-dark:#f68fab;--brand-soft:#3a1520;}
 
+/* =========================================================
+   PROGRESSION — level-up moment, quests, combo, heatmap
+   ========================================================= */
+
+/* ---- floating +XP ---- */
+.xpfloat{
+  position:fixed;z-index:95;pointer-events:none;
+  font-weight:800;font-size:1rem;color:var(--good);
+  text-shadow:0 1px 3px rgba(0,0,0,.25);
+  animation:xpfly 1.15s cubic-bezier(.25,.9,.3,1) forwards;
+  white-space:nowrap;
+}
+.xpfloat.combo{color:var(--explog);font-size:1.1rem;}
+@keyframes xpfly{
+  0%{opacity:0;transform:translateY(6px) scale(.85);}
+  18%{opacity:1;transform:translateY(-2px) scale(1.06);}
+  100%{opacity:0;transform:translateY(-46px) scale(1);}
+}
+
+/* ---- level-up overlay ---- */
+#levelup{
+  position:fixed;inset:0;z-index:120;display:none;
+  align-items:center;justify-content:center;padding:20px;
+  background:rgba(8,14,22,.62);backdrop-filter:blur(5px);
+}
+#levelup.show{display:flex;animation:luFade .28s ease-out;}
+@keyframes luFade{from{opacity:0}to{opacity:1}}
+.lu-card{
+  background:var(--surface);border-radius:var(--radius);
+  box-shadow:var(--shadow-lg);max-width:420px;width:100%;
+  overflow:hidden;text-align:center;
+  animation:luPop .42s cubic-bezier(.2,1.1,.35,1);
+}
+@keyframes luPop{from{transform:scale(.86) translateY(14px);opacity:0}to{transform:none;opacity:1}}
+.lu-top{
+  background:linear-gradient(135deg,var(--brand),var(--algebra) 70%,var(--prob));
+  color:#fff;padding:26px 22px 22px;
+}
+.lu-badge{
+  width:74px;height:74px;margin:0 auto 12px;border-radius:50%;
+  background:rgba(255,255,255,.18);border:2px solid rgba(255,255,255,.5);
+  display:grid;place-items:center;font-size:32px;font-family:var(--serif);
+  animation:luSpin .7s cubic-bezier(.2,1.1,.35,1);
+}
+@keyframes luSpin{from{transform:rotate(-25deg) scale(.5);opacity:0}to{transform:none;opacity:1}}
+.lu-top .lu-lvl{font-size:.74rem;letter-spacing:.14em;text-transform:uppercase;opacity:.85;font-weight:800;}
+.lu-top h2{margin:.25em 0 0;color:#fff;font-size:1.5rem;}
+.lu-top .lu-rank{font-size:.92rem;opacity:.92;margin-top:3px;}
+.lu-body{padding:18px 22px 20px;}
+.lu-unlock{
+  background:var(--good-soft);border:1px solid color-mix(in srgb,var(--good) 30%,transparent);
+  border-radius:var(--radius-sm);padding:10px 13px;margin-bottom:14px;font-size:.87rem;
+}
+.lu-unlock b{color:var(--good);}
+.lu-next{font-size:.82rem;color:var(--text-2);margin-bottom:14px;}
+
+/* ---- daily quests ---- */
+.quest{
+  display:flex;gap:12px;align-items:center;padding:11px 13px;margin-bottom:8px;
+  border:1px solid var(--border);border-radius:var(--radius-sm);background:var(--surface);
+}
+.quest.done{border-color:color-mix(in srgb,var(--good) 45%,transparent);background:var(--good-soft);}
+.quest .q-ico{
+  width:32px;height:32px;flex:0 0 32px;border-radius:9px;
+  background:var(--surface-2);display:grid;place-items:center;font-size:15px;
+}
+.quest.done .q-ico{background:var(--good);color:#fff;}
+.quest .q-main{flex:1;min-width:0;}
+.quest .q-title{font-size:.88rem;font-weight:620;display:flex;justify-content:space-between;gap:10px;}
+.quest .q-title span:last-child{font-size:.76rem;color:var(--text-3);font-weight:700;white-space:nowrap;}
+.quest .q-bar{height:5px;background:var(--surface-3);border-radius:99px;overflow:hidden;margin-top:6px;}
+.quest .q-fill{height:100%;background:var(--brand);border-radius:99px;transition:width .5s;}
+.quest.done .q-fill{background:var(--good);}
+.quest .q-xp{
+  font-size:.72rem;font-weight:800;padding:3px 9px;border-radius:99px;
+  background:var(--brand-soft);color:var(--brand-dark);white-space:nowrap;
+}
+.quest.done .q-xp{background:var(--good);color:#fff;}
+
+/* ---- combo chip inside a session ---- */
+.combo-chip{
+  display:inline-flex;align-items:center;gap:7px;
+  padding:5px 13px;border-radius:99px;font-size:.8rem;font-weight:750;
+  background:var(--explog);color:#fff;
+  animation:comboPop .34s cubic-bezier(.2,1.3,.4,1);
+}
+@keyframes comboPop{from{transform:scale(.7);opacity:0}to{transform:none;opacity:1}}
+.combo-chip .cx{font-size:.92rem;}
+
+/* ---- rank track ---- */
+.ranktrack{display:flex;flex-direction:column;gap:0;margin-top:4px;}
+.rt-row{
+  display:flex;gap:12px;align-items:center;padding:8px 0;position:relative;
+}
+.rt-row + .rt-row{border-top:1px solid var(--border);}
+.rt-ico{
+  width:34px;height:34px;flex:0 0 34px;border-radius:50%;
+  display:grid;place-items:center;font-size:15px;font-family:var(--serif);
+  background:var(--surface-3);color:var(--text-3);
+}
+.rt-row.reached .rt-ico{background:var(--brand-soft);color:var(--brand-dark);}
+.rt-row.current .rt-ico{background:var(--brand);color:#fff;box-shadow:0 0 0 4px var(--brand-soft);}
+.rt-body{flex:1;min-width:0;}
+.rt-body b{display:block;font-size:.89rem;}
+.rt-body span{font-size:.74rem;color:var(--text-3);}
+.rt-row.current .rt-body b{color:var(--brand-dark);}
+.rt-tag{font-size:.7rem;font-weight:750;color:var(--text-3);white-space:nowrap;}
+.rt-row.current .rt-tag{color:var(--brand);}
+
+/* ---- activity heatmap ---- */
+.heat{display:flex;gap:3px;overflow-x:auto;padding-bottom:4px;}
+.heat-col{display:flex;flex-direction:column;gap:3px;}
+.heat-cell{
+  width:13px;height:13px;border-radius:3px;background:var(--surface-3);flex:0 0 13px;
+}
+.heat-cell.l1{background:color-mix(in srgb,var(--brand) 34%,var(--surface-3));}
+.heat-cell.l2{background:color-mix(in srgb,var(--brand) 60%,var(--surface-3));}
+.heat-cell.l3{background:color-mix(in srgb,var(--brand) 82%,var(--surface-3));}
+.heat-cell.l4{background:var(--brand);}
+.heat-legend{display:flex;align-items:center;gap:6px;font-size:.72rem;color:var(--text-3);margin-top:8px;}
+.heat-legend .heat-cell{width:11px;height:11px;flex:0 0 11px;}
+
+/* ---- exam medals ---- */
+.medal{
+  display:inline-flex;align-items:center;gap:5px;
+  padding:2px 9px;border-radius:99px;font-size:.71rem;font-weight:800;white-space:nowrap;
+}
+.medal.gold{background:#fbeec3;color:#8a6100;}
+.medal.silver{background:#e6e9ee;color:#5b6675;}
+.medal.bronze{background:#f5ddc9;color:#8a5320;}
+[data-theme="dark"] .medal.gold{background:#3d3111;color:#f0c860;}
+[data-theme="dark"] .medal.silver{background:#2b323c;color:#c3ccd9;}
+[data-theme="dark"] .medal.bronze{background:#3a2716;color:#e0a26a;}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]) .medal.gold{background:#3d3111;color:#f0c860;}
+  :root:not([data-theme="light"]) .medal.silver{background:#2b323c;color:#c3ccd9;}
+  :root:not([data-theme="light"]) .medal.bronze{background:#3a2716;color:#e0a26a;}
+}
+
+/* ---- weekly goal ring row ---- */
+.goalrow{display:flex;gap:16px;align-items:center;flex-wrap:wrap;}
+.goalrow .g-txt{flex:1;min-width:170px;}
+.goalrow .g-txt b{display:block;font-size:1.1rem;}
+.goalrow .g-txt span{font-size:.78rem;color:var(--text-2);}
+
+/* ---- badge tiers ---- */
+.badge .tier{
+  font-size:.62rem;font-weight:800;letter-spacing:.05em;text-transform:uppercase;
+  padding:1px 6px;border-radius:99px;margin-left:6px;vertical-align:middle;
+}
+.badge .tier.bronze{background:#f5ddc9;color:#8a5320;}
+.badge .tier.silver{background:#e6e9ee;color:#5b6675;}
+.badge .tier.gold{background:#fbeec3;color:#8a6100;}
+[data-theme="dark"] .badge .tier.bronze{background:#3a2716;color:#e0a26a;}
+[data-theme="dark"] .badge .tier.silver{background:#2b323c;color:#c3ccd9;}
+[data-theme="dark"] .badge .tier.gold{background:#3d3111;color:#f0c860;}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]) .badge .tier.bronze{background:#3a2716;color:#e0a26a;}
+  :root:not([data-theme="light"]) .badge .tier.silver{background:#2b323c;color:#c3ccd9;}
+  :root:not([data-theme="light"]) .badge .tier.gold{background:#3d3111;color:#f0c860;}
+}
+
+[data-accent="forest"]{--brand:#2f7d3f;--brand-dark:#256532;--brand-soft:#e4f3e7;}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"])[data-accent="forest"]{--brand:#4ade80;--brand-dark:#74e69b;--brand-soft:#12301c;}}
+[data-theme="dark"][data-accent="forest"]{--brand:#4ade80;--brand-dark:#74e69b;--brand-soft:#12301c;}
+[data-accent="slate"]{--brand:#4a5768;--brand-dark:#374252;--brand-soft:#e9edf2;}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"])[data-accent="slate"]{--brand:#94a3b8;--brand-dark:#b0bccb;--brand-soft:#232b35;}}
+[data-theme="dark"][data-accent="slate"]{--brand:#94a3b8;--brand-dark:#b0bccb;--brand-soft:#232b35;}
+
 /* ---------- rank, badges, accent picker ---------- */
 .rank-chip{
   display:inline-flex;align-items:center;gap:6px;
@@ -983,6 +1152,23 @@ input[type="range"]::-moz-range-thumb{
 
 <div id="scrim"></div>
 <div id="toast"></div>
+
+<!-- Level-up celebration -->
+<div id="levelup" role="dialog" aria-modal="true" aria-label="Level up">
+  <div class="lu-card">
+    <div class="lu-top">
+      <div class="lu-badge" id="lu-icon">★</div>
+      <div class="lu-lvl" id="lu-lvl">Level 2</div>
+      <h2 id="lu-title">Level up!</h2>
+      <div class="lu-rank" id="lu-rank"></div>
+    </div>
+    <div class="lu-body">
+      <div id="lu-unlocks"></div>
+      <div class="lu-next" id="lu-next"></div>
+      <button class="btn wide" id="lu-close" type="button">Keep going</button>
+    </div>
+  </div>
+</div>
 
 <script>
 /* =========================================================
@@ -8264,9 +8450,13 @@ const DEFAULT_STATE = {
   sessions:  {},   // sessionKey -> { qids, idx, results:[...], updatedAt }
   badges:    {},   // badgeId -> timestamp earned
   flags:     {},   // misc one-off markers
+  xpLog:     {},   // 'YYYY-MM-DD' -> XP earned that day (heatmap + weekly goal)
+  daily:     null, // { date, quests:[{id, prog, done}] }
+  medals:    {},   // examId -> 'bronze' | 'silver' | 'gold'
   xp: 0,
-  run: 0,          // current streak of consecutive full-mark questions
+  run: 0,          // current combo of consecutive full-mark questions
   bestRun: 0,
+  bestStreak: 0,
   streak: 0,
   levelSeen: 1,
   accent: null,
@@ -8275,27 +8465,63 @@ const DEFAULT_STATE = {
   createdAt: Date.now()
 };
 
+/* The rank ladder. Longer than the number of levels most students will
+   reach in a term, so there is always a next one visible. */
 const RANKS = [
-  'Beginner',          // 1
-  'Substituter',       // 2
-  'Factoriser',        // 3
-  'Grapher',           // 4
-  'Differentiator',    // 5
-  'Integrator',        // 6
-  'Probabilist',       // 7
-  'Problem Solver',    // 8
-  'Exam Technician',   // 9
-  'Study Score 40+',   // 10
-  'Methods Specialist',// 11
-  'Perfect Score'      // 12+
+  { name:'Beginner',           icon:'○' },
+  { name:'Substituter',        icon:'◔' },
+  { name:'Factoriser',         icon:'◑' },
+  { name:'Grapher',            icon:'◕' },
+  { name:'Differentiator',     icon:'d' },
+  { name:'Integrator',         icon:'∫' },
+  { name:'Probabilist',        icon:'P' },
+  { name:'Problem Solver',     icon:'✦' },
+  { name:'Exam Technician',    icon:'✎' },
+  { name:'Sharpshooter',       icon:'◎' },
+  { name:'Study Score 40+',    icon:'▲' },
+  { name:'Methods Specialist', icon:'★' },
+  { name:'Study Score 45+',    icon:'✷' },
+  { name:'Perfect Score',      icon:'♛' },
+  { name:'Methods Legend',     icon:'∞' }
 ];
+
+/* =========================================================
+   DAILY QUESTS
+   Three are drawn each day from this pool, chosen deterministically
+   from the date so they stay put across reloads. Completing one
+   awards its bonus XP immediately.
+   ========================================================= */
+const QUEST_POOL = [
+  { id:'read1',   track:'lesson',   need:1,   xp:20, icon:'▤', text:'Read a lesson' },
+  { id:'read2',   track:'lesson',   need:2,   xp:35, icon:'▤', text:'Read 2 lessons' },
+  { id:'q8',      track:'question', need:8,   xp:25, icon:'✎', text:'Answer 8 questions' },
+  { id:'q15',     track:'question', need:15,  xp:40, icon:'✎', text:'Answer 15 questions' },
+  { id:'perfect5',track:'perfect',  need:5,   xp:30, icon:'✓', text:'Get 5 answers full marks' },
+  { id:'free6',   track:'free',     need:6,   xp:25, icon:'✎', text:'Answer 6 Tech Free questions' },
+  { id:'active6', track:'active',   need:6,   xp:25, icon:'⌨', text:'Answer 6 Tech Active questions' },
+  { id:'combo4',  track:'combo',    need:4,   xp:30, icon:'⚡', text:'Hit a 4-answer combo' },
+  { id:'combo7',  track:'combo',    need:7,   xp:50, icon:'⚡', text:'Hit a 7-answer combo' },
+  { id:'tool1',   track:'tool',     need:1,   xp:15, icon:'⌁', text:'Open an explorer' },
+  { id:'exam1',   track:'exam',     need:1,   xp:60, icon:'⏱', text:'Finish a past paper' },
+  { id:'xp120',   track:'xp',       need:120, xp:30, icon:'◈', text:'Earn 120 XP today' }
+];
+
+/* Medal thresholds for a past paper. */
+const MEDALS = [
+  { id:'gold',   min:85, icon:'🥇', label:'Gold' },
+  { id:'silver', min:70, icon:'🥈', label:'Silver' },
+  { id:'bronze', min:50, icon:'🥉', label:'Bronze' }
+];
+function medalFor(pct){ return MEDALS.find(m => pct >= m.min) || null; }
 
 const ACCENTS = [
   { id:'default', name:'Methods Blue',   level:1,  swatch:'#2f6fe4' },
   { id:'teal',    name:'Integral Teal',  level:3,  swatch:'#0d8f81' },
   { id:'violet',  name:'Function Violet',level:5,  swatch:'#7c4ddb' },
   { id:'amber',   name:'Tangent Amber',  level:8,  swatch:'#b8720c' },
-  { id:'crimson', name:'Asymptote Red',  level:10, swatch:'#cc3563' }
+  { id:'crimson', name:'Asymptote Red',  level:10, swatch:'#cc3563' },
+  { id:'forest',  name:'Integral Forest', level:12, swatch:'#2f7d3f' },
+  { id:'slate',   name:'Graphite',        level:14, swatch:'#4a5768' }
 ];
 
 const BADGES = [
@@ -8328,13 +8554,45 @@ const BADGES = [
     test:P => QUESTIONS.filter(q => q.mode === 'active' &&
               (P.qRec(q.id) || {}).best >= 0.999).length >= 15 },
 
-  { id:'ten-in-a-row', icon:'◉', name:'Ten in a Row',
-    desc:'10 questions in a row at full marks',
-    test:P => (P.state.bestRun || 0) >= 10 },
-
-  { id:'century',      icon:'∑', name:'Century',
+  { id:'century',      icon:'∑', name:'Century', tier:'bronze',
     desc:'Earn 100 marks across the question bank',
     test:P => P.totals().marksEarned >= 100 },
+
+  { id:'double-century', icon:'∑', name:'Double Century', tier:'silver',
+    desc:'Earn 250 marks across the question bank',
+    test:P => P.totals().marksEarned >= 250 },
+
+  { id:'the-lot',      icon:'∑', name:'The Lot', tier:'gold',
+    desc:'Earn 400 marks across the question bank',
+    test:P => P.totals().marksEarned >= 400 },
+
+  { id:'combo-10',     icon:'⚡', name:'On a Roll', tier:'bronze',
+    desc:'Reach a 10-answer combo',
+    test:P => (P.state.bestRun || 0) >= 10 },
+
+  { id:'combo-20',     icon:'⚡', name:'Unstoppable', tier:'gold',
+    desc:'Reach a 20-answer combo',
+    test:P => (P.state.bestRun || 0) >= 20 },
+
+  { id:'quest-day',    icon:'◈', name:'Daily Sweep',
+    desc:'Complete all three daily quests in one day',
+    test:P => P.questsDoneToday() >= 3 },
+
+  { id:'medal-first',  icon:'🥉', name:'On the Board', tier:'bronze',
+    desc:'Earn any medal on a past paper',
+    test:P => Object.keys(P.state.medals).length >= 1 },
+
+  { id:'medal-gold',   icon:'🥇', name:'Gold Standard', tier:'gold',
+    desc:'Earn a gold medal on a past paper',
+    test:P => P.medalCount('gold') >= 1 },
+
+  { id:'all-gold',     icon:'\u{1F451}', name:'Clean Sweep',
+    desc:'Gold on every past paper in the bank',
+    test:P => EXAMS.every(e => P.state.medals[e.id] === 'gold') },
+
+  { id:'grinder',      icon:'▰', name:'Grinder',
+    desc:'Earn 500 XP in a single day',
+    test:P => Object.keys(P.state.xpLog).some(k => P.state.xpLog[k] >= 500) },
 
   { id:'in-your-words', icon:'✒', name:'Show Your Working',
     desc:'Full marks on a written self-marked question',
@@ -8377,13 +8635,17 @@ const BADGES = [
     desc:'Complete every past paper in the bank',
     test:P => EXAMS.every(e => P.state.exams[e.id]) },
 
-  { id:'consistent',   icon:'\u{1F525}', name:'Consistent',
+  { id:'consistent',   icon:'\u{1F525}', name:'Consistent', tier:'bronze',
     desc:'Study on 3 days in a row',
-    test:P => (P.state.streak || 0) >= 3 },
+    test:P => (P.state.bestStreak || P.state.streak || 0) >= 3 },
 
-  { id:'committed',    icon:'\u{1F525}', name:'Committed',
+  { id:'committed',    icon:'\u{1F525}', name:'Committed', tier:'silver',
     desc:'Study on 7 days in a row',
-    test:P => (P.state.streak || 0) >= 7 },
+    test:P => (P.state.bestStreak || P.state.streak || 0) >= 7 },
+
+  { id:'relentless',   icon:'\u{1F525}', name:'Relentless', tier:'gold',
+    desc:'Study on 21 days in a row',
+    test:P => (P.state.bestStreak || P.state.streak || 0) >= 21 },
 
   { id:'bound-ref',    icon:'\u{1F4C4}', name:'Bound Reference',
     desc:'Open the printable reference sheet',
@@ -8399,7 +8661,7 @@ const Progress = {
       if(raw){
         const parsed = JSON.parse(raw);
         this.state = Object.assign({}, DEFAULT_STATE, parsed);
-        ['lessons','questions','exams','tools','sessions','badges','flags'].forEach(k=>{
+        ['lessons','questions','exams','tools','sessions','badges','flags','xpLog','medals'].forEach(k=>{
           if(!this.state[k] || typeof this.state[k] !== 'object') this.state[k] = {};
         });
       }
@@ -8414,13 +8676,52 @@ const Progress = {
 
   reset(){
     this.state = Object.assign({}, DEFAULT_STATE, { createdAt: Date.now() });
-    ['lessons','questions','exams','tools','sessions','badges','flags'].forEach(k=>{ this.state[k] = {}; });
+    ['lessons','questions','exams','tools','sessions','badges','flags','xpLog','medals'].forEach(k=>{ this.state[k] = {}; });
     this.save();
   },
 
-  addXP(n){
+  /* ---------- XP, logged per day so the heatmap and weekly goal work ---------- */
+  dayKey(d){
+    const t = d || new Date();
+    return t.getFullYear()+'-'+String(t.getMonth()+1).padStart(2,'0')+'-'+String(t.getDate()).padStart(2,'0');
+  },
+  addXP(n, opts){
+    if(!n) return;
     this.state.xp = (this.state.xp || 0) + n;
+    const k = this.dayKey();
+    this.state.xpLog[k] = (this.state.xpLog[k] || 0) + n;
+    /* Quest bonuses must not feed the "earn N XP today" quest, or it
+       could complete itself in a loop. */
+    if(!opts || !opts.bonus) this.bumpQuest('xp', n);
     this.save();
+  },
+  xpOnDay(d){ return this.state.xpLog[this.dayKey(d)] || 0; },
+  xpToday(){ return this.xpOnDay(); },
+  xpThisWeek(){
+    let total = 0;
+    for(let i = 0; i < 7; i++){
+      const d = new Date(); d.setDate(d.getDate() - i);
+      total += this.xpOnDay(d);
+    }
+    return total;
+  },
+  /** Last `weeks` weeks of daily XP as columns of 7 days, oldest column first.
+      The final column is the current week, so today sits in its own weekday
+      row and the days after it in that week come back as null. */
+  heatmapData(weeks){
+    const n = weeks || 8;
+    const cols = [], dowToday = new Date().getDay();
+    for(let w = 0; w < n; w++){
+      const col = [];
+      for(let dow = 0; dow < 7; dow++){
+        const offset = (n - 1 - w) * 7 + (dowToday - dow);
+        if(offset < 0){ col.push({ date:null, xp:null }); continue; }
+        const d = new Date(); d.setDate(d.getDate() - offset);
+        col.push({ date:d, xp:this.xpOnDay(d), today: offset === 0 });
+      }
+      cols.push(col);
+    }
+    return cols;
   },
 
   /* Day streak: counted in whole local days, so a session either
@@ -8431,9 +8732,66 @@ const Progress = {
     if(last === today) return;
     const y = new Date(); y.setDate(y.getDate() - 1);
     this.state.streak = (last === y.toDateString()) ? (this.state.streak || 0) + 1 : 1;
+    this.state.bestStreak = Math.max(this.state.bestStreak || 0, this.state.streak);
     this.state.lastActive = today;
     this.save();
   },
+
+  /* =========================================================
+     DAILY QUESTS
+     ========================================================= */
+  /** Today's three quests, generated on first access each day. */
+  quests(){
+    const key = this.dayKey();
+    if(this.state.daily && this.state.daily.date === key) return this.state.daily.quests;
+    /* Deterministic pick from the date, so a reload does not reroll them. */
+    let seed = 0;
+    for(let i = 0; i < key.length; i++) seed = (seed * 31 + key.charCodeAt(i)) % 100000;
+    const pool = QUEST_POOL.slice();
+    const picked = [];
+    const usedTracks = {};
+    while(picked.length < 3 && pool.length){
+      seed = (seed * 1103515245 + 12345) % 2147483648;
+      const q = pool.splice(seed % pool.length, 1)[0];
+      if(usedTracks[q.track]) continue;   // one quest per track, so they feel distinct
+      usedTracks[q.track] = true;
+      picked.push({ id:q.id, prog:0, done:false });
+    }
+    this.state.daily = { date:key, quests:picked };
+    this.save();
+    return picked;
+  },
+  questDef(id){ return QUEST_POOL.find(q => q.id === id); },
+  /** Advance any of today's quests on the given track. Returns those just completed. */
+  bumpQuest(track, amount){
+    const qs = this.quests();
+    const finished = [];
+    qs.forEach(q => {
+      const def = this.questDef(q.id);
+      if(!def || def.track !== track || q.done) return;
+      q.prog = (track === 'combo')
+        ? Math.max(q.prog, amount)        // combo is a high-water mark, not a total
+        : q.prog + amount;
+      if(q.prog >= def.need){
+        q.prog = def.need;
+        q.done = true;
+        finished.push(def);
+      }
+    });
+    if(finished.length){
+      finished.forEach(def => this.addXP(def.xp, { bonus:true }));
+      this._questQueue = (this._questQueue || []).concat(finished);
+      this.save();
+    }
+    return finished;
+  },
+  /** Quests completed since the UI last looked. */
+  drainQuests(){
+    const q = this._questQueue || [];
+    this._questQueue = [];
+    return q;
+  },
+  questsDoneToday(){ return this.quests().filter(q => q.done).length; },
 
   level(){
     return Math.floor(Math.sqrt((this.state.xp || 0) / XP_BASE)) + 1;
@@ -8452,6 +8810,7 @@ const Progress = {
     if(this.state.lessons[id] && this.state.lessons[id].read) return false;
     this.state.lessons[id] = { read:true, at:Date.now() };
     this.addXP(15);
+    this.bumpQuest('lesson', 1);
     this.touchStreak();
     this.save();
     return true;
@@ -8471,16 +8830,38 @@ const Progress = {
     rec.history = (rec.history || []).concat([Math.round(score*100)]).slice(-8);
     this.state.questions[qid] = rec;
 
-    if(score >= 0.999) this.state.run = (this.state.run || 0) + 1;
-    else               this.state.run = 0;
+    const perfect = score >= 0.999;
+    if(perfect) this.state.run = (this.state.run || 0) + 1;
+    else        this.state.run = 0;
     this.state.bestRun = Math.max(this.state.bestRun || 0, this.state.run);
 
-    const base = Math.round(score * (marks || 1) * 6);
-    this.addXP(rec.attempts === 1 ? base + 4 : Math.max(2, Math.round(base/2)));
+    /* Combo: each consecutive full-mark answer adds 15%, capped at 2x.
+       It only applies to the answer that earned it, so a broken combo
+       never claws XP back. */
+    const combo = this.state.run;
+    const mult  = perfect ? Math.min(2, 1 + Math.max(0, combo - 1) * 0.15) : 1;
+
+    const base   = Math.round(score * (marks || 1) * 6);
+    const raw    = rec.attempts === 1 ? base + 4 : Math.max(2, Math.round(base/2));
+    const earned = Math.round(raw * mult);
+    this.addXP(earned);
+
+    const q = QUESTIONS.find(x => x.id === qid);
+    this.bumpQuest('question', 1);
+    if(q) this.bumpQuest(q.mode, 1);
+    if(perfect){
+      this.bumpQuest('perfect', 1);
+      this.bumpQuest('combo', combo);
+    }
     this.touchStreak();
     this.save();
+
+    /* Handed back so the UI can show the floating XP and the combo chip. */
+    rec.lastAward = { xp:earned, base:raw, mult, combo:perfect ? combo : 0 };
     return rec;
   },
+  combo(){ return this.state.run || 0; },
+  comboMult(){ return Math.min(2, 1 + Math.max(0, (this.state.run || 0) - 1) * 0.15); },
   qRec(qid){ return this.state.questions[qid] || null; },
 
   /* ---------- past papers ---------- */
@@ -8491,10 +8872,22 @@ const Progress = {
     rec.lastPct = pct;
     rec.lastAt = Date.now();
     this.state.exams[examId] = rec;
-    this.addXP(40);
+
+    /* Medals are kept at the best ever earned, so a weaker retry
+       never demotes you. */
+    const m = medalFor(rec.bestPct);
+    const rank = { bronze:1, silver:2, gold:3 };
+    const held = this.state.medals[examId];
+    if(m && (!held || rank[m.id] > rank[held])) this.state.medals[examId] = m.id;
+
+    this.addXP(40 + Math.round(pct / 2));   // a better paper is worth more
+    this.bumpQuest('exam', 1);
+    this.touchStreak();
     this.save();
     return rec;
   },
+  medal(examId){ return this.state.medals[examId] || null; },
+  medalCount(id){ return Object.keys(this.state.medals).filter(k => this.state.medals[k] === id).length; },
 
   /* =========================================================
      IN-PROGRESS SESSIONS
@@ -8530,7 +8923,7 @@ const Progress = {
   visitTool(id){
     const n = (this.state.tools[id] || 0);
     this.state.tools[id] = n + 1;
-    if(n === 0) this.addXP(10);
+    if(n === 0){ this.addXP(10); this.bumpQuest('tool', 1); }
     this.save();
   },
 
@@ -8647,10 +9040,11 @@ const Progress = {
   },
 
   /* ---------- gamification ---------- */
-  rank(lvl){
+  rankObj(lvl){
     const l = (lvl || this.level());
     return RANKS[Math.min(l, RANKS.length) - 1];
   },
+  rank(lvl){ return this.rankObj(lvl).name; },
   nextUnlock(){
     const lvl = this.level();
     const next = ACCENTS.filter(a => a.level > lvl).sort((a,b)=>a.level-b.level)[0];
@@ -8700,7 +9094,7 @@ const Progress = {
       const obj = JSON.parse(json);
       if(!obj || typeof obj !== 'object') return false;
       this.state = Object.assign({}, DEFAULT_STATE, obj);
-      ['lessons','questions','exams','tools','sessions','badges','flags'].forEach(k=>{ if(!this.state[k]) this.state[k]={}; });
+      ['lessons','questions','exams','tools','sessions','badges','flags','xpLog','medals'].forEach(k=>{ if(!this.state[k]) this.state[k]={}; });
       this.save();
       return true;
     }catch(e){ return false; }
@@ -9473,11 +9867,69 @@ function drainToasts(){
     setTimeout(()=>{ toasting = false; drainToasts(); }, 320);
   }, 2400);
 }
+/* A "+18 XP" that drifts up from wherever the action happened. Purely
+   decorative, and skipped when the viewer prefers reduced motion. */
+function floatXP(text, anchorEl, kind){
+  if(window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+  const n = h('div','xpfloat'+(kind ? ' '+kind : ''), text);
+  let x = window.innerWidth / 2, y = window.innerHeight / 2;
+  if(anchorEl && anchorEl.getBoundingClientRect){
+    const r = anchorEl.getBoundingClientRect();
+    if(r.width || r.height){ x = r.left + r.width / 2; y = r.top; }
+  }
+  n.style.left = x + 'px';
+  n.style.top  = y + 'px';
+  n.style.transform = 'translateX(-50%)';
+  document.body.appendChild(n);
+  setTimeout(()=>n.remove(), 1250);
+}
+
+/* The level-up moment. Queued, so several at once still each get shown. */
+let levelQueue = [];
+function showLevelUp(lvl){
+  const box = document.getElementById('levelup');
+  if(!box) return;
+  const rank = Progress.rankObj(lvl);
+  document.getElementById('lu-icon').textContent = rank.icon;
+  document.getElementById('lu-lvl').textContent  = 'Level ' + lvl;
+  document.getElementById('lu-rank').textContent = rank.name;
+
+  const unlocked = ACCENTS.filter(a => a.level === lvl);
+  const un = document.getElementById('lu-unlocks');
+  un.innerHTML = unlocked.length
+    ? unlocked.map(a => '<div class="lu-unlock">Unlocked: <b>'+esc(a.name)+'</b> accent — pick it up in My Progress.</div>').join('')
+    : '';
+
+  const nu = Progress.nextUnlock();
+  document.getElementById('lu-next').textContent = nu
+    ? 'Next up: ' + nu.what + ' at level ' + nu.level + '.'
+    : 'You have unlocked everything. Now go and get the marks.';
+
+  box.classList.add('show');
+  const close = document.getElementById('lu-close');
+  close.focus();
+}
+function closeLevelUp(){
+  const box = document.getElementById('levelup');
+  if(box) box.classList.remove('show');
+  if(levelQueue.length) showLevelUp(levelQueue.shift());
+}
+
 function announce(lvl, badges){
-  if(lvl) toast('Level '+lvl+' — '+Progress.rank(lvl), 'level');
+  if(lvl) showLevelUp(lvl);
   (badges||[]).forEach(b => toast(b.icon+' '+b.name+' unlocked', 'badge-toast'));
 }
-function celebrate(){ Progress.checkLevel(); Progress.checkBadges(); }
+function celebrate(){
+  const lvl    = Progress.checkLevel();
+  const badges = Progress.checkBadges();
+  announce(lvl, badges);
+  announceQuests(Progress.drainQuests());
+}
+
+/* Quest completions are announced wherever they happen. */
+function announceQuests(list){
+  (list||[]).forEach(q => toast('◈ Quest complete — '+q.text+'  +'+q.xp+' XP', 'badge-toast'));
+}
 function shuffle(a){
   const b = a.slice();
   for(let i = b.length - 1; i > 0; i--){
@@ -9572,8 +10024,15 @@ function renderQuestion(q, opts){
   function finish(score){
     if(answered) return;
     answered = true;
-    Progress.recordQuestion(q.id, score, q.marks);
+    const rec = Progress.recordQuestion(q.id, score, q.marks);
+    const aw  = rec && rec.lastAward;
+    if(aw && aw.xp){
+      const isCombo = aw.combo >= 2;
+      floatXP('+'+aw.xp+' XP'+(isCombo ? '  ×'+aw.mult.toFixed(2) : ''),
+              card, isCombo ? 'combo' : null);
+    }
     updateChrome();
+    if(opts.onCombo) opts.onCombo(Progress.combo());
     celebrate();
     if(opts.onDone) opts.onDone(score, q);
   }
@@ -9837,11 +10296,22 @@ function runSession(cfg){
   const head = h('div','spread mb0');
   head.innerHTML = '<div><h1 class="mb0">'+esc(cfg.title)+'</h1>'+
                    '<p class="muted small mt0 mb0">'+(cfg.subtitle||'')+'</p></div>';
-  const timerBox = h('div','');
-  if(cfg.timerMins) timerBox.innerHTML =
-    '<div class="stat" style="min-width:130px"><b id="sess-timer">--:--</b><span>time remaining</span></div>';
-  head.appendChild(timerBox);
+  const rightBox = h('div','row');
+  const comboBox = h('div','');
+  rightBox.appendChild(comboBox);
+  if(cfg.timerMins) rightBox.appendChild(h('div','stat',
+    '<b id="sess-timer">--:--</b><span>time remaining</span>')).style.minWidth = '130px';
+  head.appendChild(rightBox);
   wrap.appendChild(head);
+
+  function drawCombo(n){
+    comboBox.innerHTML = '';
+    if(n < 2) return;
+    const mult = Progress.comboMult();
+    comboBox.appendChild(h('div','combo-chip',
+      '<span class="cx">⚡ '+n+' in a row</span><span>×'+mult.toFixed(2)+' XP</span>'));
+  }
+  drawCombo(Progress.combo());
 
   const banner = h('div'); wrap.appendChild(banner);
   function drawBanner(){
@@ -9897,6 +10367,7 @@ function runSession(cfg){
     slot.appendChild(renderQuestion(q, {
       label: label + 'Question '+(idx+1)+' of '+cfg.questions.length,
       onDone:(score)=>{ results.push({q, score}); drawStrip(); },
+      onCombo: drawCombo,
       onNext:()=>{ idx++; persist(); step(); window.scrollTo({top:0,behavior:'smooth'}); },
       nextLabel: idx === cfg.questions.length-1 ? 'See results →' : 'Next question →'
     }));
@@ -10000,6 +10471,29 @@ function runSession(cfg){
    VIEWS
    ========================================================= */
 
+/** The three daily quests, as a card. Shared by the dashboard and progress views. */
+function questCard(){
+  const card = h('div','card');
+  const qs = Progress.quests();
+  const done = qs.filter(q=>q.done).length;
+  card.innerHTML = '<div class="spread"><h2 class="mt0 mb0">Today’s quests</h2>'+
+    '<span class="pill'+(done===qs.length?' good':'')+'">'+done+' / '+qs.length+' done</span></div>'+
+    '<p class="muted small mt1">Three new ones every day. Finishing one pays a bonus straight away.</p>';
+  qs.forEach(q=>{
+    const def = Progress.questDef(q.id);
+    if(!def) return;
+    const pct = Math.min(100, Math.round((q.prog / def.need) * 100));
+    card.appendChild(h('div','quest'+(q.done?' done':''),
+      '<div class="q-ico">'+(q.done ? '✓' : def.icon)+'</div>'+
+      '<div class="q-main">'+
+        '<div class="q-title"><span>'+esc(def.text)+'</span><span>'+Math.min(q.prog,def.need)+' / '+def.need+'</span></div>'+
+        '<div class="q-bar"><div class="q-fill" style="width:'+pct+'%"></div></div>'+
+      '</div>'+
+      '<span class="q-xp">+'+def.xp+' XP</span>'));
+  });
+  return card;
+}
+
 function viewDashboard(){
   crumb.textContent = 'Dashboard';
   const stats   = Progress.allStats();
@@ -10012,7 +10506,7 @@ function viewDashboard(){
 
   const hero = h('div','hero');
   hero.innerHTML =
-    '<span class="rank-chip"><span class="lv">Lv '+lp.lvl+'</span> '+Progress.rank(lp.lvl)+'</span>'+
+    '<span class="rank-chip"><span class="lv">Lv '+lp.lvl+'</span> '+Progress.rankObj(lp.lvl).icon+' '+Progress.rank(lp.lvl)+'</span>'+
     '<h1 class="mt1">Mathematical Methods Units 3 &amp; 4</h1>'+
     '<p>Every topic in the study design, split the way the exams are: '+
     '<strong>Tech Free</strong> for Examination 1 and <strong>Tech Active</strong> for Examination 2. '+
@@ -10033,6 +10527,24 @@ function viewDashboard(){
     grid.appendChild(h('div','stat','<b>'+val+'</b><span>'+lab+'</span>'));
   });
   wrap.appendChild(grid);
+
+  /* ---- daily quests + weekly goal ---- */
+  wrap.appendChild(questCard());
+
+  const wk = Progress.xpThisWeek();
+  const goal = 250;
+  const goalCard = h('div','card');
+  goalCard.innerHTML = '<h2 class="mt0">This week</h2>';
+  const gr = h('div','goalrow');
+  gr.innerHTML = ring(Math.min(100, (wk/goal)*100), 'sample', 66)+
+    '<div class="g-txt"><b>'+wk+' / '+goal+' XP</b>'+
+    '<span>'+(wk >= goal
+      ? 'Weekly goal met. Anything more is bonus.'
+      : (goal - wk)+' XP to go — about '+Math.ceil((goal - wk)/18)+' more questions.')+'</span></div>'+
+    '<div class="stat" style="min-width:104px"><b>🔥 '+(Progress.state.streak||0)+'</b><span>day streak</span></div>'+
+    '<div class="stat" style="min-width:104px"><b>'+Progress.xpToday()+'</b><span>XP today</span></div>';
+  goalCard.appendChild(gr);
+  wrap.appendChild(goalCard);
 
   /* ---- the Tech Free / Tech Active split ---- */
   const split = h('div','grid g2 mt2');
@@ -10186,7 +10698,12 @@ function viewModeHub(mode){
     p.style.setProperty('--c', isFree ? 'var(--free)' : 'var(--active)');
     p.innerHTML = '<div class="p-body"><strong>'+e.title+'</strong>'+
       '<div class="p-meta">'+e.items.length+' questions in the bank · '+e.minutes+' min</div></div>'+
-      '<div class="p-score">'+(rec ? rec.bestPct+'%' : '—')+'</div>';
+      '<div class="p-score">'+(()=>{
+        if(!rec) return '—';
+        const md = Progress.medal(e.id);
+        const mdef = md ? MEDALS.find(x=>x.id===md) : null;
+        return (mdef ? '<span class="medal '+mdef.id+'">'+mdef.icon+'</span> ' : '')+rec.bestPct+'%';
+      })()+'</div>';
     const b = h('a','btn sm', rec ? 'Retry' : 'Sit it');
     b.href = '#/exam/'+e.id;
     p.appendChild(b);
@@ -10428,12 +10945,18 @@ function viewExamsHub(){
   wrap.appendChild(h('p','tiny muted',
     'A question tagged <strong>(adapted)</strong> tests the same skill as the numbered item but with a rule or option set written out afresh, '+
     'because that part of the original PDF was a scanned image and could not be transcribed exactly. Everything else is the question as it was set.'));
+  wrap.appendChild(h('p','tiny muted',
+    'Medals go by your best score on each paper: <span class="medal bronze">🥉 Bronze</span> at 50%, '+
+    '<span class="medal silver">🥈 Silver</span> at 70%, <span class="medal gold">🥇 Gold</span> at 85%. '+
+    'A weaker retry never takes a medal away.'));
 
   [['free','Examination 1 — Tech Free'],['active','Examination 2 — Tech Active']].forEach(([m,label])=>{
     const card = h('div','card');
     card.innerHTML = '<h2 class="mt0">'+modePill(m)+' &nbsp; '+label+'</h2>';
     EXAMS.filter(e => e.mode === m).forEach(e=>{
       const rec = Progress.state.exams[e.id];
+      const md = Progress.medal(e.id);
+      const mdef = md ? MEDALS.find(x=>x.id===md) : null;
       const bankMarks = e.items.reduce((s,it)=>{
         const q = questionById(it.qid); return s + (q ? (q.marks||1) : 0);
       },0);
@@ -10443,7 +10966,10 @@ function viewExamsHub(){
         '<div class="p-body"><strong>'+e.title+'</strong>'+
         '<div class="p-meta">'+e.items.length+' questions · '+bankMarks+' marks in the bank of '+e.officialMarks+' official · '+e.minutes+' min</div>'+
         '<div class="p-meta mt1">'+e.note+'</div></div>'+
-        '<div class="p-score">'+(rec ? '<span class="pill '+(rec.bestPct>=80?'good':rec.bestPct>=50?'warn':'bad')+'">'+rec.bestPct+'%</span>' : '<span class="pill">not sat</span>')+'</div>';
+        '<div class="p-score">'+(rec
+          ? (mdef ? '<span class="medal '+mdef.id+'">'+mdef.icon+' '+mdef.label+'</span><br>' : '')+
+            '<span class="pill '+(rec.bestPct>=80?'good':rec.bestPct>=50?'warn':'bad')+'">'+rec.bestPct+'%</span>'
+          : '<span class="pill">not sat</span>')+'</div>';
       const b = h('a','btn sm', rec ? 'Retry' : 'Sit it');
       b.href = '#/exam/'+e.id;
       p.appendChild(b);
@@ -10626,18 +11152,46 @@ function viewProgress(){
   head.innerHTML =
     '<div class="spread"><div><h1 class="mb0">My progress</h1>'+
     '<p class="muted mt1 mb0">Stored in this browser only. Nothing is uploaded anywhere.</p></div>'+
-    '<span class="rank-chip"><span class="lv">Lv '+lp.lvl+'</span> '+Progress.rank(lp.lvl)+'</span></div>'+
+    '<span class="rank-chip"><span class="lv">Lv '+lp.lvl+'</span> '+Progress.rankObj(lp.lvl).icon+' '+Progress.rank(lp.lvl)+'</span></div>'+
     '<div class="bar mt2"><div class="bar-fill" style="width:'+lp.pct+'%"></div></div>'+
     '<p class="tiny muted mt1 mb0">'+t.xp+' XP · '+lp.toNext+' XP to level '+(lp.lvl+1)+'</p>';
   wrap.appendChild(head);
 
+  wrap.appendChild(questCard());
+
   const g = h('div','grid g4 mt2');
   [['Overall mastery', Progress.overallMastery()+'%'],
-   ['Day streak', t.streak],
-   ['Badges', Progress.badgeCount()+' / '+BADGES.length],
-   ['Marks earned', t.marksEarned+' / '+t.marksPossible]
+   ['Day streak', '🔥 '+t.streak],
+   ['Best combo', '⚡ '+(Progress.state.bestRun||0)],
+   ['Badges', Progress.badgeCount()+' / '+BADGES.length]
   ].forEach(([lab,val])=>g.appendChild(h('div','stat','<b>'+val+'</b><span>'+lab+'</span>')));
   wrap.appendChild(g);
+
+  /* ---- activity heatmap ---- */
+  const hm = h('div','card');
+  hm.innerHTML = '<h2 class="mt0">Activity</h2>'+
+    '<p class="muted small">XP earned each day over the last eight weeks.</p>';
+  const heat = h('div','heat');
+  const cols = Progress.heatmapData(8);
+  const lvlOf = xp => xp === null ? '' : xp === 0 ? '' : xp < 30 ? ' l1' : xp < 80 ? ' l2' : xp < 160 ? ' l3' : ' l4';
+  cols.forEach(col=>{
+    const c = h('div','heat-col');
+    col.forEach(cell=>{
+      const d = h('div','heat-cell'+lvlOf(cell.xp));
+      if(cell.date === null) d.style.visibility = 'hidden';
+      else {
+        d.title = cell.date.toDateString()+' — '+cell.xp+' XP';
+        if(cell.today) d.style.outline = '2px solid var(--brand)';
+      }
+      c.appendChild(d);
+    });
+    heat.appendChild(c);
+  });
+  hm.appendChild(heat);
+  hm.appendChild(h('div','heat-legend',
+    '<span>less</span><span class="heat-cell"></span><span class="heat-cell l1"></span>'+
+    '<span class="heat-cell l2"></span><span class="heat-cell l3"></span><span class="heat-cell l4"></span><span>more</span>'));
+  wrap.appendChild(hm);
 
   const split = h('div','grid g2 mt2');
   [['free',free],['active',active]].forEach(([m,st])=>{
@@ -10673,11 +11227,33 @@ function viewProgress(){
   else EXAMS.forEach(e=>{
     const rec = Progress.state.exams[e.id];
     if(!rec) return;
+    const md = Progress.medal(e.id);
+    const mdef = md ? MEDALS.find(x=>x.id===md) : null;
     papers.innerHTML += '<div class="spread" style="padding:7px 0;border-bottom:1px solid var(--border)">'+
       '<span class="small">'+e.title+'</span>'+
-      '<span class="small"><strong>'+rec.bestPct+'%</strong> best · '+rec.attempts+' attempt'+(rec.attempts>1?'s':'')+'</span></div>';
+      '<span class="small">'+(mdef ? '<span class="medal '+mdef.id+'">'+mdef.icon+' '+mdef.label+'</span> ' : '')+
+      '<strong>'+rec.bestPct+'%</strong> best · '+rec.attempts+' attempt'+(rec.attempts>1?'s':'')+'</span></div>';
   });
   wrap.appendChild(papers);
+
+  /* ---- rank ladder ---- */
+  const rt = h('div','card');
+  rt.innerHTML = '<h2 class="mt0">Rank</h2>'+
+    '<p class="muted small">Each level needs a little more XP than the last. Ranks are titles only — nothing about the course is ever locked.</p>';
+  const track = h('div','ranktrack');
+  RANKS.forEach((r,i)=>{
+    const lvl = i + 1;
+    const cls = lvl === lp.lvl ? 'current' : (lvl < lp.lvl ? 'reached' : '');
+    const need = XP_BASE * Math.pow(lvl - 1, 2);
+    const acc = ACCENTS.find(a => a.level === lvl && a.id !== 'default');
+    track.appendChild(h('div','rt-row '+cls,
+      '<div class="rt-ico">'+r.icon+'</div>'+
+      '<div class="rt-body"><b>'+esc(r.name)+'</b>'+
+      '<span>Level '+lvl+' · '+need+' XP'+(acc ? ' · unlocks '+esc(acc.name) : '')+'</span></div>'+
+      '<span class="rt-tag">'+(lvl === lp.lvl ? 'you are here' : lvl < lp.lvl ? '✓' : '')+'</span>'));
+  });
+  rt.appendChild(track);
+  wrap.appendChild(rt);
 
   const bd = h('div','card');
   bd.innerHTML = '<h2 class="mt0">Badges</h2>';
@@ -10685,7 +11261,9 @@ function viewProgress(){
   BADGES.forEach(b=>{
     const got = Progress.hasBadge(b.id);
     bg.appendChild(h('div','badge '+(got?'earned':'locked'),
-      '<span class="bi">'+b.icon+'</span><div><b>'+b.name+'</b><span>'+b.desc+'</span></div>'));
+      '<span class="bi">'+b.icon+'</span><div><b>'+b.name+
+      (b.tier ? '<span class="tier '+b.tier+'">'+b.tier+'</span>' : '')+
+      '</b><span>'+b.desc+'</span></div>'));
   });
   bd.appendChild(bg);
   wrap.appendChild(bd);
@@ -10857,6 +11435,15 @@ function boot(){
     Progress.state.theme = nextT; Progress.save();
     applyTheme(nextT);
     toast(nextT ? nextT[0].toUpperCase()+nextT.slice(1)+' theme' : 'Following system theme');
+  });
+
+  const luClose = document.getElementById('lu-close');
+  if(luClose) luClose.addEventListener('click', closeLevelUp);
+  document.getElementById('levelup').addEventListener('click', e=>{
+    if(e.target.id === 'levelup') closeLevelUp();
+  });
+  document.addEventListener('keydown', e=>{
+    if(e.key === 'Escape' && document.getElementById('levelup').classList.contains('show')) closeLevelUp();
   });
 
   document.getElementById('menu-btn').addEventListener('click',()=>document.body.classList.toggle('nav-open'));
