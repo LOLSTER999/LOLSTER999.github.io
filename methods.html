@@ -7854,7 +7854,1003 @@ end for</div>The first printed output is 1, 1.`,
   model:`For h to be a pdf, ∫ from π/6 to 2π/3 of k g(x) dx = 1.\n\nk ∫ from π/6 to 2π/3 of [ 2 sin(x + 5π/6) + 2 ] dx = 1\n\nAntidifferentiate: k [ −2 cos(x + 5π/6) + 2x ] from π/6 to 2π/3 = 1\n\nEvaluate at both limits using exact values, simplify, and solve for k.\n\nAlso note h(x) ≥ 0 on the interval is required — with g ≥ 0 there, k must be positive.`,
   tip:`"Using calculus" rules out the trapezium estimate from part a. And the pdf conditions are <em>two</em>: total area 1, and non-negativity — mentioning that ${M('k > 0')} is what secures the second mark in a close marking.`
 }
+,
 
+/* ================= 2024 VCAA EXAMINATION 2 — SECTION A ================= */
+{
+  id:'nq01', cat:'explog', mode:'active', type:'mc', marks:1, src:'2024 Exam 2 A Q1',
+  stem:'The asymptote(s) of the graph of ${y = log_e(x + 1) − 3} are',
+  options:[`${M('x = −1')} only`,`${M('x = 1')} only`,`${M('y = −3')} only`,`${M('x = −1')} and ${M('y = −3')}`],
+  answer:0,
+  working:`<span class="note">a log graph has a vertical asymptote where its argument hits zero</span>
+<span class="step">${M('x + 1 = 0   ⇒   x = −1')}</span>
+<span class="note">and no horizontal asymptote — log_e grows without bound in both directions</span>`,
+  explain:`The ${M('− 3')} is a vertical translation, which moves the graph but creates no asymptote. Only exponentials have horizontal asymptotes; logs have vertical ones. Option D is the trap for anyone who assumes the ${M('−3')} behaves like the ${M('+ k')} in an exponential.`
+},
+{
+  id:'nq02', cat:'integ', mode:'active', type:'mc', marks:1, src:'2024 Exam 2 A Q2',
+  context:`${M("g ′(x) = x")}${SUP('3')}${M(' − x')} and ${M('g (0) = 5')}.`,
+  stem:'The value of ${g (2)} is',
+  options:['2','3','5','7'],
+  answer:3,
+  working:`<span class="note">antidifferentiate</span>
+<span class="step">${M('g (x) = ')}${FR(M('x')+SUP('4'),'4')}${M(' − ')}${FR(M('x')+SUP('2'),'2')}${M(' + c')}</span>
+<span class="note">use g(0) = 5</span>
+<span class="step">${M('c = 5')}</span>
+<span class="step">${M('g (2) = ')}${FR('16','4')}${M(' − ')}${FR('4','2')}${M(' + 5 = 4 − 2 + 5 = 7')}</span>`,
+  explain:`A two-step question: antidifferentiate, then use the condition to pin down ${M('c')} before substituting. Skipping the ${M('c')} gives 2, which is option A.`
+},
+{
+  id:'nq03', cat:'prob', mode:'active', type:'mc', marks:1, src:'2024 Exam 2 A Q3',
+  context:`${M('X')} takes values 0, 1, 2, 3, 4 with probabilities ${M('2k, 3k, 5k, 3k, 2k')}.`,
+  stem:'Find ${Pr(X < 4 | X > 1)}.',
+  options:[`${FR('13','15')}`,`${FR('11','13')}`,`${FR('4','5')}`,`${FR('8','15')}`],
+  answer:2,
+  working:`<span class="note">the conditioning event goes on the bottom</span>
+<span class="step">${M('X > 1')} means ${M('X ∈ {2, 3, 4}')}: ${M('5k + 3k + 2k = 10k')}</span>
+<span class="step">${M('X < 4')} and ${M('X > 1')} means ${M('X ∈ {2, 3}')}: ${M('5k + 3k = 8k')}</span>
+<span class="step">${M('Pr(X < 4 | X > 1) = ')}${FR(M('8k'),M('10k'))}${M(' = ')}${FR('4','5')}</span>`,
+  explain:`The ${M('k')} cancels, so you never need to find it. Note ${M('X > 1')} excludes 1 and ${M('X < 4')} excludes 4 — for a discrete variable those strict inequalities matter.`
+},
+{
+  id:'nq04', cat:'integ', mode:'active', type:'mc', marks:1, src:'2024 Exam 2 A Q4',
+  context:`${IG(M('a'),M('b'),M(' f (x) dx'))}${M(' = −5')} and ${IG(M('a'),M('c'),M(' f (x) dx'))}${M(' = 3')}, where ${M('a < b < c')}.`,
+  stem:'Then ${∫_b^c 2 f (x) dx} is equal to',
+  options:['−16','16','−4','4'],
+  answer:1,
+  working:`<span class="note">split the interval at b</span>
+<span class="step">${IG(M('a'),M('c'),'')}${M(' = ')}${IG(M('a'),M('b'),'')}${M(' + ')}${IG(M('b'),M('c'),'')}</span>
+<span class="step">${M('3 = −5 + ')}${IG(M('b'),M('c'),'')}   ⇒   ${IG(M('b'),M('c'),'')}${M(' = 8')}</span>
+<span class="note">the constant 2 comes straight out</span>
+<span class="step">${IG(M('b'),M('c'),M(' 2 f (x) dx'))}${M(' = 2 × 8 = 16')}</span>`,
+  explain:`Two properties in one: splitting at an interior point, and pulling a constant multiplier out of the integral. Forgetting the factor of 2 gives 8, which is not offered — a hint that you were meant to use it.`
+},
+{
+  id:'nq05', cat:'funcs', mode:'active', type:'mc', marks:1, src:'2024 Exam 2 A Q5',
+  context:`${M('f : (1, ∞) → R,  f (x) = x')}${SUP('2')}${M(' − 4x')} and ${M('g : R → R,  g (x) = e')}${SUP(M('−x'))}.`,
+  stem:'The range of the composite function ${g ( f (x) )} is',
+  options:[`${M('(0, e')}${SUP('3')}${M(')')}`,`${M('(0, e')}${SUP('3')}${M(']')}`,`${M('(0, e')}${SUP('4')}${M(')')}`,`${M('(0, e')}${SUP('4')}${M(']')}`],
+  answer:3,
+  working:`<span class="note">range of the inner function first</span>
+<span class="step">${M('f (x) = (x − 2)')}${SUP('2')}${M(' − 4')}, minimum ${M('−4')} at ${M('x = 2')}, which is inside ${M('(1, ∞)')}</span>
+<span class="step">${M('ran( f ) = [−4, ∞)')}</span>
+<span class="note">now push that through g, which is decreasing</span>
+<span class="step">${M('u = −4   →   e')}${SUP('4')}   (the largest value, and it IS attained)</span>
+<span class="step">${M('u → ∞   →   e')}${SUP(M('−u'))}${M(' → 0')}   (never reached)</span>`,
+  explain:`Because ${M('g')} is <em>decreasing</em>, the minimum of ${M('f')} produces the <strong>maximum</strong> of the composite — the interval flips. And ${M('−4')} is attained (closed bracket) while 0 is only approached (open).`
+},
+{
+  id:'nq06', cat:'funcs', mode:'active', type:'mc', marks:1, src:'2024 Exam 2 A Q6',
+  context:`${M('f (x) = ')}${FR(M('2x + 1'),M('3 − x'))} with domain ${M('R \\ {3}')}.`,
+  stem:'The inverse of ${f} is',
+  options:[
+    `${M('f')}${SUP('−1')}${M('(x) = ')}${FR(M('3x − 1'),M('x + 2'))}, domain ${M('R \\ {3}')}`,
+    `${M('f')}${SUP('−1')}${M('(x) = 3 − ')}${FR('7',M('x + 2'))}, domain ${M('R \\ {−2}')}`,
+    `${M('f')}${SUP('−1')}${M('(x) = 3 + ')}${FR('5',M('x + 2'))}, domain ${M('R \\ {−2}')}`,
+    `${M('f')}${SUP('−1')}${M('(x) = ')}${FR(M('1 − 3x'),M('x + 2'))}, domain ${M('R \\ {−2}')}`
+  ],
+  answer:1,
+  working:`<span class="note">swap and make y the subject</span>
+<span class="step">${M('x = ')}${FR(M('2y + 1'),M('3 − y'))}   ⇒   ${M('x(3 − y) = 2y + 1')}</span>
+<span class="step">${M('3x − 1 = 2y + xy = y(2 + x)')}</span>
+<span class="step">${M('y = ')}${FR(M('3x − 1'),M('x + 2'))}</span>
+<span class="note">option B is the same rule rewritten</span>
+<span class="step">${M('3 − ')}${FR('7',M('x + 2'))}${M(' = ')}${FR(M('3(x + 2) − 7'),M('x + 2'))}${M(' = ')}${FR(M('3x − 1'),M('x + 2'))} ✓</span>
+<span class="note">domain of the inverse = range of f, which is R \\ {−2}</span>`,
+  explain:`Option A has the right <em>rule</em> but the wrong <em>domain</em> — it copies ${M('f')}'s domain instead of its range. The horizontal asymptote of ${M('f')} is ${M('y = −2')}, so ${M('−2')} is the value ${M('f')} never takes, and therefore the value the inverse can never accept.`
+},
+{
+  id:'nq07', cat:'prob', mode:'active', type:'mc', marks:1, src:'2024 Exam 2 A Q7',
+  stem:'A fair six-sided die is rolled repeatedly. The minimum number of rolls so that the probability of rolling a six at least once exceeds 0.95 is',
+  options:['15','16','17','18'],
+  answer:2,
+  working:`<span class="note">"at least once" — use the complement</span>
+<span class="step">${M('1 − (')}${FR('5','6')}${M(')')}${SUP(M('n'))}${M(' > 0.95')}</span>
+<span class="step">${M('(')}${FR('5','6')}${M(')')}${SUP(M('n'))}${M(' < 0.05')}</span>
+<span class="note">take logs — the inequality flips because log(5/6) is negative</span>
+<span class="step">${M('n > ')}${FR(M('log')+SUB(M('e'))+M('(0.05)'),M('log')+SUB(M('e'))+M('(5/6)'))}${M(' = ')}${FR('−2.996','−0.1823')}${M(' = 16.43')}</span>
+<span class="step">${M('n')} must be a whole number, so ${M('n = 17')}</span>`,
+  explain:`Two traps. First, computing ${M('Pr(≥ 1)')} directly instead of via the complement. Second, the inequality reversing when you divide by a negative logarithm — and then rounding 16.43 <em>up</em>, not down, because 16 rolls would not be enough.`
+},
+{
+  id:'nq08', cat:'funcs', mode:'active', type:'mc', marks:1, src:'2024 Exam 2 A Q8',
+  context:`${M('f (1) = 0')}, ${M('f (2) = 4')}, ${M('f (3) = 5')}; ${M('g (1) = 3')}, ${M('g (2) = 4')}, ${M('g (3) = −5')}.`,
+  stem:'The graph of ${h (x) = f (x) − g (x)} must have an ${x}-intercept at',
+  options:[`${M('(2, 0)')}`,`${M('(3, 0)')}`,`${M('(4, 0)')}`,`${M('(5, 0)')}`],
+  answer:0,
+  working:`<span class="note">evaluate h at each tabulated value</span>
+<span class="step">${M('h (1) = 0 − 3 = −3')}</span>
+<span class="step">${M('h (2) = 4 − 4 = 0')} ✓</span>
+<span class="step">${M('h (3) = 5 − (−5) = 10')}</span>`,
+  explain:`An ${M('x')}-intercept is where the <em>output</em> is zero, so you are looking for the ${M('x')} at which the two functions are equal. The distractors take the shared value 4, or the ${M('x')} where ${M('f')} happens to be zero.`
+},
+{
+  id:'nq09', cat:'prob', mode:'active', type:'mc', marks:1, src:'2024 Exam 2 A Q9',
+  context:`45% of students travelled by hired limousine, 55% were driven by a parent. Of the limousine group 30% had a professional photo; of the parent group 60% did.`,
+  stem:'Given a student had a professional photo, the probability they travelled by limousine is',
+  options:[`${FR('1','8')}`,`${FR('27','200')}`,`${FR('9','31')}`,`${FR('22','31')}`],
+  answer:2,
+  working:`<span class="note">conditional — the photo event goes on the bottom</span>
+<span class="step">${M('Pr(limo ∩ photo) = 0.45 × 0.3 = 0.135')}</span>
+<span class="step">${M('Pr(parent ∩ photo) = 0.55 × 0.6 = 0.33')}</span>
+<span class="step">${M('Pr(photo) = 0.135 + 0.33 = 0.465')}</span>
+<span class="step">${M('Pr(limo | photo) = ')}${FR('0.135','0.465')}${M(' = ')}${FR('135','465')}${M(' = ')}${FR('9','31')}</span>`,
+  explain:`Option B is ${M('Pr(limo ∩ photo)')} — the numerator alone, forgetting to divide. Option D is the complement, ${M('Pr(parent | photo)')}. Always check which way round the condition runs.`
+},
+{
+  id:'nq10', cat:'diff', mode:'active', type:'mc', marks:1, src:'2024 Exam 2 A Q10',
+  context:`${M('f : [0, 5] → R')} and ${M("f ′ : [0, 5] → R")} are defined and continuous, with ${M("f ′(2) < 0")} and ${M("f ′(4) > 0")}.`,
+  stem:'Which one of these statements must be true?',
+  options:[
+    `${M('f')} is strictly decreasing on ${M('[0, 2]')}.`,
+    `${M('f')} does not have an inverse function.`,
+    `${M('f')} is positive on ${M('[4, 5]')}.`,
+    `${M('f')} has a local minimum at ${M('x = 3')}.`
+  ],
+  answer:1,
+  working:`<span class="note">f ′ changes sign between x = 2 and x = 4</span>
+<span class="note">so f decreases then increases — it is not monotonic</span>
+<span class="note">a non-monotonic function fails the horizontal line test</span>`,
+  explain:`Since ${M("f ′")} is continuous and changes sign, ${M('f')} must turn around somewhere in ${M('(2, 4)')} — so it takes some output value twice and cannot be one-to-one. The others are all <em>possible</em> but not <em>forced</em>: the turning point need not be exactly at ${M('x = 3')}, and nothing here pins down the sign of ${M('f')} itself.`
+},
+{
+  id:'nq11', cat:'prob', mode:'active', type:'mc', marks:1, src:'2024 Exam 2 A Q11',
+  context:`Twelve students: seven in the first row, five in the second. Three are chosen at random.`,
+  stem:'The probability that exactly two of the three chosen are in the first row is',
+  options:[`${FR('7','44')}`,`${FR('21','44')}`,`${FR('5','22')}`,`${FR('245','576')}`],
+  answer:1,
+  working:`<span class="note">selection without replacement — count combinations, not binomial</span>
+<span class="step">choose 2 of 7 from the front: <span class="m">(</span>${FR('7','2')}<span class="m">)</span>${M(' = 21')}</span>
+<span class="step">choose 1 of 5 from the back: <span class="m">(</span>${FR('5','1')}<span class="m">)</span>${M(' = 5')}</span>
+<span class="step">total ways to choose 3 of 12: <span class="m">(</span>${FR('12','3')}<span class="m">)</span>${M(' = 220')}</span>
+<span class="step">${M('Pr = ')}${FR('21 × 5','220')}${M(' = ')}${FR('105','220')}${M(' = ')}${FR('21','44')}</span>`,
+  explain:`This is <strong>not</strong> binomial — students are chosen without replacement from a small fixed group, so the probability changes with each pick. Option D is what you get by wrongly applying ${M('Bi(3, ')}${FR('7','12')}${M(')')}.`
+},
+{
+  id:'nq12', cat:'funcs', mode:'active', type:'mc', marks:1, src:'2024 Exam 2 A Q13',
+  context:`${M('f : (0, ∞) → R,  f (x) = ')}${FR(M('x'),'2')}${M(' + ')}${FR('2',M('x'))} is mapped to ${M('g')} by: (1) dilation by factor 3 from the ${M('y')}-axis, then (2) translation 1 unit in the negative ${M('y')} direction.`,
+  stem:'The function ${g} has a local minimum at',
+  options:[`${M('(6, 1)')}`,`${M('(')}${FR('2','3')}${M(', 1)')}`,`${M('(2, 5)')}`,`${M('(2, −')}${FR('1','3')}${M(')')}`],
+  answer:0,
+  working:`<span class="note">dilation by 3 from the y-axis replaces x with x/3</span>
+<span class="step">${M('g (x) = ')}${FR(M('x'),'6')}${M(' + ')}${FR('6',M('x'))}${M(' − 1')}</span>
+<span class="note">differentiate</span>
+<span class="step">${M("g ′(x) = ")}${FR('1','6')}${M(' − ')}${FR('6',M('x')+SUP('2'))}${M(' = 0')}   ⇒   ${M('x')}${SUP('2')}${M(' = 36')}   ⇒   ${M('x = 6')}</span>
+<span class="note">only the positive root is in the domain</span>
+<span class="step">${M('g (6) = 1 + 1 − 1 = 1')}</span>`,
+  explain:`Alternatively: ${M('f')} has its minimum at ${M('x = 2')} (where ${FR(M('x'),'2')}${M(' = ')}${FR('2',M('x'))}), and a horizontal dilation by 3 moves that to ${M('x = 6')} while the vertical shift lowers the value by 1. Either route lands on ${M('(6, 1)')}.`
+},
+{
+  id:'nq13', cat:'prob', mode:'active', type:'mc', marks:1, src:'2024 Exam 2 A Q14',
+  context:`${M('h (x) = ')}${FR(M('x'),'6')}${M(' + k')} on ${M('[−3, 0)')}, ${M('−')}${FR(M('x'),'2')}${M(' + k')} on ${M('[0, 1]')}, and 0 elsewhere, with ${M('k > 0')}.`,
+  stem:'The value of ${Pr(X < 0.5)} is',
+  options:[`${FR('1','2')}`,`${FR('15','16')}`,`${FR('3','16')}`,`${FR('49','48')}`],
+  answer:1,
+  working:`<span class="note">total area must be 1 — find k first</span>
+<span class="step">${IG('−3','0',M(' (')+FR(M('x'),'6')+M(' + k) dx'))}${M(' = [ ')}${FR(M('x')+SUP('2'),'12')}${M(' + kx ]')}${SUB('−3')}${SUP('0')}${M(' = 3k − ')}${FR('3','4')}</span>
+<span class="step">${IG('0','1',M(' (−')+FR(M('x'),'2')+M(' + k) dx'))}${M(' = k − ')}${FR('1','4')}</span>
+<span class="step">${M('4k − 1 = 1   ⇒   k = ')}${FR('1','2')}</span>
+<span class="note">now the required probability</span>
+<span class="step">${IG('−3','0','')}${M(' = ')}${FR('3','2')}${M(' − ')}${FR('3','4')}${M(' = ')}${FR('3','4')}</span>
+<span class="step">${IG('0','0.5','')}${M(' = [ −')}${FR(M('x')+SUP('2'),'4')}${M(' + ')}${FR(M('x'),'2')}${M(' ]')}${SUB('0')}${SUP('0.5')}${M(' = −')}${FR('1','16')}${M(' + ')}${FR('1','4')}${M(' = ')}${FR('3','16')}</span>
+<span class="step">${M('Pr(X < 0.5) = ')}${FR('3','4')}${M(' + ')}${FR('3','16')}${M(' = ')}${FR('15','16')}</span>`,
+  explain:`Two stages, and the first is easy to skip. Option C is the second piece alone — forgetting that everything from ${M('−3')} to 0 also counts towards ${M('Pr(X < 0.5)')}. Option D exceeds 1, which is an immediate signal that something has gone wrong.`
+},
+{
+  id:'nq14', cat:'circ', mode:'active', type:'mc', marks:1, src:'2024 Exam 2 A Q15',
+  stem:'The points of inflection of the graph of ${y = 2 − tan( π (x − 1/4) )} are',
+  options:[
+    `${M('(k + ')}${FR('1','4')}${M(', 2), k ∈ Z')}`,
+    `${M('(k − ')}${FR('1','4')}${M(', 2), k ∈ Z')}`,
+    `${M('(k + ')}${FR('1','4')}${M(', −2), k ∈ Z')}`,
+    `${M('(k − ')}${FR('3','4')}${M(', −2), k ∈ Z')}`
+  ],
+  answer:0,
+  working:`<span class="note">tan has a point of inflection wherever its argument is a multiple of π</span>
+<span class="step">${M('π (x − ')}${FR('1','4')}${M(') = kπ')}   ⇒   ${M('x = k + ')}${FR('1','4')}</span>
+<span class="note">there tan is zero, so</span>
+<span class="step">${M('y = 2 − 0 = 2')}</span>`,
+  explain:`The tangent curve is concave one way before each of its zeros and the other way after, so its zeros <em>are</em> its points of inflection. The ${M('2 −')} out the front flips the graph but leaves those points where they are, at height 2.`
+},
+{
+  id:'nq15', cat:'diff', mode:'active', type:'mc', marks:1, src:'2024 Exam 2 A Q16',
+  context:`${M('f : R → R')} is differentiable with ${M('f (4) = 25')} and ${M("f ′(4) = 15")}.`,
+  stem:'The gradient of the tangent to ${y = sqrt(f (x))} at ${x = 4} is',
+  options:[`${RT('15')}`,`${FR('1','10')}`,`${FR('15','2')}`,`${FR('3','2')}`],
+  answer:3,
+  working:`<span class="note">chain rule on the square root</span>
+<span class="step">${FR(M('dy'),M('dx'))}${M(' = ')}${FR('1','2')}${M('( f (x) )')}${SUP(M('−')+FR('1','2'))}${M(' × f ′(x) = ')}${FR(M("f ′(x)"),M('2')+RT(M('f (x)')))}</span>
+<span class="note">substitute</span>
+<span class="step">${M(' = ')}${FR('15',M('2')+RT('25'))}${M(' = ')}${FR('15','10')}${M(' = ')}${FR('3','2')}</span>`,
+  explain:`Option C is what you get by forgetting the square root in the denominator and just halving ${M("f ′")}. The value ${M('f (4) = 25')} is given precisely because you need it — if a question hands you a number, look for where it belongs.`
+},
+{
+  id:'nq16', cat:'algo', mode:'active', type:'mc', marks:1, src:'2024 Exam 2 A Q17',
+  context:`<div class="cas">define f(x)
+    return (x³ − 2x² − 9x + 18)
+c ← f(0)
+if c &lt; 0 then
+    c ← (−c)
+end if
+while c &gt; 0
+    if f(c) = 0 then
+        print c
+    end if
+    if f(−c) = 0 then
+        print −c
+    end if
+    c ← c − 1
+end while</div>`,
+  stem:'In order, the algorithm prints the values',
+  options:['−3, 3, 2','−3, 2, 3','3, 2, −3','3, −3, 2'],
+  answer:3,
+  working:`<span class="note">factorise to find the roots</span>
+<span class="step">${M('x')}${SUP('3')}${M(' − 2x')}${SUP('2')}${M(' − 9x + 18 = (x − 2)(x − 3)(x + 3)')}</span>
+<span class="note">roots are 2, 3 and −3</span>
+<span class="step">${M('c ← f (0) = 18')}, positive, so no negation</span>
+<span class="note">the loop counts DOWN from 18, testing c then −c each pass</span>
+<span class="step">${M('c = 3')}: ${M('f (3) = 0')} → print <b>3</b>; ${M('f (−3) = 0')} → print <b>−3</b></span>
+<span class="step">${M('c = 2')}: ${M('f (2) = 0')} → print <b>2</b>; ${M('f (−2) ≠ 0')}</span>`,
+  explain:`The counter runs <em>downwards</em>, so the larger root is found first — and within a single pass ${M('c')} is tested before ${M('−c')}. That gives 3, then ${M('−3')}, then 2. Reading the loop as counting upwards produces the reversed orders in the other options.`
+},
+{
+  id:'nq17', cat:'diff', mode:'active', type:'mc', marks:1, src:'2024 Exam 2 A Q18',
+  context:`A trapezium has two slanted sides of length 10, a top of length ${M('x')}, and a base made of three segments each of length ${M('x')}.`,
+  stem:'The value of ${x} which maximises the area of the trapezium is',
+  options:['10',`${M('5')}${RT('2')}`,'7',`${RT('10')}`],
+  answer:1,
+  working:`<span class="note">the slant side has horizontal run x, so by Pythagoras</span>
+<span class="step">height ${M('h = ')}${RT(M('100 − x')+SUP('2'))}</span>
+<span class="note">parallel sides are x and 3x</span>
+<span class="step">${M('A = ')}${FR('1','2')}${M('(x + 3x) h = 2x ')}${RT(M('100 − x')+SUP('2'))}</span>
+<span class="note">maximise A² instead — same x, far less algebra</span>
+<span class="step">${M('A')}${SUP('2')}${M(' = 4x')}${SUP('2')}${M('(100 − x')}${SUP('2')}${M(')')}</span>
+<span class="note">let u = x²; maximise u(100 − u), a downward parabola</span>
+<span class="step">${M('u = 50')}   ⇒   ${M('x = ')}${RT('50')}${M(' = 5')}${RT('2')}</span>`,
+  explain:`Squaring turns a messy surd derivative into a quadratic you can maximise by inspection — the vertex of ${M('u(100 − u)')} is at the midpoint of its roots, ${M('u = 50')}. Option A is the slant length itself, which would leave zero height.`
+},
+{
+  id:'nq18', cat:'prob', mode:'active', type:'mc', marks:1, src:'2024 Exam 2 A Q19',
+  context:`${M('X')} is normal with ${M('Pr(X < 10) = 0.2')} and ${M('Pr(X > 18) = 0.2')}.`,
+  stem:'The value of ${Pr(X < 12)} is closest to',
+  options:['0.134','0.297','0.337','0.365'],
+  answer:2,
+  working:`<span class="note">the two tails are equal, so the mean sits midway</span>
+<span class="step">${M('μ = ')}${FR('10 + 18','2')}${M(' = 14')}</span>
+<span class="note">standardise the lower value</span>
+<span class="step">${M('invNorm(0.2) = −0.8416')}</span>
+<span class="step">${FR('10 − 14',M('σ'))}${M(' = −0.8416')}   ⇒   ${M('σ = 4.753')}</span>
+<span class="step">${M('Pr(X < 12) = Pr(Z < ')}${FR('12 − 14','4.753')}${M(') = Pr(Z < −0.4208) = 0.337')}</span>`,
+  explain:`Spotting the symmetry is what makes this quick — equal tail probabilities force the mean to the midpoint, with no equation-solving needed. Only then do you need one ${M('z')} value to recover ${M('σ')}.`
+},
+{
+  id:'nq19', cat:'integ', mode:'active', type:'mc', marks:1, src:'2024 Exam 2 A Q20',
+  context:`${M('f : R → R')} has average value ${M('k')} on ${M('[0, 2]')} and satisfies ${M('f (x) = f (x + 2)')} for all ${M('x')}.`,
+  stem:'The value of ${∫_2^6 f (x) dx} is',
+  options:[`${M('2k')}`,`${M('3k')}`,`${M('4k')}`,`${M('6k')}`],
+  answer:2,
+  working:`<span class="note">average value k over an interval of width 2 means</span>
+<span class="step">${FR('1','2')}${IG('0','2',M(' f dx'))}${M(' = k')}   ⇒   ${IG('0','2',M(' f dx'))}${M(' = 2k')}</span>
+<span class="note">f (x) = f (x + 2) says f has period 2</span>
+<span class="step">${M('[2, 6]')} is <b>two</b> full periods</span>
+<span class="step">${IG('2','6',M(' f dx'))}${M(' = 2 × 2k = 4k')}</span>`,
+  explain:`Two easy slips: forgetting that the average is the integral <em>divided by</em> the width (so the integral is ${M('2k')}, not ${M('k')}), and miscounting the periods — ${M('[2, 6]')} has width 4, which is two periods of length 2.`
+},
+
+/* ================= 2024 VCAA EXAMINATION 2 — SECTION B ================= */
+{
+  id:'nq20', cat:'diff', mode:'active', type:'exact', marks:1, src:'2024 Exam 2 B Q1c i',
+  context:`${M('g : R → R,  g (x) = (x + 1)')}${SUP('2')}${M('(x − 2)')}${SUP('2')}.`,
+  stem:'Find ${g′(x)}, in factorised form.',
+  accept:['2(x+1)(x-2)(2x-1)','2(x+1)(x-2)(2x-1)','(2x-1)(2)(x+1)(x-2)'],
+  answer:`${M('2(x + 1)(x − 2)(2x − 1)')}`,
+  working:`<span class="note">product rule, keeping both factors intact</span>
+<span class="step">${M("g ′(x) = 2(x + 1)(x − 2)")}${SUP('2')}${M(' + (x + 1)')}${SUP('2')}${M(' · 2(x − 2)')}</span>
+<span class="note">take out the common factor 2(x + 1)(x − 2)</span>
+<span class="step">${M(' = 2(x + 1)(x − 2)[ (x − 2) + (x + 1) ]')}</span>
+<span class="step">${M(' = 2(x + 1)(x − 2)(2x − 1)')}</span>`,
+  explain:`Factorising as you go — rather than expanding to a quartic and differentiating — hands you the stationary points immediately: ${M('x = −1')}, ${M('x = 2')} and ${M('x = ')}${FR('1','2')}. That is the whole point of the "factorised form" instruction.`
+},
+{
+  id:'nq21', cat:'diff', mode:'active', type:'exact', marks:1, src:'2024 Exam 2 B Q1c ii',
+  context:`${M('g (x) = (x + 1)')}${SUP('2')}${M('(x − 2)')}${SUP('2')}, with ${M("g ′(x) = 2(x + 1)(x − 2)(2x − 1)")}.`,
+  stem:'Find the coordinates of the local maximum of ${g}.',
+  accept:['(1/2,81/16)','(0.5,81/16)','(1/2,5.0625)','(0.5,5.0625)'],
+  answer:`${M('(')}${FR('1','2')}${M(', ')}${FR('81','16')}${M(')')}`,
+  working:`<span class="note">stationary points at x = −1, ½ and 2</span>
+<span class="note">g is a square times a square, so g ≥ 0 everywhere</span>
+<span class="step">${M('g (−1) = 0')} and ${M('g (2) = 0')} — both minima, sitting on the axis</span>
+<span class="note">so the middle one must be the maximum</span>
+<span class="step">${M('g (')}${FR('1','2')}${M(') = (')}${FR('3','2')}${M(')')}${SUP('2')}${M('(−')}${FR('3','2')}${M(')')}${SUP('2')}${M(' = ')}${FR('9','4')}${M(' × ')}${FR('9','4')}${M(' = ')}${FR('81','16')}</span>`,
+  explain:`No sign table needed here: because ${M('g')} is a product of two squares it can never be negative, so the two zeros must be minima and the remaining stationary point must be the maximum. Recognising that saves real time.`
+},
+{
+  id:'nq22', cat:'diff', mode:'active', type:'exact', marks:1, src:'2024 Exam 2 B Q1c iii',
+  context:`${M("g ′(x) = 2(x + 1)(x − 2)(2x − 1)")}.`,
+  stem:'Find the values of ${x} for which ${g′(x) > 0}.',
+  accept:['(-1,1/2)∪(2,inf)','(-1,0.5)u(2,inf)','-1<x<1/2orx>2','(-1,1/2)∪(2,∞)'],
+  answer:`${M('(−1, ')}${FR('1','2')}${M(') ∪ (2, ∞)')}`,
+  working:`<span class="note">roots of the derivative, in order: −1, ½, 2</span>
+<span class="note">the leading coefficient is positive (2 × 1 × 2 = 4) and the degree is 3</span>
+<span class="note">so the sign pattern from left to right is − + − +</span>
+<span class="step">${M("g ′ > 0")} on ${M('(−1, ')}${FR('1','2')}${M(')')} and on ${M('(2, ∞)')}</span>`,
+  explain:`For a cubic with three distinct roots the sign simply alternates, so once you know the far-right behaviour you can fill in the rest by working backwards. The graph rises between the first two roots and again after the last — matching a curve that touches the axis at ${M('−1')}, peaks, dips to touch at 2, then climbs.`
+},
+{
+  id:'nq23', cat:'diff', mode:'active', type:'written', marks:2, src:'2024 Exam 2 B Q2a',
+  context:`${M('f (t) = 12 + 30t')} for ${M('0 ≤ t ≤ ')}${FR('1','3')}, and ${M('f (t) = 22')} for ${M('t > ')}${FR('1','3')} — a model for room temperature ${M('t')} hours after a heater is switched on.`,
+  stem:'Express the derivative ${f′(t)} as a hybrid function.',
+  criteria:[
+    {t:'Differentiates each piece: 30 on the first branch, 0 on the second', m:1},
+    {t:'Presents it as a hybrid function with the correct domains, excluding t = 1/3 where it is not differentiable', m:1}
+  ],
+  model:`Differentiating each branch separately:\n\n  f ′(t) = 30    for 0 < t < 1/3\n  f ′(t) = 0     for t > 1/3\n\nAt t = 1/3 the function is continuous (both branches give 22), but the left derivative is 30 and the right derivative is 0. Since these disagree, f is not differentiable at t = 1/3, so that point is excluded from the domain of f ′.`,
+  tip:`The mark that gets missed is the exclusion of ${M('t = ')}${FR('1','3')}. The temperature graph has a <strong>corner</strong> there — it rises steadily then abruptly levels off — so no single tangent exists at that instant.`
+},
+{
+  id:'nq24', cat:'diff', mode:'active', type:'exact', marks:1, src:'2024 Exam 2 B Q2b',
+  context:`${M('f (t) = 12 + 30t')} on ${M('[0, ')}${FR('1','3')}${M(']')}, then constant at 22.`,
+  stem:'Find the average rate of change in temperature between ${t = 0} and ${t = 1/2}, in °C per hour.',
+  accept:['20','20degreespersecond','20°C/hour','20c/h'],
+  answer:`${M('20')} °C per hour`,
+  working:`<span class="note">average rate of change is the gradient of the chord — no calculus</span>
+<span class="step">${M('f (0) = 12')}</span>
+<span class="step">${M('f (')}${FR('1','2')}${M(') = 22')}   (past the join, so the constant branch applies)</span>
+<span class="step">${FR('22 − 12',FR('1','2'))}${M(' = ')}${FR('10','0.5')}${M(' = 20')}</span>`,
+  explain:`The temperature stops rising after ${FR('1','3')} of an hour, but the <em>average</em> rate over the whole half hour is still 20 °C/h — lower than the 30 °C/h it managed while actually heating. Nothing between the endpoints affects an average rate of change.`
+},
+{
+  id:'nq25', cat:'explog', mode:'active', type:'exact', marks:1, src:'2024 Exam 2 B Q2c ii',
+  context:`${M('g (t) = 22 − 10 e')}${SUP(M('−6t'))}${M(',  t ≥ 0')}, so ${M("g ′(t) = 60 e")}${SUP(M('−6t'))}.`,
+  stem:'Find the value of ${t} for which ${g′(t) = 10}, correct to three decimal places.',
+  accept:['0.299','0.2986','0.29863'],
+  answer:`${M('t ≈ 0.299')}`,
+  working:`<span class="step">${M('60 e')}${SUP(M('−6t'))}${M(' = 10')}</span>
+<span class="step">${M('e')}${SUP(M('−6t'))}${M(' = ')}${FR('1','6')}</span>
+<span class="step">${M('−6t = log')}${SUB(M('e'))}${M('(')}${FR('1','6')}${M(') = −log')}${SUB(M('e'))}${M('(6)')}</span>
+<span class="step">${M('t = ')}${FR(M('log')+SUB(M('e'))+M('(6)'),'6')}${M(' = ')}${FR('1.79176','6')}${M(' = 0.29863')}</span>`,
+  explain:`Watch the two negatives cancelling — ${M('log')}${SUB(M('e'))}${M('(')}${FR('1','6')}${M(')')} is negative, and so is ${M('−6t')}, so ${M('t')} comes out positive as it must. Round only at the final step.`
+},
+{
+  id:'nq26', cat:'funcs', mode:'active', type:'written', marks:1, src:'2024 Exam 2 B Q2f i',
+  context:`${M('p (t) = 1.5')} for ${M('0 ≤ t ≤ 0.4')}, and ${M('p (t) = 0.3 + A e')}${SUP(M('−10t'))} for ${M('t > 0.4')}, modelling heater power in kilowatts.`,
+  stem:'Given that ${p (t)} is continuous for ${t ≥ 0}, show that ${A = 1.2 e^4}.',
+  criteria:[
+    {t:'Sets the two branches equal at t = 0.4 and solves for A', m:1}
+  ],
+  model:`Continuity at t = 0.4 requires both branches to give the same value there:\n\n  1.5 = 0.3 + A e^(−10 × 0.4)\n  1.5 = 0.3 + A e^(−4)\n  1.2 = A e^(−4)\n  A = 1.2 / e^(−4)\n  A = 1.2 e^4`,
+  tip:`The final step uses ${FR('1',M('e')+SUP('−4'))}${M(' = e')}${SUP('4')}. A negative exponent in a denominator flips to a positive one in the numerator — worth doing deliberately rather than trusting a calculator, since this is a "show that".`
+},
+
+/* ================= 2024 NHT EXAMINATION 2 — SECTION A ================= */
+{
+  id:'nq27', cat:'prob', mode:'active', type:'mc', marks:1, src:'2024 NHT Exam 2 A Q2',
+  context:`${M('A')} and ${M('B')} are independent, with ${M('Pr(A) = 0.6')} and ${M('Pr(A ∪ B) = 0.92')}.`,
+  stem:'${Pr(B)} is equal to',
+  options:[`${FR('4','5')}`,`${FR('4','15')}`,`${FR('8','15')}`,`${FR('8','25')}`,`${FR('1','5')}`],
+  answer:0,
+  working:`<span class="note">addition rule, with independence giving the intersection</span>
+<span class="step">${M('Pr(A ∪ B) = Pr(A) + Pr(B) − Pr(A)Pr(B)')}</span>
+<span class="step">${M('0.92 = 0.6 + Pr(B)(1 − 0.6)')}</span>
+<span class="step">${M('0.32 = 0.4 Pr(B)')}   ⇒   ${M('Pr(B) = 0.8 = ')}${FR('4','5')}</span>`,
+  explain:`Independence is what lets you replace ${M('Pr(A ∩ B)')} with the product — without it the problem is unsolvable. Factorising out ${M('Pr(B)')} after substituting keeps the algebra to one line.`
+},
+{
+  id:'nq28', cat:'algebra', mode:'active', type:'mc', marks:1, src:'2024 NHT Exam 2 A Q3',
+  context:`Positive reals ${M('a, b, c')} satisfy ${M('log')}${SUB('5')}${M('(a) + log')}${SUB('5')}${M('(b) = 2 log')}${SUB('5')}${M('(c)')}.`,
+  stem:'Therefore it must be true that',
+  options:[`${M('a = 2c − b')}`,`${M('a = c')}${SUP('2')}${M(' − b')}`,`${M('a = ')}${FR(M('c')+SUP('2'),M('b'))}`,`${M('a = ')}${FR(M('c'),M('b')+SUP('2'))}`,`${M('a = ')}${FR(M('b'),M('c')+SUP('2'))}`],
+  answer:2,
+  working:`<span class="note">combine the left side with the product law</span>
+<span class="step">${M('log')}${SUB('5')}${M('(ab) = log')}${SUB('5')}${M('(c')}${SUP('2')}${M(')')}</span>
+<span class="note">logs of the same base are equal only if their arguments are</span>
+<span class="step">${M('ab = c')}${SUP('2')}   ⇒   ${M('a = ')}${FR(M('c')+SUP('2'),M('b'))}</span>`,
+  explain:`Options A and B come from treating logs as if they distribute over addition — the classic error. A sum of logs is the log of a <em>product</em>, and a coefficient in front becomes a <em>power</em>.`
+},
+{
+  id:'nq29', cat:'diff', mode:'active', type:'mc', marks:1, src:'2024 NHT Exam 2 A Q4',
+  context:`A straight line passes through the positive ${M('x')}-intercept of ${M('y = x')}${SUP('3')}${M(' − x')}${SUP('2')}${M(' − 2x')} and through its point of inflection.`,
+  stem:'The gradient of this line is',
+  options:[`${FR('4','9')}`,`${FR('2','3')}`,`${FR('1','2')}`,`${FR('−15','7')}`,`${FR('−20','9')}`],
+  answer:0,
+  working:`<span class="note">factorise to find the intercepts</span>
+<span class="step">${M('y = x(x − 2)(x + 1)')} → positive intercept at ${M('(2, 0)')}</span>
+<span class="note">point of inflection: second derivative zero</span>
+<span class="step">${M("y ″ = 6x − 2 = 0")}   ⇒   ${M('x = ')}${FR('1','3')}</span>
+<span class="step">${M('y = ')}${FR('1','27')}${M(' − ')}${FR('1','9')}${M(' − ')}${FR('2','3')}${M(' = −')}${FR('20','27')}</span>
+<span class="note">gradient between the two points</span>
+<span class="step">${FR(M('0 − (−')+FR('20','27')+M(')'),M('2 − ')+FR('1','3'))}${M(' = ')}${FR(FR('20','27'),FR('5','3'))}${M(' = ')}${FR('20','27')}${M(' × ')}${FR('3','5')}${M(' = ')}${FR('4','9')}</span>`,
+  explain:`Option E is the ${M('y')}-value of the inflection point, ${M('−')}${FR('20','27')}, mis-simplified — a sign that the gradient step was skipped. Note that the point of inflection of any cubic is at ${M('x = −')}${FR(M('b'),M('3a'))}.`
+},
+{
+  id:'nq30', cat:'algo', mode:'active', type:'mc', marks:1, src:'2024 NHT Exam 2 A Q6',
+  stem:'The graph of ${y = tan(ax)} has an asymptote with equation ${x = π/6}. A possible value of ${a} is',
+  options:['4','6','9','10','12'],
+  answer:2,
+  working:`<span class="note">asymptotes of tan occur where the argument is π/2 + kπ</span>
+<span class="step">${M('a × ')}${FR('π','6')}${M(' = ')}${FR('π','2')}${M(' + kπ')}</span>
+<span class="step">${M('a = 6(')}${FR('1','2')}${M(' + k) = 3 + 6k')}</span>
+<span class="note">so a ∈ {3, 9, 15, 21, …}</span>`,
+  explain:`The word "possible" is the clue that there is a whole family of answers, not one. Only 9 appears in the list. Testing ${M('a = 6')} shows why it fails: ${M('6 × ')}${FR('π','6')}${M(' = π')}, which is a zero of tan, not an asymptote.`
+},
+{
+  id:'nq31', cat:'prob', mode:'active', type:'mc', marks:1, src:'2024 NHT Exam 2 A Q8',
+  context:`${M('N')} takes values 0, 1, 2, 3, 4 with probabilities 0.25, 0.3, 0.25, 0.15, 0.05.`,
+  stem:'Given that a visitor has previously visited, the probability they have visited more than once is',
+  options:['0.73','0.6','0.55','0.45','0.5'],
+  answer:1,
+  working:`<span class="note">"has previously visited" means N ≥ 1</span>
+<span class="step">${M('Pr(N ≥ 1) = 1 − 0.25 = 0.75')}</span>
+<span class="note">"more than once" means N ≥ 2</span>
+<span class="step">${M('Pr(N ≥ 2) = 0.25 + 0.15 + 0.05 = 0.45')}</span>
+<span class="step">${M('Pr(N > 1 | N ≥ 1) = ')}${FR('0.45','0.75')}${M(' = 0.6')}</span>`,
+  explain:`Option D, 0.45, is the unconditional ${M('Pr(N ≥ 2)')} — the answer for anyone who never divides. The condition genuinely changes things: knowing they have visited at all rules out a quarter of the population.`
+},
+{
+  id:'nq32', cat:'algebra', mode:'active', type:'mc', marks:1, src:'2024 NHT Exam 2 A Q9',
+  context:`${M('f (x) = 3x')}${SUP('2')}${M(' − 2ax + 6')}, where ${M('a ∈ R')}.`,
+  stem:'The set of values of ${a} such that ${f (x) > 0} for all ${x ∈ R} is',
+  options:[`${M('{ a : |a| < 3')}${RT('2')}${M(' }')}`,`${M('{ a : a < −3')}${RT('2')}${M(' } ∪ { a : a > 3')}${RT('2')}${M(' }')}`,`${M('{ a : a > 0 }')}`,`${M('{ a : |a| < 18 }')}`,`${M('R')}`],
+  answer:0,
+  working:`<span class="note">an upward parabola stays above the axis exactly when it has no real roots</span>
+<span class="step">${M('Δ < 0')}</span>
+<span class="step">${M('(−2a)')}${SUP('2')}${M(' − 4(3)(6) < 0')}</span>
+<span class="step">${M('4a')}${SUP('2')}${M(' < 72')}   ⇒   ${M('a')}${SUP('2')}${M(' < 18')}</span>
+<span class="step">${M('|a| < ')}${RT('18')}${M(' = 3')}${RT('2')}</span>`,
+  explain:`The leading coefficient 3 is positive, so the parabola opens upwards and "always positive" is equivalent to "never touches the axis". Option B has the inequality the wrong way round — that is the condition for <em>two</em> real roots.`
+},
+{
+  id:'nq33', cat:'prob', mode:'active', type:'mc', marks:1, src:'2024 NHT Exam 2 A Q10',
+  context:`A pdf is trapezium-shaped, rising from ${M('(−2, 0)')} to ${M('(−k, k)')}, flat across to ${M('(k, k)')}, then falling to ${M('(2, 0)')}.`,
+  stem:'The value of ${k} is',
+  options:[`${RT('2')}${M(' − 1')}`,`${M('−')}${RT('2')}${M(' − 1')}`,'1',`${RT('6')}${M(' − 2')}`,`${FR(RT('6')+M(' − 2'),'1')}`],
+  answer:0,
+  working:`<span class="note">total area must be 1 — use the trapezium formula</span>
+<span class="step">parallel sides ${M('2k')} (top) and ${M('4')} (bottom), height ${M('k')}</span>
+<span class="step">${M('A = ')}${FR('1','2')}${M('(2k + 4) k = k')}${SUP('2')}${M(' + 2k')}</span>
+<span class="step">${M('k')}${SUP('2')}${M(' + 2k − 1 = 0')}</span>
+<span class="step">${M('k = ')}${FR(M('−2 ± ')+RT('8'),'2')}${M(' = −1 ± ')}${RT('2')}</span>
+<span class="note">a height must be positive, so reject the negative root</span>
+<span class="step">${M('k = ')}${RT('2')}${M(' − 1')}</span>`,
+  explain:`Option B is the rejected root. Any pdf question ending in a quadratic needs a rejection step with a stated reason — here, that a height cannot be negative.`
+},
+{
+  id:'nq34', cat:'integ', mode:'active', type:'mc', marks:1, src:'2024 NHT Exam 2 A Q13',
+  context:`${M('f')} and ${M('g')} are continuous on ${M('R')}, with ${M('g (x) < 0')} for all ${M('x')} and ${M("f ′(x) = g (x)")}. Also ${M('f (−1) = 2')} and ${M('f (2) = −1')}.`,
+  stem:'The area enclosed by ${y = g (x)}, the ${x}-axis and the lines ${x = −1} and ${x = 2} is',
+  options:['0 square units','1 square unit','2 square units','3 square units','4 square units'],
+  answer:3,
+  working:`<span class="note">g is the derivative of f, so integrating g recovers f</span>
+<span class="step">${IG('−1','2',M(' g (x) dx'))}${M(' = f (2) − f (−1) = −1 − 2 = −3')}</span>
+<span class="note">g < 0 throughout, so the region lies entirely below the axis</span>
+<span class="step">area ${M(' = |−3| = 3')}</span>`,
+  explain:`The fundamental theorem does all the work — you never need a rule for ${M('g')}. The negative sign is expected, since ${M('g')} is negative everywhere; area is its magnitude.`
+},
+{
+  id:'nq35', cat:'algo', mode:'active', type:'mc', marks:1, src:'2024 NHT Exam 2 A Q14',
+  context:`<div class="cas">define intersect(x0, x1):
+    x ← x0
+    while x &lt; x1
+        if −0.01 &lt; cos(x) − x &lt; 0.01 then
+            return x
+        end if
+        x ← x + 0.01
+    end while
+    return "No intersection found"</div>`,
+  stem:'What will ${intersect(0.6, 0.8)} return?',
+  options:['−0.002','0.02','0.73','0.74','No intersection found'],
+  answer:3,
+  working:`<span class="note">step up from 0.6 in increments of 0.01, testing |cos(x) − x| &lt; 0.01</span>
+<span class="step">${M('x = 0.70')}: ${M('cos = 0.7648')}, difference ${M('0.0648')} ✗</span>
+<span class="step">${M('x = 0.73')}: ${M('cos = 0.7452')}, difference ${M('0.0152')} ✗</span>
+<span class="step">${M('x = 0.74')}: ${M('cos = 0.7385')}, difference ${M('−0.0015')} ✓ → return 0.74</span>`,
+  explain:`The routine returns the ${M('x')} value, not the difference — option A is the difference at the answer, and option B is a decoy of similar size. Note it stops at the <em>first</em> ${M('x')} within tolerance, which is 0.74 rather than the true root ≈ 0.739.`
+},
+{
+  id:'nq36', cat:'diff', mode:'active', type:'mc', marks:1, src:'2024 NHT Exam 2 A Q16',
+  context:`${M('f (0) = 2')}, ${M('f (2) = −1')}, ${M("f ′(0) = −1")}, ${M("f ′(2) = 2")}; ${M('g (0) = 1')}, ${M('g (2) = −1')}, ${M("g ′(0) = 0")}, ${M("g ′(2) = 3")}.`,
+  stem:'The value of ${d/dx (g ∘ f)(x)} at ${x = 0} is',
+  options:['−3','−1','0','1','2'],
+  answer:0,
+  working:`<span class="note">chain rule on a composite</span>
+<span class="step">${FR(M('d'),M('dx'))}${M(' g ( f (x) ) = g ′( f (x) ) × f ′(x)')}</span>
+<span class="note">at x = 0, the inner function outputs f (0) = 2</span>
+<span class="step">${M(' = g ′(2) × f ′(0)')}</span>
+<span class="step">${M(' = 3 × (−1) = −3')}</span>`,
+  explain:`The crucial step is realising that ${M("g ′")} must be evaluated at ${M('f (0) = 2')}, <strong>not</strong> at ${M('x = 0')}. Using ${M("g ′(0) = 0")} gives 0, which is option C — the designed trap.`
+},
+{
+  id:'nq37', cat:'prob', mode:'active', type:'mc', marks:1, src:'2024 NHT Exam 2 A Q17',
+  context:`For events ${M('A')}, ${M('B')} and ${M('C')}: ${M('Pr(A | B) = 1')} and ${M('Pr(C | B) = Pr(C)')}.`,
+  stem:'Which statement about ${A}, ${B} and ${C} must be true?',
+  options:[
+    `${M('Pr(A) = 1')}`,
+    `${M('C ⊆ B')}`,
+    `${M('Pr(A) ≠ 1')}`,
+    `${M('B')} and ${M('C')} are independent and ${M('B ⊆ A')}`,
+    `${M('B')} and ${M('C')} are not independent and ${M('B ⊆ A')}`
+  ],
+  answer:3,
+  working:`<span class="note">unpack each condition separately</span>
+<span class="step">${M('Pr(A | B) = 1')} means: whenever ${M('B')} happens, ${M('A')} happens — that is ${M('B ⊆ A')}</span>
+<span class="step">${M('Pr(C | B) = Pr(C)')} is precisely the definition of ${M('B')} and ${M('C')} being independent</span>`,
+  explain:`Both halves must hold, which rules out E immediately. Option A over-reaches: ${M('B ⊆ A')} forces ${M('Pr(A) ≥ Pr(B)')}, but ${M('A')} need not be certain. Conditional probability equal to 1 is a <em>containment</em> statement, not a certainty statement about ${M('A')} alone.`
+},
+{
+  id:'nq38', cat:'diff', mode:'active', type:'mc', marks:1, src:'2024 NHT Exam 2 A Q19',
+  context:`${M('f : R → R')} is continuous and differentiable, with a local <strong>minimum</strong> at ${M('x = −1')} and a local <strong>maximum</strong> at ${M('x = 3')}.`,
+  stem:'The solution to the inequality ${(x^2 − x − 2) f′(x) > 0} is',
+  options:[`${M('−1 < x < 2')}`,`${M('−1 < x < 3')}`,`${M('2 < x < 3')}`,`${M('x < −1')} or ${M('x > 2')}`,`${M('x < −1')} or ${M('x > 3')}`],
+  answer:2,
+  working:`<span class="note">factorise the quadratic</span>
+<span class="step">${M('x')}${SUP('2')}${M(' − x − 2 = (x − 2)(x + 1)')}, positive when ${M('x < −1')} or ${M('x > 2')}</span>
+<span class="note">from the shape of f: min at −1, max at 3</span>
+<span class="step">${M("f ′ < 0")} for ${M('x < −1')};  ${M("f ′ > 0")} for ${M('−1 < x < 3')};  ${M("f ′ < 0")} for ${M('x > 3')}</span>
+<span class="note">now multiply the signs region by region</span>
+<span class="step">${M('x < −1')}: ${M('(+)(−) < 0')} ✗</span>
+<span class="step">${M('−1 < x < 2')}: ${M('(−)(+) < 0')} ✗</span>
+<span class="step">${M('2 < x < 3')}: ${M('(+)(+) > 0')} ✓</span>
+<span class="step">${M('x > 3')}: ${M('(+)(−) < 0')} ✗</span>`,
+  explain:`A sign-multiplication problem in disguise. Build a table of the two factors' signs across the four regions cut out by ${M('−1')}, ${M('2')} and ${M('3')}, then read off where the product is positive. Only one region survives.`
+},
+
+/* ================= 2023 VCAA EXAMINATION 2 ================= */
+{
+  id:'nq39', cat:'circ', mode:'active', type:'mc', marks:1, src:'2023 Exam 2 A Q1',
+  context:`${M('f (x) = ')}${FR('1','2')}${M(' sin(3x) − 2')}.`,
+  stem:'The amplitude ${A} and the period ${P} of ${f} are',
+  options:[
+    `${M('A = ')}${FR('1','2')}${M(',  P = 3π')}`,
+    `${M('A = ')}${FR('1','2')}${M(',  P = ')}${FR('2π','3')}`,
+    `${M('A = ')}${FR('1','2')}${M(',  P = ')}${FR('3π','2')}`,
+    `${M('A = −')}${FR('1','2')}${M(',  P = 3π')}`,
+    `${M('A = −')}${FR('1','2')}${M(',  P = ')}${FR('2π','3')}`
+  ],
+  answer:1,
+  working:`<span class="note">amplitude is the absolute value of the coefficient</span>
+<span class="step">${M('A = |')}${FR('1','2')}${M('| = ')}${FR('1','2')}</span>
+<span class="note">period of sin(nx) is 2π / |n|</span>
+<span class="step">${M('P = ')}${FR('2π','3')}</span>`,
+  explain:`Two things the ${M('− 2')} does <em>not</em> affect: amplitude and period. It only shifts the graph down, moving the mean line to ${M('y = −2')}. And amplitude is never negative — options D and E fail on that alone.`
+},
+{
+  id:'nq40', cat:'diff', mode:'active', type:'mc', marks:1, src:'2023 Exam 2 A Q5',
+  stem:'Which one of the following functions has a horizontal tangent at ${(0, 0)}?',
+  options:[`${M('y = x')}${SUP(FR('1','3'))}${M(' − 1')}`,`${M('y = x')}${SUP(FR('1','3'))}`,`${M('y = x')}${SUP(FR('2','3'))}`,`${M('y = x')}${SUP(FR('4','3'))}`,`${M('y = x')}${SUP(FR('3','4'))}`],
+  answer:3,
+  working:`<span class="note">a horizontal tangent needs the derivative to exist AND equal zero at x = 0</span>
+<span class="step">${M('y = x')}${SUP(M('p'))}   ⇒   ${M("y ′ = p x")}${SUP(M('p − 1'))}</span>
+<span class="note">this tends to 0 as x → 0 only when p − 1 &gt; 0, i.e. p &gt; 1</span>
+<span class="step">only ${FR('4','3')}${M(' > 1')}</span>
+<span class="note">check the point: (0)^(4/3) = 0 ✓ passes through the origin</span>`,
+  explain:`For ${M('p < 1')} the derivative ${M('p x')}${SUP(M('p−1'))} has a negative index, so it blows up at ${M('x = 0')} — a <strong>vertical</strong> tangent, not a horizontal one. Option A also fails because it does not pass through the origin at all.`
+},
+{
+  id:'nq41', cat:'diff', mode:'active', type:'mc', marks:1, src:'2023 Exam 2 A Q11',
+  context:`${M('f (−2) = −7')}, ${M('g (−2) = 8')}, ${M("f ′(−2) = 3")}, ${M("g ′(−2) = 2")}.`,
+  stem:'The gradient of ${y = f (x) × g (x)} at ${x = −2} is',
+  options:['−10','−6','0','6','10'],
+  answer:4,
+  working:`<span class="note">product rule</span>
+<span class="step">${M("(fg)′ = f ′ g + f g ′")}</span>
+<span class="step">${M(' = 3 × 8 + (−7) × 2')}</span>
+<span class="step">${M(' = 24 − 14 = 10')}</span>`,
+  explain:`Pure substitution once the rule is written down. The distractors come from pairing the wrong terms — ${M("f ′ g ′ + f g = 6 − 56")}, or forgetting the minus on ${M('f (−2)')}.`
+},
+{
+  id:'nq42', cat:'prob', mode:'active', type:'mc', marks:1, src:'2023 Exam 2 A Q12',
+  context:`${M('X')} takes values ${M('−1, 0, 1, 2')} with probabilities ${M('k')}${SUP('2')}, ${M('3k')}, ${M('k')}, ${M('−k')}${SUP('2')}${M(' − 4k + 1')}.`,
+  stem:'The maximum possible value for the mean of ${X} is',
+  options:['0',`${FR('1','3')}`,`${FR('2','3')}`,'1','2'],
+  answer:4,
+  working:`<span class="note">the probabilities already sum to 1 for every k, so that gives no constraint</span>
+<span class="note">instead, every probability must be non-negative</span>
+<span class="step">${M('3k ≥ 0')} and ${M('k ≥ 0')}   ⇒   ${M('k ≥ 0')}</span>
+<span class="step">${M('−k')}${SUP('2')}${M(' − 4k + 1 ≥ 0')}   ⇒   ${M('k ≤ ')}${RT('5')}${M(' − 2 ≈ 0.236')}</span>
+<span class="note">now the mean</span>
+<span class="step">${M('E(X) = −k')}${SUP('2')}${M(' + k + 2(−k')}${SUP('2')}${M(' − 4k + 1) = −3k')}${SUP('2')}${M(' − 7k + 2')}</span>
+<span class="note">on 0 ≤ k ≤ 0.236 this is decreasing, so it is largest at k = 0</span>
+<span class="step">${M('E(X) = 2')}</span>`,
+  explain:`The trick is realising that the sum-to-one condition is automatically satisfied here, so the real constraints come from <strong>non-negativity</strong>. At ${M('k = 0')} the distribution collapses to "always 2", which is perfectly valid and gives the largest possible mean.`
+},
+{
+  id:'nq43', cat:'algo', mode:'active', type:'mc', marks:1, src:'2023 Exam 2 A Q13',
+  context:`Newton's method with a for-loop of 3 iterations, applied to ${M('f (x) = x')}${SUP('3')}${M(' + 3x − 3')} with ${M("f ′(x) = 3x")}${SUP('2')}${M(' + 3')} and ${M('x')}${SUB('0')}${M(' = 1')}.`,
+  stem:'The return value is closest to',
+  options:['0.83333','0.81785','0.81773','1','3'],
+  answer:2,
+  working:`<span class="note">iteration 1</span>
+<span class="step">${M('f (1) = 1')}, ${M("f ′(1) = 6")}   ⇒   ${M('x')}${SUB('1')}${M(' = 1 − ')}${FR('1','6')}${M(' = 0.833333')}</span>
+<span class="note">iteration 2</span>
+<span class="step">${M('f (0.833333) = 0.078703')}, ${M("f ′ = 5.083333")}   ⇒   ${M('x')}${SUB('2')}${M(' = 0.817851')}</span>
+<span class="note">iteration 3</span>
+<span class="step">${M('f (0.817851) = 0.000658')}, ${M("f ′ = 5.006640")}   ⇒   ${M('x')}${SUB('3')}${M(' = 0.817720')}</span>`,
+  explain:`Options A and B are the values after <em>one</em> and <em>two</em> iterations — the paper offers them to catch anyone who miscounts the loop. Notice how fast the correction shrinks: 0.167, then 0.0155, then 0.00013. That rapid convergence is Newton's method working well.`
+},
+{
+  id:'nq44', cat:'explog', mode:'active', type:'mc', marks:1, src:'2023 Exam 2 A Q16',
+  context:`${M('f (x) = e')}${SUP(M('x − 1'))} and ${M('f (x) × g (x) = e')}${SUP(M('(x − 1)')+SUP('2'))}.`,
+  stem:'The rule for the function ${g} is',
+  options:[
+    `${M('g (x) = e')}${SUP(M('x − 1'))}`,
+    `${M('g (x) = e')}${SUP(M('(x − 2)(x − 1)'))}`,
+    `${M('g (x) = e')}${SUP(M('(x + 2)(x − 1)'))}`,
+    `${M('g (x) = e')}${SUP(M('x(x − 2)'))}`,
+    `${M('g (x) = e')}${SUP(M('x(x − 3)'))}`
+  ],
+  answer:1,
+  working:`<span class="note">divide — exponents subtract</span>
+<span class="step">${M('g (x) = ')}${FR(M('e')+SUP(M('(x−1)')+SUP('2')),M('e')+SUP(M('x−1')))}${M(' = e')}${SUP(M('(x−1)')+SUP('2')+M(' − (x−1)'))}</span>
+<span class="note">factorise the exponent</span>
+<span class="step">${M('(x−1)')}${SUP('2')}${M(' − (x−1) = (x−1)[(x−1) − 1] = (x−1)(x−2)')}</span>`,
+  explain:`Taking out the common factor ${M('(x − 1)')} rather than expanding is what makes the answer match an option directly. Expanding gives ${M('x')}${SUP('2')}${M(' − 3x + 2')}, which is the same thing but harder to recognise in the list.`
+},
+{
+  id:'nq45', cat:'circ', mode:'active', type:'mc', marks:1, src:'2023 Exam 2 A Q18',
+  context:`${M('f : [−aπ, aπ] → R,  f (x) = sin(ax)')}, where ${M('a')} is a positive integer.`,
+  stem:'The number of local minima in the graph of ${y = f (x)} is always equal to',
+  options:['2','4',`${M('a')}`,`${M('2a')}`,`${M('a')}${SUP('2')}`],
+  answer:4,
+  working:`<span class="note">count how many periods fit in the domain</span>
+<span class="step">period ${M(' = ')}${FR('2π',M('a'))}, domain width ${M(' = 2aπ')}</span>
+<span class="step">number of periods ${M(' = ')}${FR('2aπ',FR('2π',M('a')))}${M(' = a')}${SUP('2')}</span>
+<span class="note">a sine curve has exactly one local minimum per period</span>`,
+  explain:`Both the period and the domain depend on ${M('a')}, and the effects compound — which is why the answer is quadratic rather than linear. Check with ${M('a = 1')}: ${M('sin(x)')} on ${M('[−π, π]')} has one minimum, and ${M('1')}${SUP('2')}${M(' = 1')} ✓. With ${M('a = 2')} you get 4.`
+},
+{
+  id:'nq46', cat:'funcs', mode:'active', type:'exact', marks:1, src:'2023 Exam 2 B Q1a',
+  context:`${M('f : R → R,  f (x) = x(x − 2)(x + 1)')}.`,
+  stem:'State the coordinates of all axial intercepts of ${f}.',
+  accept:['(0,0),(2,0),(-1,0)','(-1,0),(0,0),(2,0)','(0,0)(2,0)(-1,0)'],
+  answer:`${M('(0, 0)')}, ${M('(2, 0)')}, ${M('(−1, 0)')}`,
+  working:`<span class="note">already factorised — apply the null factor law</span>
+<span class="step">${M('x = 0')}, ${M('x = 2')}, ${M('x = −1')}</span>
+<span class="note">the y-intercept is f (0) = 0, which is the same point as the first</span>`,
+  explain:`"Axial intercepts" means both axes. Here the ${M('y')}-intercept coincides with an ${M('x')}-intercept at the origin, so there are three points, not four. Give them as coordinate pairs — a bare list of ${M('x')} values is incomplete.`
+},
+{
+  id:'nq47', cat:'circ', mode:'active', type:'written', marks:2, src:'2023 Exam 2 B Q2a',
+  context:`An observation wheel completes one rotation every 30 minutes, has radius 60 m, and its lowest point is 15 m above the ground. Height is modelled by ${M('h (t) = −60 cos(bt) + c')}.`,
+  stem:'Show that ${b = π/15} and ${c = 75}.',
+  criteria:[
+    {t:'Uses the 30-minute period to get b = 2π/30 = π/15', m:1},
+    {t:'Uses the minimum height of 15 m to get c = 75', m:1}
+  ],
+  model:`Period: one full rotation takes 30 minutes, and the period of cos(bt) is 2π/b, so\n\n  2π/b = 30\n  b = 2π/30 = π/15\n\nMinimum height: the smallest value of −60cos(bt) is −60 (when cos = 1), so the minimum of h is\n\n  −60 + c = 15\n  c = 75\n\nCheck: the maximum is 60 + 75 = 135 m, which is 15 + 2 × 60 — the lowest point plus one diameter ✓`,
+  tip:`The ${M('−')} in front of the 60 is deliberate: it makes the pod <em>start</em> at the bottom at ${M('t = 0')}, since ${M('−60 cos(0) + 75 = 15')}. Always sanity-check the model against a stated fact before moving on.`
+},
+{
+  id:'nq48', cat:'explog', mode:'active', type:'exact', marks:1, src:'2023 Exam 2 B Q3a',
+  context:`${M('g : R → R,  g (x) = 2')}${SUP(M('x'))}${M(' + 5')}.`,
+  stem:'State the value of ${lim_{x → −∞} g (x)}.',
+  accept:['5','y=5'],
+  answer:`${M('5')}`,
+  working:`<span class="note">as x → −∞, the exponential decays to zero</span>
+<span class="step">${M('2')}${SUP(M('x'))}${M(' → 0')}</span>
+<span class="step">${M('g (x) → 0 + 5 = 5')}</span>`,
+  explain:`This limit <em>is</em> the horizontal asymptote, ${M('y = 5')}. Note it is approached but never reached — ${M('2')}${SUP(M('x'))} is strictly positive for every real ${M('x')}, so ${M('g (x) > 5')} always.`
+},
+{
+  id:'nq49', cat:'explog', mode:'active', type:'exact', marks:1, src:'2023 Exam 2 B Q3b',
+  context:`${M('g (x) = 2')}${SUP(M('x'))}${M(' + 5')}, and ${M("g ′(x)")} can be written as ${M('k × 2')}${SUP(M('x'))}.`,
+  stem:'Find the real number ${k}.',
+  accept:['log_e(2)','ln(2)','log_e2','ln2','0.6931'],
+  answer:`${M('k = log')}${SUB(M('e'))}${M('(2)')}`,
+  working:`<span class="note">rewrite the base-2 exponential in base e</span>
+<span class="step">${M('2')}${SUP(M('x'))}${M(' = e')}${SUP(M('x log')+SUB(M('e'))+M('(2)'))}</span>
+<span class="note">now differentiate with the chain rule</span>
+<span class="step">${M("g ′(x) = log")}${SUB(M('e'))}${M('(2) · e')}${SUP(M('x log')+SUB(M('e'))+M('(2)'))}${M(' = log')}${SUB(M('e'))}${M('(2) · 2')}${SUP(M('x'))}</span>`,
+  explain:`In general ${FR(M('d'),M('dx'))}${M('a')}${SUP(M('x'))}${M(' = a')}${SUP(M('x'))}${M(' log')}${SUB(M('e'))}${M('(a)')}. That extra log factor is exactly why ${M('e')} is the natural base — it is the one value of ${M('a')} for which the factor is 1.`
+},
+{
+  id:'nq50', cat:'prob', mode:'active', type:'exact', marks:1, src:'2023 Exam 2 B Q4a',
+  context:`Tennis ball diameter ${M('D ~ N(6.7, 0.1')}${SUP('2')}${M(')')} cm.`,
+  stem:'Find ${Pr(D > 6.8)}, correct to four decimal places.',
+  accept:['0.1587','0.15866','0.159'],
+  answer:`${M('0.1587')}`,
+  working:`<span class="step">${M('z = ')}${FR('6.8 − 6.7','0.1')}${M(' = 1')}</span>
+<span class="step">${M('Pr(D > 6.8) = Pr(Z > 1) = 1 − 0.8413 = 0.1587')}</span>`,
+  explain:`Exactly one standard deviation above the mean, so the 68–95–99.7 rule predicts about ${FR('100 − 68','2')}${M(' = 16%')} in the upper tail — a good check on the CAS value of 15.87%.`
+},
+{
+  id:'nq51', cat:'prob', mode:'active', type:'exact', marks:1, src:'2023 Exam 2 B Q4b',
+  context:`${M('D ~ N(6.7, 0.1')}${SUP('2')}${M(')')}.`,
+  stem:'Find the minimum diameter of a ball larger than 90% of all balls produced, in cm to two decimal places.',
+  accept:['6.83','6.828','6.8282'],
+  answer:`${M('6.83')} cm`,
+  working:`<span class="note">90% below means an inverse normal with area 0.9 to the left</span>
+<span class="step">${M('z = invNorm(0.9) = 1.2816')}</span>
+<span class="step">${M('d = μ + zσ = 6.7 + 1.2816 × 0.1')}</span>
+<span class="step">${M(' = 6.8282 ≈ 6.83')}</span>`,
+  explain:`<code>invNorm</code> always takes the area to the <strong>left</strong>. "Larger than 90%" already means 90% below, so no conversion is needed here — but check the direction every time, because "top 10%" would need the same 0.9, not 0.1.`
+},
+
+/* ================= 2025 NHT EXAMINATION 2 ================= */
+{
+  id:'nq52', cat:'algebra', mode:'active', type:'mc', marks:1, src:'2025 NHT Exam 2 A Q1',
+  stem:'If ${x − a} is a factor of ${3x^3 − 5x^2 − ax}, where ${a ∈ R \\ {0}}, then the value of ${a} is',
+  options:['−2',`${M('−')}${FR('4','3')}`,`${FR('4','3')}`,'2'],
+  answer:3,
+  working:`<span class="note">factor theorem: substitute x = a and set to zero</span>
+<span class="step">${M('3a')}${SUP('3')}${M(' − 5a')}${SUP('2')}${M(' − a·a = 3a')}${SUP('3')}${M(' − 6a')}${SUP('2')}${M(' = 0')}</span>
+<span class="step">${M('3a')}${SUP('2')}${M('(a − 2) = 0')}</span>
+<span class="note">a ≠ 0 is given, so discard the repeated root</span>
+<span class="step">${M('a = 2')}</span>`,
+  explain:`The restriction ${M('a ∈ R \\ {0}')} is there precisely because ${M('a = 0')} is also an algebraic solution — the question rules it out so the answer is unique. Watch the ${M('−ax')} term: at ${M('x = a')} it contributes ${M('−a')}${SUP('2')}, not ${M('−a')}.`
+},
+{
+  id:'nq53', cat:'integ', mode:'active', type:'mc', marks:1, src:'2025 NHT Exam 2 A Q2',
+  context:`${M("f ′(x) = g ′(x) − 2")}, ${M('f (0) = 1')} and ${M('g (0) = 2')}.`,
+  stem:'Then',
+  options:[
+    `${M("g (x) = f ′(x) + 2")}`,
+    `${M('g (x) = f (x) + 2x + 1')}`,
+    `${M('g (x) = 3')}`,
+    `${M('g (x) = f (x) + 2')}`
+  ],
+  answer:1,
+  working:`<span class="note">antidifferentiate both sides</span>
+<span class="step">${M('f (x) = g (x) − 2x + c')}</span>
+<span class="note">use the two given values at x = 0</span>
+<span class="step">${M('1 = 2 − 0 + c')}   ⇒   ${M('c = −1')}</span>
+<span class="step">${M('f (x) = g (x) − 2x − 1')}</span>
+<span class="note">rearrange for g</span>
+<span class="step">${M('g (x) = f (x) + 2x + 1')}</span>`,
+  explain:`Option D is what you get by forgetting the constant of integration entirely. The two initial values are supplied for exactly one reason — to pin ${M('c')} down — so if you have not used both, you have missed a step.`
+},
+{
+  id:'nq54', cat:'integ', mode:'active', type:'mc', marks:1, src:'2025 NHT Exam 2 A Q3',
+  context:`${IG(M('a'),M('b'),M(' f (x) dx'))}${M(' = 3')}.`,
+  stem:'Then ${∫_b^a (2 f (x) + 3) dx} is equal to',
+  options:[`${M('3(b − a + 2)')}`,`${M('3(b − a − 2)')}`,`${M('3(a − b + 2)')}`,`${M('3(a − b − 2)')}`],
+  answer:3,
+  working:`<span class="note">split the integrand and reverse the limits</span>
+<span class="step">${IG(M('b'),M('a'),M(' (2f + 3) dx'))}${M(' = 2')}${IG(M('b'),M('a'),M(' f dx'))}${M(' + 3')}${IG(M('b'),M('a'),M(' 1 dx'))}</span>
+<span class="note">reversing flips the sign of the first</span>
+<span class="step">${M(' = −2(3) + 3(a − b)')}</span>
+<span class="step">${M(' = 3a − 3b − 6 = 3(a − b − 2)')}</span>`,
+  explain:`Two things to get right: the sign flip from reversed limits, and that ${IG(M('b'),M('a'),M(' 1 dx'))}${M(' = a − b')}, not ${M('b − a')}. Option C is the answer if you flip one but not the other.`
+},
+{
+  id:'nq55', cat:'prob', mode:'active', type:'mc', marks:1, src:'2025 NHT Exam 2 A Q5',
+  context:`Test scores are approximately ${M('N(120, 15')}${SUP('2')}${M(')')}. Andrew scored 117.9; Chloe scored 1.2 standard deviations above the mean.`,
+  stem:'The probability that a randomly selected participant scored between Andrew and Chloe is closest to',
+  options:['0.33','0.39','0.44','0.87'],
+  answer:2,
+  working:`<span class="note">standardise both</span>
+<span class="step">Andrew: ${M('z = ')}${FR('117.9 − 120','15')}${M(' = −0.14')}</span>
+<span class="step">Chloe: ${M('z = 1.2')} (given directly)</span>
+<span class="note">probability between them</span>
+<span class="step">${M('Pr(−0.14 < Z < 1.2) = 0.8849 − 0.4443 = 0.4406 ≈ 0.44')}</span>`,
+  explain:`Chloe's score is already given as a ${M('z')} value, so it needs no conversion — a small time-saver worth spotting. Option D is ${M('Pr(Z < 1.2)')} alone, forgetting to subtract the lower tail.`
+},
+{
+  id:'nq56', cat:'prob', mode:'active', type:'mc', marks:1, src:'2025 NHT Exam 2 A Q6',
+  context:`A biased coin shows heads with probability 0.4, flipped 10 times.`,
+  stem:'The probability of showing heads at most twice is closest to',
+  options:['0.12','0.13','0.16','0.17'],
+  answer:3,
+  working:`<span class="note">X ~ Bi(10, 0.4); "at most twice" means X ≤ 2</span>
+<span class="step">${M('Pr(X = 0) = 0.6')}${SUP('10')}${M(' = 0.006047')}</span>
+<span class="step">${M('Pr(X = 1) = 10(0.4)(0.6')}${SUP('9')}${M(') = 0.040311')}</span>
+<span class="step">${M('Pr(X = 2) = 45(0.4')}${SUP('2')}${M(')(0.6')}${SUP('8')}${M(') = 0.120932')}</span>
+<span class="step">total ${M(' = 0.16729 ≈ 0.17')}</span>`,
+  explain:`"At most twice" includes zero, one <em>and</em> two — dropping the ${M('X = 0')} term gives 0.161, which rounds to option C. On CAS this is a single <code>binomCdf(10, 0.4, 0, 2)</code>.`
+},
+{
+  id:'nq57', cat:'integ', mode:'active', type:'mc', marks:1, src:'2025 NHT Exam 2 A Q8',
+  context:`${M('f : R → R,  f (x) = x')}${SUP('3')}${M(' − x')}. Region ${M('A')} lies below the axis from 0 to 1; region ${M('B')} lies above it from 1 to ${M('a')}. The two areas are equal, and ${M('a > 0')}.`,
+  stem:'The value of ${a} is',
+  options:[`${FR('1','4')}`,'1',`${RT('2')}`,`${RT('3')}`],
+  answer:2,
+  working:`<span class="note">equal areas on opposite sides means the SIGNED integral cancels to zero</span>
+<span class="step">${IG('0',M('a'),M(' (x')+SUP('3')+M(' − x) dx'))}${M(' = 0')}</span>
+<span class="step">${M('[ ')}${FR(M('x')+SUP('4'),'4')}${M(' − ')}${FR(M('x')+SUP('2'),'2')}${M(' ]')}${SUB('0')}${SUP(M('a'))}${M(' = ')}${FR(M('a')+SUP('4'),'4')}${M(' − ')}${FR(M('a')+SUP('2'),'2')}${M(' = 0')}</span>
+<span class="step">${M('a')}${SUP('2')}${M('( ')}${FR(M('a')+SUP('2'),'4')}${M(' − ')}${FR('1','2')}${M(' ) = 0')}</span>
+<span class="step">${M('a')}${SUP('2')}${M(' = 2')}   ⇒   ${M('a = ')}${RT('2')}</span>`,
+  explain:`This is the one situation where signed area is <em>more</em> useful than total area: because ${M('A')} is negative and ${M('B')} positive, "equal areas" is precisely the statement that they sum to zero. No splitting or absolute values needed.`
+},
+{
+  id:'nq58', cat:'funcs', mode:'active', type:'mc', marks:1, src:'2025 NHT Exam 2 A Q9',
+  context:`${M('y = g (x)')} has a local minimum at ${M('(2, 1)')}.`,
+  stem:'The graph of ${y = g (−2x)} must have',
+  options:[
+    `a local minimum at ${M('(−1, 1)')}`,
+    `a local minimum at ${M('(−4, 1)')}`,
+    `a local maximum at ${M('(−4, 1)')}`,
+    `a local maximum at ${M('(2, −2)')}`
+  ],
+  answer:0,
+  working:`<span class="note">find the x that makes the argument equal 2</span>
+<span class="step">${M('−2x = 2')}   ⇒   ${M('x = −1')}</span>
+<span class="note">the output is unchanged</span>
+<span class="step">${M('y = g (2) = 1')}</span>
+<span class="note">only horizontal changes occurred, so a minimum stays a minimum</span>`,
+  explain:`The ${M('−2')} acts <em>inside</em> the function, so it only affects ${M('x')} — a dilation by ${FR('1','2')} from the ${M('y')}-axis plus a reflection in the ${M('y')}-axis. Neither can turn a minimum into a maximum; only a <em>vertical</em> reflection would do that.`
+},
+{
+  id:'nq59', cat:'diff', mode:'active', type:'mc', marks:1, src:'2025 NHT Exam 2 A Q10',
+  context:`${M('f (x) = e')}${SUP(M('2x + 3'))}, ${M('g (x) = x')}${SUP('2')}${M(' + 2x − 3')}, and ${M('h (x) = g ( f (x) )')}.`,
+  stem:'Then ${h′(x)} is equal to',
+  options:[
+    `${M('4 f (x) ( f (x) + 1 )')}`,
+    `${M("g ′( f (x) )")}`,
+    `${M('16 f (2x) f (x)')}`,
+    `${M('4 g (x) + 4 f (x)')}`
+  ],
+  answer:0,
+  working:`<span class="note">chain rule</span>
+<span class="step">${M("h ′(x) = g ′( f (x) ) × f ′(x)")}</span>
+<span class="note">the two pieces</span>
+<span class="step">${M("g ′(u) = 2u + 2")}   so   ${M("g ′( f (x) ) = 2 f (x) + 2")}</span>
+<span class="step">${M("f ′(x) = 2 e")}${SUP(M('2x+3'))}${M(' = 2 f (x)')}</span>
+<span class="note">multiply</span>
+<span class="step">${M("h ′(x) = (2 f (x) + 2)(2 f (x)) = 4 f (x)( f (x) + 1 )")}</span>`,
+  explain:`The neat step is noticing ${M("f ′(x) = 2 f (x)")} — an exponential is proportional to its own derivative, which lets the whole answer be written in terms of ${M('f')}. Option B is the chain rule with the second factor forgotten.`
+},
+{
+  id:'nq60', cat:'funcs', mode:'active', type:'mc', marks:1, src:'2025 NHT Exam 2 A Q11',
+  context:`${M('f : (0, ∞) → R,  f (x) = log')}${SUB(M('e'))}${M('(x)')} and ${M('g : R → R,  g (x) = sin(x) + 2')}.`,
+  stem:'The range of ${f ( g (x) )} is',
+  options:[`${M('(0, ∞)')}`,`${M('[0, 1]')}`,`${M('[0, log')}${SUB(M('e'))}${M('(3)]')}`,`${M('[1, 3]')}`],
+  answer:2,
+  working:`<span class="note">range of the inner function</span>
+<span class="step">${M('sin(x) ∈ [−1, 1]')}   ⇒   ${M('g (x) ∈ [1, 3]')}</span>
+<span class="note">check the composite is defined: [1, 3] ⊆ (0, ∞) ✓</span>
+<span class="note">push the interval through log, which is increasing</span>
+<span class="step">${M('log')}${SUB(M('e'))}${M('(1) = 0')}   and   ${M('log')}${SUB(M('e'))}${M('(3)')}</span>
+<span class="step">range ${M(' = [0, log')}${SUB(M('e'))}${M('(3)]')}</span>`,
+  explain:`Option D is ${M('ran( g )')} — the answer for anyone who stops halfway. Both brackets stay closed because sine actually attains ${M('−1')} and ${M('1')}, and log is continuous and increasing so it preserves that.`
+},
+{
+  id:'nq61', cat:'prob', mode:'active', type:'mc', marks:1, src:'2025 NHT Exam 2 A Q12',
+  context:`Rolling a fair die: 1 or 2 scores 6 points, 3/4/5 scores ${M('−3')}, and 6 scores 9.`,
+  stem:'The mean ${E(X)} is',
+  options:['2','3','4','5'],
+  answer:0,
+  working:`<span class="note">probabilities from the die</span>
+<span class="step">${M('Pr(6 pts) = ')}${FR('2','6')}${M(' = ')}${FR('1','3')}, ${M('Pr(−3 pts) = ')}${FR('3','6')}${M(' = ')}${FR('1','2')}, ${M('Pr(9 pts) = ')}${FR('1','6')}</span>
+<span class="note">weighted sum</span>
+<span class="step">${M('E(X) = 6(')}${FR('1','3')}${M(') + (−3)(')}${FR('1','2')}${M(') + 9(')}${FR('1','6')}${M(')')}</span>
+<span class="step">${M(' = 2 − 1.5 + 1.5 = 2')}</span>`,
+  explain:`The step that trips people is converting outcomes to probabilities — "1 or 2" is <em>two</em> faces, so ${FR('2','6')}, not ${FR('1','6')}. Check the probabilities sum to 1 before computing the mean.`
+},
+{
+  id:'nq62', cat:'funcs', mode:'active', type:'mc', marks:1, src:'2025 NHT Exam 2 A Q13',
+  context:`${M('f (x) = e')}${SUP(M('2x + 4'))}, where ${M('x ∈ (0, ')}${FR('1','2')}${M(')')}.`,
+  stem:'The inverse of ${f} is',
+  options:[
+    `${M('f')}${SUP('−1')}${M('(x) = ')}${FR('1','2')}${M('log')}${SUB(M('e'))}${M('(x) − 2')}, ${M('x ∈ (0, ∞)')}`,
+    `${M('f')}${SUP('−1')}${M('(x) = 2 log')}${SUB(M('e'))}${M('(x) + 4')}, ${M('x ∈ (0, ∞)')}`,
+    `${M('f')}${SUP('−1')}${M('(x) = ')}${FR('1','2')}${M('log')}${SUB(M('e'))}${M('(x) − 4')}, ${M('x ∈ (e')}${SUP('4')}${M(', e')}${SUP('5')}${M(')')}`,
+    `${M('f')}${SUP('−1')}${M('(x) = ')}${FR('1','2')}${M('log')}${SUB(M('e'))}${M('(x) − 2')}, ${M('x ∈ (e')}${SUP('4')}${M(', e')}${SUP('5')}${M(')')}`
+  ],
+  answer:3,
+  working:`<span class="note">swap and solve</span>
+<span class="step">${M('x = e')}${SUP(M('2y + 4'))}   ⇒   ${M('log')}${SUB(M('e'))}${M('(x) = 2y + 4')}</span>
+<span class="step">${M('y = ')}${FR('1','2')}${M('log')}${SUB(M('e'))}${M('(x) − 2')}</span>
+<span class="note">domain of the inverse = range of f</span>
+<span class="step">${M('x ∈ (0, ')}${FR('1','2')}${M(')')}   ⇒   ${M('2x + 4 ∈ (4, 5)')}   ⇒   ${M('f (x) ∈ (e')}${SUP('4')}${M(', e')}${SUP('5')}${M(')')}</span>`,
+  explain:`Option A has the right rule but ignores the restricted domain entirely. Dividing by 2 <em>after</em> subtracting 4 (rather than before) gives option C's ${M('− 4')} — the order of operations when unwinding matters.`
+},
+{
+  id:'nq63', cat:'funcs', mode:'active', type:'mc', marks:1, src:'2025 NHT Exam 2 A Q14',
+  context:`${M('f (x) = log')}${SUB(M('e'))}${M('(x')}${SUP('2')}${M(' + 2x − 3)')} and ${M('g (x) = ')}${RT(M('2x + 7'))}, each over its maximal domain.`,
+  stem:'The maximal domain of the product ${h (x) = f (x) g (x)} is',
+  options:[
+    `${M('(−∞, −3) ∪ (1, ∞)')}`,
+    `${M('(1, ')}${FR('7','2')}${M(')')}`,
+    `${M('[−')}${FR('7','2')}${M(', ∞)')}`,
+    `${M('[−')}${FR('7','2')}${M(', −3) ∪ (1, ∞)')}`
+  ],
+  answer:3,
+  working:`<span class="note">domain of f: the log argument must be positive</span>
+<span class="step">${M('x')}${SUP('2')}${M(' + 2x − 3 = (x + 3)(x − 1) > 0')}   ⇒   ${M('x < −3')} or ${M('x > 1')}</span>
+<span class="note">domain of g: the radicand must be non-negative</span>
+<span class="step">${M('2x + 7 ≥ 0')}   ⇒   ${M('x ≥ −')}${FR('7','2')}</span>
+<span class="note">a product needs BOTH — take the intersection</span>
+<span class="step">${M('[−')}${FR('7','2')}${M(', −3) ∪ (1, ∞)')}</span>`,
+  explain:`Note ${M('−')}${FR('7','2')}${M(' = −3.5')} sits to the left of ${M('−3')}, so the square root clips the left branch rather than removing it. The bracket types differ at each end: square at ${M('−')}${FR('7','2')} (root allows zero) and round at ${M('−3')} (log does not).`
+},
+{
+  id:'nq64', cat:'diff', mode:'active', type:'mc', marks:1, src:'2025 NHT Exam 2 A Q15',
+  context:`${M('g')} is differentiable on ${M('R')}, with ${M('g (2) = g (4) = a')} and ${M("g ′(2) = g ′(4) = b")}. Let ${M('p (x) = g (x) g (2x)')}.`,
+  stem:'Then ${p′(2)} must be equal to',
+  options:[`${M('ab')}`,`${M('2ab')}`,`${M('3ab')}`,`${M('a')}${SUP('2')}${M(' + b')}${SUP('2')}`],
+  answer:2,
+  working:`<span class="note">product rule, with the chain rule on the second factor</span>
+<span class="step">${M("p ′(x) = g ′(x) g (2x) + g (x) · 2 g ′(2x)")}</span>
+<span class="note">substitute x = 2, so 2x = 4</span>
+<span class="step">${M("p ′(2) = g ′(2) g (4) + g (2) · 2 g ′(4)")}</span>
+<span class="step">${M(' = b · a + a · 2b = 3ab')}</span>`,
+  explain:`The factor of 2 comes from differentiating the inner ${M('2x')} — miss it and you get ${M('2ab')}, which is option B. The question supplies values at both ${M('x = 2')} and ${M('x = 4')} precisely because the composite forces you to look at both.`
+},
+{
+  id:'nq65', cat:'prob', mode:'active', type:'mc', marks:1, src:'2025 NHT Exam 2 A Q16',
+  context:`${M('X')} is normal with ${M('Pr(X > 6) = Pr(X < 8) = Pr(Z < 0.5)')}, where ${M('Z ~ N(0, 1)')}.`,
+  stem:'The standard deviation of ${X} is',
+  options:['0.5','1','2','4'],
+  answer:2,
+  working:`<span class="note">the two probabilities are equal, so 6 and 8 are symmetric about the mean</span>
+<span class="step">${M('μ = ')}${FR('6 + 8','2')}${M(' = 7')}</span>
+<span class="note">now use Pr(X &lt; 8) = Pr(Z &lt; 0.5)</span>
+<span class="step">${FR('8 − 7',M('σ'))}${M(' = 0.5')}</span>
+<span class="step">${M('σ = 2')}</span>`,
+  explain:`Recognising the symmetry first removes the need for any inverse normal. Because ${M('Pr(X > 6) = Pr(X < 8)')}, the two values must be mirror images about ${M('μ')} — and that fixes the mean before you touch the standard deviation.`
+},
+{
+  id:'nq66', cat:'prob', mode:'active', type:'mc', marks:1, src:'2025 NHT Exam 2 A Q17',
+  context:`Of 10 products, six are defective. Two are selected without replacement. It is known that at most one of the two is defective.`,
+  stem:'The probability that exactly one of the two is defective is',
+  options:[`${FR('4','5')}`,`${FR('2','3')}`,`${FR('8','13')}`,`${FR('8','15')}`],
+  answer:0,
+  working:`<span class="note">count combinations — selection is without replacement</span>
+<span class="step">${M('Pr(0 defective) = ')}${FR('C(4,2)','C(10,2)')}${M(' = ')}${FR('6','45')}</span>
+<span class="step">${M('Pr(1 defective) = ')}${FR('C(6,1) C(4,1)','C(10,2)')}${M(' = ')}${FR('24','45')}</span>
+<span class="note">the conditioning event is "at most one"</span>
+<span class="step">${M('Pr(≤ 1) = ')}${FR('30','45')}</span>
+<span class="step">${M('Pr(exactly 1 | ≤ 1) = ')}${FR('24','30')}${M(' = ')}${FR('4','5')}</span>`,
+  explain:`Option D, ${FR('8','15')}, is the <em>unconditional</em> ${FR('24','45')} — the answer if you ignore the "at most one" information. The condition removes the two-defective case entirely, which raises the probability.`
+},
+{
+  id:'nq67', cat:'algo', mode:'active', type:'mc', marks:1, src:'2025 NHT Exam 2 A Q18',
+  context:`<div class="cas">define f(x)
+    return log_e(x) − x/3
+a ← 4
+b ← 6
+for i from 1 to 3
+    c ← (a + b)/2
+    if −0.01 &lt; f(c) &lt; 0.01 then
+        print c
+    else if f(a) × f(c) &lt; 0 then
+        b ← c
+    else
+        a ← c
+    end if
+end for</div>`,
+  stem:'Which number would be printed by this algorithm?',
+  options:['4.54','4.5','1.9','1.86'],
+  answer:1,
+  working:`<span class="note">this is bisection — halve the interval each pass</span>
+<span class="step">${M('f (4) = 1.3863 − 1.3333 = 0.0530')}, ${M('f (6) = 1.7918 − 2 = −0.2082')}</span>
+<span class="note">pass 1</span>
+<span class="step">${M('c = 5')}, ${M('f (5) = 1.6094 − 1.6667 = −0.0572')} — not within ±0.01</span>
+<span class="step">${M('f (4) × f (5) < 0')}, so the root is in ${M('[4, 5]')} → ${M('b ← 5')}</span>
+<span class="note">pass 2</span>
+<span class="step">${M('c = 4.5')}, ${M('f (4.5) = 1.5041 − 1.5 = 0.0041')} — within ±0.01 ✓ print <b>4.5</b></span>`,
+  explain:`Bisection, not Newton's method — it needs no derivative, just a sign change to bracket the root. Options C and D are near the <em>other</em> root of ${M('log')}${SUB(M('e'))}${M('(x) = ')}${FR(M('x'),'3')} (around 1.86), which lies outside the starting interval ${M('[4, 6]')}.`
+},
+{
+  id:'nq68', cat:'explog', mode:'active', type:'exact', marks:1, src:'2025 NHT Exam 2 B Q2a',
+  context:`${M('f : D → R,  f (x) = 4 e')}${SUP(M('3 log')+SUB(M('e'))+M('(x)'))}, where ${M('D')} is the maximal domain.`,
+  stem:'Find ${D}.',
+  accept:['(0,inf)','(0,∞)','x>0','(0,infinity)'],
+  answer:`${M('(0, ∞)')}`,
+  working:`<span class="note">the only restriction comes from the logarithm inside the exponent</span>
+<span class="step">${M('log')}${SUB(M('e'))}${M('(x)')} requires ${M('x > 0')}</span>`,
+  explain:`Even though the expression <em>simplifies</em> to ${M('4x')}${SUP('3')}, which would be defined for all real ${M('x')}, the domain is set by the rule <strong>as written</strong>. The log is still there, so ${M('x > 0')} stands — a distinction VCAA tests deliberately.`
+},
+{
+  id:'nq69', cat:'explog', mode:'active', type:'written', marks:1, src:'2025 NHT Exam 2 B Q2b',
+  context:`${M('f (x) = 4 e')}${SUP(M('3 log')+SUB(M('e'))+M('(x)'))} on ${M('(0, ∞)')}.`,
+  stem:'Show that ${f} can be expressed as ${f (x) = 4x^3}.',
+  criteria:[
+    {t:'Uses a log law to write 3 log_e(x) as log_e(x³), then applies e^(log_e u) = u', m:1}
+  ],
+  model:`Bring the coefficient inside the logarithm using the power law:\n\n  3 log_e(x) = log_e(x³)\n\nSo\n\n  f(x) = 4 e^(log_e(x³))\n\nSince e and log_e are inverse functions, e^(log_e(u)) = u for u > 0. Here x > 0 so x³ > 0, and therefore\n\n  f(x) = 4x³`,
+  tip:`The identity ${M('e')}${SUP(M('log')+SUB(M('e'))+M('(u)'))}${M(' = u')} is the whole question — but it only holds for ${M('u > 0')}, which is exactly why the domain from part a matters. Mention that and the mark is secure.`
+},
+{
+  id:'nq70', cat:'integ', mode:'active', type:'exact', marks:1, src:'2025 NHT Exam 2 B Q2c',
+  context:`${M('f (x) = 4x')}${SUP('3')} on ${M('(0, ∞)')}.`,
+  stem:'Find the area bounded by ${y = f (x)}, the ${x}-axis, and the lines ${x = 1} and ${x = 2}.',
+  accept:['15','15sq','15squareunits'],
+  answer:`${M('15')} square units`,
+  working:`<span class="note">f is positive on [1, 2], so the integral IS the area</span>
+<span class="step">${IG('1','2',M(' 4x')+SUP('3')+M(' dx'))}${M(' = [ x')}${SUP('4')}${M(' ]')}${SUB('1')}${SUP('2')}</span>
+<span class="step">${M(' = 16 − 1 = 15')}</span>`,
+  explain:`Because ${M('4x')}${SUP('3')} is positive throughout ${M('[1, 2]')}, no splitting or absolute values are needed — the signed integral and the area agree. Always check the sign before assuming that.`
+}
 ];
 
 /* ===== exams.js ===== */
@@ -7892,11 +8888,24 @@ const EXAMS = [
     id:'x2023e2', year:'2023', paper:2, mode:'active',
     title:'2023 VCAA Examination 2',
     minutes:120, officialMarks:80,
-    note:'The last paper with five multiple-choice options — from 2024 onwards Section A has four. Useful for the ideas, not for the format.',
+    note:'Five multiple-choice options in Section A — 2024 onwards has four. Everything else about the paper is current: same topics, same marks, same two-section shape.',
     items:[
-      {label:'A Q2', qid:'aq10'},
-      {label:'A Q3', qid:'fq7'},
-      {label:'A Q6', qid:'iq5'}
+      {label:'A Q1',   qid:'nq39'},
+      {label:'A Q2',   qid:'aq10'},
+      {label:'A Q3',   qid:'fq7'},
+      {label:'A Q5',   qid:'nq40'},
+      {label:'A Q6',   qid:'iq5'},
+      {label:'A Q11',  qid:'nq41'},
+      {label:'A Q12',  qid:'nq42'},
+      {label:'A Q13',  qid:'nq43'},
+      {label:'A Q16',  qid:'nq44'},
+      {label:'A Q18',  qid:'nq45'},
+      {label:'B Q1a',  qid:'nq46'},
+      {label:'B Q2a',  qid:'nq47'},
+      {label:'B Q3a',  qid:'nq48'},
+      {label:'B Q3b',  qid:'nq49'},
+      {label:'B Q4a',  qid:'nq50'},
+      {label:'B Q4b',  qid:'nq51'}
     ]
   },
   {
@@ -8040,16 +9049,94 @@ const EXAMS = [
       {label:'B Q2e i',  qid:'dq10'},
       {label:'B Q2f iii',qid:'iq10'}
     ]
+  },
+  {
+    id:'x2024e2', year:'2024', paper:2, mode:'active',
+    title:'2024 VCAA Examination 2',
+    minutes:120, officialMarks:80,
+    note:'The first tech-active paper with four options in Section A. Section B opens with a piecewise cubic model and moves into a transformations-and-areas question — both reward setting the algebra up cleanly before reaching for the calculator.',
+    items:[
+      {label:'A Q1',      qid:'nq01'},
+      {label:'A Q2',      qid:'nq02'},
+      {label:'A Q3',      qid:'nq03'},
+      {label:'A Q4',      qid:'nq04'},
+      {label:'A Q5',      qid:'nq05'},
+      {label:'A Q6',      qid:'nq06'},
+      {label:'A Q7',      qid:'nq07'},
+      {label:'A Q8',      qid:'nq08'},
+      {label:'A Q9',      qid:'nq09'},
+      {label:'A Q10',     qid:'nq10'},
+      {label:'A Q11',     qid:'nq11'},
+      {label:'A Q13',     qid:'nq12'},
+      {label:'A Q14',     qid:'nq13'},
+      {label:'A Q15',     qid:'nq14'},
+      {label:'A Q16',     qid:'nq15'},
+      {label:'A Q17',     qid:'nq16'},
+      {label:'A Q18',     qid:'nq17'},
+      {label:'A Q19',     qid:'nq18'},
+      {label:'A Q20',     qid:'nq19'},
+      {label:'B Q1c i',   qid:'nq20'},
+      {label:'B Q1c ii',  qid:'nq21'},
+      {label:'B Q1c iii', qid:'nq22'},
+      {label:'B Q2a',     qid:'nq23'},
+      {label:'B Q2b',     qid:'nq24'},
+      {label:'B Q2c ii',  qid:'nq25'},
+      {label:'B Q2f i',   qid:'nq26'}
+    ]
+  },
+  {
+    id:'x2024n2', year:'2024 NHT', paper:2, mode:'active',
+    title:'2024 NHT Examination 2',
+    minutes:120, officialMarks:80,
+    note:'A five-option Section A, like 2023 — the NHT papers kept the old format a year longer. Notably heavy on transformations and on reading conditions off a graph.',
+    items:[
+      {label:'A Q2',  qid:'nq27'},
+      {label:'A Q3',  qid:'nq28'},
+      {label:'A Q4',  qid:'nq29'},
+      {label:'A Q6',  qid:'nq30'},
+      {label:'A Q8',  qid:'nq31'},
+      {label:'A Q9',  qid:'nq32'},
+      {label:'A Q10', qid:'nq33'},
+      {label:'A Q13', qid:'nq34'},
+      {label:'A Q14', qid:'nq35'},
+      {label:'A Q16', qid:'nq36'},
+      {label:'A Q17', qid:'nq37'},
+      {label:'A Q19', qid:'nq38'}
+    ]
+  },
+  {
+    id:'x2025n2', year:'2025 NHT', paper:2, mode:'active',
+    title:'2025 NHT Examination 2',
+    minutes:120, officialMarks:80,
+    note:'Four options in Section A. A good dry run for the current format — the multiple choice moves fast, so bank the routine items and leave the two or three slow ones for the end.',
+    items:[
+      {label:'A Q1',   qid:'nq52'},
+      {label:'A Q2',   qid:'nq53'},
+      {label:'A Q3',   qid:'nq54'},
+      {label:'A Q5',   qid:'nq55'},
+      {label:'A Q6',   qid:'nq56'},
+      {label:'A Q8',   qid:'nq57'},
+      {label:'A Q9',   qid:'nq58'},
+      {label:'A Q10',  qid:'nq59'},
+      {label:'A Q11',  qid:'nq60'},
+      {label:'A Q12',  qid:'nq61'},
+      {label:'A Q13',  qid:'nq62'},
+      {label:'A Q14',  qid:'nq63'},
+      {label:'A Q15',  qid:'nq64'},
+      {label:'A Q16',  qid:'nq65'},
+      {label:'A Q17',  qid:'nq66'},
+      {label:'A Q18',  qid:'nq67'},
+      {label:'B Q2a',  qid:'nq68'},
+      {label:'B Q2b',  qid:'nq69'},
+      {label:'B Q2c',  qid:'nq70'}
+    ]
   }
 ];
 
-/* Papers supplied as scanned images with no extractable text layer.
-   Listed so the coverage of the bank is honest, and so they are easy
-   to slot in once a text version is available. */
-const EXAMS_PENDING = [
-  { year:'2024', paper:2, title:'2024 VCAA Examination 2' },
-  { year:'2025 NHT', paper:2, title:'2025 NHT Examination 2' }
-];
+/* Papers still to be transcribed. Every paper supplied so far is in
+   EXAMS above — the scanned ones were read page by page — so this is
+   empty, and the notice it drives on the Past Exams page stays hidden. */
+const EXAMS_PENDING = [];
 
 /* ---------- Formula sheet (as issued with both papers) ---------- */
 const FORMULAS = [
