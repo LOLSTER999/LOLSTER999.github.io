@@ -7287,17 +7287,18 @@ So the largest possible value is a = π/2.`,
 },
 {
   id:'iq2', cat:'integ', mode:'free', type:'exact', marks:2, src:'2023 Exam 1 Q4',
-  context:`The graph of ${M('y = x')}${RT(M('x − 1'))} over part of its domain.`,
+  context:`The graph of ${M('y = x + ')}${FR('1',M('x'))} over part of its domain.`,
   stem:'Use two trapeziums of equal width to approximate the area between the curve, the ${x}-axis and the lines ${x = 1} and ${x = 3}.',
-  accept:['2+3sqrt(2)/2','2+(3sqrt(2))/2','(4+3sqrt(2))/2','4.121'],
-  answer:`${M('2 + ')}${FR(M('3')+RT('2'),'2')}`,
-  working:`<span class="note">two trapeziums over [1, 3] means width 1 and three ordinates: x = 1, 2, 3</span>
-<span class="step">${M('f (1) = 1')}${RT('0')}${M(' = 0')}</span>
-<span class="step">${M('f (2) = 2')}${RT('1')}${M(' = 2')}</span>
-<span class="step">${M('f (3) = 3')}${RT('2')}</span>
-<span class="note">trapezium rule: (width / 2)[ first + 2(middle) + last ]</span>
-<span class="step">${M(' ≈ ')}${FR('1','2')}${M('[ 0 + 2(2) + 3')}${RT('2')}${M(' ] = 2 + ')}${FR(M('3')+RT('2'),'2')}</span>`,
-  explain:`Count the ordinates before substituting: <em>n</em> trapeziums need <em>n</em> + 1 function values. Two trapeziums over ${M('[1, 3]')} gives width ${M('1')} and ordinates at ${M('1, 2, 3')}.`
+  accept:['31/6','5.1667','5 1/6'],
+  answer:`${FR('31','6')}`,
+  working:`<span class="note">two trapeziums across a width of 2 means each has width h = 1, so the ordinates are at x = 1, 2, 3</span>
+<span class="step">${M('y (1) = 1 + 1 = 2')}</span>
+<span class="step">${M('y (2) = 2 + ')}${FR('1','2')}${M(' = ')}${FR('5','2')}</span>
+<span class="step">${M('y (3) = 3 + ')}${FR('1','3')}${M(' = ')}${FR('10','3')}</span>
+<span class="note">trapezium rule: (h/2)(first + 2×middle + last)</span>
+<span class="step">${M('A ≈ ')}${FR('1','2')}${M('( 2 + 2 × ')}${FR('5','2')}${M(' + ')}${FR('10','3')}${M(' )')}</span>
+<span class="step">${M(' = ')}${FR('1','2')}${M('( 2 + 5 + ')}${FR('10','3')}${M(' ) = ')}${FR('1','2')}${M(' × ')}${FR('31','3')}${M(' = ')}${FR('31','6')}</span>`,
+  explain:`The interior ordinate is counted <strong>twice</strong> — it is the right edge of the first trapezium and the left edge of the second. Adding all three once gives ${FR('17','6')}${M(' × ')}, the most common wrong answer. Note also that ${M('y = x + ')}${FR('1',M('x'))} is concave up here, so this estimate is slightly larger than the true area.`
 },
 {
   id:'iq3', cat:'integ', mode:'free', type:'exact', marks:3, src:'2024 Exam 1 Q7a',
@@ -7375,14 +7376,19 @@ So the largest possible value is a = π/2.`,
 {
   id:'iq8', cat:'integ', mode:'free', type:'exact', marks:3, src:'2023 Exam 1 Q5b',
   context:`You have already found ${IG('0',FR('π','3'),M(' sin(x) dx'))}${M(' = ')}${FR('1','2')}.`,
-  stem:'Find all values of ${k} such that ${∫_0^{π/3} sin(x) dx = ∫_2^k cos(x) dx}, where ${−3π < k < 2π}.',
-  accept:['k=pi/6,5pi/6','pi/6,5pi/6','see working'],
-  answer:`the values of ${M('k')} solving ${M('sin(k) − sin(2) = ')}${FR('1','2')} in ${M('(−3π, 2π)')}`,
-  working:`<span class="step">${IG('2',M('k'),M(' cos(x) dx'))}${M(' = [ sin(x) ]')}${SUB('2')}${SUP(M('k'))}${M(' = sin(k) − sin(2)')}</span>
-<span class="step">${M('sin(k) − sin(2) = ')}${FR('1','2')}</span>
-<span class="step">${M('sin(k) = ')}${FR('1','2')}${M(' + sin(2)')}</span>
-<span class="note">then find every k in (−3π, 2π) satisfying this — the width of the interval is 5π, so expect several</span>`,
-  explain:`Three marks, and most of them are for finding <em>every</em> solution across an interval of width ${M('5π')} — that is two and a half periods of sine. Sketch the horizontal line against the sine curve over the whole interval and count the crossings before you start writing them down.`
+  stem:'Hence, or otherwise, find all values of ${k} such that ${∫_0^{π/3} sin(x) dx = ∫_k^{π/2} cos(x) dx}, where ${−3π < k < 2π}.',
+  accept:['-11pi/6,-7pi/6,pi/6,5pi/6','−11π/6,−7π/6,π/6,5π/6','k=-11pi/6,-7pi/6,pi/6,5pi/6'],
+  answer:`${M('k = −')}${FR('11π','6')}${M(', −')}${FR('7π','6')}${M(', ')}${FR('π','6')}${M(', ')}${FR('5π','6')}`,
+  working:`<span class="note">evaluate the right-hand integral, leaving k as a symbol</span>
+<span class="step">${IG(M('k'),FR('π','2'),M(' cos(x) dx'))}${M(' = [ sin(x) ]')}${SUB(M('k'))}${SUP(FR('π','2'))}${M(' = 1 − sin(k)')}</span>
+<span class="step">${M('1 − sin(k) = ')}${FR('1','2')}${M('   ⇒   sin(k) = ')}${FR('1','2')}</span>
+<span class="note">reference angle π/6; sine is positive in quadrants 1 and 2</span>
+<span class="step">${M('k = ')}${FR('π','6')}${M(' + 2nπ')}   or   ${M('k = ')}${FR('5π','6')}${M(' + 2nπ')}</span>
+<span class="note">now keep only those inside (−3π, 2π) ≈ (−9.42, 6.28)</span>
+<span class="step">${FR('π','6')}${M(' ≈ 0.52')} ✓      ${FR('5π','6')}${M(' ≈ 2.62')} ✓</span>
+<span class="step">${FR('π','6')}${M(' − 2π = −')}${FR('11π','6')}${M(' ≈ −5.76')} ✓      ${FR('5π','6')}${M(' − 2π = −')}${FR('7π','6')}${M(' ≈ −3.67')} ✓</span>
+<span class="step">${FR('π','6')}${M(' + 2π = ')}${FR('13π','6')}${M(' ≈ 6.81')} ✗ (above 2π)      ${FR('π','6')}${M(' − 4π ≈ −12.04')} ✗ (below −3π)</span>`,
+  explain:`Three marks, and the third is entirely about the interval. The domain ${M('(−3π, 2π)')} is nearly ${M('5π')} wide — two and a half periods of sine — so expect <strong>four</strong> solutions and go looking for them. Stopping at the two in ${M('[0, 2π]')} is the standard way to lose a mark here.`
 },
 {
   id:'iq9', cat:'integ', mode:'active', type:'numeric', marks:2, src:'2025 Exam 2 Q2c',
