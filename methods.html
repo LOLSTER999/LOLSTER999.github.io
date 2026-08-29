@@ -6575,22 +6575,22 @@ const QUESTIONS = [
   explain:`Strictly less than — the bracket is round, not square. If this had been ${RT(M('2 − x'))} the answer would be ${M('(−∞, 2]')} instead, because a square root is defined at zero.`
 },
 {
-  id:'fq3', cat:'funcs', mode:'active', type:'mc', marks:1, src:'2026 NHT Exam 2 Q4 (adapted)',
-  stem:'The function ${f : D → R,  f (x) = sqrt(4 − x) − 2} has range ${(−2, 1]}. The domain ${D} is',
+  id:'fq3', cat:'funcs', mode:'active', type:'mc', marks:1, src:'2026 NHT Exam 2 Q4',
+  stem:'The function ${f : D → R,  f (x) = 4/x + 2} has range ${(−2, 1]}. The domain ${D} is',
   options:[
-    `${M('[−5, 4)')}`,
-    `${M('(−5, 4]')}`,
-    `${M('[−4, 5)')}`,
-    `${M('(−4, 5]')}`
+    `${M('[−4, −1)')}`,
+    `${M('(−4, −1]')}`,
+    `${M('(−1, 4]')}`,
+    `${M('[−1, 4)')}`
   ],
   answer:0,
-  working:`<span class="note">work the range back through the rule, one operation at a time</span>
-<span class="step">${M('f (x) ∈ (−2, 1]')}</span>
-<span class="step">${RT(M('4 − x'))}${M(' ∈ (0, 3]')}</span>
-<span class="step">${M('4 − x ∈ (0, 9]')}</span>
-<span class="step">${M('−x ∈ (−4, 5]')}</span>
-<span class="step">${M('x ∈ [−5, 4)')}</span>`,
-  explain:`Multiplying by ${M('−1')} <strong>reverses</strong> the interval, which is what swaps the brackets end for end. Check the closed end: ${M('f (−5) = ')}${RT('9')}${M(' − 2 = 1')}, which is in the range, so ${M('−5')} is in the domain. Check the open end: ${M('f (4) = −2')}, which is excluded, so ${M('4')} is excluded.`
+  working:`<span class="note">work backwards from the range to what 4/x must be</span>
+<span class="step">${M('−2 < ')}${FR('4',M('x'))}${M(' + 2 ≤ 1')}   ⇒   ${M('−4 < ')}${FR('4',M('x'))}${M(' ≤ −1')}</span>
+<span class="note">4/x is negative throughout, so x < 0 — and that sign is what makes the inequalities flip</span>
+<span class="step">${FR('4',M('x'))}${M(' ≤ −1')}:  multiply by the negative ${M('x')} and reverse:  ${M('4 ≥ −x')}   ⇒   ${M('x ≥ −4')}</span>
+<span class="step">${FR('4',M('x'))}${M(' > −4')}:  multiply by the negative ${M('x')} and reverse:  ${M('4 < −4x')}   ⇒   ${M('x < −1')}</span>
+<span class="step">${M('−4 ≤ x < −1')}, that is ${M('[−4, −1)')}</span>`,
+  explain:`Two things decide this. First, the whole domain sits on the <strong>negative</strong> side, because ${FR('4',M('x'))} has to be negative to bring ${M('f')} below 2. Second, multiplying an inequality by that negative ${M('x')} <em>reverses</em> it — which is also what swaps the open and closed ends over, so the endpoint that was excluded in the range becomes the excluded end of the domain.`
 },
 {
   id:'fq4', cat:'funcs', mode:'free', type:'written', marks:2, src:'2023 Exam 1 Q7c',
@@ -6999,13 +6999,21 @@ const QUESTIONS = [
   id:'cq9', cat:'circ', mode:'active', type:'mc', marks:1, src:'2026 NHT Exam 2 Q13',
   stem:'Which set of ${x}-values is <strong>not</strong> a subset of the general solution to ${sin(2x) = √3/2}?',
   options:[
-    `${M('{ ')}${FR('π','3')}${M(' + kπ : k ∈ Z }')}`,
-    `${M('{ ')}${FR('π','6')}${M(' + kπ : k ∈ Z }')}`,
-    `${M('{ ')}${FR('5π','6')}${M(' + kπ : k ∈ Z }')}`,
-    `${M('{ ')}${FR('7π','6')}${M(' + 2kπ : k ∈ Z }')}`
+    `${M('{ ')}${FR('−2π','3')}${M(' + kπ,  k ∈ Z }')}`,
+    `${M('{ ')}${FR('π','3')}${M(' + 2kπ,  k ∈ Z }')}`,
+    `${M('{ ')}${FR('5π','6')}${M(' + kπ,  k ∈ Z }')}`,
+    `${M('{ ')}${FR('7π','6')}${M(' + 2kπ,  k ∈ Z }')}`
   ],
   answer:2,
-  explain:`Solve first: ${M('2x = ')}${FR('π','3')}${M(' + 2kπ')} or ${M('2x = ')}${FR('2π','3')}${M(' + 2kπ')}, so ${M('x = ')}${FR('π','6')}${M(' + kπ')} or ${M('x = ')}${FR('π','3')}${M(' + kπ')}. Now test each option against those two families. The one that is not contained in either is the answer — substitute one member of each set back into ${M('sin(2x)')} to check quickly.`
+  working:`<span class="note">solve for the argument first</span>
+<span class="step">${M('2x = ')}${FR('π','3')}${M(' + 2kπ')}   or   ${M('2x = ')}${FR('2π','3')}${M(' + 2kπ')}</span>
+<span class="step">${M('x = ')}${FR('π','6')}${M(' + kπ')}   or   ${M('x = ')}${FR('π','3')}${M(' + kπ')}</span>
+<span class="note">now test each option against those two families, working modulo π</span>
+<span class="step">A: ${M('−')}${FR('2π','3')}${M(' + π = ')}${FR('π','3')} ✓ inside the second family</span>
+<span class="step">B: ${FR('π','3')}${M(' + 2kπ')} — every other member of the second family ✓</span>
+<span class="step">C: ${FR('5π','6')}${M(' − ')}${FR('π','6')}${M(' = ')}${FR('2π','3')} and ${FR('5π','6')}${M(' − ')}${FR('π','3')}${M(' = ')}${FR('π','2')} — neither is a whole multiple of ${M('π')} ✗</span>
+<span class="step">D: ${FR('7π','6')}${M(' = ')}${FR('π','6')}${M(' + π')} ✓ inside the first family</span>`,
+  explain:`A subset only has to <em>fit inside</em> the solution set — it need not be the whole thing, which is why B and D survive despite stepping by ${M('2π')} rather than ${M('π')}. The test is whether the starting angle differs from ${FR('π','6')} or ${FR('π','3')} by a whole multiple of ${M('π')}. Only ${FR('5π','6')} fails it.`
 },
 {
   id:'cq10', cat:'circ', mode:'active', type:'written', marks:2, src:'2025 Exam 2 Q4c',
@@ -7099,15 +7107,16 @@ So the largest possible value is a = π/2.`,
     `${M('y = log')}${SUB('2')}${M('(2x − 6)')}`,
     `${M('y = log')}${SUB('2')}${M('(2x − 3)')}`,
     `${M('y = log')}${SUB('2')}${M('(3 − x) + 1')}`,
-    `${M('y = log')}${SUB('2')}${M('(x − 3) + 1')}`
+    `${M('y = log')}${SUB('2')}${M('(x) − 2')}`
   ],
-  answer:3,
-  working:`<span class="note">reflection in y = x means find the inverse</span>
+  answer:0,
+  working:`<span class="note">reflection in y = x is exactly the inverse: swap x and y, then make y the subject</span>
 <span class="step">${M('x = 2')}${SUP(M('y − 1'))}${M(' + 3')}</span>
 <span class="step">${M('x − 3 = 2')}${SUP(M('y − 1'))}</span>
-<span class="step">${M('log')}${SUB('2')}${M('(x − 3) = y − 1')}</span>
-<span class="step">${M('y = log')}${SUB('2')}${M('(x − 3) + 1')}</span>`,
-  explain:`Reflection in ${M('y = x')} is exactly "find the inverse". Swap the variables and make ${M('y')} the subject — no transformation reasoning needed.`
+<span class="step">${M('log')}${SUB('2')}${M('(x − 3) = y − 1')}   ⇒   ${M('y = log')}${SUB('2')}${M('(x − 3) + 1')}</span>
+<span class="note">that form is not listed — use a log law to match one that is</span>
+<span class="step">${M('1 = log')}${SUB('2')}${M('(2)')}, so ${M('log')}${SUB('2')}${M('(x − 3) + log')}${SUB('2')}${M('(2) = log')}${SUB('2')}${M('(2(x − 3)) = log')}${SUB('2')}${M('(2x − 6)')}</span>`,
+  explain:`The sting is in the last step. Your natural answer, ${M('log')}${SUB('2')}${M('(x − 3) + 1')}, is correct but is not one of the options — you have to absorb the ${M('+ 1')} into the logarithm as ${M('log')}${SUB('2')}${M('(2)')} to recognise it. Note that this is <em>not</em> option B: ${M('2(x − 3) = 2x − 6')}, not ${M('2x − 3')}.`
 },
 {
   id:'eq7', cat:'explog', mode:'active', type:'mc', marks:1, src:'2025 Exam 2 Q16',
@@ -7412,12 +7421,12 @@ So the largest possible value is a = π/2.`,
   context:`${M('g (x) = ')}${FR(M('x'),M('x')+SUP('2')+M(' + k'))}, ${M('k ∈ (0, ∞)')}, and ${M('L')} is the straight line through the two stationary points of ${M('g')}.`,
   stem:'Find the total area of the regions bounded by ${y = g (x)} and the line ${L} between the stationary points.',
   criteria:[
-    {t:'Finds the stationary points x = ±√k and the equation of the line L through them', m:1},
-    {t:'Sets up the integral of |g(x) − L(x)| between −√k and √k, or splits at the crossing point x = 0', m:1},
-    {t:'Evaluates to a correct expression in terms of k', m:1}
+    {t:'Finds the stationary points x = ±√k and the equation of the line L through them, y = x/(2k)', m:1},
+    {t:'Sets up the integral of the difference between −√k and √k, splitting at x = 0 or using symmetry', m:1},
+    {t:'Evaluates it to log_e(2) − 1/2', m:1}
   ],
-  model:`Stationary points: g′(x) = (k − x²)/(x² + k)², zero at x = ±√k.\n\ng(√k) = √k/(2k) = 1/(2√k) and g(−√k) = −1/(2√k).\n\nThe line L through (−√k, −1/(2√k)) and (√k, 1/(2√k)) passes through the origin with gradient 1/(2k), so L: y = x/(2k).\n\nThe curve and the line cross at x = 0, so the regions swap over there. Total area = ∫ from −√k to √k of |g(x) − x/(2k)| dx, which by symmetry is 2 ∫ from 0 to √k of |g(x) − x/(2k)| dx.`,
-  tip:`Two things earn marks beyond the calculus: noticing the curve is <strong>odd</strong> (so the line goes through the origin and the picture is symmetric), and splitting at ${M('x = 0')} where upper and lower swap. "Total area" always means absolute values.`
+  model:`Stationary points: g′(x) = (k − x²)/(x² + k)², which is zero at x = ±√k.\n\ng(√k) = √k/(2k) = 1/(2√k), and g(−√k) = −1/(2√k).\n\nL passes through (−√k, −1/(2√k)) and (√k, 1/(2√k)). Those are symmetric about the origin, so L passes through it, with gradient (1/(2√k))/√k = 1/(2k):\n\n  L:  y = x/(2k)\n\nNow the difference:\n\n  g(x) − x/(2k) = x/(x² + k) − x/(2k) = x(k − x²) / ( 2k(x² + k) )\n\nOn (0, √k) this is positive (g above L); on (−√k, 0) it is negative. The two regions are congruent by symmetry, so take twice the right-hand one:\n\n  Area = 2 ∫ from 0 to √k of [ x/(x² + k) − x/(2k) ] dx\n       = 2 [ (1/2)log_e(x² + k) − x²/(4k) ] from 0 to √k\n       = 2 [ (1/2)log_e(2k) − 1/4 − (1/2)log_e(k) ]\n       = 2 [ (1/2)log_e(2) − 1/4 ]\n       = log_e(2) − 1/2`,
+  tip:`The striking part of the answer is that ${M('k')} cancels: the area is ${M('log')}${SUB(M('e'))}${M('(2) − ')}${FR('1','2')}${M(' ≈ 0.193')} <strong>whatever</strong> ${M('k')} is. If your expression still contains ${M('k')}, check the ${M('log')}${SUB(M('e'))}${M('(2k) − log')}${SUB(M('e'))}${M('(k)')} step — that is where it disappears.`
 },
 
 /* ================= PROBABILITY & DISTRIBUTIONS ================= */
@@ -7801,14 +7810,14 @@ ${M('f (x) = ')}${FR('3','8')}${M('(4 − 3x)')} for ${M('0 ≤ x ≤ ')}${FR('4
 },
 {
   id:'sq10', cat:'sample', mode:'active', type:'written', marks:2, src:'2025 Exam 2 Q3b iii',
-  context:`A driver is late with probability 0.08704 on each of five independent working days. ${M('P')} is the proportion of days late in a week.`,
-  stem:'Find ${Pr(0.4 ≤ P ≤ 0.6)}, correct to four decimal places.',
+  context:`A driver is late with probability 0.08704 on each of five independent working days. ${M('P̂')} is the proportion of days late in that week.`,
+  stem:'Find ${Pr(0.4 ≤ P̂ ≤ 0.6)}, correct to four decimal places.',
   criteria:[
-    {t:'Recognises that P = X/5 with X ~ Bi(5, 0.08704), so 0.4 ≤ P ≤ 0.6 means X = 2 or X = 3', m:1},
-    {t:'Computes Pr(X = 2) + Pr(X = 3) to four decimal places', m:1}
+    {t:'Recognises that P̂ = X/5 with X ~ Bi(5, 0.08704), so 0.4 ≤ P̂ ≤ 0.6 means X = 2 or X = 3', m:1},
+    {t:'Computes Pr(X = 2) + Pr(X = 3) = 0.0631 to four decimal places', m:1}
   ],
-  model:`P takes the values 0, 0.2, 0.4, 0.6, 0.8, 1 only, since P = X/5 with X ~ Bi(5, 0.08704).\n\n0.4 ≤ P ≤ 0.6 corresponds to X = 2 or X = 3.\n\nPr(X = 2) + Pr(X = 3) = binomCdf(5, 0.08704, 2, 3)\n\nEvaluate on CAS and give the answer to four decimal places.`,
-  tip:`The sample proportion here is <strong>discrete</strong>, not continuous — with ${M('n = 5')} it can only take six values. Using a normal approximation would be wrong; the exact binomial is both correct and easier.`
+  model:`P̂ takes only the values 0, 0.2, 0.4, 0.6, 0.8 and 1, since P̂ = X/5 with X ~ Bi(5, 0.08704).\n\nSo 0.4 ≤ P̂ ≤ 0.6 corresponds exactly to X = 2 or X = 3.\n\nPr(X = 2) = C(5,2)(0.08704)²(0.91296)³ = 0.05766\nPr(X = 3) = C(5,3)(0.08704)³(0.91296)² = 0.00550\n\nPr(0.4 ≤ P̂ ≤ 0.6) = 0.05766 + 0.00550 = 0.0631 (to four decimal places).`,
+  tip:`The sample proportion here is <strong>discrete</strong>, not normal — with ${M('n = 5')} there are only six possible values, so translate the interval into whole counts and add two binomial terms. Reaching for the normal approximation is the standard way to lose both marks.`
 },
 
 /* ================= ALGORITHMS & NUMERICS ================= */
