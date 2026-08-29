@@ -1728,36 +1728,38 @@ const LESSONS = [
 <div class="wex">
   <div class="wex-head">Worked example 1 — recovering a hyperbola's rule<span class="wex-src">2026 NHT Exam 1 Q2</span></div>
   <div class="wex-body">
-    <p>${M('y = ')}${FR(M('m'),M('x − a'))}${M(' + c')} with ${M('a, c, m ∈ Z')} has an ${M('x')}-intercept ${M('(−8, 0)')}, a ${M('y')}-intercept ${M('(0, 24)')} and a vertical asymptote ${M('x = −6')}. Find ${M('a')}, ${M('c')} and ${M('m')}.</p>
+    <p>${M('y = ')}${FR(M('m'),M('x + a'))}${M(' + c')} with ${M('a, c, m ∈ Z')} has an ${M('x')}-intercept ${M('(−8, 0)')}, a ${M('y')}-intercept ${M('(0, 24)')} and a vertical asymptote ${M('x = −6')}. Find ${M('a')}, ${M('c')} and ${M('m')}.</p>
 
     <div class="wstep"><div class="wnum">1</div><div class="wbody">
-      <p class="wwhy">The vertical asymptote is where the denominator vanishes, so it <em>is</em> ${M('x = a')}. Free information.</p>
-      <div class="wmath"><span class="step">${M('a = −6')}</span></div>
+      <p class="wwhy">Start with the asymptote — it isolates one unknown immediately. A vertical asymptote occurs where the denominator is zero.</p>
+      <div class="wmath"><span class="step">${M('x + a = 0')} at ${M('x = −6')}</span>
+      <span class="step">${M('−6 + a = 0   ⇒   a = 6')}</span></div>
+      <p class="wwhy">Mind the sign. The denominator is ${M('x + a')}, not ${M('x − a')}, so an asymptote at ${M('x = −6')} gives ${M('a = +6')}. Writing ${M('a = −6')} here is the single most common error on this question.</p>
     </div></div>
 
     <div class="wstep"><div class="wnum">2</div><div class="wbody">
-      <p class="wwhy">Substitute the ${M('x')}-intercept ${M('(−8, 0)')}.</p>
-      <div class="wmath"><span class="step">${M('0 = ')}${FR(M('m'),'−8 + 6')}${M(' + c = ')}${FR(M('m'),'−2')}${M(' + c')}</span>
-      <span class="step">${M('c = ')}${FR(M('m'),'2')}</span></div>
-      <p class="wwhy">One equation linking the two remaining unknowns.</p>
+      <p class="wwhy">The rule is now ${M('y = ')}${FR(M('m'),M('x + 6'))}${M(' + c')}, with two unknowns left. Substitute the two intercepts to get two equations.</p>
+      <div class="wmath"><span class="step">${M('(0, 24)')}:   ${FR(M('m'),'0 + 6')}${M(' + c = 24')}   ⇒   ${FR(M('m'),'6')}${M(' + c = 24')}</span>
+      <span class="step">${M('(−8, 0)')}:   ${FR(M('m'),'−8 + 6')}${M(' + c = 0')}   ⇒   ${FR(M('m'),'−2')}${M(' + c = 0')}</span></div>
     </div></div>
 
     <div class="wstep"><div class="wnum">3</div><div class="wbody">
-      <p class="wwhy">Substitute the ${M('y')}-intercept ${M('(0, 24)')}, then eliminate ${M('c')} using step 2.</p>
-      <div class="wmath"><span class="step">${M('24 = ')}${FR(M('m'),'0 + 6')}${M(' + c = ')}${FR(M('m'),'6')}${M(' + ')}${FR(M('m'),'2')}</span>
-      <span class="step">${M('24 = ')}${FR(M('m'),'6')}${M(' + ')}${FR(M('3m'),'6')}${M(' = ')}${FR(M('4m'),'6')}${M(' = ')}${FR(M('2m'),'3')}</span>
-      <span class="step">${M('m = 36')}</span></div>
+      <p class="wwhy">Rearrange the second for ${M('c')} and substitute into the first.</p>
+      <div class="wmath"><span class="step">${M('c = ')}${FR(M('m'),'2')}</span>
+      <span class="step">${FR(M('m'),'6')}${M(' + ')}${FR(M('m'),'2')}${M(' = 24')}</span>
+      <span class="step">${FR(M('m'),'6')}${M(' + ')}${FR(M('3m'),'6')}${M(' = 24')}   ⇒   ${FR(M('4m'),'6')}${M(' = 24')}</span>
+      <span class="step">${M('4m = 144   ⇒   m = 36')}</span></div>
     </div></div>
 
     <div class="wstep"><div class="wnum">4</div><div class="wbody">
-      <p class="wwhy">Back-substitute, then <strong>check against both intercepts</strong>. This takes ten seconds and catches sign slips.</p>
+      <p class="wwhy">Back-substitute for ${M('c')}, then sanity-check both intercepts against the finished rule.</p>
       <div class="wmath"><span class="step">${M('c = ')}${FR('36','2')}${M(' = 18')}</span>
-      <span class="step">check ${M('x')}-int: ${FR('36','−2')}${M(' + 18 = −18 + 18 = 0')} ✓</span>
-      <span class="step">check ${M('y')}-int: ${FR('36','6')}${M(' + 18 = 6 + 18 = 24')} ✓</span></div>
+      <span class="step">check ${M('(0, 24)')}: ${FR('36','6')}${M(' + 18 = 6 + 18 = 24')} ✓</span>
+      <span class="step">check ${M('(−8, 0)')}: ${FR('36','−2')}${M(' + 18 = −18 + 18 = 0')} ✓</span></div>
     </div></div>
 
-    <div class="wex-answer"><b>${M('a = −6,  c = 18,  m = 36')}</b></div>
-  </div>
+    <div class="wex-answer"><b>${M('a = 6,  c = 18,  m = 36')}</b> — and the horizontal asymptote the question mentions is ${M('y = c = 18')}, a free consistency check rather than a fourth unknown.</div>
+  </div></div>
 </div>
 
 <h2>Finding intercepts exactly</h2>
@@ -1900,20 +1902,25 @@ const LESSONS = [
 <div class="wex">
   <div class="wex-head">Worked example 1 — applying a stated sequence<span class="wex-src">2026 NHT Exam 1 Q8c</span></div>
   <div class="wex-body">
-    <p>The point ${M('(2, log')}${SUB(M('e'))}${M('(3))')} lies on ${M('y = f (x)')}. Apply: <strong>(1)</strong> a dilation by a factor of ${FR('1','2')} from the ${M('x')}-axis, then <strong>(2)</strong> a translation of 3 units in the positive ${M('x')} direction.</p>
+    <p>The point ${M('(')}${RT('2')}${M(', log')}${SUB(M('e'))}${M('(3))')} lies on ${M('y = f (x)')}. Apply, in order: <strong>(1)</strong> a dilation by a factor of ${FR('1','2')} from the ${M('x')}-axis, then <strong>(2)</strong> a translation of 3 units in the positive ${M('x')} direction.</p>
 
     <div class="wstep"><div class="wnum">1</div><div class="wbody">
-      <p class="wwhy">A dilation <em>from the ${M('x')}-axis</em> is vertical, so it touches the ${M('y')}-coordinate only.</p>
-      <div class="wmath"><span class="step">${M('(2, log')}${SUB(M('e'))}${M('(3))   →   (2, ')}${FR('1','2')}${M('log')}${SUB(M('e'))}${M('(3))')}</span></div>
+      <p class="wwhy">When a specific point is asked for, do not transform the rule — just carry the coordinates through, one step at a time, in the order given.</p>
+      <div class="wmath"><span class="step">start:   ${M('(')}${RT('2')}${M(', log')}${SUB(M('e'))}${M('(3))')}</span></div>
     </div></div>
 
     <div class="wstep"><div class="wnum">2</div><div class="wbody">
-      <p class="wwhy">A translation in the ${M('x')} direction touches the ${M('x')}-coordinate only.</p>
-      <div class="wmath"><span class="step">${M('(2, ')}${FR('1','2')}${M('log')}${SUB(M('e'))}${M('(3))   →   (5, ')}${FR('1','2')}${M('log')}${SUB(M('e'))}${M('(3))')}</span></div>
+      <p class="wwhy">Dilation by ${FR('1','2')} <em>from the x-axis</em>. A dilation named for an axis moves points away from (or towards) that axis, so this one scales the ${M('y')}-coordinate and leaves ${M('x')} untouched.</p>
+      <div class="wmath"><span class="step">${M('(')}${RT('2')}${M(', ')}${FR('1','2')}${M('log')}${SUB(M('e'))}${M('(3))')}</span></div>
     </div></div>
 
-    <div class="wex-answer">Image = <b>${M('(5, ')}${FR('1','2')}${M('log')}${SUB(M('e'))}${M('(3))')}</b></div>
-  </div>
+    <div class="wstep"><div class="wnum">3</div><div class="wbody">
+      <p class="wwhy">Translation of 3 units in the positive ${M('x')} direction: add 3 to the ${M('x')}-coordinate, leave ${M('y')} alone.</p>
+      <div class="wmath"><span class="step">${M('(')}${RT('2')}${M(' + 3, ')}${FR('1','2')}${M('log')}${SUB(M('e'))}${M('(3))')}</span></div>
+    </div></div>
+
+    <div class="wex-answer"><b>${M('(')}${RT('2')}${M(' + 3, ')}${FR('1','2')}${M('log')}${SUB(M('e'))}${M('(3))')}</b> — leave both coordinates exact; ${RT('2')}${M(' + 3')} is the answer, not 4.41.</div>
+  </div></div>
 </div>
 
 <p>Notice how little there was to go wrong. Each step changed one coordinate, in the order the question gave. That is the whole technique.</p>
@@ -4408,40 +4415,34 @@ Time to reach a value:
 <div class="wex">
   <div class="wex-head">Worked example — the full routine<span class="wex-src">2026 NHT Exam 1 Q9b</span></div>
   <div class="wex-body">
-    <p>${M('f (x) = e')}${SUP(M('2x'))}${M(' + e')}${SUP(M('−2x'))}. Find the coordinates of the stationary point and determine its nature.</p>
+    <p>${M('f (x) = ')}${FR(M('2 − e')+SUP(M('x')),M('e')+SUP(M('2x')))}, for which ${M("f ′(x) = ")}${FR(M('e')+SUP(M('x'))+M(' − 4'),M('e')+SUP(M('2x')))}. Find the coordinates of the stationary point and determine its nature.</p>
 
     <div class="wstep"><div class="wnum">1</div><div class="wbody">
-      <p class="wwhy">Differentiate, remembering the chain rule on each exponential.</p>
-      <div class="wmath"><span class="step">${M("f ′(x) = 2e")}${SUP(M('2x'))}${M(' − 2e')}${SUP(M('−2x'))}</span></div>
+      <p class="wwhy">Set the derivative to zero. A fraction equals zero only when its <em>numerator</em> does — and ${M('e')}${SUP(M('2x'))} is never zero, so the denominator can never contribute a solution.</p>
+      <div class="wmath"><span class="step">${M('e')}${SUP(M('x'))}${M(' − 4 = 0')}</span>
+      <span class="step">${M('e')}${SUP(M('x'))}${M(' = 4   ⇒   x = log')}${SUB(M('e'))}${M('(4)')}</span></div>
     </div></div>
 
     <div class="wstep"><div class="wnum">2</div><div class="wbody">
-      <p class="wwhy">Set to zero and solve. Equal exponentials means equal exponents.</p>
-      <div class="wmath"><span class="step">${M('2e')}${SUP(M('2x'))}${M(' = 2e')}${SUP(M('−2x'))}</span>
-      <span class="step">${M('e')}${SUP(M('2x'))}${M(' = e')}${SUP(M('−2x'))}</span>
-      <span class="step">${M('2x = −2x   ⇒   x = 0')}</span></div>
+      <p class="wwhy">Find the ${M('y')}-coordinate. Substitute ${M('e')}${SUP(M('x'))}${M(' = 4')} rather than the logarithm — then ${M('e')}${SUP(M('2x'))}${M(' = (e')}${SUP(M('x'))}${M(')')}${SUP('2')}${M(' = 16')} and the arithmetic is trivial.</p>
+      <div class="wmath"><span class="step">${M('f = ')}${FR('2 − 4','16')}${M(' = ')}${FR('−2','16')}${M(' = −')}${FR('1','8')}</span></div>
     </div></div>
 
     <div class="wstep"><div class="wnum">3</div><div class="wbody">
-      <p class="wwhy">Substitute into ${M('f')} — the original function — for the ${M('y')}-coordinate.</p>
-      <div class="wmath"><span class="step">${M('f (0) = e')}${SUP('0')}${M(' + e')}${SUP('0')}${M(' = 1 + 1 = 2')}</span></div>
+      <p class="wwhy">Now the nature. Again the denominator is positive for every ${M('x')}, so the sign of ${M("f ′")} is decided entirely by ${M('e')}${SUP(M('x'))}${M(' − 4')} — no second derivative required.</p>
+      <div class="table-scroll">
+      <table class="tbl">
+      <tr><th>${M('x')}</th><th>${M('e')}${SUP(M('x'))} vs 4</th><th>${M("f ′(x)")}</th></tr>
+      <tr><td>${M('x < log')}${SUB(M('e'))}${M('(4)')}</td><td>less than 4</td><td>negative</td></tr>
+      <tr><td>${M('x = log')}${SUB(M('e'))}${M('(4)')}</td><td>equal to 4</td><td>zero</td></tr>
+      <tr><td>${M('x > log')}${SUB(M('e'))}${M('(4)')}</td><td>greater than 4</td><td>positive</td></tr>
+      </table>
+      </div>
+      <p class="wwhy">The gradient runs negative → zero → positive, which is a minimum.</p>
     </div></div>
 
-    <div class="wstep"><div class="wnum">4</div><div class="wbody">
-      <p class="wwhy">State it as an ordered pair.</p>
-      <div class="wmath"><span class="step">stationary point at ${M('(0, 2)')}</span></div>
-    </div></div>
-
-    <div class="wstep"><div class="wnum">5</div><div class="wbody">
-      <p class="wwhy">Sign table, with the tested values written down.</p>
-      <div class="wmath"><span class="step">${M("f ′(−1) = 2e")}${SUP('−2')}${M(' − 2e')}${SUP('2')}${M(' ≈ 0.27 − 14.8 < 0')}</span>
-      <span class="step">${M("f ′(0) = 0")}</span>
-      <span class="step">${M("f ′(1) = 2e")}${SUP('2')}${M(' − 2e')}${SUP('−2')}${M(' ≈ 14.8 − 0.27 > 0')}</span></div>
-      <p class="wwhy">Negative → zero → positive, so the function falls then rises.</p>
-    </div></div>
-
-    <div class="wex-answer"><b>${M('(0, 2)')}</b> is a <b>local minimum</b>, because the gradient changes from negative to positive there.</div>
-  </div>
+    <div class="wex-answer"><b>${M('( log')}${SUB(M('e'))}${M('(4), −')}${FR('1','8')}${M(' )')}</b>, a local minimum. Writing the sign table out is what earns the second mark — an unsupported "minimum" earns nothing.</div>
+  </div></div>
 </div>
 
 <h2>The second-derivative shortcut</h2>
@@ -6604,19 +6605,19 @@ const QUESTIONS = [
 },
 {
   id:'fq5', cat:'funcs', mode:'free', type:'exact', marks:3, src:'2026 NHT Exam 1 Q2',
-  context:`The graph of ${M('y = ')}${FR(M('m'),M('x − a'))}${M(' + c')}, where ${M('a, c, m ∈ Z')}, has an ${M('x')}-intercept ${M('(−8, 0)')}, a ${M('y')}-intercept ${M('(0, 24)')} and a vertical asymptote ${M('x = −6')}.`,
+  context:`The graph of ${M('y = ')}${FR(M('m'),M('x + a'))}${M(' + c')}, where ${M('a, c, m ∈ Z')}, has an ${M('x')}-intercept ${M('(−8, 0)')}, a ${M('y')}-intercept ${M('(0, 24)')}, a vertical asymptote ${M('x = −6')} and a horizontal asymptote.`,
   stem:'Find the values of ${a}, ${c} and ${m}.',
-  accept:['a=-6,c=18,m=36','a=-6,m=36,c=18','m=36,c=18,a=-6','-6,18,36'],
-  answer:`${M('a = −6,  c = 18,  m = 36')}`,
-  working:`<span class="note">the vertical asymptote is x = a</span>
-<span class="step">${M('a = −6')}</span>
-<span class="note">x-intercept (−8, 0):</span>
-<span class="step">${M('0 = ')}${FR(M('m'),'−2')}${M(' + c   ⇒   c = ')}${FR(M('m'),'2')}</span>
-<span class="note">y-intercept (0, 24):</span>
-<span class="step">${M('24 = ')}${FR(M('m'),'6')}${M(' + c = ')}${FR(M('m'),'6')}${M(' + ')}${FR(M('m'),'2')}${M(' = ')}${FR(M('2m'),'3')}</span>
-<span class="step">${M('m = 36')}… check: ${M('c = 18')}, and ${M('0 = ')}${FR('36','−2')}${M(' + 18 = 0')} ✓</span>
-<span class="note">so a = −6, m = 36, c = 18</span>`,
-  explain:`Read the asymptote first — it hands you ${M('a')} with no work. Then two intercepts give two equations in ${M('m')} and ${M('c')}. Always substitute your final values back into <em>both</em> intercepts; the check takes ten seconds and catches sign slips.`
+  accept:['a=6,c=18,m=36','a=6,m=36,c=18','m=36,c=18,a=6','6,18,36'],
+  answer:`${M('a = 6,  c = 18,  m = 36')}`,
+  working:`<span class="note">the vertical asymptote is where the denominator vanishes</span>
+<span class="step">${M('x + a = 0')} at ${M('x = −6')}   ⇒   ${M('a = 6')}</span>
+<span class="note">now substitute the two intercepts</span>
+<span class="step">${M('(0, 24)')}:   ${FR(M('m'),'6')}${M(' + c = 24')}</span>
+<span class="step">${M('(−8, 0)')}:   ${FR(M('m'),'−2')}${M(' + c = 0')}   ⇒   ${M('c = ')}${FR(M('m'),'2')}</span>
+<span class="note">eliminate c</span>
+<span class="step">${FR(M('m'),'6')}${M(' + ')}${FR(M('m'),'2')}${M(' = 24')}   ⇒   ${FR(M('m + 3m'),'6')}${M(' = 24')}   ⇒   ${FR(M('4m'),'6')}${M(' = 24')}</span>
+<span class="step">${M('m = 36')},   so   ${M('c = 18')}</span>`,
+  explain:`Take the asymptote first — it gives ${M('a')} on its own, and reduces the rest to two linear equations in ${M('m')} and ${M('c')}. Watch the sign: the denominator is ${M('x + a')}, so an asymptote at ${M('x = −6')} means ${M('a = +6')}, not ${M('−6')}. The horizontal asymptote mentioned in the question is ${M('y = c = 18')} — it is a free check, not an extra unknown.`
 },
 {
   id:'fq6', cat:'funcs', mode:'active', type:'mc', marks:1, src:'2025 Exam 2 Q5',
@@ -6649,17 +6650,17 @@ const QUESTIONS = [
 },
 {
   id:'fq8', cat:'funcs', mode:'free', type:'exact', marks:1, src:'2026 NHT Exam 1 Q8c',
-  context:`The point ${M('(2, log')}${SUB(M('e'))}${M('(3))')} lies on ${M('y = f (x)')}. The graph has: (1) a dilation by a factor of ${FR('1','2')} from the ${M('x')}-axis, then (2) a translation by 3 units in the positive ${M('x')} direction.`,
+  context:`The point ${M('(')}${RT('2')}${M(', log')}${SUB(M('e'))}${M('(3))')} lies on ${M('y = f (x)')}. The graph has the following applied, in order: <strong>(1)</strong> a dilation by a factor of ${FR('1','2')} from the ${M('x')}-axis, then <strong>(2)</strong> a translation by 3 units in the positive direction of the ${M('x')}-axis.`,
   stem:'Find the coordinates of the image of the point.',
-  accept:['(5,0.5log_e(3))','(5,log_e(3)/2)','(5,(1/2)log_e(3))','(5,1/2log_e(3))','(5,ln(3)/2)'],
-  answer:`${M('(5, ')}${FR('1','2')}${M('log')}${SUB(M('e'))}${M('(3))')}`,
-  working:`<span class="note">apply the transformations in the stated order</span>
-<span class="step">${M('(2, log')}${SUB(M('e'))}${M('(3))')}</span>
-<span class="note">dilation factor ½ from the x-axis halves the y-coordinate:</span>
-<span class="step">${M('→ (2, ')}${FR('1','2')}${M('log')}${SUB(M('e'))}${M('(3))')}</span>
-<span class="note">translation 3 right adds 3 to the x-coordinate:</span>
-<span class="step">${M('→ (5, ')}${FR('1','2')}${M('log')}${SUB(M('e'))}${M('(3))')}</span>`,
-  explain:`Mapping a single point is the easiest transformation mark in the course, provided you apply the steps in the order given and change only the coordinate each step affects. A dilation from the ${M('x')}-axis touches ${M('y')} only; a horizontal translation touches ${M('x')} only.`
+  accept:['(sqrt(2)+3,log_e(3)/2)','(3+sqrt(2),0.5log_e(3))','(sqrt2+3,(1/2)log_e(3))','(√2+3,½log_e(3))'],
+  answer:`${M('(')}${RT('2')}${M(' + 3, ')}${FR('1','2')}${M('log')}${SUB(M('e'))}${M('(3))')}`,
+  working:`<span class="note">track the point, one transformation at a time, in the stated order</span>
+<span class="step">start:   ${M('(')}${RT('2')}${M(', log')}${SUB(M('e'))}${M('(3))')}</span>
+<span class="note">(1) dilation by ½ from the x-axis halves the y-coordinate and leaves x alone</span>
+<span class="step">${M('(')}${RT('2')}${M(', ')}${FR('1','2')}${M('log')}${SUB(M('e'))}${M('(3))')}</span>
+<span class="note">(2) translation 3 units in the positive x direction adds 3 to the x-coordinate</span>
+<span class="step">${M('(')}${RT('2')}${M(' + 3, ')}${FR('1','2')}${M('log')}${SUB(M('e'))}${M('(3))')}</span>`,
+  explain:`Two things to keep straight. "From the ${M('x')}-axis" means the ${M('y')}-values move — a dilation named for an axis stretches <em>away from</em> that axis. And the ${RT('2')} stays exact: leave it as ${RT('2')}${M(' + 3')} rather than writing 4.41.`
 },
 {
   id:'fq9', cat:'funcs', mode:'active', type:'mc', marks:1, src:'2025 Exam 2 Q15',
@@ -6942,14 +6943,14 @@ const QUESTIONS = [
 },
 {
   id:'cq5', cat:'circ', mode:'free', type:'exact', marks:1, src:'2026 NHT Exam 1 Q4a',
-  context:`${M('f : [0, 2π] → R,  f (x) = 2 sin( x + ')}${FR('π','6')}${M(' ) − 1')} (as printed in the paper).`,
+  context:`${M('f : [0, 2π] → R,  f (x) = 2 sin( x − ')}${FR('π','6')}${M(' )')}.`,
   stem:'Evaluate ${f (0)}.',
-  accept:['0','f(0)=0'],
-  answer:`${M('f (0) = 0')}`,
-  working:`<span class="step">${M('f (0) = 2 sin(')}${FR('π','6')}${M(') − 1')}</span>
-<span class="step">${M(' = 2 × ')}${FR('1','2')}${M(' − 1')}</span>
-<span class="step">${M(' = 0')}</span>`,
-  explain:`A one-mark exact-value substitution. The only requirement is knowing ${M('sin(')}${FR('π','6')}${M(') = ')}${FR('1','2')} without a calculator — which is why the exact-value table is worth memorising rather than deriving.`
+  accept:['-1','f(0)=-1','−1'],
+  answer:`${M('f (0) = −1')}`,
+  working:`<span class="step">${M('f (0) = 2 sin( 0 − ')}${FR('π','6')}${M(' ) = 2 sin( −')}${FR('π','6')}${M(' )')}</span>
+<span class="note">sine is odd, so sin(−θ) = −sin(θ)</span>
+<span class="step">${M(' = −2 sin( ')}${FR('π','6')}${M(' ) = −2 × ')}${FR('1','2')}${M(' = −1')}</span>`,
+  explain:`One mark, and the only way to lose it is the sign. ${M('sin')} is an <strong>odd</strong> function — a negative angle gives a negative sine — whereas ${M('cos')} is even and would have given ${M('+')}. Knowing which of the two flips sign is worth more marks across a paper than any single result.`
 },
 {
   id:'cq6', cat:'circ', mode:'active', type:'mc', marks:1, src:'2025 Exam 2 Q1',
@@ -7171,26 +7172,27 @@ So the largest possible value is a = π/2.`,
   explain:`Factorising ${M('e')}${SUP(M('2x'))} out before substituting keeps the arithmetic clean. Substituting first and then trying to combine surd terms is where errors creep in.`
 },
 {
-  id:'dq5', cat:'diff', mode:'free', type:'written', marks:2, src:'2026 NHT Exam 1 Q9b i',
-  context:`${M('f : R → R,  f (x) = e')}${SUP(M('2x'))}${M(' + e')}${SUP(M('−2x'))}, with ${M("f ′(x) = 2e")}${SUP(M('2x'))}${M(' − 2e')}${SUP(M('−2x'))}.`,
+  id:'dq5', cat:'diff', mode:'free', type:'exact', marks:2, src:'2026 NHT Exam 1 Q9b i',
+  context:`${M('f : R → R,  f (x) = ')}${FR(M('2 − e')+SUP(M('x')),M('e')+SUP(M('2x')))}, with ${M("f ′(x) = ")}${FR(M('e')+SUP(M('x'))+M(' − 4'),M('e')+SUP(M('2x')))} (shown in part a).`,
   stem:'The graph of ${y = f (x)} has exactly one stationary point. Find its coordinates.',
-  criteria:[
-    {t:'Sets f ′(x) = 0 and solves correctly to obtain x = 0', m:1},
-    {t:'Substitutes back to give the coordinates (0, 2)', m:1}
-  ],
-  model:`Set f ′(x) = 0:\n  2e^(2x) − 2e^(−2x) = 0\n  e^(2x) = e^(−2x)\n  2x = −2x\n  x = 0\n\nThen f(0) = e^0 + e^0 = 1 + 1 = 2.\n\nThe stationary point is (0, 2).`,
-  tip:`The second mark is purely for the ${M('y')}-coordinate and the ordered-pair format. "The stationary point is at ${M('x = 0')}" is not coordinates, and loses that mark even though the calculus is complete.`
+  accept:['(log_e(4),-1/8)','(2log_e(2),-1/8)','(ln4,-1/8)','(log_e4,-0.125)'],
+  answer:`${M('( log')}${SUB(M('e'))}${M('(4), −')}${FR('1','8')}${M(' )')}`,
+  working:`<span class="note">a fraction is zero only when its numerator is — and e^(2x) is never zero, so only the top matters</span>
+<span class="step">${M('e')}${SUP(M('x'))}${M(' − 4 = 0   ⇒   e')}${SUP(M('x'))}${M(' = 4   ⇒   x = log')}${SUB(M('e'))}${M('(4)')}</span>
+<span class="note">substitute back into f, using e^x = 4 so that e^(2x) = 4² = 16</span>
+<span class="step">${M('f ( log')}${SUB(M('e'))}${M('(4) ) = ')}${FR('2 − 4','16')}${M(' = ')}${FR('−2','16')}${M(' = −')}${FR('1','8')}</span>`,
+  explain:`Substituting ${M('e')}${SUP(M('x'))}${M(' = 4')} rather than ${M('x = log')}${SUB(M('e'))}${M('(4)')} is what keeps this to one line. Note ${M('log')}${SUB(M('e'))}${M('(4) = 2 log')}${SUB(M('e'))}${M('(2)')} — either form is accepted, but do not decimalise it.`
 },
 {
   id:'dq6', cat:'diff', mode:'free', type:'written', marks:2, src:'2026 NHT Exam 1 Q9b ii',
-  context:`${M('f (x) = e')}${SUP(M('2x'))}${M(' + e')}${SUP(M('−2x'))} has a stationary point at ${M('(0, 2)')}.`,
+  context:`${M('f (x) = ')}${FR(M('2 − e')+SUP(M('x')),M('e')+SUP(M('2x')))} has a stationary point at ${M('( log')}${SUB(M('e'))}${M('(4), −')}${FR('1','8')}${M(' )')}, and ${M("f ′(x) = ")}${FR(M('e')+SUP(M('x'))+M(' − 4'),M('e')+SUP(M('2x')))}.`,
   stem:'Determine the nature of this stationary point.',
   criteria:[
-    {t:'Tests the sign of f ′(x) on both sides of x = 0 (or computes f ″(0))', m:1},
-    {t:'Concludes it is a local minimum, with the reasoning stated', m:1}
+    {t:'Tests the sign of f′ on both sides (or uses the second derivative), showing the change is from negative to positive', m:1},
+    {t:'Concludes it is a local minimum', m:1}
   ],
-  model:`Sign test on f ′(x) = 2e^(2x) − 2e^(−2x):\n\n  at x = −1: 2e^(−2) − 2e^(2) < 0  (negative)\n  at x = 0:  0\n  at x = 1:  2e^(2) − 2e^(−2) > 0  (positive)\n\nThe gradient changes from negative to positive, so (0, 2) is a local minimum.\n\nAlternatively f ″(x) = 4e^(2x) + 4e^(−2x), and f ″(0) = 8 > 0, confirming a local minimum.`,
-  tip:`Either method earns full marks, but the sign table needs the <em>values you tested</em> written down, and the second-derivative method needs the value ${M("f ″(0) = 8")} stated, not just "it is positive".`
+  model:`The denominator e^(2x) is positive for every x, so the sign of f′(x) is the sign of e^x − 4 alone.\n\nFor x < log_e(4):  e^x < 4, so e^x − 4 < 0 and f′(x) < 0.\nAt x = log_e(4):  f′(x) = 0.\nFor x > log_e(4):  e^x > 4, so e^x − 4 > 0 and f′(x) > 0.\n\nThe gradient changes from negative to positive, so the stationary point at ( log_e(4), −1/8 ) is a local minimum.`,
+  tip:`Because the denominator can never change sign, this reduces to asking where ${M('e')}${SUP(M('x'))} sits relative to 4 — no second derivative needed. A sign table with the three rows above earns both marks; simply asserting "minimum" earns neither.`
 },
 {
   id:'dq7', cat:'diff', mode:'free', type:'exact', marks:2, src:'2026 NHT Exam 1 Q7b',
