@@ -6787,16 +6787,18 @@ const QUESTIONS = [
 },
 {
   id:'aq3', cat:'algebra', mode:'free', type:'exact', marks:3, src:'2024 NHT Exam 1 Q2a',
-  context:`${M('ax + (2 − a)y = 3')} and ${M('x + 2ay = ')}${FR(M('1 − a'),'2')}${M('')} (as printed).`,
+  context:`${M('ax + (2 − a)y = 3')} and ${M('x + ay = ')}${FR(M('2a + 1'),'2')}, where ${M('a ∈ R')}.`,
   stem:'Find the value of ${a} for which there are infinitely many solutions.',
-  accept:['a=1','1','a=1only'],
-  answer:`${M('a = 1')}`,
-  working:`<span class="note">determinant zero:</span>
-<span class="step">${M('a(2a) − (1)(2 − a) = 0')}</span>
-<span class="step">${M('2a')}${SUP('2')}${M(' + a − 2 = 0')}</span>
-<span class="note">solve, then test each root in the original pair</span>
-<span class="note">infinitely many ⟺ one equation is a scalar multiple of the other, right-hand side included</span>`,
-  explain:`Infinitely many solutions is the strictest case: the two equations must describe the <em>same line</em>. Check the ratio of all three coefficients — ${FR(M('a')+SUB('1'),M('a')+SUB('2'))}${M(' = ')}${FR(M('b')+SUB('1'),M('b')+SUB('2'))}${M(' = ')}${FR(M('c')+SUB('1'),M('c')+SUB('2'))} — not just the two on the left.`
+  accept:['a=-2','-2','a=−2','−2'],
+  answer:`${M('a = −2')}`,
+  working:`<span class="note">first: a zero determinant is necessary for anything other than a unique solution</span>
+<span class="step">${M('a × a − (2 − a) × 1 = 0')}</span>
+<span class="step">${M('a')}${SUP('2')}${M(' + a − 2 = 0   ⇒   (a + 2)(a − 1) = 0')}</span>
+<span class="step">${M('a = −2')}   or   ${M('a = 1')}</span>
+<span class="note">now test each — a zero determinant means EITHER none OR infinitely many, and only one of these is which</span>
+<span class="step">${M('a = 1')}:   ${M('x + y = 3')}  and  ${M('x + y = ')}${FR('3','2')} — parallel and distinct, so <strong>no</strong> solutions ✗</span>
+<span class="step">${M('a = −2')}:   ${M('−2x + 4y = 3')}  and  ${M('x − 2y = −')}${FR('3','2')}, and multiplying the second by ${M('−2')} gives ${M('−2x + 4y = 3')} — the same line ✓</span>`,
+  explain:`Three marks: one for the determinant, one for solving it, one for the test that separates the two roots. Both roots kill the determinant, but only ${M('a = −2')} makes the two equations multiples of each other. Answering ${M('a = 1')} — the root that gives <em>no</em> solutions — is the trap this question is built around.`
 },
 {
   id:'aq4', cat:'algebra', mode:'free', type:'exact', marks:2, src:'2025 Exam 1 Q7b',
@@ -7691,16 +7693,18 @@ ${M('f (x) = ')}${FR('3','8')}${M('(4 − 3x)')} for ${M('0 ≤ x ≤ ')}${FR('4
 },
 {
   id:'pq21', cat:'prob', mode:'free', type:'exact', marks:2, src:'2024 NHT Exam 1 Q7b',
-  context:`${M('X')} is discrete with ${M('Pr(X = x) = ')}${FR('2',M('3')+SUP(M('x')))} for ${M('x ∈ Z')}${SUP('+')} (as printed).`,
-  stem:'Find ${Pr(X ≥ 4 | X ≥ 2)}.',
-  accept:['1/9','0.1111'],
-  answer:`${FR('1','9')}`,
-  working:`<span class="note">the event X ≥ 4 is contained in X ≥ 2</span>
-<span class="step">${M('Pr(X ≥ 4 | X ≥ 2) = ')}${FR(M('Pr(X ≥ 4)'),M('Pr(X ≥ 2)'))}</span>
-<span class="note">these are geometric-style tails: Pr(X ≥ n) = sum of a geometric series</span>
-<span class="step">${M('Pr(X ≥ n) = ')}${FR('1',M('3')+SUP(M('n − 1')))}</span>
-<span class="step">${M(' = ')}${FR(FR('1',M('3')+SUP('3')),FR('1',M('3')))}${M(' = ')}${FR('3','27')}${M(' = ')}${FR('1','9')}</span>`,
-  explain:`Because the distribution is geometric in shape, the conditional probability collapses to ${FR('1',M('3')+SUP('2'))} — the "memoryless" pattern. Recognising the containment ${M('{X ≥ 4} ⊂ {X ≥ 2}')} saves all the work of an intersection.`
+  context:`${M('X')} is discrete with ${M('Pr(X = x) = ')}${FR('2',M('3')+SUP(M('x')))} for ${M('x ∈ Z')}${SUP('+')}.`,
+  stem:'Find ${Pr(X < 4 | X ≥ 2)}.',
+  accept:['8/9','0.8889','0.889'],
+  answer:`${FR('8','9')}`,
+  working:`<span class="note">conditional probability: the condition goes on the bottom, the overlap on top</span>
+<span class="step">${M('Pr(X < 4 | X ≥ 2) = ')}${FR(M('Pr(2 ≤ X ≤ 3)'),M('Pr(X ≥ 2)'))}</span>
+<span class="note">numerator — just two terms</span>
+<span class="step">${M('Pr(X = 2) + Pr(X = 3) = ')}${FR('2','9')}${M(' + ')}${FR('2','27')}${M(' = ')}${FR('6','27')}${M(' + ')}${FR('2','27')}${M(' = ')}${FR('8','27')}</span>
+<span class="note">denominator — complement is faster than summing an infinite tail</span>
+<span class="step">${M('Pr(X ≥ 2) = 1 − Pr(X = 1) = 1 − ')}${FR('2','3')}${M(' = ')}${FR('1','3')}${M(' = ')}${FR('9','27')}</span>
+<span class="step">${M(' = ')}${FR(FR('8','27'),FR('9','27'))}${M(' = ')}${FR('8','9')}</span>`,
+  explain:`Two habits worth keeping. ${M('X < 4')} for a positive-integer variable means ${M('X = 1, 2')} or ${M('3')} — but the condition ${M('X ≥ 2')} has already ruled out 1, so the overlap is just ${M('X = 2')} and ${M('X = 3')}. And the denominator is an infinite tail: take ${M('1 − Pr(X = 1)')} rather than trying to sum it.`
 },
 
 /* ================= SAMPLING & INFERENCE ================= */
@@ -7908,29 +7912,35 @@ end for</div>The first printed output is 1, 1.`,
 },
 {
   id:'gq6', cat:'algo', mode:'free', type:'exact', marks:2, src:'2024 NHT Exam 1 Q6a',
-  context:`${M('g (x) = 2 sin( x + ')}${FR('5π','6')}${M(' ) + 2')} (as printed). Estimate the area bounded by ${M('y = g (x)')}, the ${M('x')}-axis and the lines ${M('x = ')}${FR('π','6')} and ${M('x = ')}${FR('2π','3')}.`,
-  stem:'Use the trapezium rule with three trapeziums of equal width.',
-  accept:['see working','pi/2*(...)','depends'],
-  answer:`apply ${M('h = ')}${FR('π','6')} with four ordinates at ${FR('π','6')}, ${FR('π','3')}, ${FR('π','2')}, ${FR('2π','3')}`,
-  working:`<span class="note">interval width = 2π/3 − π/6 = π/2; three strips ⇒ h = π/6</span>
-<span class="step">ordinates at ${M('x = ')}${FR('π','6')}${M(', ')}${FR('π','3')}${M(', ')}${FR('π','2')}${M(', ')}${FR('2π','3')}</span>
-<span class="note">apply: (h/2)[ first + 2(middle two) + last ]</span>
-<span class="step">${M(' ≈ ')}${FR('π','12')}${M('[ g(')}${FR('π','6')}${M(') + 2g(')}${FR('π','3')}${M(') + 2g(')}${FR('π','2')}${M(') + g(')}${FR('2π','3')}${M(') ]')}</span>
-<span class="note">each g value is an exact-value substitution</span>`,
-  explain:`Three strips need four ordinates, and the strip width is the interval length divided by 3 — here ${FR('π','2')}${M(' ÷ 3 = ')}${FR('π','6')}. Each function value is an exact trig value, which is why this is an Exam 1 question.`
+  context:`${M('g (x) = sin( 2x − ')}${FR('5π','6')}${M(' ) + 2')}.`,
+  stem:'Using the trapezium rule with three trapeziums of equal width, estimate the area bounded by ${y = g (x)}, the ${x}-axis and the lines ${x = π/6} and ${x = 2π/3}.',
+  accept:['pi','π','3.1416','3.14'],
+  answer:`${M('π')}`,
+  working:`<span class="note">three trapeziums across a width of 2π/3 − π/6 = π/2, so h = π/6 and there are four ordinates</span>
+<span class="step">${M('g (')}${FR('π','6')}${M(') = sin( ')}${FR('π','3')}${M(' − ')}${FR('5π','6')}${M(' ) + 2 = sin( −')}${FR('π','2')}${M(' ) + 2 = 1')}</span>
+<span class="step">${M('g (')}${FR('π','3')}${M(') = sin( −')}${FR('π','6')}${M(' ) + 2 = ')}${FR('3','2')}</span>
+<span class="step">${M('g (')}${FR('π','2')}${M(') = sin( ')}${FR('π','6')}${M(' ) + 2 = ')}${FR('5','2')}</span>
+<span class="step">${M('g (')}${FR('2π','3')}${M(') = sin( ')}${FR('π','2')}${M(' ) + 2 = 3')}</span>
+<span class="note">trapezium rule: (h/2)(first + 2×each interior + last)</span>
+<span class="step">${M('A ≈ ')}${FR('π','12')}${M('( 1 + 2(')}${FR('3','2')}${M(') + 2(')}${FR('5','2')}${M(') + 3 )')}</span>
+<span class="step">${M(' = ')}${FR('π','12')}${M('( 1 + 3 + 5 + 3 ) = ')}${FR('π','12')}${M(' × 12 = π')}</span>`,
+  explain:`Every ordinate lands on an exact value here, which is the sign you are meant to work by hand rather than reach for decimals. The interior ordinates are each counted <strong>twice</strong>. Pleasingly, the estimate ${M('π')} happens to equal the exact area — a coincidence of this particular curve, not a general rule.`
 },
 {
-  id:'gq7', cat:'algo', mode:'free', type:'written', marks:2, src:'2024 NHT Exam 1 Q6b',
-  context:`${M('h : [')}${FR('π','6')}${M(', ')}${FR('2π','3')}${M('] → R,  h (x) = k g (x)')} with ${M('g')} as above and ${M('k ∈ R')}.`,
+  id:'gq7', cat:'algo', mode:'free', type:'exact', marks:2, src:'2024 NHT Exam 1 Q6b',
+  context:`${M('h : [')}${FR('π','6')}${M(', ')}${FR('2π','3')}${M('] → R,  h (x) = k g (x)')}, where ${M('g (x) = sin( 2x − ')}${FR('5π','6')}${M(' ) + 2')} and ${M('k ∈ R')}.`,
   stem:'Using calculus, find ${k} such that ${h} is a probability density function.',
-  criteria:[
-    {t:'Sets the integral of h over the given interval equal to 1', m:1},
-    {t:'Evaluates the integral exactly and solves for k', m:1}
-  ],
-  model:`For h to be a pdf, ∫ from π/6 to 2π/3 of k g(x) dx = 1.\n\nk ∫ from π/6 to 2π/3 of [ 2 sin(x + 5π/6) + 2 ] dx = 1\n\nAntidifferentiate: k [ −2 cos(x + 5π/6) + 2x ] from π/6 to 2π/3 = 1\n\nEvaluate at both limits using exact values, simplify, and solve for k.\n\nAlso note h(x) ≥ 0 on the interval is required — with g ≥ 0 there, k must be positive.`,
-  tip:`"Using calculus" rules out the trapezium estimate from part a. And the pdf conditions are <em>two</em>: total area 1, and non-negativity — mentioning that ${M('k > 0')} is what secures the second mark in a close marking.`
-}
-,
+  accept:['1/pi','1/π','k=1/pi','0.3183'],
+  answer:`${M('k = ')}${FR('1',M('π'))}`,
+  working:`<span class="note">a pdf must integrate to 1 over its domain</span>
+<span class="step">${M('k ')}${IG(FR('π','6'),FR('2π','3'),M(' ( sin( 2x − ')+FR('5π','6')+M(' ) + 2 ) dx'))}${M(' = 1')}</span>
+<span class="note">antidifferentiate — remember to divide by the inside coefficient 2</span>
+<span class="step">${M('k [ −')}${FR('1','2')}${M('cos( 2x − ')}${FR('5π','6')}${M(' ) + 2x ]')}${SUB(FR('π','6'))}${SUP(FR('2π','3'))}${M(' = 1')}</span>
+<span class="note">both cosines vanish: the argument is π/2 at the top and −π/2 at the bottom</span>
+<span class="step">${M('k [ ( 0 + ')}${FR('4π','3')}${M(' ) − ( 0 + ')}${FR('π','3')}${M(' ) ] = 1')}</span>
+<span class="step">${M('k π = 1   ⇒   k = ')}${FR('1',M('π'))}</span>`,
+  explain:`"Using calculus" rules out reusing the trapezium estimate from part a — you must integrate exactly, even though both happen to give ${M('π')}. Two details secure the marks: dividing by the 2 inside the sine when antidifferentiating, and checking ${M('k > 0')} so that ${M('h ≥ 0')} across the interval, which the second pdf condition requires.`
+},
 
 /* ================= 2024 VCAA EXAMINATION 2 — SECTION A ================= */
 {
