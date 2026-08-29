@@ -6638,15 +6638,21 @@ const QUESTIONS = [
 },
 {
   id:'fq7', cat:'funcs', mode:'active', type:'mc', marks:1, src:'2023 Exam 2 Q3',
-  stem:'Two functions ${p} and ${q} are continuous over their domains ${[−2, 3)} and ${(−1, 5]} respectively. The domain of the sum function ${p + q} is',
+  stem:'Two functions ${p} and ${q} are continuous over their domains, which are ${[−2, 3)} and ${(−1, 5]} respectively. The domain of the sum function ${p + q} is',
   options:[
     `${M('[−2, 5]')}`,
     `${M('[−2, −1) ∪ (3, 5]')}`,
     `${M('[−2, −1) ∪ (−1, 3) ∪ (3, 5]')}`,
+    `${M('[−1, 3]')}`,
     `${M('(−1, 3)')}`
   ],
-  answer:3,
-  explain:`${M('dom( p + q ) = dom( p ) ∩ dom( q )')}. The intersection of ${M('[−2, 3)')} and ${M('(−1, 5]')} is ${M('(−1, 3)')} — open at both ends, because ${M('−1')} is excluded from ${M('q')}'s domain and ${M('3')} is excluded from ${M('p')}'s.`
+  answer:4,
+  working:`<span class="note">a sum is only defined where BOTH functions are — so take the intersection, not the union</span>
+<span class="step">${M('[−2, 3) ∩ (−1, 5]')}</span>
+<span class="note">the left end: −1 is excluded from q's domain, so it is excluded from the intersection</span>
+<span class="note">the right end: 3 is excluded from p's domain, so it is excluded too</span>
+<span class="step">${M(' = (−1, 3)')}</span>`,
+  explain:`Two things decide it. First, <strong>intersection</strong>, not union — options A, B and C are all built from unions. Second, both endpoints are open: an endpoint survives only if it is closed in <em>both</em> domains, which rules out option D.`
 },
 {
   id:'fq8', cat:'funcs', mode:'free', type:'exact', marks:1, src:'2026 NHT Exam 1 Q8c',
@@ -6876,10 +6882,19 @@ const QUESTIONS = [
 },
 {
   id:'aq10', cat:'algebra', mode:'active', type:'mc', marks:1, src:'2023 Exam 2 Q2',
-  stem:'For the parabola ${y = ax^2 + 2bx + c}, the equation of the axis of symmetry is',
-  options:[`${M('x = −')}${FR(M('b'),M('a'))}`,`${M('x = −')}${FR(M('b'),M('2a'))}`,`${M('y = c')}`,`${M('x = ')}${FR(M('b'),M('a'))}`],
+  stem:'For the parabola with equation ${y = ax^2 + 2bx + c}, where ${a, b, c ∈ R}, the equation of the axis of symmetry is',
+  options:[
+    `${M('x = −')}${FR(M('b'),M('a'))}`,
+    `${M('x = −')}${FR(M('b'),M('2a'))}`,
+    `${M('y = c')}`,
+    `${M('x = ')}${FR(M('b'),M('a'))}`,
+    `${M('x = ')}${FR(M('b'),M('2a'))}`
+  ],
   answer:0,
-  explain:`The standard axis of symmetry is ${M('x = −')}${FR(M('B'),M('2A'))} for ${M('y = Ax')}${SUP('2')}${M(' + Bx + C')}. Here ${M('B = 2b')} and ${M('A = a')}, so ${M('x = −')}${FR('2b','2a')}${M(' = −')}${FR(M('b'),M('a'))}. The doubled coefficient is the entire trick.`
+  working:`<span class="note">the axis of symmetry of y = Ax² + Bx + C is x = −B/(2A)</span>
+<span class="step">here ${M('A = a')} and ${M('B = 2b')}</span>
+<span class="step">${M('x = −')}${FR(M('2b'),M('2a'))}${M(' = −')}${FR(M('b'),M('a'))}</span>`,
+  explain:`The whole question is the coefficient of ${M('x')} being ${M('2b')}, not ${M('b')} — the 2 cancels against the 2 in the denominator. Option B is the answer you get by quoting the formula without looking at what ${M('B')} actually is here, which is exactly the mistake the question is set to catch.`
 },
 {
   id:'aq11', cat:'algebra', mode:'free', type:'exact', marks:1, src:'2025 Exam 1 Q7a',
@@ -7348,13 +7363,20 @@ So the largest possible value is a = π/2.`,
   id:'iq5', cat:'integ', mode:'active', type:'mc', marks:1, src:'2023 Exam 2 Q6',
   context:`${IG('3','10',M(' f (x) dx'))}${M(' = C')} and ${IG('7','10',M(' f (x) dx'))}${M(' = D')}.`,
   stem:'The value of ${∫_7^3 f (x) dx} is',
-  options:[`${M('C + D')}`,`${M('C + D − 3')}`,`${M('C − D')}`,`${M('D − C')}`],
+  options:[
+    `${M('C + D')}`,
+    `${M('C + D − 3')}`,
+    `${M('C − D')}`,
+    `${M('D − C')}`,
+    `${M('CD − 3')}`
+  ],
   answer:3,
-  working:`<span class="step">${IG('3','7','')}${M(' + ')}${IG('7','10','')}${M(' = ')}${IG('3','10','')}</span>
-<span class="step">${IG('3','7','')}${M(' = C − D')}</span>
-<span class="note">reversing the limits reverses the sign</span>
-<span class="step">${IG('7','3','')}${M(' = −(C − D) = D − C')}</span>`,
-  explain:`Two properties in one question: splitting an interval at an interior point, and the sign change on reversing limits. Missing the reversal gives ${M('C − D')}, which is the designed distractor.`
+  working:`<span class="note">build the interval you want out of the two you are given</span>
+<span class="step">${IG('3','10',M(' f'))}${M(' = ')}${IG('3','7',M(' f'))}${M(' + ')}${IG('7','10',M(' f'))}</span>
+<span class="step">${M('C = ')}${IG('3','7',M(' f'))}${M(' + D')}   ⇒   ${IG('3','7',M(' f'))}${M(' = C − D')}</span>
+<span class="note">the wanted integral runs the other way, so change the sign</span>
+<span class="step">${IG('7','3',M(' f'))}${M(' = −(C − D) = D − C')}</span>`,
+  explain:`Two moves, and each is a mark's worth of care: splitting at 7 to make the interval you have, then <strong>reversing the limits</strong>, which negates the value. Option C is what you get by doing the first and forgetting the second.`
 },
 {
   id:'iq6', cat:'integ', mode:'active', type:'mc', marks:1, src:'2025 Exam 2 Q17 (adapted)',
@@ -8503,33 +8525,41 @@ end while</div>`,
 /* ================= 2023 VCAA EXAMINATION 2 ================= */
 {
   id:'nq39', cat:'circ', mode:'active', type:'mc', marks:1, src:'2023 Exam 2 A Q1',
-  context:`${M('f (x) = ')}${FR('1','2')}${M(' sin(3x) − 2')}.`,
+  context:`${M('f (x) = −')}${FR('1','2')}${M(' sin(3x + 2π)')}.`,
   stem:'The amplitude ${A} and the period ${P} of ${f} are',
   options:[
-    `${M('A = ')}${FR('1','2')}${M(',  P = 3π')}`,
-    `${M('A = ')}${FR('1','2')}${M(',  P = ')}${FR('2π','3')}`,
-    `${M('A = ')}${FR('1','2')}${M(',  P = ')}${FR('3π','2')}`,
-    `${M('A = −')}${FR('1','2')}${M(',  P = 3π')}`,
-    `${M('A = −')}${FR('1','2')}${M(',  P = ')}${FR('2π','3')}`
+    `${M('A = −')}${FR('1','2')}${M(',  P = ')}${FR('π','3')}`,
+    `${M('A = −')}${FR('1','2')}${M(',  P = ')}${FR('2π','3')}`,
+    `${M('A = −')}${FR('1','2')}${M(',  P = ')}${FR('3π','2')}`,
+    `${M('A = ')}${FR('1','2')}${M(',  P = ')}${FR('π','3')}`,
+    `${M('A = ')}${FR('1','2')}${M(',  P = ')}${FR('2π','3')}`
   ],
-  answer:1,
-  working:`<span class="note">amplitude is the absolute value of the coefficient</span>
-<span class="step">${M('A = |')}${FR('1','2')}${M('| = ')}${FR('1','2')}</span>
-<span class="note">period of sin(nx) is 2π / |n|</span>
-<span class="step">${M('P = ')}${FR('2π','3')}</span>`,
-  explain:`Two things the ${M('− 2')} does <em>not</em> affect: amplitude and period. It only shifts the graph down, moving the mean line to ${M('y = −2')}. And amplitude is never negative — options D and E fail on that alone.`
+  answer:4,
+  working:`<span class="note">amplitude is the MODULUS of the coefficient — it is a distance, so it is never negative</span>
+<span class="step">${M('A = |−')}${FR('1','2')}${M('| = ')}${FR('1','2')}</span>
+<span class="note">period depends only on the coefficient of x inside</span>
+<span class="step">${M('P = ')}${FR('2π',M('|3|'))}${M(' = ')}${FR('2π','3')}</span>
+<span class="note">the + 2π inside is a full-period shift, so it changes nothing at all</span>`,
+  explain:`Three separate traps in one question. The minus sign reflects the graph but does <strong>not</strong> make the amplitude negative — that rules out A, B and C at a stroke. The ${M('+ 2π')} looks like it matters and does not: shifting a sine by a whole period leaves it identical. And the period is ${FR('2π','3')}, not ${FR('π','3')}.`
 },
 {
   id:'nq40', cat:'diff', mode:'active', type:'mc', marks:1, src:'2023 Exam 2 A Q5',
   stem:'Which one of the following functions has a horizontal tangent at ${(0, 0)}?',
-  options:[`${M('y = x')}${SUP(FR('1','3'))}${M(' − 1')}`,`${M('y = x')}${SUP(FR('1','3'))}`,`${M('y = x')}${SUP(FR('2','3'))}`,`${M('y = x')}${SUP(FR('4','3'))}`,`${M('y = x')}${SUP(FR('3','4'))}`],
+  options:[
+    `${M('y = x')}${SUP(M('−')+FR('1','3'))}`,
+    `${M('y = x')}${SUP(FR('1','3'))}`,
+    `${M('y = x')}${SUP(FR('2','3'))}`,
+    `${M('y = x')}${SUP(FR('4','3'))}`,
+    `${M('y = x')}${SUP(FR('3','4'))}`
+  ],
   answer:3,
-  working:`<span class="note">a horizontal tangent needs the derivative to exist AND equal zero at x = 0</span>
-<span class="step">${M('y = x')}${SUP(M('p'))}   ⇒   ${M("y ′ = p x")}${SUP(M('p − 1'))}</span>
-<span class="note">this tends to 0 as x → 0 only when p − 1 &gt; 0, i.e. p &gt; 1</span>
-<span class="step">only ${FR('4','3')}${M(' > 1')}</span>
-<span class="note">check the point: (0)^(4/3) = 0 ✓ passes through the origin</span>`,
-  explain:`For ${M('p < 1')} the derivative ${M('p x')}${SUP(M('p−1'))} has a negative index, so it blows up at ${M('x = 0')} — a <strong>vertical</strong> tangent, not a horizontal one. Option A also fails because it does not pass through the origin at all.`
+  working:`<span class="note">for y = x^n the derivative is n·x^(n−1); a horizontal tangent at the origin needs that to be 0 at x = 0, which happens only when the new index n − 1 is positive</span>
+<span class="step">A: ${M('n = −')}${FR('1','3')} — not even defined at ${M('x = 0')} ✗</span>
+<span class="step">B: ${M('n = ')}${FR('1','3')}${M('  ⇒  ')}${FR('1','3')}${M('x')}${SUP(M('−')+FR('2','3'))} → ∞ (vertical tangent) ✗</span>
+<span class="step">C: ${M('n = ')}${FR('2','3')}${M('  ⇒  ')}${FR('2','3')}${M('x')}${SUP(M('−')+FR('1','3'))} → ∞ (cusp) ✗</span>
+<span class="step">D: ${M('n = ')}${FR('4','3')}${M('  ⇒  ')}${FR('4','3')}${M('x')}${SUP(FR('1','3'))}${M(' → 0')} ✓</span>
+<span class="step">E: ${M('n = ')}${FR('3','4')}${M('  ⇒  ')}${FR('3','4')}${M('x')}${SUP(M('−')+FR('1','4'))} → ∞ ✗</span>`,
+  explain:`The test reduces to a single comparison: is the index bigger than 1? Only ${FR('4','3')} is. Every index between 0 and 1 gives a derivative that blows up at the origin — a vertical tangent or a cusp, not a horizontal one.`
 },
 {
   id:'nq41', cat:'diff', mode:'active', type:'mc', marks:1, src:'2023 Exam 2 A Q11',
