@@ -8322,16 +8322,23 @@ end while</div>`,
   explain:`Independence is what lets you replace ${M('Pr(A ∩ B)')} with the product — without it the problem is unsolvable. Factorising out ${M('Pr(B)')} after substituting keeps the algebra to one line.`
 },
 {
-  id:'nq28', cat:'algebra', mode:'active', type:'mc', marks:1, src:'2024 NHT Exam 2 A Q3',
+  id:'nq28', cat:'explog', mode:'active', type:'mc', marks:1, src:'2024 NHT Exam 2 A Q3',
   context:`Positive reals ${M('a, b, c')} satisfy ${M('log')}${SUB('5')}${M('(a) + log')}${SUB('5')}${M('(b) = 2 log')}${SUB('5')}${M('(c)')}.`,
   stem:'Therefore it must be true that',
-  options:[`${M('a = 2c − b')}`,`${M('a = c')}${SUP('2')}${M(' − b')}`,`${M('a = ')}${FR(M('c')+SUP('2'),M('b'))}`,`${M('a = ')}${FR(M('c'),M('b')+SUP('2'))}`,`${M('a = ')}${FR(M('b'),M('c')+SUP('2'))}`],
-  answer:2,
-  working:`<span class="note">combine the left side with the product law</span>
-<span class="step">${M('log')}${SUB('5')}${M('(ab) = log')}${SUB('5')}${M('(c')}${SUP('2')}${M(')')}</span>
-<span class="note">logs of the same base are equal only if their arguments are</span>
+  options:[
+    `${M('a = 2c − b')}`,
+    `${M('a = c')}${SUP('2')}${M(' − b')}`,
+    `${M('a = ')}${FR(M('2c'),M('b'))}`,
+    `${M('a = ')}${FR(M('c')+SUP('2'),M('b'))}`,
+    `${M('a = ')}${FR(M('b'),M('2c'))}`
+  ],
+  answer:3,
+  working:`<span class="note">compress each side into a single logarithm</span>
+<span class="step">${M('log')}${SUB('5')}${M('(a) + log')}${SUB('5')}${M('(b) = log')}${SUB('5')}${M('(ab)')}</span>
+<span class="step">${M('2 log')}${SUB('5')}${M('(c) = log')}${SUB('5')}${M('(c')}${SUP('2')}${M(')')}</span>
+<span class="note">logs to the same base are equal only if their arguments are</span>
 <span class="step">${M('ab = c')}${SUP('2')}   ⇒   ${M('a = ')}${FR(M('c')+SUP('2'),M('b'))}</span>`,
-  explain:`Options A and B come from treating logs as if they distribute over addition — the classic error. A sum of logs is the log of a <em>product</em>, and a coefficient in front becomes a <em>power</em>.`
+  explain:`Two laws, one each way: addition of logs becomes a <em>product</em>, and a coefficient becomes a <em>power</em>. Options A and B are what you get by treating those as a sum and a difference instead — the single most common log error there is.`
 },
 {
   id:'nq29', cat:'diff', mode:'active', type:'mc', marks:1, src:'2024 NHT Exam 2 A Q4',
@@ -8376,29 +8383,42 @@ end while</div>`,
   id:'nq32', cat:'algebra', mode:'active', type:'mc', marks:1, src:'2024 NHT Exam 2 A Q9',
   context:`${M('f (x) = 3x')}${SUP('2')}${M(' − 2ax + 6')}, where ${M('a ∈ R')}.`,
   stem:'The set of values of ${a} such that ${f (x) > 0} for all ${x ∈ R} is',
-  options:[`${M('{ a : |a| < 3')}${RT('2')}${M(' }')}`,`${M('{ a : a < −3')}${RT('2')}${M(' } ∪ { a : a > 3')}${RT('2')}${M(' }')}`,`${M('{ a : a > 0 }')}`,`${M('{ a : |a| < 18 }')}`,`${M('R')}`],
-  answer:0,
-  working:`<span class="note">an upward parabola stays above the axis exactly when it has no real roots</span>
-<span class="step">${M('Δ < 0')}</span>
-<span class="step">${M('(−2a)')}${SUP('2')}${M(' − 4(3)(6) < 0')}</span>
-<span class="step">${M('4a')}${SUP('2')}${M(' < 72')}   ⇒   ${M('a')}${SUP('2')}${M(' < 18')}</span>
-<span class="step">${M('|a| < ')}${RT('18')}${M(' = 3')}${RT('2')}</span>`,
-  explain:`The leading coefficient 3 is positive, so the parabola opens upwards and "always positive" is equivalent to "never touches the axis". Option B has the inequality the wrong way round — that is the condition for <em>two</em> real roots.`
+  options:[
+    `${M('{ a : a ≥ 3')}${RT('2')}${M(' }')}`,
+    `${M('{ a : a < −3')}${RT('2')}${M(' } ∪ { a : a > 3')}${RT('2')}${M(' }')}`,
+    `${M('{ a : a ≤ −3')}${RT('2')}${M(' } ∪ { a : a ≥ 3')}${RT('2')}${M(' }')}`,
+    `${M('{ a : −3')}${RT('2')}${M(' < a < 3')}${RT('2')}${M(' }')}`,
+    `${M('{ a : −3')}${RT('2')}${M(' ≤ a ≤ 3')}${RT('2')}${M(' }')}`
+  ],
+  answer:3,
+  working:`<span class="note">the leading coefficient 3 is positive, so the parabola opens upward — it stays strictly above the axis exactly when it has NO real roots</span>
+<span class="step">${M('Δ = (−2a)')}${SUP('2')}${M(' − 4(3)(6) = 4a')}${SUP('2')}${M(' − 72')}</span>
+<span class="step">${M('Δ < 0   ⇒   4a')}${SUP('2')}${M(' < 72   ⇒   a')}${SUP('2')}${M(' < 18')}</span>
+<span class="step">${M('|a| < ')}${RT('18')}${M(' = 3')}${RT('2')}   ⇒   ${M('−3')}${RT('2')}${M(' < a < 3')}${RT('2')}</span>`,
+  explain:`Strict inequality throughout. ${M('Δ = 0')} would put the vertex exactly on the axis, giving ${M('f (x) ≥ 0')} but not ${M('f (x) > 0')} — which is why the closed-interval option E is wrong, and why B and C (which have the inequality the wrong way round) are the trap for anyone who forgets that ${M('Δ < 0')} means <em>no</em> roots.`
 },
 {
   id:'nq33', cat:'prob', mode:'active', type:'mc', marks:1, src:'2024 NHT Exam 2 A Q10',
-  context:`A pdf is trapezium-shaped, rising from ${M('(−2, 0)')} to ${M('(−k, k)')}, flat across to ${M('(k, k)')}, then falling to ${M('(2, 0)')}.`,
-  stem:'The value of ${k} is',
-  options:[`${RT('2')}${M(' − 1')}`,`${M('−')}${RT('2')}${M(' − 1')}`,'1',`${RT('6')}${M(' − 2')}`,`${FR(RT('6')+M(' − 2'),'1')}`],
+  context:`A probability density function is trapezium-shaped: it rises from ${M('(−2, 0)')} to ${M('(−k, k)')}, runs flat across to ${M('(k, k)')}, then falls to ${M('(2, 0)')}, and is zero elsewhere.`,
+  stem:'Find the value of ${k}.',
+  options:[
+    `${RT('2')}${M(' − 1')}`,
+    `${M('−')}${RT('2')}${M(' − 1')}`,
+    `${M('1')}`,
+    `${RT('6')}${M(' − 2')}`,
+    `${FR(RT('6'),'2')}${M(' − 1')}`
+  ],
   answer:0,
-  working:`<span class="note">total area must be 1 — use the trapezium formula</span>
-<span class="step">parallel sides ${M('2k')} (top) and ${M('4')} (bottom), height ${M('k')}</span>
-<span class="step">${M('A = ')}${FR('1','2')}${M('(2k + 4) k = k')}${SUP('2')}${M(' + 2k')}</span>
+  working:`<span class="note">a pdf encloses exactly 1 unit of area — and this shape is a trapezium, so no integration is needed</span>
+<span class="step">parallel sides: the top runs from ${M('−k')} to ${M('k')}, length ${M('2k')}; the base runs from ${M('−2')} to ${M('2')}, length ${M('4')}</span>
+<span class="step">height ${M(' = k')}</span>
+<span class="step">area ${M(' = ')}${FR('1','2')}${M('(2k + 4)(k) = k')}${SUP('2')}${M(' + 2k')}</span>
+<span class="note">set it equal to 1</span>
 <span class="step">${M('k')}${SUP('2')}${M(' + 2k − 1 = 0')}</span>
 <span class="step">${M('k = ')}${FR(M('−2 ± ')+RT('8'),'2')}${M(' = −1 ± ')}${RT('2')}</span>
-<span class="note">a height must be positive, so reject the negative root</span>
+<span class="note">k is a height, so it must be positive — reject the negative root</span>
 <span class="step">${M('k = ')}${RT('2')}${M(' − 1')}</span>`,
-  explain:`Option B is the rejected root. Any pdf question ending in a quadratic needs a rejection step with a stated reason — here, that a height cannot be negative.`
+  explain:`Use the trapezium area formula from the formula sheet rather than integrating a piecewise function. The final step is the one that is marked: ${M('−1 − ')}${RT('2')} is a perfectly good algebraic root, and it is sitting there as option B — reject it because a height cannot be negative.`
 },
 {
   id:'nq34', cat:'integ', mode:'active', type:'mc', marks:1, src:'2024 NHT Exam 2 A Q13',
