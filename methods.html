@@ -186,6 +186,23 @@ hr{border:0;border-top:1px solid var(--border);margin:1.6em 0;}
 .fr > span:first-child{border-bottom:1.2px solid currentColor;padding-bottom:.08em;}
 .fr > span:last-child{padding-top:.08em;}
 
+/* A fraction, radical or italic run sitting inside an index must stay small
+   and stay raised. The stacked .fr is vertical-align:middle by default, which
+   drags an exponent back down onto the baseline and makes x^(1/2) read as
+   "x times one half" — so re-align it and shrink it inside sup/sub. */
+sup, sub{font-size:.72em;line-height:0;}
+sup .m, sub .m{font-size:1em;}
+sup .rad, sub .rad{font-size:1em;}
+/* A stacked fraction cannot sit correctly inside an index: as an inline-flex it
+   aligns on its numerator's baseline, which drops the denominator below the line
+   and makes x^(1/2) read as "x times one half". Inside sup/sub the same markup is
+   re-rendered as a slashed fraction (1/2), which is the conventional typesetting
+   for an exponent anyway and raises cleanly with the sup box. */
+sup .fr, sub .fr{display:inline;vertical-align:baseline;font-size:1em;margin:0;line-height:inherit;}
+sup .fr > span, sub .fr > span{display:inline;padding:0;}
+sup .fr > span:first-child, sub .fr > span:first-child{border-bottom:0;padding-bottom:0;}
+sup .fr > span:first-child::after, sub .fr > span:first-child::after{content:"\2044";}
+
 /* radical: overline continues across the radicand */
 .rad{display:inline-block;}
 .rad > span{border-top:1.1px solid currentColor;padding:.1em .18em 0 .1em;margin-left:-.06em;}
@@ -3455,20 +3472,20 @@ const LESSONS = [
 <div class="wex">
   <div class="wex-head">Worked example 1 — every solution in a domain<span class="wex-src">2025 Exam 1 Q3b</span></div>
   <div class="wex-body">
-    <p>${M('f : [0, 2π] → R,  f (x) = 2 cos(2x + π) + 1')}. Solve ${M('f (x) = 0')}.</p>
+    <p>${M('f : [0, 2π] → R,  f (x) = 2 cos(2x) + 1')}. Solve ${M('f (x) = 0')}.</p>
 
     <div class="wstep"><div class="wnum">1</div><div class="wbody">
       <p class="wwhy">Isolate the cosine.</p>
-      <div class="wmath"><span class="step">${M('2 cos(2x + π) = −1')}</span>
-      <span class="step">${M('cos(2x + π) = −')}${FR('1','2')}</span></div>
+      <div class="wmath"><span class="step">${M('2 cos(2x) = −1')}</span>
+      <span class="step">${M('cos(2x) = −')}${FR('1','2')}</span></div>
     </div></div>
 
     <div class="wstep"><div class="wnum">2</div><div class="wbody">
-      <p class="wwhy">Adjust the domain for the argument. Substitute the two endpoints of ${M('x')}'s domain into ${M('2x + π')}.</p>
-      <div class="wmath"><span class="step">${M('x = 0   →   2(0) + π = π')}</span>
-      <span class="step">${M('x = 2π   →   2(2π) + π = 5π')}</span>
-      <span class="step">so ${M('2x + π ∈ [π, 5π]')}</span></div>
-      <p class="wwhy">Width ${M('4π')} — that is two full cosine cycles, so expect about <strong>four</strong> solutions.</p>
+      <p class="wwhy">Adjust the domain for the argument. Substitute the two endpoints of ${M('x')}'s domain into ${M('2x')}.</p>
+      <div class="wmath"><span class="step">${M('x = 0   →   2(0) = 0')}</span>
+      <span class="step">${M('x = 2π   →   2(2π) = 4π')}</span>
+      <span class="step">so ${M('2x ∈ [0, 4π]')}</span></div>
+      <p class="wwhy">Width ${M('4π')} — that is two full cosine cycles, so expect <strong>four</strong> solutions.</p>
     </div></div>
 
     <div class="wstep"><div class="wnum">3</div><div class="wbody">
@@ -3483,24 +3500,22 @@ const LESSONS = [
     </div></div>
 
     <div class="wstep"><div class="wnum">5</div><div class="wbody">
-      <p class="wwhy">Now add multiples of ${M('2π')} and keep everything landing inside ${M('[π, 5π]')}.</p>
-      <div class="wmath"><span class="step">${FR('2π','3')}${M(' ≈ 2.09')} — below ${M('π ≈ 3.14')} ✗</span>
-      <span class="step">${FR('2π','3')}${M(' + 2π = ')}${FR('8π','3')}${M(' ≈ 8.38')} ✓</span>
-      <span class="step">${FR('2π','3')}${M(' + 4π = ')}${FR('14π','3')}${M(' ≈ 14.66')} ✓ (below ${M('5π ≈ 15.7')})</span>
+      <p class="wwhy">Now add multiples of ${M('2π')} and keep everything landing inside ${M('[0, 4π]')}.</p>
+      <div class="wmath"><span class="step">${FR('2π','3')}${M(' ≈ 2.09')} ✓</span>
       <span class="step">${FR('4π','3')}${M(' ≈ 4.19')} ✓</span>
+      <span class="step">${FR('2π','3')}${M(' + 2π = ')}${FR('8π','3')}${M(' ≈ 8.38')} ✓</span>
       <span class="step">${FR('4π','3')}${M(' + 2π = ')}${FR('10π','3')}${M(' ≈ 10.47')} ✓</span>
-      <span class="step">${FR('4π','3')}${M(' + 4π = ')}${FR('16π','3')}${M(' ≈ 16.75')} — above ${M('5π')} ✗</span></div>
+      <span class="step">${FR('2π','3')}${M(' + 4π = ')}${FR('14π','3')}${M(' ≈ 14.66')} — above ${M('4π ≈ 12.57')} ✗</span></div>
       <p class="wwhy">Four survivors, matching the prediction from step 2.</p>
     </div></div>
 
     <div class="wstep"><div class="wnum">6</div><div class="wbody">
-      <p class="wwhy">Solve back: subtract ${M('π')}, then halve.</p>
-      <div class="wmath"><span class="step">${M('2x + π = ')}${FR('4π','3')}${M(', ')}${FR('8π','3')}${M(', ')}${FR('10π','3')}${M(', ')}${FR('14π','3')}</span>
-      <span class="step">${M('2x = ')}${FR('π','3')}${M(', ')}${FR('5π','3')}${M(', ')}${FR('7π','3')}${M(', ')}${FR('11π','3')}</span>
-      <span class="step">${M('x = ')}${FR('π','6')}${M(', ')}${FR('5π','6')}${M(', ')}${FR('7π','6')}${M(', ')}${FR('11π','6')}</span></div>
+      <p class="wwhy">Solve back: halve every one.</p>
+      <div class="wmath"><span class="step">${M('2x = ')}${FR('2π','3')}${M(', ')}${FR('4π','3')}${M(', ')}${FR('8π','3')}${M(', ')}${FR('10π','3')}</span>
+      <span class="step">${M('x = ')}${FR('π','3')}${M(', ')}${FR('2π','3')}${M(', ')}${FR('4π','3')}${M(', ')}${FR('5π','3')}</span></div>
     </div></div>
 
-    <div class="wex-answer"><b>${M('x = ')}${FR('π','6')}${M(', ')}${FR('5π','6')}${M(', ')}${FR('7π','6')}${M(', ')}${FR('11π','6')}</b> — all four inside ${M('[0, 2π]')} ✓</div>
+    <div class="wex-answer"><b>${M('x = ')}${FR('π','3')}${M(', ')}${FR('2π','3')}${M(', ')}${FR('4π','3')}${M(', ')}${FR('5π','3')}</b> — all four inside ${M('[0, 2π]')} ✓</div>
   </div>
 </div>
 
@@ -4072,29 +4087,29 @@ Time to reach a value:
 <div class="wex">
   <div class="wex-head">Worked example 2 — chain rule with a surd<span class="wex-src">2025 Exam 1 Q1b</span></div>
   <div class="wex-body">
-    <p>${M('f (x) = ')}${RT(M('6x + 1'))}. Find the gradient of the tangent at ${M('x = 8')}.</p>
+    <p>${M('f (x) = 6')}${RT(M('x + 1'))}${M(' + 5')}. Find the gradient of the tangent at ${M('x = 8')}.</p>
 
     <div class="wstep"><div class="wnum">1</div><div class="wbody">
-      <p class="wwhy">Rewrite the surd as a power — always do this first.</p>
-      <div class="wmath"><span class="step">${M('f (x) = (6x + 1)')}${SUP(FR('1','2'))}</span></div>
+      <p class="wwhy">Rewrite the surd as a power — always do this first. The ${M('+ 5')} is a constant, so it will simply vanish.</p>
+      <div class="wmath"><span class="step">${M('f (x) = 6(x + 1)')}${SUP(FR('1','2'))}${M(' + 5')}</span></div>
     </div></div>
 
     <div class="wstep"><div class="wnum">2</div><div class="wbody">
-      <p class="wwhy">Differentiate the outside: bring down the ${FR('1','2')}, reduce the index by 1, leave the inside untouched.</p>
-      <div class="wmath"><span class="step">${FR('1','2')}${M('(6x + 1)')}${SUP(M('−')+FR('1','2'))}</span></div>
+      <p class="wwhy">Differentiate the outside: bring down the ${FR('1','2')}, reduce the index by 1, leave the inside untouched. Keep the factor 6 out the front.</p>
+      <div class="wmath"><span class="step">${M('6 × ')}${FR('1','2')}${M('(x + 1)')}${SUP(M('−')+FR('1','2'))}${M(' = 3(x + 1)')}${SUP(M('−')+FR('1','2'))}</span></div>
     </div></div>
 
     <div class="wstep"><div class="wnum">3</div><div class="wbody">
-      <p class="wwhy">Multiply by the derivative of the inside. The inside is ${M('6x + 1')}, whose derivative is 6. <em>This is the step people forget.</em></p>
-      <div class="wmath"><span class="step">${M("f ′(x) = ")}${FR('1','2')}${M('(6x + 1)')}${SUP(M('−')+FR('1','2'))}${M(' × 6 = ')}${FR('3',RT(M('6x + 1')))}</span></div>
+      <p class="wwhy">Multiply by the derivative of the inside. Here the inside is ${M('x + 1')}, whose derivative is 1 — so nothing changes. Had it been ${M('6x + 1')} you would multiply by 6, and that is the step people forget.</p>
+      <div class="wmath"><span class="step">${M("f ′(x) = ")}${FR('3',RT(M('x + 1')))}</span></div>
     </div></div>
 
     <div class="wstep"><div class="wnum">4</div><div class="wbody">
       <p class="wwhy">Substitute ${M('x = 8')}.</p>
-      <div class="wmath"><span class="step">${M("f ′(8) = ")}${FR('3',RT('49'))}${M(' = ')}${FR('3','7')}</span></div>
+      <div class="wmath"><span class="step">${M("f ′(8) = ")}${FR('3',RT('9'))}${M(' = ')}${FR('3','3')}${M(' = 1')}</span></div>
     </div></div>
 
-    <div class="wex-answer"><b>${FR('3','7')}</b> — forgetting the ${M('× 6')} gives ${FR('1','14')}, the most common wrong answer here.</div>
+    <div class="wex-answer"><b>${M('1')}</b> — the ${M('+ 5')} never appears in the derivative, and the ${M('6')} survives as the ${M('3')} on top.</div>
   </div>
 </div>
 
@@ -4106,7 +4121,7 @@ Time to reach a value:
 <tr><th>Structure</th><th>Rule</th><th>Example</th></tr>
 <tr><td>two things multiplied</td><td>product</td><td>${M('x')}${SUP('2')}${M(' cos(x)')}</td></tr>
 <tr><td>one thing over another</td><td>quotient <em>or</em> rewrite as a product with a negative index</td><td>${FR(M('x'),M('x')+SUP('2')+M('+1'))}</td></tr>
-<tr><td>a function inside a function</td><td>chain</td><td>${M('(6x + 1)')}${SUP(FR('1','2'))}</td></tr>
+<tr><td>a function inside a function</td><td>chain</td><td>${M('(x + 1)')}${SUP(FR('1','2'))}</td></tr>
 <tr><td>a sum of terms</td><td>differentiate each term separately</td><td>${M('x')}${SUP('3')}${M(' + sin(x)')}</td></tr>
 </table>
 
@@ -4682,31 +4697,35 @@ fMin(A(k), k) | 0 &lt; k &lt; 12</div>
 <div class="wex">
   <div class="wex-head">Worked example 1 — finding the particular antiderivative<span class="wex-src">2025 Exam 1 Q2</span></div>
   <div class="wex-body">
-    <p>${M("g ′(x) = ")}${FR('1',RT(M('2x − 3')))} for ${M('x > ')}${FR('3','2')}, and ${M('g (2) = 0')}. Find ${M('g (x)')}.</p>
+    <p>${M("g ′(x) = ")}${FR('1',M('2x + 3'))} for ${M('x > −')}${FR('3','2')}, and ${M('g (1) = 0')}. Find ${M('g (x)')}.</p>
 
     <div class="wstep"><div class="wnum">1</div><div class="wbody">
-      <p class="wwhy">Rewrite with an index so the standard rule applies.</p>
-      <div class="wmath"><span class="step">${M("g ′(x) = (2x − 3)")}${SUP(M('−')+FR('1','2'))}</span></div>
+      <p class="wwhy">Recognise the shape. A reciprocal of a <em>linear</em> expression antidifferentiates to a logarithm — the index rule cannot be used here, because raising the index ${M('−1')} by one would give ${M('0')} and a division by zero.</p>
+      <div class="wmath"><span class="step">${IG('','',FR('1',M('ax + b'))+M(' dx = '))}${FR('1',M('a'))}${M(' log')}${SUB(M('e'))}${M('|ax + b| + c')}</span></div>
     </div></div>
 
     <div class="wstep"><div class="wnum">2</div><div class="wbody">
-      <p class="wwhy">Raise the index by one: ${M('−')}${FR('1','2')}${M(' + 1 = ')}${FR('1','2')}. Divide by the new index and by the inside derivative, 2.</p>
-      <div class="wmath"><span class="step">${M('g (x) = ')}${FR('1',M('2 × ')+FR('1','2'))}${M('(2x − 3)')}${SUP(FR('1','2'))}${M(' + c')}</span>
-      <span class="step">${M(' = ')}${RT(M('2x − 3'))}${M(' + c')}</span></div>
+      <p class="wwhy">Apply it with ${M('a = 2')}, ${M('b = 3')}. The stated domain ${M('x > −')}${FR('3','2')} makes ${M('2x + 3')} strictly positive, so the modulus can be dropped.</p>
+      <div class="wmath"><span class="step">${M('g (x) = ')}${FR('1','2')}${M(' log')}${SUB(M('e'))}${M('(2x + 3) + c')}</span></div>
     </div></div>
 
     <div class="wstep"><div class="wnum">3</div><div class="wbody">
       <p class="wwhy">Check by differentiating back — a habit worth having.</p>
-      <div class="wmath"><span class="step">${FR(M('d'),M('dx'))}${M('(2x − 3)')}${SUP(FR('1','2'))}${M(' = ')}${FR('1','2')}${M('(2x − 3)')}${SUP(M('−')+FR('1','2'))}${M(' × 2 = (2x − 3)')}${SUP(M('−')+FR('1','2'))}</span> ✓</div>
+      <div class="wmath"><span class="step">${FR(M('d'),M('dx'))}${M('(')}${FR('1','2')}${M(' log')}${SUB(M('e'))}${M('(2x + 3)) = ')}${FR('1','2')}${M(' × ')}${FR('2',M('2x + 3'))}${M(' = ')}${FR('1',M('2x + 3'))}</span> ✓</div>
     </div></div>
 
     <div class="wstep"><div class="wnum">4</div><div class="wbody">
       <p class="wwhy">Apply the condition to pin down ${M('c')}.</p>
-      <div class="wmath"><span class="step">${M('g (2) = ')}${RT('1')}${M(' + c = 1 + c = 0')}</span>
-      <span class="step">${M('c = −1')}</span></div>
+      <div class="wmath"><span class="step">${M('g (1) = ')}${FR('1','2')}${M(' log')}${SUB(M('e'))}${M('(5) + c = 0')}</span>
+      <span class="step">${M('c = −')}${FR('1','2')}${M(' log')}${SUB(M('e'))}${M('(5)')}</span></div>
     </div></div>
 
-    <div class="wex-answer"><b>${M('g (x) = ')}${RT(M('2x − 3'))}${M(' − 1')}</b></div>
+    <div class="wstep"><div class="wnum">5</div><div class="wbody">
+      <p class="wwhy">Combine the two logarithms with the subtraction law — neater, and the form an examiner expects.</p>
+      <div class="wmath"><span class="step">${M('g (x) = ')}${FR('1','2')}${M('(log')}${SUB(M('e'))}${M('(2x + 3) − log')}${SUB(M('e'))}${M('(5))')}</span></div>
+    </div></div>
+
+    <div class="wex-answer"><b>${M('g (x) = ')}${FR('1','2')}${M(' log')}${SUB(M('e'))}${M('(')}${FR(M('2x + 3'),'5')}${M(')')}</b></div>
   </div>
 </div>
 
@@ -5387,7 +5406,7 @@ Total area between curves: ∫(abs(f(x) − g(x)), x, a, b)</div>
 <div class="wex">
   <div class="wex-head">Worked example 1 — exact binomial by hand<span class="wex-src">2025 Exam 1 Q6b</span></div>
   <div class="wex-body">
-    <p>${M('X ~ Bi(6, ')}${FR('1','4')}${M(')')}. Find ${M('Pr(X ≥ 5)')} in the form ${FR(M('a'),M('b')+SUP('2'))}.</p>
+    <p>${M('X ~ Bi(6, ')}${FR('1','4')}${M(')')}. Find ${M('Pr(X ≥ 5)')} in the form ${FR(M('a'),M('2')+SUP(M('b')))}, where ${M('a, b ∈ Z')}.</p>
 
     <div class="wstep"><div class="wnum">1</div><div class="wbody">
       <p class="wwhy">${M('X ≥ 5')} with ${M('n = 6')} means ${M('X = 5')} or ${M('X = 6')} — only two terms, so compute directly.</p>
@@ -5410,11 +5429,11 @@ Total area between curves: ∫(abs(f(x) − g(x)), x, a, b)</div>
     </div></div>
 
     <div class="wstep"><div class="wnum">5</div><div class="wbody">
-      <p class="wwhy">The requested form ${FR(M('a'),M('b')+SUP('2'))} is a hint: ${M('4')}${SUP('6')}${M(' = (4')}${SUP('3')}${M(')')}${SUP('2')}${M(' = 64')}${SUP('2')}.</p>
-      <div class="wmath"><span class="step">${M(' = ')}${FR('19',M('64')+SUP('2'))}</span></div>
+      <p class="wwhy">The requested form ${FR(M('a'),M('2')+SUP(M('b')))} is a hint to rewrite the base as a power of 2: ${M('4')}${SUP('6')}${M(' = (2')}${SUP('2')}${M(')')}${SUP('6')}${M(' = 2')}${SUP('12')}.</p>
+      <div class="wmath"><span class="step">${M(' = ')}${FR('19',M('2')+SUP('12'))}</span></div>
     </div></div>
 
-    <div class="wex-answer"><b>${FR('19',M('64')+SUP('2'))}${M(' = ')}${FR('19','4096')}</b> — keeping a common denominator throughout removed all the fraction arithmetic.</div>
+    <div class="wex-answer"><b>${FR('19',M('2')+SUP('12'))}${M(' = ')}${FR('19','4096')}</b> — so ${M('a = 19')}, ${M('b = 12')}. Keeping a common denominator throughout removed all the fraction arithmetic.</div>
   </div>
 </div>
 
@@ -6867,7 +6886,7 @@ const QUESTIONS = [
 /* ================= CIRCULAR FUNCTIONS ================= */
 {
   id:'cq1', cat:'circ', mode:'free', type:'exact', marks:1, src:'2025 Exam 1 Q3a',
-  context:`${M('f : [0, 2π] → R,  f (x) = 2 cos(2x + π) + 1')}.`,
+  context:`${M('f : [0, 2π] → R,  f (x) = 2 cos(2x) + 1')}.`,
   stem:'State the range of ${f}.',
   accept:['[-1,3]','-1<=y<=3','[−1,3]'],
   answer:`${M('[−1, 3]')}`,
@@ -6878,18 +6897,17 @@ const QUESTIONS = [
 },
 {
   id:'cq2', cat:'circ', mode:'free', type:'exact', marks:3, src:'2025 Exam 1 Q3b',
-  context:`${M('f : [0, 2π] → R,  f (x) = 2 cos(2x + π) + 1')}.`,
+  context:`${M('f : [0, 2π] → R,  f (x) = 2 cos(2x) + 1')}.`,
   stem:'Solve ${f (x) = 0} for ${x}.',
-  accept:['pi/6,5pi/6,7pi/6,11pi/6','π/6,5π/6,7π/6,11π/6','x=pi/6,5pi/6,7pi/6,11pi/6'],
-  answer:`${M('x = ')}${FR('π','6')}${M(', ')}${FR('5π','6')}${M(', ')}${FR('7π','6')}${M(', ')}${FR('11π','6')}`,
-  working:`<span class="step">${M('2 cos(2x + π) + 1 = 0   ⇒   cos(2x + π) = −')}${FR('1','2')}</span>
-<span class="note">extend the domain for the argument: x ∈ [0, 2π] ⇒ 2x + π ∈ [π, 5π]</span>
+  accept:['pi/3,2pi/3,4pi/3,5pi/3','π/3,2π/3,4π/3,5π/3','x=pi/3,2pi/3,4pi/3,5pi/3'],
+  answer:`${M('x = ')}${FR('π','3')}${M(', ')}${FR('2π','3')}${M(', ')}${FR('4π','3')}${M(', ')}${FR('5π','3')}`,
+  working:`<span class="step">${M('2 cos(2x) + 1 = 0   ⇒   cos(2x) = −')}${FR('1','2')}</span>
+<span class="note">extend the domain for the argument: x ∈ [0, 2π] ⇒ 2x ∈ [0, 4π]</span>
 <span class="note">reference angle π/3; cosine is negative in quadrants 2 and 3</span>
-<span class="step">base solutions ${M('2x + π = ')}${FR('2π','3')}${M(', ')}${FR('4π','3')}${M('  (+ 2πk)')}</span>
-<span class="note">list every one lying in [π, 5π]:</span>
-<span class="step">${M('2x + π = ')}${FR('4π','3')}${M(', ')}${FR('8π','3')}${M(', ')}${FR('10π','3')}${M(', ')}${FR('14π','3')}</span>
-<span class="step">${M('2x = ')}${FR('π','3')}${M(', ')}${FR('5π','3')}${M(', ')}${FR('7π','3')}${M(', ')}${FR('11π','3')}</span>
-<span class="step">${M('x = ')}${FR('π','6')}${M(', ')}${FR('5π','6')}${M(', ')}${FR('7π','6')}${M(', ')}${FR('11π','6')}</span>`,
+<span class="step">base solutions ${M('2x = ')}${FR('2π','3')}${M(', ')}${FR('4π','3')}${M('  (+ 2πk)')}</span>
+<span class="note">list every one lying in [0, 4π]:</span>
+<span class="step">${M('2x = ')}${FR('2π','3')}${M(', ')}${FR('4π','3')}${M(', ')}${FR('8π','3')}${M(', ')}${FR('10π','3')}</span>
+<span class="step">${M('x = ')}${FR('π','3')}${M(', ')}${FR('2π','3')}${M(', ')}${FR('4π','3')}${M(', ')}${FR('5π','3')}</span>`,
   explain:`Four solutions because the argument runs over an interval of width ${M('4π')} — two full periods of cosine. Students who solve for the argument only in ${M('[0, 2π]')} find two and lose a mark. Extend the argument's domain first, every time.`
 },
 {
@@ -7093,15 +7111,15 @@ const QUESTIONS = [
 },
 {
   id:'dq2', cat:'diff', mode:'free', type:'exact', marks:2, src:'2025 Exam 1 Q1b',
-  context:`${M('f (x) = ')}${RT(M('6x + 1'))}.`,
+  context:`${M('f (x) = 6')}${RT(M('x + 1'))}${M(' + 5')}.`,
   stem:'Find the gradient of the tangent to ${y = f (x)} at ${x = 8}.',
-  accept:['3/7','0.4286','3/7'],
-  answer:`${FR('3','7')}`,
-  working:`<span class="note">rewrite with an index, then chain rule</span>
-<span class="step">${M('f (x) = (6x + 1)')}${SUP(FR('1','2'))}</span>
-<span class="step">${M("f ′(x) = ")}${FR('1','2')}${M('(6x + 1)')}${SUP(M('−')+FR('1','2'))}${M(' × 6 = ')}${FR('3',RT(M('6x + 1')))}</span>
-<span class="step">${M("f ′(8) = ")}${FR('3',RT('49'))}${M(' = ')}${FR('3','7')}</span>`,
-  explain:`Rewriting the surd as a power first is the habit that makes these automatic. Forgetting the "× 6" from the chain rule gives ${FR('1','14')} — the most common wrong answer.`
+  accept:['1','f\'(8)=1','one'],
+  answer:`${M('1')}`,
+  working:`<span class="note">rewrite with an index; the constant 5 differentiates away</span>
+<span class="step">${M('f (x) = 6(x + 1)')}${SUP(FR('1','2'))}${M(' + 5')}</span>
+<span class="step">${M("f ′(x) = 6 × ")}${FR('1','2')}${M('(x + 1)')}${SUP(M('−')+FR('1','2'))}${M(' = ')}${FR('3',RT(M('x + 1')))}</span>
+<span class="step">${M("f ′(8) = ")}${FR('3',RT('9'))}${M(' = 1')}</span>`,
+  explain:`Rewriting the surd as a power first is the habit that makes these automatic. Two things to watch: the ${M('+ 5')} contributes nothing, and the coefficient 6 halves to 3 — not to 6 and not to ${FR('1','2')}.`
 },
 {
   id:'dq3', cat:'diff', mode:'free', type:'exact', marks:2, src:'2026 NHT Exam 1 Q1a',
@@ -7407,13 +7425,13 @@ const QUESTIONS = [
 {
   id:'pq4', cat:'prob', mode:'free', type:'exact', marks:2, src:'2025 Exam 1 Q6b',
   context:`${M('X ~ Bi(6, ')}${FR('1','4')}${M(')')}.`,
-  stem:'Determine ${Pr(X ≥ 5)}, giving your answer in the form ${a / b^2} with ${a, b ∈ Z}.',
-  accept:['19/4096','19/64^2','19/(64)^2'],
-  answer:`${FR('19','4096')}${M(' = ')}${FR('19',M('64')+SUP('2'))}`,
+  stem:'Determine ${Pr(X ≥ 5)}, giving your answer in the form ${a / 2^b} with ${a, b ∈ Z}.',
+  accept:['19/4096','19/2^12','19/2^(12)','a=19,b=12'],
+  answer:`${FR('19','4096')}${M(' = ')}${FR('19',M('2')+SUP('12'))}`,
   working:`<span class="step">${M('Pr(X = 5) = ')}<span class="m">(</span>${FR('6','5')}<span class="m">)</span>${M('(')}${FR('1','4')}${M(')')}${SUP('5')}${M('(')}${FR('3','4')}${M(')')}${SUP('1')}${M(' = ')}${FR('18',M('4')+SUP('6'))}</span>
 <span class="step">${M('Pr(X = 6) = (')}${FR('1','4')}${M(')')}${SUP('6')}${M(' = ')}${FR('1',M('4')+SUP('6'))}</span>
 <span class="step">${M('Pr(X ≥ 5) = ')}${FR('19',M('4')+SUP('6'))}${M(' = ')}${FR('19','4096')}${M(' = ')}${FR('19',M('64')+SUP('2'))}</span>`,
-  explain:`Keeping everything over ${M('4')}${SUP('6')} until the last line avoids fraction arithmetic altogether. The requested form ${FR(M('a'),M('b')+SUP('2'))} is the hint that ${M('4')}${SUP('6')}${M(' = (4')}${SUP('3')}${M(')')}${SUP('2')}${M(' = 64')}${SUP('2')}.`
+  explain:`Keeping everything over ${M('4')}${SUP('6')} until the last line avoids fraction arithmetic altogether. The requested form ${FR(M('a'),M('2')+SUP(M('b')))} is the hint to rewrite the base: ${M('4')}${SUP('6')}${M(' = (2')}${SUP('2')}${M(')')}${SUP('6')}${M(' = 2')}${SUP('12')}, so ${M('a = 19')} and ${M('b = 12')}.`
 },
 {
   id:'pq5', cat:'prob', mode:'free', type:'exact', marks:1, src:'2024 Exam 1 Q4a',
@@ -7496,16 +7514,25 @@ const QUESTIONS = [
   tip:`The key simplification is that ${M('{T > 2} ∩ {T > 1} = {T > 2}')} — the later event is contained in the earlier one. Students who try to integrate over an intersection region lose the first mark.`
 },
 {
-  id:'pq12', cat:'prob', mode:'free', type:'written', marks:3, src:'2025 Exam 1 Q8a',
-  context:`${M('f (x) = ')}${FR('3','8')}${M('(4 − 3x)')}${SUP('2')} for ${M('0 ≤ x ≤ ')}${FR('4','3')} and 0 otherwise (as printed).`,
-  stem:'Find ${k} such that ${Pr(X ≤ k) = 9/16}.',
-  criteria:[
-    {t:'Sets up ∫ from 0 to k of f(x) dx = 9/16', m:1},
-    {t:'Integrates correctly and forms the resulting equation in k', m:1},
-    {t:'Solves and rejects any root outside [0, 4/3]', m:1}
-  ],
-  model:`Set up the cumulative probability:\n\n  ∫ from 0 to k of f(x) dx = 9/16\n\nAntidifferentiate the given pdf, evaluate between 0 and k, and set the result equal to 9/16. This produces a polynomial equation in k.\n\nSolve it exactly, then discard any solution outside the support [0, 4/3] — only one root can be the answer, since a cumulative probability is strictly increasing.`,
-  tip:`The final mark is for the rejection. A cumulative distribution function increases from 0 to 1 exactly once across the support, so there is exactly one valid ${M('k')} — any extra algebraic roots must be discarded with a reason.`
+  id:'pq12', cat:'prob', mode:'free', type:'exact', marks:3, src:'2025 Exam 1 Q8a',
+  context:`${M('X')} is continuous with probability density function
+${M('f (x) = ')}${FR('3','8')}${M('(4 − 3x)')} for ${M('0 ≤ x ≤ ')}${FR('4','3')}, and ${M('f (x) = 0')} otherwise.`,
+  stem:'Find ${k} such that ${Pr(X > k) = 9/16}.',
+  accept:['1/3','k=1/3','0.3333'],
+  answer:`${M('k = ')}${FR('1','3')}`,
+  working:`<span class="note">an upper tail is easiest as 1 minus the lower one</span>
+<span class="step">${M('Pr(X > k) = 1 − ')}${IG('0',M('k'),FR('3','8')+M('(4 − 3x) dx'))}${M(' = ')}${FR('9','16')}</span>
+<span class="step">so ${IG('0',M('k'),FR('3','8')+M('(4 − 3x) dx'))}${M(' = ')}${FR('7','16')}</span>
+<span class="note">antidifferentiate</span>
+<span class="step">${FR('3','8')}${M('(4x − ')}${FR('3',M('2'))}${M('x')}${SUP('2')}${M(')')} evaluated from 0 to ${M('k')}</span>
+<span class="step">${FR('3','8')}${M('(4k − ')}${FR('3','2')}${M('k')}${SUP('2')}${M(') = ')}${FR('7','16')}</span>
+<span class="note">multiply both sides by 16/3 and clear the halves</span>
+<span class="step">${M('8k − 3k')}${SUP('2')}${M(' = ')}${FR('7','3')}${M('   ⇒   24k − 9k')}${SUP('2')}${M(' = 7')}</span>
+<span class="step">${M('9k')}${SUP('2')}${M(' − 24k + 7 = 0   ⇒   (3k − 1)(3k − 7) = 0')}</span>
+<span class="step">${M('k = ')}${FR('1','3')}   or   ${M('k = ')}${FR('7','3')}</span>
+<span class="note">reject 7/3: it lies outside the support [0, 4/3]</span>
+<span class="step">${M('k = ')}${FR('1','3')}</span>`,
+  explain:`Two habits earn the marks here. First, turn the upper tail into ${M('1 − ')}the lower one so the integral starts at the known endpoint 0. Second, the final mark is for the <strong>rejection</strong>: a cumulative probability rises through each value exactly once across the support, so of the two algebraic roots only the one inside ${M('[0, ')}${FR('4','3')}${M(']')} can be the answer — say so explicitly.`
 },
 {
   id:'pq13', cat:'prob', mode:'free', type:'exact', marks:2, src:'2025 Exam 1 Q8b',
