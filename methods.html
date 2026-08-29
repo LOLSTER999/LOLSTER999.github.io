@@ -4960,28 +4960,30 @@ Total area between curves: ∫(abs(f(x) − g(x)), x, a, b)</div>
 </div>
 
 <div class="wex">
-  <div class="wex-head">Worked example — average value of a quartic<span class="wex-src">2025 Exam 2 Q1d</span></div>
+  <div class="wex-head">Worked example — average value of a function<span class="wex-src">2025 Exam 2 Q1d</span></div>
   <div class="wex-body">
-    <p>${M('g (x) = x')}${SUP('4')}${M(' − 3x')}${SUP('3')}${M(' + 4')}. Find the average value between ${M('x = 0')} and ${M('x = 2')}.</p>
+    <p>${M('g (x) = 4x')}${SUP('3')}${M(' − 3x')}${SUP('4')}. Find the average value between ${M('x = 0')} and ${M('x = 2')}.</p>
 
     <div class="wstep"><div class="wnum">1</div><div class="wbody">
-      <p class="wwhy">Set up the formula. Interval width is ${M('2 − 0 = 2')}.</p>
-      <div class="wmath"><span class="step">${FR('1','2')}${IG('0','2',M(' (x')+SUP('4')+M(' − 3x')+SUP('3')+M(' + 4) dx'))}</span></div>
+      <p class="wwhy">Set up the formula: the definite integral divided by the width of the interval. Here the width is ${M('2 − 0 = 2')}.</p>
+      <div class="wmath"><span class="step">${M('avg = ')}${FR('1','2')}${IG('0','2',M(' (4x')+SUP('3')+M(' − 3x')+SUP('4')+M(') dx'))}</span></div>
     </div></div>
 
     <div class="wstep"><div class="wnum">2</div><div class="wbody">
-      <p class="wwhy">Antidifferentiate term by term.</p>
-      <div class="wmath"><span class="step">${M(' = ')}${FR('1','2')}${M('[ ')}${FR('1','5')}${M('x')}${SUP('5')}${M(' − ')}${FR('3','4')}${M('x')}${SUP('4')}${M(' + 4x ]')}${SUB('0')}${SUP('2')}</span></div>
+      <p class="wwhy">Antidifferentiate term by term. Raise each index by one and divide by the new index.</p>
+      <div class="wmath"><span class="step">${IG('','',M(' 4x')+SUP('3')+M(' dx = x')+SUP('4'))}${M(',    ')}${IG('','',M(' 3x')+SUP('4')+M(' dx = ')+FR('3','5')+M('x')+SUP('5'))}</span>
+      <span class="step">${M(' = ')}${FR('1','2')}${M('[ x')}${SUP('4')}${M(' − ')}${FR('3','5')}${M('x')}${SUP('5')}${M(' ]')}${SUB('0')}${SUP('2')}</span></div>
     </div></div>
 
     <div class="wstep"><div class="wnum">3</div><div class="wbody">
-      <p class="wwhy">Evaluate at 2; the lower limit contributes nothing since every term has a factor of ${M('x')}.</p>
-      <div class="wmath"><span class="step">${M(' = ')}${FR('1','2')}${M('( ')}${FR('32','5')}${M(' − 12 + 8 )')}</span>
-      <span class="step">${M(' = ')}${FR('1','2')}${M('( ')}${FR('32','5')}${M(' − 4 ) = ')}${FR('1','2')}${M(' × ')}${FR('12','5')}${M(' = ')}${FR('6','5')}</span></div>
+      <p class="wwhy">Substitute the limits. At ${M('x = 0')} everything vanishes, so only the top limit does any work.</p>
+      <div class="wmath"><span class="step">${M(' = ')}${FR('1','2')}${M('( 2')}${SUP('4')}${M(' − ')}${FR('3','5')}${M(' × 2')}${SUP('5')}${M(' )')}</span>
+      <span class="step">${M(' = ')}${FR('1','2')}${M('( 16 − ')}${FR('96','5')}${M(' )')}</span>
+      <span class="step">${M(' = ')}${FR('1','2')}${M(' × ')}${FR('80 − 96','5')}${M(' = ')}${FR('1','2')}${M(' × −')}${FR('16','5')}</span></div>
     </div></div>
 
-    <div class="wex-answer">Average value ${M(' = ')}<b>${FR('6','5')}</b></div>
-  </div>
+    <div class="wex-answer"><b>${M('−')}${FR('8','5')}</b> — negative, and that is not a slip. Past ${M('x = ')}${FR('4','3')} the ${M('−3x')}${SUP('4')} term overwhelms the ${M('4x')}${SUP('3')}, and the area below the axis outweighs the area above it.</div>
+  </div></div>
 </div>
 
 <h2>The three formulas people mix up</h2>
@@ -6486,23 +6488,28 @@ end for</div></summary>
 <div class="wex">
   <div class="wex-head">Worked example 2 — deciding by concavity<span class="wex-src">2025 Exam 2 Q6</span></div>
   <div class="wex-body">
-    <p>For which function is the trapezium estimate on ${M('[0, 1]')} <strong>larger</strong> than the exact area?</p>
-    <p>Options: ${M('3e')}${SUP(M('x'))}, ${M('3')}${RT(M('x'))}${M(' + 1')}, ${M('3 sin(x) + 1')}, ${M('log')}${SUB(M('e'))}${M('(x + 3)')}.</p>
+    <p>The trapezium rule, with two trapeziums, estimates the area under ${M('y = f (x)')} between ${M('x = 0')} and ${M('x = 1')}. For which function is the estimate <strong>larger</strong> than the exact area?</p>
+    <p>Options: ${M('3 − e')}${SUP(M('x'))}, ${M('x')}${SUP('3')}${M(' + 1')}, ${M('3 sin(x) + 1')}, ${M('log')}${SUB(M('e'))}${M('(x + 3)')}.</p>
 
     <div class="wstep"><div class="wnum">1</div><div class="wbody">
-      <p class="wwhy">"Larger than exact" means over-estimate, which means <strong>concave up</strong>. So test the sign of ${M("f ″")} on ${M('[0, 1]')}.</p>
+      <p class="wwhy">Turn the question into a statement about shape. Each trapezium replaces the curve by the <em>chord</em> joining its endpoints. A chord lies above the curve exactly when the curve bends upwards, so "estimate too large" means <strong>concave up</strong> — and that means ${M("f ″ > 0")}.</p>
+      <p class="wwhy">Note what this does <em>not</em> depend on: the number of trapeziums. Two or two hundred, the direction of the error is the same.</p>
     </div></div>
 
     <div class="wstep"><div class="wnum">2</div><div class="wbody">
-      <p class="wwhy">Check each.</p>
-      <div class="wmath"><span class="step">${M('3e')}${SUP(M('x'))}:  ${M("f ″ = 3e")}${SUP(M('x'))}${M(' > 0')}  → concave up ✓</span>
-      <span class="step">${M('3')}${RT(M('x'))}${M(' + 1')}:  ${M("f ″ < 0")}  → concave down</span>
-      <span class="step">${M('3 sin(x) + 1')}:  ${M("f ″ = −3 sin(x) < 0")} on ${M('(0, 1)')}  → concave down</span>
-      <span class="step">${M('log')}${SUB(M('e'))}${M('(x + 3)')}:  ${M("f ″ = −")}${FR('1',M('(x+3)')+SUP('2'))}${M(' < 0')}  → concave down</span></div>
+      <p class="wwhy">Differentiate each option twice and read off the sign on ${M('[0, 1]')}.</p>
+      <div class="wmath"><span class="step">${M('3 − e')}${SUP(M('x'))}${M(':   f ″ = −e')}${SUP(M('x'))}${M(' < 0')}  → concave down ✗</span>
+      <span class="step">${M('x')}${SUP('3')}${M(' + 1:   f ″ = 6x ≥ 0')} on ${M('[0, 1]')}  → concave up ✓</span>
+      <span class="step">${M('3 sin(x) + 1:   f ″ = −3 sin(x) < 0')} on ${M('(0, 1]')}  → concave down ✗</span>
+      <span class="step">${M('log')}${SUB(M('e'))}${M('(x + 3):   f ″ = −')}${FR('1',M('(x + 3)')+SUP('2'))}${M(' < 0')}  → concave down ✗</span></div>
     </div></div>
 
-    <div class="wex-answer">Only <b>${M('3e')}${SUP(M('x'))}</b> is concave up on ${M('[0, 1]')}, so only it gives an over-estimate.</div>
-  </div>
+    <div class="wstep"><div class="wnum">3</div><div class="wbody">
+      <p class="wwhy">Only one option bends upwards across the whole interval.</p>
+    </div></div>
+
+    <div class="wex-answer"><b>${M('f (x) = x')}${SUP('3')}${M(' + 1')}</b> — the only one with ${M("f ″ ≥ 0")} on ${M('[0, 1]')}, so the only one whose chords sit above the curve.</div>
+  </div></div>
 </div>
 
 <details class="cyu">
@@ -6612,21 +6619,21 @@ const QUESTIONS = [
   explain:`Read the asymptote first — it hands you ${M('a')} with no work. Then two intercepts give two equations in ${M('m')} and ${M('c')}. Always substitute your final values back into <em>both</em> intercepts; the check takes ten seconds and catches sign slips.`
 },
 {
-  id:'fq6', cat:'funcs', mode:'active', type:'mc', marks:1, src:'2025 Exam 2 Q5 (adapted)',
+  id:'fq6', cat:'funcs', mode:'active', type:'mc', marks:1, src:'2025 Exam 2 Q5',
   stem:'Which of the following sets represents a function that has an inverse function?',
   options:[
-    `${M('{ (−2, 1), (0, 3), (2, 1) }')}`,
-    `${M('{ (−2, 1), (0, 3), (2, 5) }')}`,
-    `${M('{ (−1, 4), (1, 4), (3, 0) }')}`,
-    `${M('{ (0, 2), (1, 5), (3, 2) }')}`
+    `${M('{ (1, 3), (2, 0), (2, 1) }')}`,
+    `${M('{ (−1, 3), (2, 2), (3, 1) }')}`,
+    `${M('{ (−1, 3), (0, 1), (1, 3) }')}`,
+    `${M('{ (1, 0), (2, 3), (1, 3) }')}`
   ],
   answer:1,
-  working:`<span class="note">an inverse exists only if the function is one-to-one — no repeated y value</span>
-<span class="note">A: y = 1 appears twice ✗</span>
-<span class="note">B: y values 1, 3, 5 all different ✓</span>
-<span class="note">C: y = 4 appears twice ✗</span>
-<span class="note">D: y = 2 appears twice ✗</span>`,
-  explain:`Every option is a valid function — no ${M('x')} value repeats anywhere. The extra condition for an <em>inverse</em> is that no ${M('y')} value repeats either, because otherwise reversing the pairs would send one input to two outputs. This is the horizontal line test written out as a list.`
+  working:`<span class="note">two hurdles: it must be a function at all (no repeated x), then one-to-one (no repeated y)</span>
+<span class="step">A: ${M('x = 2')} appears twice — not even a function ✗</span>
+<span class="step">B: x values −1, 2, 3 distinct <em>and</em> y values 3, 2, 1 distinct ✓</span>
+<span class="step">C: a function, but ${M('y = 3')} appears twice — not one-to-one ✗</span>
+<span class="step">D: ${M('x = 1')} appears twice — not a function ✗</span>`,
+  explain:`Check the two conditions in order and in the right direction. A repeated <strong>x</strong> disqualifies it as a function; a repeated <strong>y</strong> allows it to be a function but denies it an inverse. Two options here fail the first test, which is the trap.`
 },
 {
   id:'fq7', cat:'funcs', mode:'active', type:'mc', marks:1, src:'2023 Exam 2 Q3',
@@ -6655,22 +6662,22 @@ const QUESTIONS = [
   explain:`Mapping a single point is the easiest transformation mark in the course, provided you apply the steps in the order given and change only the coordinate each step affects. A dilation from the ${M('x')}-axis touches ${M('y')} only; a horizontal translation touches ${M('x')} only.`
 },
 {
-  id:'fq9', cat:'funcs', mode:'active', type:'mc', marks:1, src:'2025 Exam 2 Q15 (adapted)',
-  stem:'The graph of ${y = g (x)} passes through the point ${(1, 3)}. The graph of ${y = 2 g^{−1}(x + 1) − 4} must pass through the point',
+  id:'fq9', cat:'funcs', mode:'active', type:'mc', marks:1, src:'2025 Exam 2 Q15',
+  stem:'The graph of ${y = g (x)} passes through the point ${(1, 3)}. The graph of ${y = 1 − g (2x − 3)} must pass through the point',
   options:[
+    `${M('(−1, −2)')}`,
     `${M('(2, −2)')}`,
-    `${M('(4, −2)')}`,
-    `${M('(2, 2)')}`,
-    `${M('(−2, 2)')}`
+    `${M('(−1, 2)')}`,
+    `${M('(2, 2)')}`
   ],
-  answer:0,
-  working:`<span class="note">invert first</span>
-<span class="step">${M('(1, 3)')} on ${M('g')}   ⇒   ${M('(3, 1)')} on ${M('g')}${SUP('−1')}</span>
-<span class="note">the inner x + 1 must equal 3 for g⁻¹ to return 1</span>
-<span class="step">${M('x + 1 = 3   ⇒   x = 2')}</span>
-<span class="note">then apply the outer operations to the output 1</span>
-<span class="step">${M('y = 2(1) − 4 = −2')}</span>`,
-  explain:`Two separate ideas stacked. First the inverse swaps the coordinates. Then work from the <strong>inside out</strong>: the bracket decides which ${M('x')} to use, and everything outside ${M('g')}${SUP('−1')} acts on the ${M('y')} value.`
+  answer:1,
+  working:`<span class="note">work from the inside out: force the argument of g to be the x we know</span>
+<span class="step">${M('2x − 3 = 1   ⇒   x = 2')}</span>
+<span class="note">g then returns the y we know</span>
+<span class="step">${M('g (1) = 3')}</span>
+<span class="note">now apply the outer operations to that output</span>
+<span class="step">${M('y = 1 − 3 = −2')}</span>`,
+  explain:`Set the inside equal to the known input rather than trying to picture the transformations. The ${M('−')} in front of ${M('g')} is a reflection in the ${M('x')}-axis and the ${M('1')} shifts it up, so the output ${M('3')} becomes ${M('1 − 3 = −2')} — not ${M('3 − 1')}.`
 },
 {
   id:'fq10', cat:'funcs', mode:'free', type:'written', marks:2, src:'2024 NHT Exam 1 Q4a',
@@ -6759,23 +6766,23 @@ const QUESTIONS = [
   explain:`The determinant on its own gives you two candidates and cannot tell you which is which. The substitution step is worth a mark by itself, and it is the step most often skipped.`
 },
 {
-  id:'aq2', cat:'algebra', mode:'active', type:'mc', marks:1, src:'2025 Exam 2 Q4 (adapted)',
-  context:`${M('kx + 4y = 2k')} and ${M('x + ky = k')}, where ${M('x, y ∈ R')} and ${M('k ∈ R')}.`,
+  id:'aq2', cat:'algebra', mode:'active', type:'mc', marks:1, src:'2025 Exam 2 Q4',
+  context:`${M('kx + 3y = k')}${SUP('2')} and ${M('2x + (2k + 1) y = 6 − 2k')}, where ${M('k ∈ R')}.`,
   stem:'Find the value(s) of ${k} for which this system has no real solutions.',
   options:[
     `${M('k = −2')} only`,
-    `${M('k = 2')} only`,
-    `${M('k = −2')} or ${M('k = 2')}`,
-    `${M('k ∈ R \\ { −2, 2 }')}`
+    `${M('k = ')}${FR('3','2')} only`,
+    `${M('k = −2')} or ${FR('3','2')}`,
+    `${M('k ∈ R \\ { −2, ')}${FR('3','2')}${M(' }')}`
   ],
   answer:0,
-  working:`<span class="note">determinant zero is necessary for anything other than a unique solution</span>
-<span class="step">${M('k · k − 4 · 1 = 0   ⇒   k')}${SUP('2')}${M(' = 4   ⇒   k = ±2')}</span>
-<span class="note">now substitute each candidate back</span>
-<span class="note">k = 2: 2x + 4y = 4 → x + 2y = 2, and x + 2y = 2 — the SAME line ⇒ infinitely many</span>
-<span class="note">k = −2: −2x + 4y = −4 → x − 2y = 2, and x − 2y = −2 — parallel but distinct ⇒ no solution</span>
-<span class="step">${M('k = −2')} only</span>`,
-  explain:`The determinant alone gives two candidates and cannot separate "no solution" from "infinitely many" — that is what the substitution step is for, and it is where option C goes wrong. Option D describes the <em>unique</em>-solution case, the opposite of what was asked.`
+  working:`<span class="note">a zero determinant is necessary for anything other than a unique solution</span>
+<span class="step">${M('k(2k + 1) − 3(2) = 0   ⇒   2k')}${SUP('2')}${M(' + k − 6 = 0')}</span>
+<span class="step">${M('(2k − 3)(k + 2) = 0   ⇒   k = ')}${FR('3','2')}   or   ${M('k = −2')}</span>
+<span class="note">now test each candidate — zero determinant means EITHER no solutions OR infinitely many</span>
+<span class="step">${M('k = ')}${FR('3','2')}${M(':  ')}${FR('3','2')}${M('x + 3y = ')}${FR('9','4')}${M('  ⇒  2x + 4y = 3')}, and the second equation is ${M('2x + 4y = 3')} — identical, so <strong>infinitely many</strong> ✗</span>
+<span class="step">${M('k = −2:  −2x + 3y = 4')}, and ${M('2x − 3y = 10   ⇒   −2x + 3y = −10')} — parallel and distinct, so <strong>no solutions</strong> ✓</span>`,
+  explain:`The determinant only tells you the solution is <em>not unique</em>. Splitting the two cases is the whole question: one root collapses the pair onto the same line (infinitely many solutions), the other gives parallel distinct lines (none). Option C is what you get by stopping at the determinant.`
 },
 {
   id:'aq3', cat:'algebra', mode:'free', type:'exact', marks:3, src:'2024 NHT Exam 1 Q2a',
@@ -6945,33 +6952,39 @@ const QUESTIONS = [
   explain:`A one-mark exact-value substitution. The only requirement is knowing ${M('sin(')}${FR('π','6')}${M(') = ')}${FR('1','2')} without a calculator — which is why the exact-value table is worth memorising rather than deriving.`
 },
 {
-  id:'cq6', cat:'circ', mode:'active', type:'mc', marks:1, src:'2025 Exam 2 Q1 (adapted)',
-  stem:'A function with range ${[6, 12]} is',
+  id:'cq6', cat:'circ', mode:'active', type:'mc', marks:1, src:'2025 Exam 2 Q1',
+  stem:'A function that has a range of ${[6, 12]} is',
   options:[
-    `${M('f : R → R,  f (x) = 3 cos(6x) + 9')}`,
-    `${M('f : R → R,  f (x) = 6 cos(3x) + 9')}`,
-    `${M('f : R → R,  f (x) = 9 cos(3x) + 6')}`,
-    `${M('f : R → R,  f (x) = 6 cos(6x) + 3')}`
+    `${M('f : R → R,  f (x) = 6 + 3 cos(9x)')}`,
+    `${M('f : R → R,  f (x) = 6 + 6 cos(3x)')}`,
+    `${M('f : R → R,  f (x) = 9 − 3 cos(6x)')}`,
+    `${M('f : R → R,  f (x) = 9 − 6 cos(3x)')}`
   ],
-  answer:0,
-  working:`<span class="note">range of a cos(nx) + k is [k − |a|, k + |a|]</span>
-<span class="step">midpoint ${M('k = ')}${FR('6 + 12','2')}${M(' = 9')}</span>
-<span class="step">amplitude ${M('|a| = ')}${FR('12 − 6','2')}${M(' = 3')}</span>
-<span class="note">so we need a = 3 and k = 9</span>
-<span class="step">A: ${M('[9 − 3, 9 + 3] = [6, 12]')} ✓</span>`,
-  explain:`The value of ${M('n')} changes the period and nothing else — it has no effect on the range at all, which is why every option carries a different one as a distractor. Read the amplitude and the vertical shift, and ignore the rest.`
+  answer:2,
+  working:`<span class="note">range of k + a cos(nx) is [k − |a|, k + |a|] — the sign of a and the value of n are irrelevant to it</span>
+<span class="step">we need midpoint ${M('k = ')}${FR('6 + 12','2')}${M(' = 9')} and amplitude ${M('|a| = ')}${FR('12 − 6','2')}${M(' = 3')}</span>
+<span class="step">A: ${M('k = 6, |a| = 3   ⇒   [3, 9]')} ✗</span>
+<span class="step">B: ${M('k = 6, |a| = 6   ⇒   [0, 12]')} ✗</span>
+<span class="step">C: ${M('k = 9, |a| = 3   ⇒   [6, 12]')} ✓</span>
+<span class="step">D: ${M('k = 9, |a| = 6   ⇒   [3, 15]')} ✗</span>`,
+  explain:`Read the range off as <em>midpoint ± amplitude</em> and the question is two subtractions. The ${M('n')} inside the cosine changes only the period, so ${M('cos(9x)')} and ${M('cos(3x)')} are equally irrelevant here — that is exactly the distractor the options are built on.`
 },
 {
   id:'cq7', cat:'circ', mode:'active', type:'mc', marks:1, src:'2025 Exam 2 Q2',
-  stem:'All asymptotes of the graph of ${y = 2 tan(πx/2) − 1} are given by',
+  stem:'All asymptotes of the graph of ${y = 2 tan(π(x + 1/2))} are given by',
   options:[
     `${M('x = k,  k ∈ Z')}`,
     `${M('x = 2k,  k ∈ Z')}`,
     `${M('x = 2k + 1,  k ∈ Z')}`,
     `${M('x = ')}${FR('4k + 1','2')}${M(',  k ∈ Z')}`
   ],
-  answer:2,
-  explain:`Set the argument to ${FR('π','2')}${M(' + kπ')}: ${FR('πx','2')}${M(' = ')}${FR('π','2')}${M(' + kπ')} gives ${M('x = 1 + 2k')}, the odd integers. The period of the tangent here is ${FR(M('π'),FR(M('π'),'2'))}${M(' = 2')}, which matches asymptotes 2 apart.`
+  answer:0,
+  working:`<span class="note">tan(θ) is undefined at θ = π/2 + kπ — set the whole argument equal to that</span>
+<span class="step">${M('π(x + ')}${FR('1','2')}${M(') = ')}${FR('π','2')}${M(' + kπ')}</span>
+<span class="note">divide every term by π</span>
+<span class="step">${M('x + ')}${FR('1','2')}${M(' = ')}${FR('1','2')}${M(' + k')}</span>
+<span class="step">${M('x = k,  k ∈ Z')}</span>`,
+  explain:`Dividing by ${M('π')} first turns a messy-looking argument into one line of arithmetic. The ${FR('1','2')} inside cancels against the ${FR('1','2')} from ${FR('π','2')}, which is what makes the answer the plain integers — a result the options are designed to make you doubt.`
 },
 {
   id:'cq8', cat:'circ', mode:'active', type:'mc', marks:1, src:'2026 NHT Exam 2 Q12',
@@ -6994,15 +7007,26 @@ const QUESTIONS = [
   explain:`Solve first: ${M('2x = ')}${FR('π','3')}${M(' + 2kπ')} or ${M('2x = ')}${FR('2π','3')}${M(' + 2kπ')}, so ${M('x = ')}${FR('π','6')}${M(' + kπ')} or ${M('x = ')}${FR('π','3')}${M(' + kπ')}. Now test each option against those two families. The one that is not contained in either is the answer — substitute one member of each set back into ${M('sin(2x)')} to check quickly.`
 },
 {
-  id:'cq10', cat:'circ', mode:'active', type:'written', marks:2, src:'2025 Exam 2 Q4c (adapted)',
-  context:`${M('f : [0, ')}${FR('5π','2')}${M('] → R,  f (x) = 2 sin(x)')}.`,
-  stem:'There exist ${k} and ${a} in ${[0, 5π/2]} such that ${f (x + k) = −f (x)} for all ${x ∈ [0, a]}. Find ${k} and the largest possible ${a}.',
+  id:'cq10', cat:'circ', mode:'active', type:'written', marks:2, src:'2025 Exam 2 Q4c',
+  context:`${M('f : [0, ')}${FR('5π','2')}${M('] → R,  f (x) = sin(x) + 1')}.`,
+  stem:'There exist real ${a} and ${k} in ${(0, 5π/2)} such that ${f (x + k) = f (x)} for all ${x ∈ [0, a]}. Find ${k} and the largest possible value of ${a}.',
   criteria:[
-    {t:'Identifies k = π — half a period, the shift that turns the graph into its own reflection in the x-axis', m:1},
-    {t:'States a = 3π/2, from the requirement that a + k stays inside the domain', m:1}
+    {t:'Identifies k = 2π — the period of sin(x) + 1, the shift that maps the graph onto itself', m:1},
+    {t:'States a = π/2, from the requirement that x + k stay inside the domain for every x up to a', m:1}
   ],
-  model:`f(x + k) = −f(x) means the graph shifted left by k is the reflection of the original in the x-axis.\n\nFor y = 2 sin(x) the period is 2π, and a shift of half a period does exactly this:\n\n  2 sin(x + π) = −2 sin(x)  ✓\n\nSo k = π. (The next value, k = 3π, lies outside [0, 5π/2].)\n\nFor the identity to make sense for every x in [0, a], both x and x + k must lie in the domain [0, 5π/2]. The binding condition is\n\n  a + π ≤ 5π/2\n  a ≤ 3π/2\n\nThe largest possible a is 3π/2.`,
-  tip:`Two separate ideas in one question. A <em>symmetry</em> property fixes ${M('k')}; a <em>domain</em> constraint fixes ${M('a')}. Students routinely find ${M('k')} and then guess ${M('a')} — write the inequality ${M('a + k ≤ ')}${FR('5π','2')} down explicitly.`
+  model:`f(x + k) = f(x) for a whole interval of x means the graph maps onto itself under a shift of k. For sin(x) + 1 the period is 2π, so the smallest such shift is
+
+  k = 2π
+
+(and it is the only one available, since 4π is outside the interval (0, 5π/2)).
+
+Now the domain constraint. The statement has to hold for every x in [0, a], and f(x + k) only means anything while x + k is still in the domain [0, 5π/2]. The worst case is x = a:
+
+  a + 2π ≤ 5π/2
+  a ≤ π/2
+
+So the largest possible value is a = π/2.`,
+  tip:`The first mark is the period and most students get it. The second is the one that separates: ${M('k')} is fixed by the shape of the graph, but ${M('a')} is fixed by the <strong>domain</strong> — push ${M('x')} any further than ${FR('π','2')} and ${M('x + 2π')} falls off the right-hand end, where ${M('f')} is not defined.`
 },
 
 /* ================= EXPONENTIALS & LOGARITHMS ================= */
@@ -7184,20 +7208,20 @@ const QUESTIONS = [
 },
 {
   id:'dq8', cat:'diff', mode:'active', type:'mc', marks:1, src:'2025 Exam 2 Q11 (adapted)',
-  context:`The price of a share, in dollars, on selected days:
+  context:`The original question shows a 30-day share-price chart. These are the prices, in dollars, read off it on the days the options refer to:
 <div class="table-scroll"><table class="tbl">
 <tr><th>Day</th><td>3</td><td>10</td><td>14</td><td>17</td><td>21</td><td>28</td></tr>
-<tr><th>Price ($)</th><td>35.0</td><td>38.5</td><td>36.0</td><td>39.5</td><td>38.4</td><td>40.2</td></tr>
+<tr><th>Price ($)</th><td>34.8</td><td>36.4</td><td>35.0</td><td>37.4</td><td>37.0</td><td>39.6</td></tr>
 </table></div>`,
-  stem:'Over which interval was the <strong>average</strong> rate of change of the price greatest?',
+  stem:'Over which of the following time intervals did the daily price undergo the greatest average rate of change?',
   options:['day 3 to day 10','day 3 to day 17','day 14 to day 21','day 14 to day 28'],
-  answer:0,
-  working:`<span class="note">average rate of change = gradient of the chord</span>
-<span class="step">day 3 → 10:  ${FR('38.5 − 35.0','7')}${M(' = 0.500')}</span>
-<span class="step">day 3 → 17:  ${FR('39.5 − 35.0','14')}${M(' ≈ 0.321')}</span>
-<span class="step">day 14 → 21: ${FR('38.4 − 36.0','7')}${M(' ≈ 0.343')}</span>
-<span class="step">day 14 → 28: ${FR('40.2 − 36.0','14')}${M(' = 0.300')}</span>`,
-  explain:`Only the two endpoints matter — nothing that happens in between affects an average rate of change. The longest interval here has the largest total rise but the smallest rate, which is exactly the distractor the question is built around.`
+  answer:3,
+  working:`<span class="note">average rate of change = gradient of the chord = rise ÷ run</span>
+<span class="step">day 3 → 10:  ${FR('36.4 − 34.8','7')}${M(' = ')}${FR('1.6','7')}${M(' ≈ 0.23')}</span>
+<span class="step">day 3 → 17:  ${FR('37.4 − 34.8','14')}${M(' = ')}${FR('2.6','14')}${M(' ≈ 0.19')}</span>
+<span class="step">day 14 → 21: ${FR('37.0 − 35.0','7')}${M(' = ')}${FR('2.0','7')}${M(' ≈ 0.29')}</span>
+<span class="step">day 14 → 28: ${FR('39.6 − 35.0','14')}${M(' = ')}${FR('4.6','14')}${M(' ≈ 0.33')} ✓</span>`,
+  explain:`The longest interval wins here, which is the point: a bigger rise over a longer run can still beat a smaller rise over a short one. Rank by the <em>quotient</em>, never by the rise alone — day 14 to 28 climbs the most <strong>and</strong> has the steepest chord, but those two need not go together.`
 },
 {
   id:'dq9', cat:'diff', mode:'active', type:'mc', marks:1, src:'2026 NHT Exam 2 Q9',
@@ -7337,15 +7361,16 @@ const QUESTIONS = [
 },
 {
   id:'iq7', cat:'integ', mode:'active', type:'exact', marks:2, src:'2025 Exam 2 Q1d',
-  context:`${M('g (x) = x')}${SUP('4')}${M(' − 3x')}${SUP('3')}${M(' + 4')}.`,
+  context:`${M('g : R → R,  g (x) = 4x')}${SUP('3')}${M(' − 3x')}${SUP('4')}.`,
   stem:'Find the average value of ${g} between ${x = 0} and ${x = 2}.',
-  accept:['13/5','2.6'],
-  answer:`${FR('13','5')}`,
-  working:`<span class="step">avg ${M(' = ')}${FR('1','2 − 0')}${IG('0','2',M(' (x')+SUP('4')+M(' − 3x')+SUP('3')+M(' + 4) dx'))}</span>
-<span class="step">${M(' = ')}${FR('1','2')}${M('[ ')}${FR('x','5')}${SUP('5')}${M(' − ')}${FR('3','4')}${M('x')}${SUP('4')}${M(' + 4x ]')}${SUB('0')}${SUP('2')}</span>
-<span class="step">${M(' = ')}${FR('1','2')}${M('( ')}${FR('32','5')}${M(' − 12 + 8 )')}</span>
-<span class="step">${M(' = ')}${FR('1','2')}${M(' × ')}${FR('26','5')}${M(' = ')}${FR('13','5')}</span>`,
-  explain:`Do not confuse this with the mean of a random variable. Average value of a function divides by the <em>width of the interval</em>; the mean of a continuous random variable multiplies the integrand by ${M('x')} instead and does not divide at all.`
+  accept:['-8/5','-1.6','−8/5','-8/5'],
+  answer:`${M('−')}${FR('8','5')}`,
+  working:`<span class="note">average value of a function = (1 / width) × the definite integral</span>
+<span class="step">avg ${M(' = ')}${FR('1','2 − 0')}${IG('0','2',M(' (4x')+SUP('3')+M(' − 3x')+SUP('4')+M(') dx'))}</span>
+<span class="step">${M(' = ')}${FR('1','2')}${M('[ x')}${SUP('4')}${M(' − ')}${FR('3','5')}${M('x')}${SUP('5')}${M(' ]')}${SUB('0')}${SUP('2')}</span>
+<span class="step">${M(' = ')}${FR('1','2')}${M('( 16 − ')}${FR('96','5')}${M(' )')}</span>
+<span class="step">${M(' = ')}${FR('1','2')}${M(' × ')}${M('(−')}${FR('16','5')}${M(') = −')}${FR('8','5')}</span>`,
+  explain:`Two traps. First, do not confuse this with the mean of a random variable — average value of a <em>function</em> is the integral divided by the width of the interval, nothing to do with probability. Second, the answer is <strong>negative</strong>: past ${M('x = ')}${FR('4','3')} the ${M('−3x')}${SUP('4')} term dominates and drags the curve well below the axis, and that region outweighs the positive part.`
 },
 {
   id:'iq8', cat:'integ', mode:'free', type:'exact', marks:3, src:'2023 Exam 1 Q5b',
@@ -7360,15 +7385,19 @@ const QUESTIONS = [
   explain:`Three marks, and most of them are for finding <em>every</em> solution across an interval of width ${M('5π')} — that is two and a half periods of sine. Sketch the horizontal line against the sine curve over the whole interval and count the crossings before you start writing them down.`
 },
 {
-  id:'iq9', cat:'integ', mode:'active', type:'written', marks:2, src:'2025 Exam 2 Q2c',
-  context:`${M('f (x) = ')}${RT(M('x + 2'))}${M(' + 7')} and ${M('g (x) = A e')}${SUP(M('kx'))} intersect at ${M('(−12, 1)')} and ${M('(2, 8)')} (as printed).`,
-  stem:'Use a definite integral to evaluate the area bounded by the two graphs on ${x ∈ [−12, 2]}, correct to two decimal places.',
-  criteria:[
-    {t:'Sets up ∫ from −12 to 2 of (upper − lower) dx, with the correct function identified as upper', m:1},
-    {t:'Evaluates and gives the answer to two decimal places', m:1}
-  ],
-  model:`The two curves meet at x = −12 and x = 2, and between those points one lies entirely above the other — check with a test value such as x = 0.\n\nArea = ∫ from −12 to 2 of [ upper(x) − lower(x) ] dx\n\nEvaluate on CAS and round to two decimal places as instructed.`,
-  tip:`The setup mark requires the integral to be <strong>written down</strong> with correct limits and the correct order of subtraction. A bare number from CAS with no integral shown loses that mark even when the value is right.`
+  id:'iq9', cat:'integ', mode:'active', type:'numeric', marks:2, src:'2025 Exam 2 Q2c',
+  context:`${M('f (x) = ')}${FR(M('x'),'2')}${M(' + 7')} and ${M('g (x) = A e')}${SUP(M('kx'))} with ${M('A = 2')}${SUP(FR('18','7'))} and ${M('k = ')}${FR('3','14')}${M('log')}${SUB(M('e'))}${M('(2)')}. They intersect at ${M('(−12, 1)')} and ${M('(2, 8)')}.`,
+  stem:'Use a definite integral to evaluate the area bounded by the two graphs for ${x ∈ [−12, 2]}, correct to two decimal places.',
+  answer:15.87, tol:0.002,
+  working:`<span class="note">decide which graph is on top — test any interior point, say x = 0</span>
+<span class="step">${M('f (0) = 7')},   ${M('g (0) = A = 2')}${SUP(FR('18','7'))}${M(' ≈ 5.95')}   ⇒ the line is above</span>
+<span class="step">area ${M(' = ')}${IG('−12','2',M(' ( ')+FR(M('x'),'2')+M(' + 7 − A e')+SUP(M('kx'))+M(' ) dx'))}</span>
+<span class="note">the line part is exact</span>
+<span class="step">${IG('−12','2',M(' ( ')+FR(M('x'),'2')+M(' + 7 ) dx'))}${M(' = [ ')}${FR(M('x')+SUP('2'),'4')}${M(' + 7x ] = 15 − (−48) = 63')}</span>
+<span class="note">the exponential part: its antiderivative is g(x)/k, and g is known at both ends</span>
+<span class="step">${IG('−12','2',M(' A e')+SUP(M('kx'))+M(' dx'))}${M(' = ')}${FR(M('g (2) − g (−12)'),M('k'))}${M(' = ')}${FR('8 − 1',FR('3','14')+M('log')+SUB(M('e'))+M('(2)'))}${M(' = ')}${FR('98',M('3 log')+SUB(M('e'))+M('(2)'))}${M(' ≈ 47.13')}</span>
+<span class="step">area ${M(' = 63 − 47.13 = 15.87')}</span>`,
+  explain:`Two marks: one for the setup with the right function on top, one for the value. The exponential integral is far easier than it looks — the antiderivative of ${M('A e')}${SUP(M('kx'))} is ${FR(M('g (x)'),M('k'))}, and the question already tells you ${M('g')} equals 1 and 8 at the two limits, so no exponentials need evaluating at all.`
 },
 {
   id:'iq10', cat:'integ', mode:'active', type:'written', marks:3, src:'2026 NHT Exam 2 Q2f iii',
@@ -7830,32 +7859,35 @@ end for</div>The first printed output is 1, 1.`,
 },
 {
   id:'gq4', cat:'algo', mode:'active', type:'mc', marks:1, src:'2025 Exam 2 Q6',
-  context:`The trapezium rule with two trapeziums estimates the area bounded by ${M('y = f (x)')}, the ${M('x')}-axis and the lines ${M('x = 0')} and ${M('x = 1')}.`,
+  context:`The trapezium rule is used, with two trapeziums, to estimate the area bounded by the graph of ${M('y = f (x)')}, the ${M('x')}-axis and the lines ${M('x = 0')} and ${M('x = 1')}.`,
   stem:'For which function will the trapezium rule estimate be <strong>larger</strong> than the exact area?',
   options:[
-    `${M('f (x) = 3e')}${SUP(M('x'))}`,
-    `${M('f (x) = 3')}${RT(M('x'))}${M(' + 1')}`,
+    `${M('f (x) = 3 − e')}${SUP(M('x'))}`,
+    `${M('f (x) = x')}${SUP('3')}${M(' + 1')}`,
     `${M('f (x) = 3 sin(x) + 1')}`,
     `${M('f (x) = log')}${SUB(M('e'))}${M('(x + 3)')}`
   ],
-  answer:0,
-  explain:`The chord across the top of a trapezium sits <strong>above</strong> the curve when the curve is <strong>concave up</strong> (${M("f ″ > 0")}), so the estimate over-shoots. On ${M('[0, 1]')}: ${M('3e')}${SUP(M('x'))} has ${M("f ″ = 3e")}${SUP(M('x'))}${M(' > 0')} — concave up. The other three are all concave down there, so their estimates under-shoot.`
+  answer:1,
+  working:`<span class="note">a chord of a curve lies above the curve exactly when the curve is concave up, so test the sign of f ″ on [0, 1]</span>
+<span class="step">A: ${M("f ″(x) = −e")}${SUP(M('x'))}${M(' < 0')} — concave down, estimate is too small ✗</span>
+<span class="step">B: ${M("f ″(x) = 6x ≥ 0")} on ${M('[0, 1]')} — concave up ✓</span>
+<span class="step">C: ${M("f ″(x) = −3 sin(x) < 0")} on ${M('(0, 1]')} — concave down ✗</span>
+<span class="step">D: ${M("f ″(x) = −")}${FR('1',M('(x + 3)')+SUP('2'))}${M(' < 0')} — concave down ✗</span>`,
+  explain:`The whole question is the sign of the second derivative — the number of trapeziums never enters into it. Concave up (${M("f ″ > 0")}) means every chord sits above the curve, so the trapeziums overshoot; concave down means they undershoot.`
 },
 {
-  id:'gq5', cat:'algo', mode:'active', type:'numeric', marks:2, src:'2025 Exam 2 Q4e (adapted)',
-  context:`${M('f (x) = x')}${SUP('3')}${M(' − 2x − 5')}, with ${M('x')}${SUB('0')}${M(' = 2')}.`,
-  stem:'Apply two iterations of Newton’s method and give ${x_2}, correct to four decimal places.',
-  answer:2.0946, tol:0.0005,
-  working:`<span class="step">${M("f ′(x) = 3x")}${SUP('2')}${M(' − 2')}</span>
-<span class="note">first iteration</span>
-<span class="step">${M('f (2) = 8 − 4 − 5 = −1')}      ${M("f ′(2) = 12 − 2 = 10")}</span>
-<span class="step">${M('x')}${SUB('1')}${M(' = 2 − ')}${FR('−1','10')}${M(' = 2.1')}</span>
-<span class="note">second iteration — keep full precision</span>
-<span class="step">${M('f (2.1) = 9.261 − 4.2 − 5 = 0.061')}</span>
-<span class="step">${M("f ′(2.1) = 3(4.41) − 2 = 11.23")}</span>
-<span class="step">${M('x')}${SUB('2')}${M(' = 2.1 − ')}${FR('0.061','11.23')}${M(' = 2.09456...')}</span>
-<span class="step">${M('x')}${SUB('2')}${M(' ≈ 2.0946')}</span>`,
-  explain:`Rounding ${M('x')}${SUB('1')} before the second iteration is the classic error — Newton's method amplifies input error, so an intermediate round can move the last decimal place of ${M('x')}${SUB('2')}. Store the value on your CAS and reuse it rather than retyping it.`
+  id:'gq5', cat:'algo', mode:'active', type:'numeric', marks:1, src:'2025 Exam 2 Q4e i',
+  context:`${M('f : [0, ')}${FR('5π','2')}${M('] → R,  f (x) = sin(x) + 1')}, with ${M('x')}${SUB('0')}${M(' = ')}${FR('2π','3')}.`,
+  stem:'Apply two iterations of Newton’s method and write down ${x_2}, correct to one decimal place.',
+  answer:5.2, tol:0.01,
+  working:`<span class="step">${M("f ′(x) = cos(x)")},   so   ${M('x')}${SUB(M('n + 1'))}${M(' = x')}${SUB(M('n'))}${M(' − ')}${FR(M('sin(x')+SUB(M('n'))+M(') + 1'),M('cos(x')+SUB(M('n'))+M(')'))}</span>
+<span class="note">first iteration — note cos(2π/3) is negative, which throws the estimate a long way right</span>
+<span class="step">${M('f (')}${FR('2π','3')}${M(') = ')}${FR(RT('3'),'2')}${M(' + 1 ≈ 1.8660')},   ${M("f ′(")}${FR('2π','3')}${M(") = −0.5")}</span>
+<span class="step">${M('x')}${SUB('1')}${M(' = 2.0944 − ')}${FR('1.8660','−0.5')}${M(' = 2.0944 + 3.7321 = 5.8264')}</span>
+<span class="note">second iteration — keep full precision, do not round yet</span>
+<span class="step">${M('f (5.8264) ≈ 0.5589')},   ${M("f ′(5.8264) ≈ 0.8975")}</span>
+<span class="step">${M('x')}${SUB('2')}${M(' = 5.8264 − ')}${FR('0.5589','0.8975')}${M(' = 5.8264 − 0.6228 = 5.2036')}</span>`,
+  explain:`A good illustration of Newton’s method behaving badly. Starting at ${FR('2π','3')} the tangent is <em>falling</em>, so the first step overshoots far past the root at ${FR('3π','2')} — out to 5.83. The second step comes back to 5.20, still not close. Round only at the very end: rounding ${M('x')}${SUB('1')} to 5.8 first gives a visibly different ${M('x')}${SUB('2')}.`
 },
 {
   id:'gq6', cat:'algo', mode:'free', type:'exact', marks:2, src:'2024 NHT Exam 1 Q6a',
