@@ -1,0 +1,1161 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="description" content="VCE Mathematical Methods Units 3 &amp; 4 bound reference — every rule, condition and method the study design examines, with the way each is asked and the traps that recur across the 2023–2026 papers.">
+<title>Methods Bound Reference</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Spectral:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600&family=IBM+Plex+Sans:ital,wght@0,400;0,500;0,600;1,400&display=swap">
+<style>
+:root{
+  --paper:#ffffff; --ink:#16181d; --muted:#5a6270; --faint:#8b93a1;
+  --rule:#d3d8e0; --rule-soft:#e7eaf0;
+  --accent:#2d3f8f; --accent-soft:#eef1fa; --accent-line:#b9c3e4;
+  --warn-bg:#fdf0e7; --warn-ink:#8f4415; --warn-line:#e8c3a6;
+  --good-bg:#eaf3ee; --good-ink:#1f5c39; --good-line:#b6d6c3;
+  --serif:"Spectral",Georgia,"Times New Roman",serif;
+  --sans:"IBM Plex Sans",-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --paper:#12141a; --ink:#e8eaf0; --muted:#a3abbb; --faint:#7b8496;
+    --rule:#2c3140; --rule-soft:#232733;
+    --accent:#93a6ee; --accent-soft:#1a1f31; --accent-line:#39426a;
+    --warn-bg:#2a1d14; --warn-ink:#e8a877; --warn-line:#4d3422;
+    --good-bg:#152219; --good-ink:#8fcaa6; --good-line:#2b4634;
+  }
+}
+:root[data-theme="dark"]{
+  --paper:#12141a; --ink:#e8eaf0; --muted:#a3abbb; --faint:#7b8496;
+  --rule:#2c3140; --rule-soft:#232733;
+  --accent:#93a6ee; --accent-soft:#1a1f31; --accent-line:#39426a;
+  --warn-bg:#2a1d14; --warn-ink:#e8a877; --warn-line:#4d3422;
+  --good-bg:#152219; --good-ink:#8fcaa6; --good-line:#2b4634;
+}
+
+*{box-sizing:border-box;}
+body{
+  margin:0; background:var(--paper); color:var(--ink);
+  font-family:var(--sans); font-size:9.6pt; line-height:1.5;
+  -webkit-font-smoothing:antialiased;
+}
+.doc{max-width:186mm; margin:0 auto; padding:14mm 0 24mm;}
+
+/* ---------- type scale ---------- */
+h1,h2,h3,h4{font-family:var(--serif); font-weight:600; text-wrap:balance; margin:0;}
+h1{font-size:25pt; line-height:1.12; letter-spacing:-.01em;}
+h2{font-size:14pt; line-height:1.2;}
+h3{font-size:10.8pt; line-height:1.25; margin:0 0 3px;}
+h4{font-size:9.8pt; font-weight:600; margin:0 0 2px;}
+p{margin:0 0 6px;}
+.lede{font-size:11pt; line-height:1.5; color:var(--muted); font-family:var(--serif);}
+.eyebrow{
+  font-size:7.2pt; font-weight:600; letter-spacing:.13em; text-transform:uppercase;
+  color:var(--accent); margin:0 0 4px;
+}
+.note{color:var(--muted); font-size:8.8pt;}
+small{font-size:8.4pt;}
+
+/* ---------- mathematics ---------- */
+.m{font-family:var(--serif); font-style:italic; white-space:nowrap;}
+.m .up{font-style:normal;}
+.fr{display:inline-flex; flex-direction:column; vertical-align:middle;
+    text-align:center; margin:0 .16em; font-size:.9em; line-height:1.12;}
+.fr>span{display:block; padding:0 .25em;}
+.fr>span:first-child{border-bottom:1px solid currentColor; padding-bottom:.06em;}
+.rad{display:inline-block;}
+.rad>span{border-top:1px solid currentColor; padding:.08em .14em 0 .08em; margin-left:-.05em;}
+sup,sub{font-size:.72em; line-height:0;}
+sup .fr,sub .fr{display:inline; vertical-align:baseline; font-size:1em; margin:0;}
+sup .fr>span,sub .fr>span{display:inline; padding:0;}
+sup .fr>span:first-child{border-bottom:0;}
+sup .fr>span:first-child::after{content:"\2044";}
+.eq{
+  font-family:var(--serif); font-size:10.4pt; margin:5px 0;
+  padding:6px 10px; background:var(--accent-soft);
+  border-left:2px solid var(--accent-line); border-radius:0 3px 3px 0;
+  overflow-x:auto;
+}
+.eq.plain{background:none; border-left:0; padding:2px 0;}
+
+/* ---------- structure ---------- */
+.sec{break-before:page; padding-top:2mm;}
+.sec:first-of-type{break-before:auto;}
+.sec-head{
+  display:flex; align-items:baseline; gap:10px;
+  border-bottom:1.5px solid var(--accent); padding-bottom:5px; margin-bottom:9px;
+}
+.sec-no{
+  font-family:var(--serif); font-size:22pt; font-weight:700; color:var(--accent);
+  line-height:1; letter-spacing:-.02em;
+}
+.sec-head h2{flex:1;}
+.tab{
+  font-size:7pt; font-weight:600; letter-spacing:.1em; text-transform:uppercase;
+  color:var(--paper); background:var(--accent); padding:3px 8px; border-radius:2px;
+  white-space:nowrap;
+}
+.blk{break-inside:avoid; margin:0 0 9px;}
+.rule{border:0; border-top:1px solid var(--rule-soft); margin:9px 0;}
+
+.grid2{display:grid; grid-template-columns:1fr 1fr; gap:9px 14px;}
+.grid3{display:grid; grid-template-columns:repeat(3,1fr); gap:8px 12px;}
+@media (max-width:700px){ .grid2,.grid3{grid-template-columns:1fr;} }
+
+/* ---------- tables ---------- */
+table{width:100%; border-collapse:collapse; font-size:8.9pt; margin:4px 0 8px;}
+th,td{text-align:left; padding:3.5px 7px; border-bottom:1px solid var(--rule-soft); vertical-align:top;}
+th{
+  font-size:7.4pt; font-weight:600; letter-spacing:.07em; text-transform:uppercase;
+  color:var(--muted); border-bottom:1px solid var(--rule); white-space:nowrap;
+}
+td:first-child{font-family:var(--serif);}
+tbody tr:last-child td{border-bottom:0;}
+.tbl-wrap{overflow-x:auto;}
+.num{font-variant-numeric:tabular-nums;}
+
+/* ---------- callouts ---------- */
+.box{
+  padding:7px 10px; border-radius:3px; margin:6px 0; break-inside:avoid;
+  border:1px solid var(--rule); background:var(--accent-soft);
+  border-color:var(--accent-line);
+}
+.trap{background:var(--warn-bg); border-color:var(--warn-line);}
+.trap .lbl{color:var(--warn-ink);}
+.method{background:var(--good-bg); border-color:var(--good-line);}
+.method .lbl{color:var(--good-ink);}
+.lbl{
+  font-size:7.2pt; font-weight:600; letter-spacing:.11em; text-transform:uppercase;
+  color:var(--accent); display:block; margin-bottom:3px;
+}
+.box p:last-child{margin-bottom:0;}
+.asked{
+  font-size:8.4pt; color:var(--muted); border-left:2px solid var(--rule);
+  padding-left:8px; margin:5px 0;
+}
+.asked b{color:var(--ink); font-weight:600;}
+
+ul,ol{margin:3px 0 6px; padding-left:17px;}
+li{margin-bottom:2.5px;}
+ul.tight,ol.tight{margin:2px 0 4px;}
+ul.steps{list-style:none; padding-left:0; counter-reset:s;}
+ul.steps>li{
+  counter-increment:s; padding-left:20px; position:relative; margin-bottom:4px;
+}
+ul.steps>li::before{
+  content:counter(s); position:absolute; left:0; top:.5px;
+  width:14px; height:14px; border-radius:50%; background:var(--accent);
+  color:var(--paper); font-size:7pt; font-weight:600;
+  display:flex; align-items:center; justify-content:center;
+}
+
+/* ---------- cover ---------- */
+.cover{padding:8mm 0 6mm; border-bottom:2.5px solid var(--accent); margin-bottom:10px;}
+.cover h1{margin-bottom:6px;}
+.meta{display:flex; flex-wrap:wrap; gap:6px 18px; margin-top:12px; font-size:8.6pt; color:var(--muted);}
+.meta b{color:var(--ink); font-weight:600;}
+
+.toc{columns:2; column-gap:22px; font-size:9pt;}
+.toc div{break-inside:avoid; margin-bottom:2.5px;}
+.toc .n{
+  display:inline-block; width:20px; color:var(--accent);
+  font-family:var(--serif); font-weight:600;
+}
+
+/* ---------- print ---------- */
+@page{ size:A4; margin:13mm 12mm 14mm 12mm; }
+@media print{
+  :root{
+    --paper:#fff; --ink:#000; --muted:#333; --faint:#555;
+    --rule:#999; --rule-soft:#ccc;
+    --accent:#1a2a6b; --accent-soft:#f0f2f9; --accent-line:#8f9dcb;
+    --warn-bg:#f8ece2; --warn-ink:#6b3210; --warn-line:#c9a37e;
+    --good-bg:#edf4f0; --good-ink:#154a2c; --good-line:#a8ccb8;
+  }
+  body{font-size:8.9pt; background:#fff;}
+  .doc{max-width:none; padding:0;}
+  .noprint{display:none !important;}
+  h2,h3,h4{break-after:avoid;}
+  table,.box,.blk,.eq{break-inside:avoid;}
+}
+.hint{
+  position:sticky; top:0; z-index:5; background:var(--accent); color:#fff;
+  font-size:8.4pt; padding:6px 12px; margin:0 0 12px; border-radius:3px;
+  display:flex; gap:10px; align-items:center; justify-content:space-between;
+}
+.hint button{
+  font:inherit; font-weight:600; background:#fff; color:var(--accent);
+  border:0; padding:4px 11px; border-radius:3px; cursor:pointer;
+}
+.hint button:focus-visible{outline:2px solid #fff; outline-offset:2px;}
+</style>
+<style>body{margin:0}img{max-width:100%}[hidden]{display:none!important}</style>
+</head>
+<body>
+<div class="doc">
+
+<div class="hint noprint">
+  <span>A4 bound reference — print at 100% scale, no page scaling, to keep the A4 pagination.</span>
+  <button type="button" onclick="window.print()">Print / save as PDF</button>
+</div>
+
+<header class="cover">
+  <p class="eyebrow">VCE Mathematical Methods · Units 3 &amp; 4</p>
+  <h1>Bound Reference</h1>
+  <p class="lede">Every rule, condition and method the study design examines, organised for lookup under time pressure — with the way each idea is actually asked, and the specific mistakes that recur across the 2023–2026 papers.</p>
+  <div class="meta">
+    <span><b>Areas of study</b> Functions &amp; graphs · Algebra · Calculus · Probability &amp; statistics</span>
+    <span><b>Built from</b> 12 VCAA papers, 2023–2026 (incl. NHT)</span>
+  </div>
+</header>
+
+<div class="blk">
+  <p class="eyebrow">Contents</p>
+  <div class="toc">
+    <div><span class="n">0</span> Using this reference · exam structure</div>
+    <div><span class="n">1</span> Functions, relations and graphs</div>
+    <div><span class="n">2</span> Algebra, number and structure</div>
+    <div><span class="n">3</span> Circular functions</div>
+    <div><span class="n">4</span> Differentiation</div>
+    <div><span class="n">5</span> Antidifferentiation and integration</div>
+    <div><span class="n">6</span> Discrete and continuous random variables</div>
+    <div><span class="n">7</span> The normal distribution</div>
+    <div><span class="n">8</span> Statistical inference</div>
+    <div><span class="n">9</span> Algorithms and pseudocode</div>
+    <div><span class="n">10</span> Exam craft and recurring traps</div>
+  </div>
+</div>
+
+<!-- ===================== 0 ===================== -->
+<section class="sec" id="s0">
+  <div class="sec-head"><span class="sec-no">0</span><h2>Using this reference</h2><span class="tab">Orientation</span></div>
+
+  <div class="grid2">
+    <div class="blk">
+      <h3>What the two papers ask for</h3>
+      <table>
+        <tr><th>&nbsp;</th><th>Examination 1</th><th>Examination 2</th></tr>
+        <tr><td>Technology</td><td>None. No calculator, no notes.</td><td>CAS + this bound reference.</td></tr>
+        <tr><td>Time</td><td>1 hour, 40 marks</td><td>2 hours, 80 marks</td></tr>
+        <tr><td>Shape</td><td>~9 short-answer questions</td><td>20 multiple choice (Section A) + 4 extended questions (Section B)</td></tr>
+        <tr><td>Answers</td><td>Exact values always, unless told otherwise</td><td>Exact unless a rounding instruction is given</td></tr>
+      </table>
+      <p class="note">Section A carried <b>five</b> options (A–E) in 2023 and in the 2024 NHT paper; from the 2024 VCAA paper onward it is <b>four</b> (A–D). Practise on the recent format.</p>
+    </div>
+
+    <div class="blk">
+      <h3>On the formula sheet — don't memorise</h3>
+      <ul class="tight">
+        <li>Mensuration; derivatives and antiderivatives of the standard functions</li>
+        <li>Product, quotient and chain rules</li>
+        <li>Binomial <span class="m">E(X)</span>, <span class="m">Var(X)</span>; the binomial probability formula</li>
+        <li>Continuous <span class="m">E(X)</span>, <span class="m">Var(X)</span>; the normal 68–95–99.7 figures</li>
+        <li>Sample proportion mean and standard deviation; the CI formula</li>
+      </ul>
+      <h3 style="margin-top:6px;">Not on it — you must know</h3>
+      <ul class="tight">
+        <li>Index and logarithm laws in full</li>
+        <li>Exact circular values and the symmetry properties</li>
+        <li>Transformation order, and the mapping/matrix forms</li>
+        <li>Conditions for an inverse, and for a composite to exist</li>
+        <li>The trapezium rule and Newton's method</li>
+        <li>Every pdf condition, and what "average value" means</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="box">
+    <span class="lbl">How to read the § marks</span>
+    <p>Each topic carries a <b>How it's asked</b> line describing the form the question actually takes, and — where one recurs — a <b>Trap</b> box naming the specific error the option set or mark scheme is built to catch. These are drawn from working every question in the twelve papers, not from guesswork about what might come up.</p>
+  </div>
+</section>
+
+<!-- ===================== 1 ===================== -->
+<section class="sec" id="s1">
+  <div class="sec-head"><span class="sec-no">1</span><h2>Functions, relations and graphs</h2><span class="tab">Functions</span></div>
+
+  <div class="blk">
+    <h3>1.1 Notation, domain, range</h3>
+    <p>A function is written <span class="m">f : D → R, f (x) = …</span> — the domain is part of the definition, and changing it changes the function. The <b>implied</b> (maximal) domain is every <span class="m">x</span> for which the rule returns a real number.</p>
+    <table>
+      <tr><th>Rule contains</th><th>Restriction</th></tr>
+      <tr><td><span class="rad"><span>g (x)</span></span></td><td><span class="m">g (x) ≥ 0</span></td></tr>
+      <tr><td><span class="m">log</span><sub class="m">e</sub><span class="m">(g (x))</span></td><td><span class="m">g (x) &gt; 0</span> — strictly</td></tr>
+      <tr><td><span class="fr"><span>1</span><span class="m">g (x)</span></span></td><td><span class="m">g (x) ≠ 0</span></td></tr>
+      <tr><td><span class="m">tan(g (x))</span></td><td><span class="m">g (x) ≠ </span><span class="fr"><span>π</span><span>2</span></span><span class="m"> + kπ</span></td></tr>
+    </table>
+    <p class="asked"><b>How it's asked:</b> "State the maximal domain", or the domain is given and you must produce the <i>range</i> — which needs the shape of the graph, not just the rule. Also asked in reverse: a range is given and you find the domain that produces it.</p>
+    <div class="box trap">
+      <span class="lbl">Trap — working backwards through a reciprocal</span>
+      <p>Given <span class="m">f (x) = </span><span class="fr"><span>4</span><span class="m">x</span></span><span class="m"> + 2</span> with range <span class="m">(−2, 1]</span>, the domain is <span class="m">[−4, −1)</span>. Two things bite: the whole domain is <b>negative</b>, and multiplying an inequality by that negative <span class="m">x</span> <b>reverses</b> it — which is also what swaps the open and closed ends over.</p>
+    </div>
+  </div>
+
+  <div class="blk">
+    <h3>1.2 The standard families</h3>
+    <div class="tbl-wrap">
+    <table>
+      <tr><th>Family</th><th>Form</th><th>Key features</th><th>Range</th></tr>
+      <tr><td>Linear</td><td><span class="m">y = mx + c</span></td><td>gradient <span class="m">m</span>; perpendicular ⇒ <span class="m">m</span><sub>1</sub><span class="m">m</span><sub>2</sub><span class="m"> = −1</span></td><td><span class="m">R</span></td></tr>
+      <tr><td>Quadratic</td><td><span class="m">a(x − h)</span><sup>2</sup><span class="m"> + k</span></td><td>vertex <span class="m">(h, k)</span>; axis <span class="m">x = −</span><span class="fr"><span class="m">b</span><span>2a</span></span>; Δ decides roots</td><td><span class="m">[k, ∞)</span> if <span class="m">a &gt; 0</span></td></tr>
+      <tr><td>Cubic</td><td><span class="m">a(x − p)(x − q)(x − r)</span></td><td>repeated factor ⇒ touch; triple ⇒ stationary inflection</td><td><span class="m">R</span></td></tr>
+      <tr><td>Quartic</td><td><span class="m">ax</span><sup>4</sup><span class="m"> + …</span></td><td><span class="m">a &gt; 0</span>: both ends up</td><td>bounded below</td></tr>
+      <tr><td>Power</td><td><span class="m">x</span><sup class="m">n</sup>, <span class="m">n</span> rational</td><td><span class="m">n &gt; 1</span>: flat at O. <span class="m">0 &lt; n &lt; 1</span>: vertical tangent/cusp at O</td><td>depends on <span class="m">n</span></td></tr>
+      <tr><td>Hyperbola</td><td><span class="fr"><span class="m">a</span><span class="m">x − h</span></span><span class="m"> + k</span></td><td>asymptotes <span class="m">x = h</span>, <span class="m">y = k</span></td><td><span class="m">R \ {k}</span></td></tr>
+      <tr><td>Truncus</td><td><span class="fr"><span class="m">a</span><span class="m">(x − h)</span><sup>2</sup></span><span class="m"> + k</span></td><td>same asymptotes; both branches same side</td><td><span class="m">(k, ∞)</span> if <span class="m">a &gt; 0</span></td></tr>
+      <tr><td>Square root</td><td><span class="m">a</span><span class="rad"><span class="m">x − h</span></span><span class="m"> + k</span></td><td>endpoint <span class="m">(h, k)</span>, included</td><td><span class="m">[k, ∞)</span> if <span class="m">a &gt; 0</span></td></tr>
+      <tr><td>Exponential</td><td><span class="m">a e</span><sup class="m">n(x−h)</sup><span class="m"> + k</span></td><td>asymptote <span class="m">y = k</span>; never reaches it</td><td><span class="m">(k, ∞)</span> if <span class="m">a &gt; 0</span></td></tr>
+      <tr><td>Logarithm</td><td><span class="m">a log</span><sub class="m">e</sub><span class="m">(n(x − h)) + k</span></td><td>asymptote <span class="m">x = h</span>; no horizontal asymptote</td><td><span class="m">R</span></td></tr>
+    </table>
+    </div>
+    <div class="box trap">
+      <span class="lbl">Trap — the limit <i>is</i> the asymptote</span>
+      <p>For <span class="m">g (x) = 2</span><sup class="m">x</sup><span class="m"> + 5</span>, <span class="m">lim</span><sub class="m">x→−∞</sub><span class="m"> g (x) = 5</span>: the exponential decays to zero, never below it, so the horizontal asymptote is <span class="m">y = 5</span> and the range is <span class="m">(5, ∞)</span> — open, not closed.</p>
+    </div>
+  </div>
+
+  <div class="blk">
+    <h3>1.3 Transformations</h3>
+    <p>Write the image rule as <span class="m">y = A f (n(x − h)) + k</span>. Read each parameter off separately:</p>
+    <table>
+      <tr><th>Parameter</th><th>Effect</th><th>On a point <span class="m">(x, y)</span></th></tr>
+      <tr><td><span class="m">A</span></td><td>dilation factor <span class="m">|A|</span> <b>from the <span class="m">x</span>-axis</b> (vertical); <span class="m">A &lt; 0</span> reflects in the <span class="m">x</span>-axis</td><td><span class="m">y → Ay</span></td></tr>
+      <tr><td><span class="m">n</span></td><td>dilation factor <span class="fr"><span>1</span><span class="m">|n|</span></span> <b>from the <span class="m">y</span>-axis</b> (horizontal); <span class="m">n &lt; 0</span> reflects in the <span class="m">y</span>-axis</td><td><span class="m">x → </span><span class="fr"><span class="m">x</span><span class="m">n</span></span></td></tr>
+      <tr><td><span class="m">h</span></td><td>translation <span class="m">h</span> in the <span class="m">+x</span> direction</td><td><span class="m">x → x + h</span></td></tr>
+      <tr><td><span class="m">k</span></td><td>translation <span class="m">k</span> in the <span class="m">+y</span> direction</td><td><span class="m">y → y + k</span></td></tr>
+    </table>
+    <p><b>Order.</b> Dilations and reflections first, translations last. If a question <i>gives</i> a sequence, apply it exactly in the order stated — a different order generally gives a different image.</p>
+    <div class="box method">
+      <span class="lbl">Method — image of a single point</span>
+      <p>Do not transform the rule. Carry the coordinates through one step at a time. <span class="m">(</span><span class="rad"><span>2</span></span><span class="m">, log</span><sub class="m">e</sub><span class="m">(3))</span> under "dilation <span class="fr"><span>1</span><span>2</span></span> from the <span class="m">x</span>-axis, then translate 3 right" → halve <span class="m">y</span>, then add 3 to <span class="m">x</span> → <span class="m">(</span><span class="rad"><span>2</span></span><span class="m"> + 3, </span><span class="fr"><span>1</span><span>2</span></span><span class="m">log</span><sub class="m">e</sub><span class="m">(3))</span>. Leave surds exact.</p>
+    </div>
+    <p class="asked"><b>How it's asked:</b> most often as "which sequence does <b>not</b> produce <span class="m">g</span>", or "the graph of <span class="m">y = f (x)</span> passes through <span class="m">(1, 3)</span>; <span class="m">y = 1 − g (2x − 3)</span> must pass through …". For the second kind, set the <i>inside</i> equal to the known input, then apply the outer operations to the known output.</p>
+    <div class="box trap">
+      <span class="lbl">Trap — "from the axis" names the axis it moves away from</span>
+      <p>A dilation "from the <span class="m">x</span>-axis" changes <span class="m">y</span>. A dilation "from the <span class="m">y</span>-axis" changes <span class="m">x</span>. Also: a factor of <span class="fr"><span>1</span><span>2</span></span> from the <span class="m">y</span>-axis replaces <span class="m">x</span> by <span class="m">2x</span>, not <span class="fr"><span class="m">x</span><span>2</span></span>.</p>
+    </div>
+  </div>
+
+  <div class="blk">
+    <h3>1.4 Finding a rule from a graph</h3>
+    <ul class="steps">
+      <li>Take asymptotes first — each one fixes a parameter outright and costs no algebra.</li>
+      <li>Substitute the intercepts to get simultaneous equations in what remains.</li>
+      <li>Solve, then <b>check both intercepts</b> against the finished rule.</li>
+    </ul>
+    <p>For <span class="m">y = </span><span class="fr"><span class="m">m</span><span class="m">x + a</span></span><span class="m"> + c</span> with vertical asymptote <span class="m">x = −6</span>: the denominator vanishes there, so <span class="m">a = 6</span> — note the sign. The horizontal asymptote is <span class="m">y = c</span>, which is a free check rather than a fourth unknown.</p>
+  </div>
+
+  <div class="blk">
+    <h3>1.5 Composite functions</h3>
+    <div class="eq"><span class="m">(f ∘ g)(x) = f (g (x))</span> exists ⇔ <span class="m">ran(g) ⊆ dom(f )</span></div>
+    <p>The domain of the composite is <span class="m">dom(g)</span>. To show a composite is defined, state both sets and the containment explicitly — that is what earns the mark.</p>
+    <p class="asked"><b>How it's asked:</b> "Show that <span class="m">g ∘ h</span> is defined for all <span class="m">x ∈ R</span>", then "find the range of <span class="m">g ∘ h</span>". Also as a graph question: given the graphs of <span class="m">f</span> and <span class="m">g</span>, which could be <span class="m">g ∘ f</span>?</p>
+    <div class="box method">
+      <span class="lbl">Method — shape of a composite from two graphs</span>
+      <p>The <b>outer</b> function fixes the shape. Composing with a decreasing straight line reflects and rescales horizontally but cannot change the number of turning points or the direction of the ends. That eliminates half the options before you look at any detail.</p>
+    </div>
+  </div>
+
+  <div class="blk">
+    <h3>1.6 Inverse functions</h3>
+    <p>An inverse exists ⇔ <span class="m">f</span> is <b>one-to-one</b>. Then:</p>
+    <div class="eq"><span class="m">dom(f </span><sup>−1</sup><span class="m">) = ran(f )</span> &nbsp;·&nbsp; <span class="m">ran(f </span><sup>−1</sup><span class="m">) = dom(f )</span></div>
+    <ul class="tight">
+      <li>To find the rule: swap <span class="m">x</span> and <span class="m">y</span>, then make <span class="m">y</span> the subject. Use the original domain to choose the correct branch of a <span class="m">±</span>.</li>
+      <li>The graphs are reflections in <span class="m">y = x</span>; they meet <b>on</b> that line for increasing functions, but a decreasing function can meet its inverse off the line.</li>
+      <li>"Largest domain <span class="m">(−∞, a]</span> on which an inverse exists" ⇒ <span class="m">a</span> is the <span class="m">x</span> of the turning point.</li>
+    </ul>
+    <p class="asked"><b>How it's asked:</b> "Determine the equation and domain of <span class="m">f </span><sup>−1</sup>", or "find the largest <span class="m">a</span> such that <span class="m">g</span> restricted to <span class="m">(−∞, a]</span> has an inverse" — for <span class="m">g (x) = e</span><sup class="m">2x</sup><span class="m"> − 8e</span><sup class="m">x</sup><span class="m"> + 7</span> that is <span class="m">a = log</span><sub class="m">e</sub><span class="m">(4)</span>.</p>
+    <div class="box trap">
+      <span class="lbl">Trap — a set of points has two hurdles</span>
+      <p>To have an inverse a set must first <b>be a function</b> (no repeated <span class="m">x</span>) and then be <b>one-to-one</b> (no repeated <span class="m">y</span>). Option sets routinely include relations that fail the first test, which most students never check.</p>
+    </div>
+  </div>
+
+  <div class="blk">
+    <h3>1.7 Sums, products, and piecewise functions</h3>
+    <p><span class="m">dom(f + g) = dom(f ) ∩ dom(g)</span> — the <b>intersection</b>, and an endpoint survives only if it is closed in both. For <span class="m">[−2, 3)</span> and <span class="m">(−1, 5]</span> the sum has domain <span class="m">(−1, 3)</span>, open at both ends.</p>
+    <p>A piecewise function is <b>continuous</b> at a join if the two rules agree there; it is <b>smooth</b> (differentiable) if the two derivatives also agree. Continuity does not imply smoothness — that gap is a standard extended-response part.</p>
+  </div>
+</section>
+<!-- ===================== 2 ===================== -->
+<section class="sec" id="s2">
+  <div class="sec-head"><span class="sec-no">2</span><h2>Algebra, number and structure</h2><span class="tab">Algebra</span></div>
+
+  <div class="grid2">
+    <div class="blk">
+      <h3>2.1 Index laws</h3>
+      <div class="eq plain">
+        <span class="m">a</span><sup class="m">m</sup><span class="m">a</span><sup class="m">n</sup><span class="m"> = a</span><sup class="m">m+n</sup> &nbsp;·&nbsp;
+        <span class="m">(a</span><sup class="m">m</sup><span class="m">)</span><sup class="m">n</sup><span class="m"> = a</span><sup class="m">mn</sup> &nbsp;·&nbsp;
+        <span class="m">a</span><sup>−<span class="m">n</span></sup><span class="m"> = </span><span class="fr"><span>1</span><span class="m">a</span><sup class="m">n</sup></span> &nbsp;·&nbsp;
+        <span class="m">a</span><sup><span class="fr"><span>1</span><span class="m">n</span></span></sup><span class="m"> = </span><sup class="m">n</sup><span class="rad"><span class="m">a</span></span>
+      </div>
+      <h3>2.2 Logarithm laws</h3>
+      <div class="eq plain">
+        <span class="m">log</span><sub class="m">a</sub><span class="m">(mn) = log</span><sub class="m">a</sub><span class="m">m + log</span><sub class="m">a</sub><span class="m">n</span><br>
+        <span class="m">log</span><sub class="m">a</sub><span class="m">(</span><span class="fr"><span class="m">m</span><span class="m">n</span></span><span class="m">) = log</span><sub class="m">a</sub><span class="m">m − log</span><sub class="m">a</sub><span class="m">n</span><br>
+        <span class="m">log</span><sub class="m">a</sub><span class="m">(m</span><sup class="m">p</sup><span class="m">) = p log</span><sub class="m">a</sub><span class="m">m</span><br>
+        <span class="m">log</span><sub class="m">a</sub><span class="m">m = </span><span class="fr"><span class="m">log</span><sub class="m">b</sub><span class="m">m</span><span class="m">log</span><sub class="m">b</sub><span class="m">a</span></span> &nbsp;(change of base)<br>
+        <span class="m">a</span><sup class="m">x</sup><span class="m"> = e</span><sup class="m">x log</sup><sub class="m">e</sub><sup class="m">(a)</sup>
+      </div>
+    </div>
+
+    <div class="blk">
+      <h3>2.3 Solving exponential and log equations</h3>
+      <ul class="tight">
+        <li><b>Hidden quadratic.</b> <span class="m">e</span><sup>2<span class="m">x</span></sup><span class="m"> − 8e</span><sup class="m">x</sup><span class="m"> + 7 = 0</span> → let <span class="m">u = e</span><sup class="m">x</sup>: <span class="m">(u − 1)(u − 7) = 0</span>, so <span class="m">x = 0</span> or <span class="m">log</span><sub class="m">e</sub><span class="m">7</span>. Discard any <span class="m">u ≤ 0</span> — <span class="m">e</span><sup class="m">x</sup> is strictly positive.</li>
+        <li><b>Compress, then equate.</b> <span class="m">2log</span><sub>3</sub><span class="m">(x − 4) + log</span><sub>3</sub><span class="m">(x) = 2</span> → <span class="m">(x − 4)</span><sup>2</sup><span class="m">x = 9</span>. Solve, then reject roots failing <span class="m">x &gt; 4</span>.</li>
+        <li><b>Take logs of both sides</b> when the unknown is an exponent with an awkward base.</li>
+      </ul>
+      <div class="box trap">
+        <span class="lbl">Trap — always check the domain last</span>
+        <p>Log equations routinely produce an algebraically valid root that makes an argument zero or negative. Rejecting it, <b>with the reason stated</b>, is usually a mark in itself.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="blk">
+    <h3>2.4 Polynomials</h3>
+    <p><b>Remainder theorem:</b> <span class="m">P (x)</span> divided by <span class="m">(x − a)</span> leaves remainder <span class="m">P (a)</span>. <b>Factor theorem:</b> <span class="m">(x − a)</span> is a factor ⇔ <span class="m">P (a) = 0</span>.</p>
+    <p><b>Matching coefficients</b> beats long division whenever the target form is handed to you. To write <span class="m">x</span><sup>3</sup><span class="m"> − x</span><sup>2</sup><span class="m"> − 16x − 20</span> as <span class="m">(x + d)</span><sup>2</sup><span class="m">(x − 5)</span>: the constant gives <span class="m">−5d</span><sup>2</sup><span class="m"> = −20</span>, so <span class="m">d = ±2</span>; the <span class="m">x</span><sup>2</sup> coefficient then picks <span class="m">d = 2</span>.</p>
+    <div class="box trap">
+      <span class="lbl">Trap — one coefficient is not enough</span>
+      <p>Stopping at <span class="m">d</span><sup>2</sup><span class="m"> = 4</span> and offering both values is an incomplete answer. A second coefficient is what fixes the sign.</p>
+    </div>
+    <p><b>Repeated factors and shape.</b> A factor to an even power <i>touches</i> the axis; to an odd power ≥ 3 it crosses with a stationary point of inflection. For <span class="m">(x + 2)</span><sup>3</sup><span class="m">(x − 5)</span>, the solution of <span class="m">y ≥ 0</span> is <span class="m">x ≤ −2</span> or <span class="m">x ≥ 5</span>.</p>
+  </div>
+
+  <div class="blk">
+    <h3>2.5 Simultaneous linear equations — the case split</h3>
+    <p>This appears in some form in almost every paper. For</p>
+    <div class="eq"><span class="m">a</span><sub>1</sub><span class="m">x + b</span><sub>1</sub><span class="m">y = c</span><sub>1</sub> &nbsp;and&nbsp; <span class="m">a</span><sub>2</sub><span class="m">x + b</span><sub>2</sub><span class="m">y = c</span><sub>2</sub></div>
+    <p>the determinant is <span class="m">Δ = a</span><sub>1</sub><span class="m">b</span><sub>2</sub><span class="m"> − a</span><sub>2</sub><span class="m">b</span><sub>1</sub>.</p>
+    <table>
+      <tr><th>Condition</th><th>Geometry</th><th>Solutions</th></tr>
+      <tr><td><span class="m">Δ ≠ 0</span></td><td>lines cross once</td><td>unique</td></tr>
+      <tr><td><span class="m">Δ = 0</span>, equations are multiples</td><td>same line</td><td>infinitely many</td></tr>
+      <tr><td><span class="m">Δ = 0</span>, not multiples</td><td>parallel, distinct</td><td>none</td></tr>
+    </table>
+    <div class="box method">
+      <span class="lbl">Method — never stop at the determinant</span>
+      <p>Setting <span class="m">Δ = 0</span> gives you <b>candidate</b> values, usually two. You must then substitute each one back and decide which gives no solutions and which gives infinitely many. The question always asks for one or the other, and the two roots split between them.</p>
+    </div>
+    <p class="asked"><b>How it's asked:</b> for <span class="m">ax + (2 − a)y = 3</span> with <span class="m">x + ay = </span><span class="fr"><span class="m">2a + 1</span><span>2</span></span>, both <span class="m">a = −2</span> and <span class="m">a = 1</span> kill the determinant — but <span class="m">a = 1</span> gives parallel distinct lines (no solutions) and only <span class="m">a = −2</span> collapses them onto the same line. Naming the wrong root is the single most common way to lose all three marks.</p>
+  </div>
+
+  <div class="blk">
+    <h3>2.6 Discriminant conditions</h3>
+    <div class="eq plain"><span class="m">Δ = b</span><sup>2</sup><span class="m"> − 4ac</span> &nbsp;·&nbsp; <span class="m">Δ &gt; 0</span> two roots &nbsp;·&nbsp; <span class="m">Δ = 0</span> one (repeated) &nbsp;·&nbsp; <span class="m">Δ &lt; 0</span> none</div>
+    <p>"<span class="m">f (x) &gt; 0</span> for all <span class="m">x</span>" with a positive leading coefficient means the parabola never touches the axis, so <span class="m">Δ &lt; 0</span> — <b>strictly</b>. Using <span class="m">Δ ≤ 0</span> admits the tangent case, where <span class="m">f (x) = 0</span> somewhere, and that is precisely the distractor.</p>
+    <p>For roots of opposite sign in <span class="m">x</span><sup>2</sup><span class="m"> + bx + c</span>, note the product of roots is <span class="m">c</span>: one positive and one negative needs <span class="m">c &lt; 0</span>. Sum of roots <span class="m">= −b</span>, product <span class="m">= c</span> is worth remembering — it turns several questions into one line.</p>
+  </div>
+</section>
+
+<!-- ===================== 3 ===================== -->
+<section class="sec" id="s3">
+  <div class="sec-head"><span class="sec-no">3</span><h2>Circular functions</h2><span class="tab">Trig</span></div>
+
+  <div class="grid2">
+    <div class="blk">
+      <h3>3.1 Exact values</h3>
+      <table class="num">
+        <tr><th><span class="m">θ</span></th><th>0</th><th><span class="fr"><span>π</span><span>6</span></span></th><th><span class="fr"><span>π</span><span>4</span></span></th><th><span class="fr"><span>π</span><span>3</span></span></th><th><span class="fr"><span>π</span><span>2</span></span></th></tr>
+        <tr><td><span class="m">sin</span></td><td>0</td><td><span class="fr"><span>1</span><span>2</span></span></td><td><span class="fr"><span class="rad"><span>2</span></span><span>2</span></span></td><td><span class="fr"><span class="rad"><span>3</span></span><span>2</span></span></td><td>1</td></tr>
+        <tr><td><span class="m">cos</span></td><td>1</td><td><span class="fr"><span class="rad"><span>3</span></span><span>2</span></span></td><td><span class="fr"><span class="rad"><span>2</span></span><span>2</span></span></td><td><span class="fr"><span>1</span><span>2</span></span></td><td>0</td></tr>
+        <tr><td><span class="m">tan</span></td><td>0</td><td><span class="fr"><span>1</span><span class="rad"><span>3</span></span></span></td><td>1</td><td><span class="rad"><span>3</span></span></td><td>undef</td></tr>
+      </table>
+      <p class="note"><b>CAST</b> — all positive in Q1; sine in Q2; tangent in Q3; cosine in Q4.</p>
+    </div>
+    <div class="blk">
+      <h3>3.2 Symmetry and identities</h3>
+      <div class="eq plain">
+        <span class="m">sin</span><sup>2</sup><span class="m">θ + cos</span><sup>2</sup><span class="m">θ = 1</span> &nbsp;·&nbsp; <span class="m">tan θ = </span><span class="fr"><span class="m">sin θ</span><span class="m">cos θ</span></span><br>
+        <span class="m">sin(−θ) = −sin θ</span> (odd) &nbsp;·&nbsp; <span class="m">cos(−θ) = cos θ</span> (even)<br>
+        <span class="m">sin(π − θ) = sin θ</span> &nbsp;·&nbsp; <span class="m">cos(π − θ) = −cos θ</span><br>
+        <span class="m">sin(</span><span class="fr"><span>π</span><span>2</span></span><span class="m"> − θ) = cos θ</span>
+      </div>
+      <div class="box trap">
+        <span class="lbl">Trap — which function flips sign</span>
+        <p><span class="m">sin</span> is odd, so <span class="m">f (0) = 2 sin(0 − </span><span class="fr"><span>π</span><span>6</span></span><span class="m">) = −1</span>, not <span class="m">+1</span>. <span class="m">cos</span> is even and would not change sign. Knowing which is which is worth more marks across a paper than any single result.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="blk">
+    <h3>3.3 Graphs of <span class="m">y = a sin(n(x − h)) + k</span></h3>
+    <table>
+      <tr><th>Feature</th><th>Value</th><th>Note</th></tr>
+      <tr><td>Amplitude</td><td><span class="m">|a|</span></td><td>a distance — <b>never negative</b></td></tr>
+      <tr><td>Period</td><td><span class="fr"><span>2π</span><span class="m">|n|</span></span> &nbsp;(<span class="m">tan</span>: <span class="fr"><span>π</span><span class="m">|n|</span></span>)</td><td>depends only on <span class="m">n</span></td></tr>
+      <tr><td>Range</td><td><span class="m">[k − |a|, k + |a|]</span></td><td>mean line <span class="m">y = k</span></td></tr>
+      <tr><td>Asymptotes (<span class="m">tan</span>)</td><td>where the argument <span class="m">= </span><span class="fr"><span>π</span><span>2</span></span><span class="m"> + kπ</span></td><td>solve for <span class="m">x</span> after dividing by <span class="m">π</span></td></tr>
+    </table>
+    <div class="box trap">
+      <span class="lbl">Trap — three at once</span>
+      <p>For <span class="m">f (x) = −</span><span class="fr"><span>1</span><span>2</span></span><span class="m"> sin(3x + 2π)</span>: the amplitude is <span class="fr"><span>1</span><span>2</span></span> (the minus reflects but does not make it negative), the period is <span class="fr"><span>2π</span><span>3</span></span> not <span class="fr"><span>π</span><span>3</span></span>, and the <span class="m">+ 2π</span> is a whole period so it changes <b>nothing at all</b>.</p>
+    </div>
+    <p class="asked"><b>How it's asked:</b> "a function with range <span class="m">[6, 12]</span> is…" — read it as <i>midpoint ± amplitude</i>: <span class="m">k = 9</span>, <span class="m">|a| = 3</span>. The value of <span class="m">n</span> is irrelevant to range, which is exactly what the distractors play on.</p>
+  </div>
+
+  <div class="blk">
+    <h3>3.4 Solving over a domain</h3>
+    <ul class="steps">
+      <li>Isolate the circular function.</li>
+      <li><b>Transform the domain</b> — substitute the endpoints of <span class="m">x</span>'s domain into the whole argument. This is the step that is skipped, and it is where the marks are.</li>
+      <li>Find the reference angle from the positive value, then use CAST for the quadrants.</li>
+      <li>List every solution for the argument inside its new domain, adding <span class="m">2πk</span> until you leave it.</li>
+      <li>Solve back to <span class="m">x</span>, and check each lands in the original domain.</li>
+    </ul>
+    <p>Predict the count first: an argument domain of width <span class="m">4π</span> is two full cycles, so expect four solutions of <span class="m">cos(2x) = −</span><span class="fr"><span>1</span><span>2</span></span> on <span class="m">[0, 2π]</span> — namely <span class="fr"><span>π</span><span>3</span></span>, <span class="fr"><span>2π</span><span>3</span></span>, <span class="fr"><span>4π</span><span>3</span></span>, <span class="fr"><span>5π</span><span>3</span></span>.</p>
+    <h4>General solutions</h4>
+    <div class="eq plain">
+      <span class="m">sin θ = a</span> ⇒ <span class="m">θ = 2kπ + sin</span><sup>−1</sup><span class="m">a</span> or <span class="m">(2k + 1)π − sin</span><sup>−1</sup><span class="m">a</span><br>
+      <span class="m">cos θ = a</span> ⇒ <span class="m">θ = 2kπ ± cos</span><sup>−1</sup><span class="m">a</span><br>
+      <span class="m">tan θ = a</span> ⇒ <span class="m">θ = kπ + tan</span><sup>−1</sup><span class="m">a</span>
+    </div>
+    <p class="note">A "subset of the general solution" question is checking whether the starting angle differs from a genuine solution by a whole multiple of the period — a family stepping by <span class="m">2π</span> can still be a subset of one stepping by <span class="m">π</span>.</p>
+  </div>
+</section>
+<!-- ===================== 4 ===================== -->
+<section class="sec" id="s4">
+  <div class="sec-head"><span class="sec-no">4</span><h2>Differentiation</h2><span class="tab">Calculus I</span></div>
+
+  <div class="grid2">
+    <div class="blk">
+      <h3>4.1 Standard derivatives</h3>
+      <table>
+        <tr><th><span class="m">f (x)</span></th><th><span class="m">f ′(x)</span></th></tr>
+        <tr><td><span class="m">x</span><sup class="m">n</sup></td><td><span class="m">n x</span><sup class="m">n−1</sup></td></tr>
+        <tr><td><span class="m">(ax + b)</span><sup class="m">n</sup></td><td><span class="m">a n (ax + b)</span><sup class="m">n−1</sup></td></tr>
+        <tr><td><span class="m">e</span><sup class="m">ax</sup></td><td><span class="m">a e</span><sup class="m">ax</sup></td></tr>
+        <tr><td><span class="m">log</span><sub class="m">e</sub><span class="m">(ax + b)</span></td><td><span class="fr"><span class="m">a</span><span class="m">ax + b</span></span></td></tr>
+        <tr><td><span class="m">sin(ax)</span></td><td><span class="m">a cos(ax)</span></td></tr>
+        <tr><td><span class="m">cos(ax)</span></td><td><span class="m">−a sin(ax)</span></td></tr>
+        <tr><td><span class="m">tan(ax)</span></td><td><span class="fr"><span class="m">a</span><span class="m">cos</span><sup>2</sup><span class="m">(ax)</span></span><span class="m"> = a sec</span><sup>2</sup><span class="m">(ax)</span></td></tr>
+        <tr><td><span class="m">a</span><sup class="m">x</sup></td><td><span class="m">a</span><sup class="m">x</sup><span class="m"> log</span><sub class="m">e</sub><span class="m">(a)</span></td></tr>
+      </table>
+      <p class="note">The last line is not on the formula sheet — derive it by writing <span class="m">a</span><sup class="m">x</sup><span class="m"> = e</span><sup class="m">x log</sup><sub class="m">e</sub><sup class="m">a</sup>.</p>
+    </div>
+    <div class="blk">
+      <h3>4.2 Choosing the rule</h3>
+      <p>Look at the <b>outermost</b> operation — the last thing you would do evaluating by hand.</p>
+      <table>
+        <tr><th>Structure</th><th>Rule</th></tr>
+        <tr><td>two things multiplied</td><td>product</td></tr>
+        <tr><td>one thing over another</td><td>quotient, or rewrite with a negative index</td></tr>
+        <tr><td>a function inside a function</td><td>chain</td></tr>
+        <tr><td>a sum of terms</td><td>term by term</td></tr>
+      </table>
+      <div class="eq plain">
+        <span class="m">(uv)′ = u′v + uv′</span><br>
+        <span class="m">(</span><span class="fr"><span class="m">u</span><span class="m">v</span></span><span class="m">)′ = </span><span class="fr"><span class="m">u′v − uv′</span><span class="m">v</span><sup>2</sup></span><br>
+        <span class="fr"><span class="m">dy</span><span class="m">dx</span></span><span class="m"> = </span><span class="fr"><span class="m">dy</span><span class="m">du</span></span><span class="m"> × </span><span class="fr"><span class="m">du</span><span class="m">dx</span></span>
+      </div>
+      <div class="box trap">
+        <span class="lbl">Trap — the inside derivative</span>
+        <p>Rewriting a surd as a power first makes chain-rule questions automatic. For <span class="m">6</span><span class="rad"><span class="m">x + 1</span></span><span class="m"> + 5</span> the constant vanishes and the 6 halves to 3, giving <span class="fr"><span>3</span><span class="rad"><span class="m">x + 1</span></span></span>. Forgetting to multiply by the derivative of the inside is the classic slip.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="blk">
+    <h3>4.3 Tangents, normals and gradients</h3>
+    <div class="eq">tangent at <span class="m">(a, f (a))</span>: &nbsp; <span class="m">y − f (a) = f ′(a)(x − a)</span> &nbsp;·&nbsp; normal gradient <span class="m">= −</span><span class="fr"><span>1</span><span class="m">f ′(a)</span></span></div>
+    <ul class="tight">
+      <li><b>Tangent with a given gradient:</b> set <span class="m">f ′(x) = m</span> and solve for the point(s) first.</li>
+      <li><b>Tangent through an external point:</b> write the tangent at a general <span class="m">x = a</span>, force it through the point, solve for <span class="m">a</span>.</li>
+      <li><b>Common tangent to two curves:</b> equal gradients <i>and</i> equal <span class="m">y</span> at the point of contact. Two congruent upward parabolas with vertices at the same height share the horizontal tangent through both vertices — gradient 0.</li>
+    </ul>
+  </div>
+
+  <div class="blk">
+    <h3>4.4 Stationary points and their nature</h3>
+    <p>Solve <span class="m">f ′(x) = 0</span>. A quotient is zero only when its <b>numerator</b> is — and if the denominator is an exponential it never vanishes, so it can never contribute a solution or change the sign.</p>
+    <table>
+      <tr><th>Sign of <span class="m">f ′</span> around <span class="m">x = a</span></th><th>Nature</th></tr>
+      <tr><td>− 0 +</td><td>local minimum</td></tr>
+      <tr><td>+ 0 −</td><td>local maximum</td></tr>
+      <tr><td>+ 0 + &nbsp;or&nbsp; − 0 −</td><td>stationary point of inflection</td></tr>
+    </table>
+    <p>A <b>sign table</b> earns the mark; an unsupported assertion earns nothing. Points of inflection generally are where <span class="m">f ″</span> changes sign — they need not be stationary.</p>
+    <div class="box method">
+      <span class="lbl">Method — substitute the exponential, not the log</span>
+      <p>If <span class="m">f ′ = 0</span> gives <span class="m">e</span><sup class="m">x</sup><span class="m"> = 4</span>, find the <span class="m">y</span>-value by substituting <span class="m">e</span><sup class="m">x</sup><span class="m"> = 4</span> (so <span class="m">e</span><sup>2<span class="m">x</span></sup><span class="m"> = 16</span>) rather than <span class="m">x = log</span><sub class="m">e</sub><span class="m">4</span>. One line instead of five.</p>
+    </div>
+  </div>
+
+  <div class="blk">
+    <h3>4.5 Increasing, decreasing and inequalities in <span class="m">f ′</span></h3>
+    <p><span class="m">f</span> is strictly increasing where <span class="m">f ′ &gt; 0</span>, strictly decreasing where <span class="m">f ′ &lt; 0</span>. Give answers as closed intervals where the endpoint is included in the domain.</p>
+    <p class="asked"><b>How it's asked:</b> a product such as <span class="m">(x</span><sup>2</sup><span class="m"> − x − 2) f ′(x) &gt; 0</span>, given only the location of the turning points. Factorise the quadratic, read the sign of <span class="m">f ′</span> off the shape of <span class="m">f</span>, and multiply the signs region by region across the values that split the line.</p>
+  </div>
+
+  <div class="blk">
+    <h3>4.6 Differentiability of piecewise functions</h3>
+    <p>At a join <span class="m">x = c</span>, <span class="m">h</span> is</p>
+    <ul class="tight">
+      <li><b>continuous</b> if the two rules give the same value at <span class="m">c</span>;</li>
+      <li><b>differentiable (smooth)</b> if additionally the two derivatives agree at <span class="m">c</span>.</li>
+    </ul>
+    <p>To <i>verify non-differentiability</i>, compute both one-sided derivatives and show they differ — quoting two different numbers is the whole answer.</p>
+  </div>
+
+  <div class="blk">
+    <h3>4.7 Rates of change</h3>
+    <div class="eq">average rate over <span class="m">[a, b]</span> <span class="m"> = </span><span class="fr"><span class="m">f (b) − f (a)</span><span class="m">b − a</span></span> &nbsp;(gradient of the chord)</div>
+    <p>Instantaneous rate is <span class="m">f ′</span> at the point (gradient of the tangent). Read the units off the context: metres per minute, dollars per day.</p>
+    <div class="box trap">
+      <span class="lbl">Trap — rank by the quotient, not the rise</span>
+      <p>Choosing the interval with the greatest average rate of change is not choosing the biggest climb. A longer interval with a larger rise can still lose to a shorter, steeper one — and can also win. Divide every time.</p>
+    </div>
+  </div>
+
+  <div class="blk">
+    <h3>4.8 Optimisation</h3>
+    <ul class="steps">
+      <li>Write the quantity to be optimised as a function of one variable, using the constraint to eliminate the other.</li>
+      <li>State the domain — the physical restriction is usually where a mark sits.</li>
+      <li>Differentiate, solve <span class="m">= 0</span>, and justify the nature.</li>
+      <li>Check the endpoints too: on a closed interval the extreme value may be there.</li>
+    </ul>
+    <p class="note">If the quantity is a square root, maximise the expression <i>inside</i> it — the square root is increasing, so the maximiser is the same and the algebra is far shorter. For <span class="m">A(k) = </span><span class="rad"><span class="m">12k</span><sup>2</sup><span class="m"> − k</span><sup>3</sup></span> on <span class="m">0 &lt; k &lt; 12</span>, differentiating <span class="m">12k</span><sup>2</sup><span class="m"> − k</span><sup>3</sup> gives <span class="m">k = 8</span>.</p>
+  </div>
+
+  <div class="blk">
+    <h3>4.9 Newton's method</h3>
+    <div class="eq"><span class="m">x</span><sub class="m">n+1</sub><span class="m"> = x</span><sub class="m">n</sub><span class="m"> − </span><span class="fr"><span class="m">f (x</span><sub class="m">n</sub><span class="m">)</span><span class="m">f ′(x</span><sub class="m">n</sub><span class="m">)</span></span></div>
+    <ul class="tight">
+      <li>Keep <b>full precision</b> between iterations and round only the final answer. Rounding <span class="m">x</span><sub>1</sub> first visibly changes <span class="m">x</span><sub>2</sub>.</li>
+      <li>The method fails or diverges where <span class="m">f ′(x</span><sub class="m">n</sub><span class="m">) = 0</span>, or where the tangent throws the estimate far from the root.</li>
+      <li>An algebraic version is common: with <span class="m">f (x) = e</span><sup>−<span class="m">x</span></sup><span class="m"> − 2</span> and <span class="m">x</span><sub>0</sub><span class="m"> = a</span>, one iteration gives <span class="m">x</span><sub>1</sub><span class="m"> = 1 + a − 2e</span><sup class="m">a</sup>.</li>
+    </ul>
+  </div>
+</section>
+
+<!-- ===================== 5 ===================== -->
+<section class="sec" id="s5">
+  <div class="sec-head"><span class="sec-no">5</span><h2>Antidifferentiation and integration</h2><span class="tab">Calculus II</span></div>
+
+  <div class="grid2">
+    <div class="blk">
+      <h3>5.1 Standard antiderivatives</h3>
+      <table>
+        <tr><th><span class="m">f (x)</span></th><th><span class="m">∫ f (x) dx</span></th></tr>
+        <tr><td><span class="m">x</span><sup class="m">n</sup>, <span class="m">n ≠ −1</span></td><td><span class="fr"><span>1</span><span class="m">n + 1</span></span><span class="m">x</span><sup class="m">n+1</sup><span class="m"> + c</span></td></tr>
+        <tr><td><span class="m">(ax + b)</span><sup class="m">n</sup></td><td><span class="fr"><span>1</span><span class="m">a(n + 1)</span></span><span class="m">(ax + b)</span><sup class="m">n+1</sup><span class="m"> + c</span></td></tr>
+        <tr><td><span class="fr"><span>1</span><span class="m">ax + b</span></span></td><td><span class="fr"><span>1</span><span class="m">a</span></span><span class="m"> log</span><sub class="m">e</sub><span class="m">|ax + b| + c</span></td></tr>
+        <tr><td><span class="m">e</span><sup class="m">ax</sup></td><td><span class="fr"><span>1</span><span class="m">a</span></span><span class="m">e</span><sup class="m">ax</sup><span class="m"> + c</span></td></tr>
+        <tr><td><span class="m">sin(ax)</span></td><td><span class="m">−</span><span class="fr"><span>1</span><span class="m">a</span></span><span class="m">cos(ax) + c</span></td></tr>
+        <tr><td><span class="m">cos(ax)</span></td><td><span class="fr"><span>1</span><span class="m">a</span></span><span class="m">sin(ax) + c</span></td></tr>
+      </table>
+    </div>
+    <div class="blk">
+      <h3>5.2 The <span class="m">n = −1</span> case</h3>
+      <p>A reciprocal of a <i>linear</i> expression antidifferentiates to a logarithm. The index rule cannot be used: raising <span class="m">−1</span> by one gives <span class="m">0</span> and a division by zero.</p>
+      <div class="eq"><span class="m">∫ </span><span class="fr"><span>1</span><span class="m">2x + 3</span></span><span class="m"> dx = </span><span class="fr"><span>1</span><span>2</span></span><span class="m"> log</span><sub class="m">e</sub><span class="m">|2x + 3| + c</span></div>
+      <p>The modulus can be dropped when the domain forces the argument positive — e.g. <span class="m">x &gt; −</span><span class="fr"><span>3</span><span>2</span></span>.</p>
+      <h3 style="margin-top:8px;">Finding <span class="m">c</span></h3>
+      <p>A boundary condition pins it down. With <span class="m">g ′(x) = </span><span class="fr"><span>1</span><span class="m">2x + 3</span></span> and <span class="m">g (1) = 0</span>: <span class="m">g (x) = </span><span class="fr"><span>1</span><span>2</span></span><span class="m"> log</span><sub class="m">e</sub><span class="m">(</span><span class="fr"><span class="m">2x + 3</span><span>5</span></span><span class="m">)</span>, combining the two logs with the subtraction law.</p>
+    </div>
+  </div>
+
+  <div class="blk">
+    <h3>5.3 Properties of the definite integral</h3>
+    <div class="eq plain">
+      <span class="m">∫</span><sub class="m">a</sub><sup class="m">b</sup><span class="m"> f = −∫</span><sub class="m">b</sub><sup class="m">a</sup><span class="m"> f</span> &nbsp;·&nbsp;
+      <span class="m">∫</span><sub class="m">a</sub><sup class="m">b</sup><span class="m"> f = ∫</span><sub class="m">a</sub><sup class="m">c</sup><span class="m"> f + ∫</span><sub class="m">c</sub><sup class="m">b</sup><span class="m"> f</span> &nbsp;·&nbsp;
+      <span class="m">∫</span><sub class="m">a</sub><sup class="m">a</sup><span class="m"> f = 0</span><br>
+      <span class="m">∫ (p f + q g) = p ∫ f + q ∫ g</span> &nbsp;(linearity)
+    </div>
+    <p class="asked"><b>How it's asked:</b> given <span class="m">∫</span><sub>3</sub><sup>10</sup><span class="m"> f = C</span> and <span class="m">∫</span><sub>7</sub><sup>10</sup><span class="m"> f = D</span>, find <span class="m">∫</span><sub>7</sub><sup>3</sup><span class="m"> f</span>. Split at 7 to build the interval you have, then <b>reverse the limits</b> and change the sign: the answer is <span class="m">D − C</span>. Forgetting the reversal gives <span class="m">C − D</span>, which is always an option.</p>
+    <div class="box method">
+      <span class="lbl">Method — extending the limit and getting less</span>
+      <p>If <span class="m">∫</span><sub>1</sub><sup>2</sup><span class="m"> f &gt; ∫</span><sub>1</sub><sup>3</sup><span class="m"> f</span>, then <span class="m">∫</span><sub>2</sub><sup>3</sup><span class="m"> f &lt; 0</span> — the added strip contributed <b>negative signed area</b>. Everything outside <span class="m">[2, 3]</span> is irrelevant.</p>
+    </div>
+  </div>
+
+  <div class="blk">
+    <h3>5.4 Signed area, total area, area between curves</h3>
+    <ul class="tight">
+      <li><b>Signed area</b> is what the integral gives; regions below the axis count negative.</li>
+      <li><b>Total area</b> requires splitting at every <span class="m">x</span>-intercept and adding the absolute values.</li>
+      <li><b>Between two curves:</b> <span class="m">∫ (upper − lower) dx</span>. Identify which is which with a test point <i>inside</i> the interval, and split wherever they cross.</li>
+    </ul>
+    <p class="note">If both curves are known at the limits, an exponential term can often be evaluated without touching an exponential: the antiderivative of <span class="m">A e</span><sup class="m">kx</sup> is <span class="fr"><span class="m">g (x)</span><span class="m">k</span></span>, and <span class="m">g</span> is given at both ends.</p>
+  </div>
+
+  <div class="grid2">
+    <div class="blk">
+      <h3>5.5 Average value of a function</h3>
+      <div class="eq"><span class="m">avg = </span><span class="fr"><span>1</span><span class="m">b − a</span></span><span class="m"> ∫</span><sub class="m">a</sub><sup class="m">b</sup><span class="m"> f (x) dx</span></div>
+      <div class="box trap">
+        <span class="lbl">Trap — two of them</span>
+        <p>This is <b>not</b> the mean of a random variable — no probability is involved. And the answer can be <b>negative</b>: for <span class="m">4x</span><sup>3</sup><span class="m"> − 3x</span><sup>4</sup> on <span class="m">[0, 2]</span> it is <span class="m">−</span><span class="fr"><span>8</span><span>5</span></span>, because past <span class="m">x = </span><span class="fr"><span>4</span><span>3</span></span> the area below the axis outweighs the area above.</p>
+      </div>
+    </div>
+    <div class="blk">
+      <h3>5.6 The trapezium rule</h3>
+      <div class="eq"><span class="m">A ≈ </span><span class="fr"><span class="m">h</span><span>2</span></span><span class="m">( y</span><sub>0</sub><span class="m"> + 2y</span><sub>1</sub><span class="m"> + … + 2y</span><sub class="m">n−1</sub><span class="m"> + y</span><sub class="m">n</sub><span class="m"> )</span></div>
+      <p><span class="m">n</span> strips need <span class="m">n + 1</span> ordinates; every <b>interior</b> ordinate is counted twice.</p>
+      <p><b>Direction of the error</b> follows concavity: concave up (<span class="m">f ″ &gt; 0</span>) ⇒ chords sit above the curve ⇒ the estimate is <b>too large</b>. Concave down ⇒ too small. The number of strips does not affect the direction.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== 6 ===================== -->
+<section class="sec" id="s6">
+  <div class="sec-head"><span class="sec-no">6</span><h2>Discrete and continuous random variables</h2><span class="tab">Probability</span></div>
+
+  <div class="grid2">
+    <div class="blk">
+      <h3>6.1 Discrete random variables</h3>
+      <p>A probability distribution is valid when every <span class="m">p(x) ≥ 0</span> and <span class="m">Σ p(x) = 1</span>. That second condition is how an unknown in the table is found.</p>
+      <table>
+        <tr><th>Quantity</th><th>Formula</th></tr>
+        <tr><td><span class="m">E(X) = μ</span></td><td><span class="m">Σ x · p(x)</span></td></tr>
+        <tr><td><span class="m">E(g(X))</span></td><td><span class="m">Σ g(x) · p(x)</span></td></tr>
+        <tr><td><span class="m">Var(X) = σ</span><sup>2</sup></td><td><span class="m">E(X</span><sup>2</sup><span class="m">) − μ</span><sup>2</sup><span class="m"> = Σ x</span><sup>2</sup><span class="m">p(x) − μ</span><sup>2</sup></td></tr>
+        <tr><td><span class="m">sd(X) = σ</span></td><td><span class="rad">√<span><span class="m">Var(X)</span></span></span></td></tr>
+      </table>
+      <p class="asked"><b>How it's asked:</b> a table with one or two unknowns plus a stated mean. Two equations — the probabilities sum to 1, and <span class="m">Σ x p(x)</span> equals the given mean — solve simultaneously.</p>
+    </div>
+
+    <div class="blk">
+      <h3>6.2 Linear change of variable</h3>
+      <div class="eq plain">
+        <span class="m">E(aX + b) = a E(X) + b</span><br>
+        <span class="m">Var(aX + b) = a</span><sup>2</sup><span class="m"> Var(X)</span> &nbsp;·&nbsp; <span class="m">sd(aX + b) = |a| sd(X)</span>
+      </div>
+      <div class="box trap">
+        <span class="lbl">Trap</span>
+        <p>The <span class="m">+ b</span> shifts the mean but leaves the spread alone, and the <span class="m">a</span> is <b>squared</b> in the variance but only in absolute value in the standard deviation. An option set will offer <span class="m">a Var(X)</span>, <span class="m">a Var(X) + b</span> and <span class="m">a</span><sup>2</sup><span class="m">Var(X) + b</span> alongside the right answer.</p>
+      </div>
+      <p class="note">These hold for continuous variables identically — nothing about them depends on the variable being discrete.</p>
+    </div>
+  </div>
+
+  <div class="blk">
+    <h3>6.3 The binomial distribution</h3>
+    <div class="grid2">
+      <div>
+        <p><span class="m">X ~ Bi(n, p)</span> requires all four: a <b>fixed</b> number of trials, exactly <b>two</b> outcomes each, <b>independent</b> trials, and <b>constant</b> <span class="m">p</span>. Sampling without replacement from a small population fails independence — that is the usual "which of these is <i>not</i> binomial" answer.</p>
+        <div class="eq"><span class="m">Pr(X = x) = </span><sup class="m">n</sup><span class="m">C</span><sub class="m">x</sub><span class="m"> p</span><sup class="m">x</sup><span class="m">(1 − p)</span><sup class="m">n−x</sup></div>
+        <div class="eq plain"><span class="m">E(X) = np</span> &nbsp;·&nbsp; <span class="m">Var(X) = np(1 − p)</span> &nbsp;·&nbsp; <span class="m">sd(X) = </span><span class="rad">√<span><span class="m">np(1 − p)</span></span></span></div>
+      </div>
+      <div>
+        <table>
+          <tr><th>Phrase</th><th>Compute</th></tr>
+          <tr><td>at least one</td><td><span class="m">1 − Pr(X = 0)</span></td></tr>
+          <tr><td>at most <span class="m">k</span></td><td><span class="m">Pr(X ≤ k)</span></td></tr>
+          <tr><td>more than <span class="m">k</span></td><td><span class="m">1 − Pr(X ≤ k)</span></td></tr>
+          <tr><td>fewer than <span class="m">k</span></td><td><span class="m">Pr(X ≤ k − 1)</span></td></tr>
+          <tr><td>at least <span class="m">k</span></td><td><span class="m">1 − Pr(X ≤ k − 1)</span></td></tr>
+        </table>
+      </div>
+    </div>
+    <p class="asked"><b>How it's asked:</b> <i>find the smallest <span class="m">n</span> for which the probability of at least one success exceeds 0.9.</i> Set <span class="m">1 − (1 − p)</span><sup class="m">n</sup><span class="m"> &gt; 0.9</span>, solve for <span class="m">n</span> with logarithms or CAS, then <b>round up</b> to the next integer — <span class="m">n</span> is a count, so the ceiling is always the answer even when the solved value is 6.02.</p>
+    <div class="box method">
+      <span class="lbl">Method — the mode of a binomial</span>
+      <p>Ask for the most likely number of successes and you want the <span class="m">x</span> maximising <span class="m">Pr(X = x)</span>. Evaluate the two integers either side of <span class="m">np</span> and compare; do not just round <span class="m">np</span>.</p>
+    </div>
+  </div>
+
+  <div class="blk">
+    <h3>6.4 Conditional probability</h3>
+    <div class="eq"><span class="m">Pr(A | B) = </span><span class="fr"><span class="m">Pr(A ∩ B)</span><span class="m">Pr(B)</span></span></div>
+    <p><span class="m">A</span> and <span class="m">B</span> are independent exactly when <span class="m">Pr(A ∩ B) = Pr(A) Pr(B)</span>, equivalently <span class="m">Pr(A | B) = Pr(A)</span>. Mutually exclusive events with non-zero probability are never independent.</p>
+    <div class="box trap">
+      <span class="lbl">Trap — the intersection, not the numerator you were handed</span>
+      <p>For <span class="m">Pr(X &lt; 4 | X ≥ 2)</span> the numerator is <span class="m">Pr(2 ≤ X &lt; 4)</span>, not <span class="m">Pr(X &lt; 4)</span>. Write the intersection out as an explicit range before dividing. Note also that the complement of <span class="m">X &lt; 4</span> given <span class="m">X ≥ 2</span> is <span class="m">X ≥ 4</span> given <span class="m">X ≥ 2</span> — the two conditional probabilities sum to 1, which is a fast check.</p>
+    </div>
+  </div>
+
+  <div class="grid2">
+    <div class="blk">
+      <h3>6.5 Continuous random variables — the pdf</h3>
+      <p><span class="m">f</span> is a probability density function on <span class="m">[a, b]</span> when both hold:</p>
+      <ul class="tight">
+        <li><span class="m">f (x) ≥ 0</span> for <b>all</b> real <span class="m">x</span> (zero outside the support);</li>
+        <li><span class="m">∫</span><sub class="m">a</sub><sup class="m">b</sup><span class="m"> f (x) dx = 1</span>.</li>
+      </ul>
+      <div class="eq"><span class="m">Pr(c ≤ X ≤ d) = ∫</span><sub class="m">c</sub><sup class="m">d</sup><span class="m"> f (x) dx</span></div>
+      <p>Because a single point has zero area, <span class="m">Pr(X = c) = 0</span> and <span class="m">&lt;</span> may be swapped for <span class="m">≤</span> freely. <b>Never</b> do that with a discrete variable.</p>
+    </div>
+    <div class="blk">
+      <h3>6.6 Finding the constant</h3>
+      <p>Integrate the density over its support, set the result to 1, solve. If the resulting equation is quadratic you will get two values — <b>reject any that make <span class="m">f</span> negative somewhere on the support</b>, and reject any that fall outside a stated domain for the parameter.</p>
+      <div class="box trap">
+        <span class="lbl">Trap</span>
+        <p>Read the density exactly as printed. A squared factor, a squared whole density, or a support that is <span class="m">[0, a]</span> rather than <span class="m">[0, 1]</span> changes the integral completely, and the wrong reading almost always still produces a clean-looking constant.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="blk">
+    <h3>6.7 Continuous measures of centre and spread</h3>
+    <div class="grid3">
+      <div>
+        <h4>Mean and variance</h4>
+        <div class="eq plain"><span class="m">μ = ∫ x f (x) dx</span><br><span class="m">Var(X) = ∫ x</span><sup>2</sup><span class="m">f (x) dx − μ</span><sup>2</sup></div>
+        <p class="note">Both integrals run over the whole support.</p>
+      </div>
+      <div>
+        <h4>Median <span class="m">m</span></h4>
+        <div class="eq plain"><span class="m">∫</span><sub class="m">a</sub><sup class="m">m</sup><span class="m"> f (x) dx = </span><span class="fr"><span>1</span><span>2</span></span></div>
+        <p class="note">Equivalently <span class="m">F(m) = 0.5</span>. Percentiles work the same way with 0.5 replaced.</p>
+      </div>
+      <div>
+        <h4>Mode</h4>
+        <p>The <span class="m">x</span> maximising <span class="m">f</span>. Solve <span class="m">f ′(x) = 0</span> and <b>also test the endpoints</b> of the support — a density increasing throughout has its mode at the right endpoint.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="blk">
+    <h3>6.8 The cumulative distribution function</h3>
+    <div class="eq"><span class="m">F(x) = Pr(X ≤ x) = ∫</span><sub class="m">a</sub><sup class="m">x</sup><span class="m"> f (t) dt</span></div>
+    <p>Written in full it is piecewise, and the outer branches are part of the answer:</p>
+    <div class="eq plain"><span class="m">F(x) = 0</span> for <span class="m">x &lt; a</span>; the integral for <span class="m">a ≤ x ≤ b</span>; <span class="m">1</span> for <span class="m">x &gt; b</span>.</div>
+    <p>Then <span class="m">Pr(c &lt; X &lt; d) = F(d) − F(c)</span>, and <span class="m">f (x) = F ′(x)</span> — differentiating the cdf recovers the density, which is worth remembering when a question hands you <span class="m">F</span> and asks for a mode or a mean.</p>
+  </div>
+</section>
+
+<!-- ===================== 7 ===================== -->
+<section class="sec" id="s7">
+  <div class="sec-head"><span class="sec-no">7</span><h2>The normal distribution</h2><span class="tab">Normal</span></div>
+
+  <div class="grid2">
+    <div class="blk">
+      <h3>7.1 Shape and the empirical rule</h3>
+      <p><span class="m">X ~ N(μ, σ</span><sup>2</sup><span class="m">)</span> is symmetric about <span class="m">x = μ</span>, where its mean, median and mode all sit. Total area 1, so each half is 0.5. Points of inflection at <span class="m">μ ± σ</span>.</p>
+      <table>
+        <tr><th>Interval</th><th>Probability</th></tr>
+        <tr><td><span class="m">μ ± σ</span></td><td class="num">≈ 0.68</td></tr>
+        <tr><td><span class="m">μ ± 2σ</span></td><td class="num">≈ 0.95</td></tr>
+        <tr><td><span class="m">μ ± 3σ</span></td><td class="num">≈ 0.997</td></tr>
+      </table>
+      <p class="note">One tail beyond <span class="m">μ + 2σ</span> is <span class="m">(1 − 0.95)/2 = 0.025</span>. Halving is the step that gets dropped.</p>
+    </div>
+
+    <div class="blk">
+      <h3>7.2 Standardisation</h3>
+      <div class="eq"><span class="m">Z = </span><span class="fr"><span class="m">X − μ</span><span class="m">σ</span></span><span class="m">,&nbsp; Z ~ N(0, 1)</span></div>
+      <p>A <span class="m">z</span>-score is a count of standard deviations from the mean, sign included. It is the only way to compare values from two different normal distributions — a mark of 72 with <span class="m">z = 1.4</span> beats a mark of 80 with <span class="m">z = 0.9</span>.</p>
+      <div class="box trap">
+        <span class="lbl">Trap — variance is not standard deviation</span>
+        <p><span class="m">N(μ, σ</span><sup>2</sup><span class="m">)</span> names the <b>variance</b> in the second slot; every calculator and every formula wants <span class="m">σ</span>. "Variance 9" means <span class="m">σ = 3</span>. Distractors are always built from the un-square-rooted value.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="blk">
+    <h3>7.3 Inverse normal — going from a probability back to a value</h3>
+    <p>Given <span class="m">Pr(X &lt; k) = p</span>, the inverse normal returns <span class="m">k</span> directly. Given a <b>right</b> tail <span class="m">Pr(X &gt; k) = p</span>, feed in <span class="m">1 − p</span>: technology works from the left tail unless told otherwise.</p>
+    <ul class="steps">
+      <li>Sketch the curve and shade the region named. This single step prevents almost every inverse-normal error.</li>
+      <li>Convert the shading to a <b>left</b>-tail area.</li>
+      <li>Apply the inverse normal with <span class="m">μ</span> and <span class="m">σ</span> (not <span class="m">σ</span><sup>2</sup>).</li>
+      <li>Sanity-check the side: an area below 0.5 must return a value below <span class="m">μ</span>.</li>
+    </ul>
+    <p class="asked"><b>How it's asked:</b> <i>find <span class="m">k</span> such that 10% of components exceed <span class="m">k</span> mm.</i> The shaded region is the right 10%, so the left area is 0.9.</p>
+  </div>
+
+  <div class="grid2">
+    <div class="blk">
+      <h3>7.4 Recovering <span class="m">μ</span> or <span class="m">σ</span></h3>
+      <p>One unknown needs one probability statement; two unknowns need two.</p>
+      <ul class="steps">
+        <li>Turn each probability into a <span class="m">z</span>-value with the inverse standard normal.</li>
+        <li>Write <span class="m">z = (x − μ)/σ</span> for each.</li>
+        <li>Solve the resulting linear system.</li>
+      </ul>
+      <p class="note">Keep the <span class="m">z</span>-values unrounded through the algebra; rounding at 1.96 or 2.05 propagates badly into a two-equation solve.</p>
+    </div>
+    <div class="blk">
+      <h3>7.5 Normal feeding a binomial</h3>
+      <p>A very common Section B chain: a normal probability becomes the success probability of a binomial.</p>
+      <ul class="steps">
+        <li>Compute <span class="m">p = Pr(X &gt; c)</span> from the normal model.</li>
+        <li>Carry <b>full precision</b> into <span class="m">Y ~ Bi(n, p)</span>.</li>
+        <li>Answer the binomial question and round only at the end.</li>
+      </ul>
+      <div class="box trap">
+        <span class="lbl">Trap</span>
+        <p>Rounding <span class="m">p</span> to two decimals before the binomial step routinely shifts the fourth decimal of the final answer past the tolerance the marking scheme allows.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="blk">
+    <h3>7.6 Conditional and symmetric normal probabilities</h3>
+    <p>Nothing new — <span class="m">Pr(X &gt; b | X &gt; a) = Pr(X &gt; b) / Pr(X &gt; a)</span> for <span class="m">b &gt; a</span>, since the intersection is just <span class="m">X &gt; b</span>. Symmetry gives free equalities: <span class="m">Pr(X &lt; μ − c) = Pr(X &gt; μ + c)</span>, and if <span class="m">Pr(X &lt; a) = Pr(X &gt; b)</span> then <span class="m">μ</span> is the midpoint <span class="m">(a + b)/2</span>. That midpoint fact turns a two-unknown problem into a one-unknown problem instantly.</p>
+  </div>
+</section>
+
+<!-- ===================== 8 ===================== -->
+<section class="sec" id="s8">
+  <div class="sec-head"><span class="sec-no">8</span><h2>Statistical inference</h2><span class="tab">Inference</span></div>
+
+  <div class="grid2">
+    <div class="blk">
+      <h3>8.1 The three quantities, kept apart</h3>
+      <table>
+        <tr><th>Symbol</th><th>Is</th><th>Status</th></tr>
+        <tr><td><span class="m">p</span></td><td>population proportion</td><td>fixed, unknown</td></tr>
+        <tr><td><span class="m">P̂</span></td><td>sample proportion, <span class="m">X / n</span></td><td>a random variable</td></tr>
+        <tr><td><span class="m">p̂</span></td><td>one observed value of it</td><td>a number</td></tr>
+      </table>
+      <p>Everything in this section follows from keeping these three straight. <span class="m">p</span> never varies; <span class="m">P̂</span> is the thing with a distribution; <span class="m">p̂</span> is one draw from that distribution.</p>
+    </div>
+
+    <div class="blk">
+      <h3>8.2 The distribution of <span class="m">P̂</span></h3>
+      <div class="eq plain">
+        <span class="m">E(P̂) = p</span> &nbsp;·&nbsp; <span class="m">sd(P̂) = </span><span class="rad">√<span><span class="fr"><span class="m">p(1 − p)</span><span class="m">n</span></span></span></span>
+      </div>
+      <p><span class="m">P̂</span> is <b>unbiased</b>: on average it lands on <span class="m">p</span>. Its spread shrinks with <span class="m">√n</span> — to halve the standard deviation you need <b>four times</b> the sample.</p>
+      <div class="box trap">
+        <span class="lbl">Trap</span>
+        <p>Since <span class="m">X ~ Bi(n, p)</span> has <span class="m">sd = √(np(1 − p))</span>, dividing by <span class="m">n</span> gives <span class="m">√(p(1 − p)/n)</span> — the <span class="m">n</span> ends up <b>inside</b> the root and downstairs. Option sets always carry the version with <span class="m">n</span> outside.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="blk">
+    <h3>8.3 The exact sampling distribution for small <span class="m">n</span></h3>
+    <p>For a small sample, <span class="m">P̂</span> is discrete and every value is listed exactly: the possible values are <span class="m">0, 1/n, 2/n, …, 1</span>, and</p>
+    <div class="eq"><span class="m">Pr(P̂ = </span><span class="fr"><span class="m">k</span><span class="m">n</span></span><span class="m">) = Pr(X = k) = </span><sup class="m">n</sup><span class="m">C</span><sub class="m">k</sub><span class="m"> p</span><sup class="m">k</sup><span class="m">(1 − p)</span><sup class="m">n−k</sup></div>
+    <p class="asked"><b>How it's asked:</b> <i>a sample of 4 is drawn from a population in which <span class="m">p = 0.3</span>; find <span class="m">Pr(P̂ ≥ 0.5)</span>.</i> Translate the proportion back to a count — <span class="m">P̂ ≥ 0.5</span> means <span class="m">X ≥ 2</span> — then answer it as an ordinary binomial. Do not reach for a normal approximation; <span class="m">n = 4</span> is nowhere near large enough, and the exam expects the exact value.</p>
+  </div>
+
+  <div class="blk">
+    <h3>8.4 Confidence intervals for <span class="m">p</span></h3>
+    <div class="eq"><span class="m">( p̂ − z </span><span class="rad">√<span><span class="fr"><span class="m">p̂(1 − p̂)</span><span class="m">n</span></span></span></span><span class="m">,&nbsp; p̂ + z </span><span class="rad">√<span><span class="fr"><span class="m">p̂(1 − p̂)</span><span class="m">n</span></span></span></span><span class="m"> )</span></div>
+    <div class="grid3">
+      <div>
+        <table>
+          <tr><th>Level</th><th><span class="m">z</span></th></tr>
+          <tr><td>90%</td><td class="num">1.645</td></tr>
+          <tr><td>95%</td><td class="num">1.96</td></tr>
+          <tr><td>99%</td><td class="num">2.576</td></tr>
+        </table>
+      </div>
+      <div>
+        <h4>Margin of error</h4>
+        <div class="eq plain"><span class="m">M = z </span><span class="rad">√<span><span class="fr"><span class="m">p̂(1 − p̂)</span><span class="m">n</span></span></span></span></div>
+        <p class="note">The interval width is <span class="m">2M</span>. Half the width, not the whole width, is the margin.</p>
+      </div>
+      <div>
+        <h4>Sample size for a target <span class="m">M</span></h4>
+        <div class="eq plain"><span class="m">n ≥ </span><span class="fr"><span class="m">z</span><sup>2</sup><span class="m"> p̂(1 − p̂)</span><span class="m">M</span><sup>2</sup></span></div>
+        <p class="note">Always <b>round up</b>. A worst case uses <span class="m">p̂ = 0.5</span>, which maximises <span class="m">p̂(1 − p̂)</span>.</p>
+      </div>
+    </div>
+    <p>Note the estimate <span class="m">p̂</span> — not <span class="m">p</span> — appears inside the root: the whole point is that <span class="m">p</span> is unknown.</p>
+  </div>
+
+  <div class="blk">
+    <h3>8.5 Interpreting a confidence interval</h3>
+    <div class="box trap">
+      <span class="lbl">Trap — the interpretation mark</span>
+      <p>A 95% confidence interval does <b>not</b> mean "there is a 95% probability that <span class="m">p</span> lies in this interval". <span class="m">p</span> is a fixed number; it is either in this particular interval or it is not. The correct statement is about the <i>procedure</i>: if many samples of the same size were taken and an interval computed from each, about 95% of those intervals would contain <span class="m">p</span>.</p>
+    </div>
+    <ul class="tight">
+      <li>An interval containing a claimed value gives <b>no evidence against</b> that claim; an interval excluding it gives evidence against it.</li>
+      <li>Raising the confidence level <b>widens</b> the interval (<span class="m">z</span> grows). Raising <span class="m">n</span> <b>narrows</b> it.</li>
+      <li>Two different samples give two different intervals — that variation is the sampling distribution at work, not an error.</li>
+    </ul>
+  </div>
+</section>
+
+<!-- ===================== 9 ===================== -->
+<section class="sec" id="s9">
+  <div class="sec-head"><span class="sec-no">9</span><h2>Algorithms and pseudocode</h2><span class="tab">Algorithms</span></div>
+
+  <div class="grid2">
+    <div class="blk">
+      <h3>9.1 Reading the notation</h3>
+      <table>
+        <tr><th>Written</th><th>Means</th></tr>
+        <tr><td><span class="m">a ← 3</span></td><td>assign 3 to <span class="m">a</span> (not an equation)</td></tr>
+        <tr><td><b>while</b> <i>cond</i> <b>do</b></td><td>test <b>before</b> each pass; may run zero times</td></tr>
+        <tr><td><b>for</b> <span class="m">i</span> <b>from</b> 1 <b>to</b> <span class="m">n</span></td><td>runs a known number of times, endpoints included</td></tr>
+        <tr><td><b>if … then … else</b></td><td>exactly one branch executes</td></tr>
+        <tr><td>indentation</td><td>defines what is inside the loop</td></tr>
+      </table>
+      <p class="note">A statement sitting outside the indented block runs <b>once</b>, after the loop finishes — a favourite way to make two nearly identical algorithms behave differently.</p>
+    </div>
+
+    <div class="blk">
+      <h3>9.2 Trace tables</h3>
+      <p>Do not simulate in your head. Rule a column per variable plus one for the loop test, and fill in a row per pass.</p>
+      <table>
+        <tr><th>Pass</th><th><span class="m">i</span></th><th><span class="m">s</span></th><th>test</th></tr>
+        <tr><td class="num">0</td><td class="num">1</td><td class="num">0</td><td>—</td></tr>
+        <tr><td class="num">1</td><td class="num">2</td><td class="num">1</td><td>true</td></tr>
+        <tr><td class="num">2</td><td class="num">3</td><td class="num">3</td><td>true</td></tr>
+        <tr><td class="num">3</td><td class="num">4</td><td class="num">6</td><td>false — exit</td></tr>
+      </table>
+      <div class="box trap">
+        <span class="lbl">Trap — the value on exit</span>
+        <p>The loop stops when the condition first <b>fails</b>, so the counter's final value is one step <i>past</i> the last one that satisfied it. Asked "what is <span class="m">i</span> when the loop ends", the answer is the failing value, not the last passing one.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="blk">
+    <h3>9.3 The bisection method</h3>
+    <div class="grid2">
+      <div>
+        <p>Finds a root of a continuous <span class="m">f</span> on <span class="m">[a, b]</span> when <span class="m">f (a)</span> and <span class="m">f (b)</span> have <b>opposite signs</b> — that is, <span class="m">f (a) · f (b) &lt; 0</span>. Without a sign change the method cannot start.</p>
+        <ul class="steps">
+          <li>Let <span class="m">m = (a + b)/2</span>.</li>
+          <li>If <span class="m">f (a) · f (m) &lt; 0</span> the root is in <span class="m">[a, m]</span>, so replace <span class="m">b</span> with <span class="m">m</span>; otherwise replace <span class="m">a</span> with <span class="m">m</span>.</li>
+          <li>Repeat until the interval is shorter than the required accuracy.</li>
+        </ul>
+      </div>
+      <div>
+        <div class="eq">width after <span class="m">n</span> steps <span class="m"> = </span><span class="fr"><span class="m">b − a</span><span>2</span><sup class="m">n</sup></span></div>
+        <p>So the number of iterations needed for a tolerance <span class="m">ε</span> comes from <span class="m">(b − a)/2</span><sup class="m">n</sup><span class="m"> &lt; ε</span>. Bisection always converges, but slowly — one binary digit per pass.</p>
+        <p class="note">A repeated even root (the curve touches the axis without crossing) has no sign change, so bisection misses it entirely. That is a standard multiple-choice distractor.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="blk">
+    <h3>9.4 Newton's method</h3>
+    <div class="eq"><span class="m">x</span><sub class="m">n+1</sub><span class="m"> = x</span><sub class="m">n</sub><span class="m"> − </span><span class="fr"><span class="m">f (x</span><sub class="m">n</sub><span class="m">)</span><span class="m">f ′(x</span><sub class="m">n</sub><span class="m">)</span></span></div>
+    <div class="grid2">
+      <div>
+        <p>Geometrically: follow the tangent at <span class="m">x</span><sub class="m">n</sub> down to the <span class="m">x</span>-axis. It converges much faster than bisection when it converges at all.</p>
+        <p><b>Worked pass.</b> For <span class="m">f (x) = sin(x) + 1</span> from <span class="m">x</span><sub>0</sub><span class="m"> = 2π/3</span>: <span class="m">f = 1.866</span>, <span class="m">f ′ = −0.5</span>, so <span class="m">x</span><sub>1</sub><span class="m"> = 5.827</span>; then <span class="m">f = 0.545</span>, <span class="m">f ′ = 0.891</span>, giving <span class="m">x</span><sub>2</sub><span class="m"> ≈ 5.2</span>. Note the first step throws the estimate a long way — a near-zero derivative does that.</p>
+      </div>
+      <div>
+        <div class="box trap">
+          <span class="lbl">Trap — when it fails</span>
+          <ul class="tight">
+            <li><span class="m">f ′(x</span><sub class="m">n</sub><span class="m">) = 0</span>: the tangent is horizontal and the next term is undefined. A starting value at a stationary point breaks it immediately.</li>
+            <li>A small <span class="m">f ′</span> flings the iterate far away, often to a <b>different root</b> than the one intended.</li>
+            <li>It can cycle or diverge; unlike bisection there is no guarantee.</li>
+          </ul>
+        </div>
+        <p class="note">Questions are usually "perform two iterations, giving the answer to 2 decimal places" — keep every intermediate value at full calculator precision and round once, at the end.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="blk">
+    <h3>9.5 Accumulation algorithms</h3>
+    <p>Numerical integration appears as pseudocode: a running total <span class="m">A ← 0</span>, a step <span class="m">h ← (b − a)/n</span>, and a loop adding one contribution per pass.</p>
+    <div class="grid3">
+      <div><h4>Left rectangles</h4><p><span class="m">A ← A + h · f (x)</span> then <span class="m">x ← x + h</span>. Underestimates an increasing function.</p></div>
+      <div><h4>Right rectangles</h4><p><span class="m">x ← x + h</span> then <span class="m">A ← A + h · f (x)</span>. Overestimates an increasing function.</p></div>
+      <div><h4>Trapezium</h4><p><span class="m">A ← A + </span><span class="fr"><span class="m">h</span><span>2</span></span><span class="m">( f (x) + f (x + h) )</span>. Error direction set by concavity (§5.6).</p></div>
+    </div>
+    <p class="note">The order of the two lines inside the loop is the whole difference between the left and right rules. Read the indentation carefully before deciding which one is on the page.</p>
+  </div>
+</section>
+
+<!-- ===================== 10 ===================== -->
+<section class="sec" id="s10">
+  <div class="sec-head"><span class="sec-no">10</span><h2>Exam craft and recurring traps</h2><span class="tab">Craft</span></div>
+
+  <div class="grid2">
+    <div class="blk">
+      <h3>10.1 What the command words oblige you to do</h3>
+      <table>
+        <tr><th>Word</th><th>Obligation</th></tr>
+        <tr><td>Show that</td><td>The answer is printed. Marks are for the <b>steps</b>; every line must be justified, and you may not work backwards from the given result.</td></tr>
+        <tr><td>Hence</td><td>You <b>must</b> use the previous part. A fresh method scores zero even if correct.</td></tr>
+        <tr><td>Hence or otherwise</td><td>Any valid method is accepted, but the previous part is normally the short route.</td></tr>
+        <tr><td>State / write down</td><td>No working expected. One line.</td></tr>
+        <tr><td>Express in the form …</td><td>The final answer must literally match that form; matching coefficients is usually the method.</td></tr>
+        <tr><td>Explain / justify</td><td>Words are required. A calculation alone does not earn the mark.</td></tr>
+        <tr><td>Find the values of</td><td>Plural — expect more than one, and a case split or a rejected root.</td></tr>
+      </table>
+    </div>
+
+    <div class="blk">
+      <h3>10.2 Exact values, rounding, and where marks leak</h3>
+      <ul class="tight">
+        <li>Exam 1 is <b>always</b> exact: <span class="m">π/6</span>, <span class="rad">√<span><span class="m">2</span></span></span>, <span class="m">log</span><sub class="m">e</sub><span class="m">3</span>, fractions — never a decimal, unless the question says otherwise.</li>
+        <li>Rationalise and simplify: an unsimplified surd or an uncancelled fraction can cost the final mark.</li>
+        <li>Round <b>once</b>, at the end. Store intermediate values in calculator memory rather than retyping rounded ones.</li>
+        <li>Follow the instruction exactly — "correct to 2 decimal places" and "correct to 2 significant figures" are different answers.</li>
+        <li>A probability rounded to 4 decimal places is the default when nothing is stated.</li>
+        <li>Give the thing asked for: a <b>point</b> needs both coordinates; a <b>domain</b> needs interval notation; a <b>rule</b> needs "<span class="m">y =</span>" or "<span class="m">f (x) =</span>".</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="blk">
+    <h3>10.3 The consolidated trap list</h3>
+    <p class="note">Every entry here was an actual error mode in the 2023–2026 papers — either the distractor the option set was built around, or the step the marking scheme singles out.</p>
+    <div class="tbl-wrap">
+      <table>
+        <tr><th style="width:22%">Topic</th><th style="width:39%">The trap</th><th>What to do instead</th></tr>
+        <tr><td>Transformations</td><td>Applying dilation and translation in the written order</td><td>Dilations and reflections first, translations last; for the inverse mapping, reverse the order and invert each step</td></tr>
+        <tr><td>Inverse functions</td><td>Quoting the domain of <span class="m">f</span> as the domain of <span class="m">f</span><sup>−1</sup></td><td>Domain of <span class="m">f</span><sup>−1</sup><span class="m"> = </span>range of <span class="m">f</span>; find the range first</td></tr>
+        <tr><td>Composites</td><td>Forming <span class="m">f (g (x))</span> without checking existence</td><td><span class="m">ran(g) ⊆ dom( f )</span>, and the domain of the composite is <span class="m">dom(g)</span></td></tr>
+        <tr><td>Simultaneous equations</td><td>Solving only the determinant-zero case</td><td>Unique solution when the determinant <span class="m">≠ 0</span>; substitute each root back to separate "no solution" from "infinitely many"</td></tr>
+        <tr><td>Logs and indices</td><td><span class="m">log(a + b) = log a + log b</span></td><td>Only products, quotients and powers have laws; also check the resulting argument is positive and discard roots that are not</td></tr>
+        <tr><td>Circular functions</td><td>Reading amplitude as <span class="m">a</span> and period as <span class="m">n</span></td><td>Amplitude <span class="m">= |a|</span>; period <span class="m">= 2π/n</span> for sin and cos, <span class="m">π/n</span> for tan</td></tr>
+        <tr><td>Solving trig</td><td>Not extending the domain of the argument</td><td>If <span class="m">x ∈ [0, 2π]</span> and the argument is <span class="m">2x − π/3</span>, solve over the transformed interval, then map back</td></tr>
+        <tr><td>Chain rule</td><td>Dropping the inner derivative</td><td>Name <span class="m">u</span> explicitly whenever the inside is not simply <span class="m">x</span></td></tr>
+        <tr><td>Stationary points</td><td>Assuming <span class="m">f ′ = 0</span> means a maximum or minimum</td><td>Test the sign of <span class="m">f ′</span> either side; a stationary point of inflection has no sign change</td></tr>
+        <tr><td>Tangents and normals</td><td>Using the gradient of the tangent for the normal</td><td>Normal gradient <span class="m"> = −1/f ′(a)</span>; vertical when <span class="m">f ′(a) = 0</span></td></tr>
+        <tr><td>Definite integrals</td><td>Leaving reversed limits unsigned</td><td>Swapping limits flips the sign; <span class="m">∫</span><sub>7</sub><sup>3</sup><span class="m"> f = D − C</span>, not <span class="m">C − D</span></td></tr>
+        <tr><td>Area</td><td>Reporting the signed integral as an area</td><td>Split at every intercept and add absolute values; between curves, integrate upper minus lower</td></tr>
+        <tr><td>Average value</td><td>Treating it as a mean, or assuming it is positive</td><td>It is <span class="m">1/(b − a) ∫ f</span> with no probability involved, and it may be negative</td></tr>
+        <tr><td>Trapezium rule</td><td>Counting <span class="m">n</span> ordinates for <span class="m">n</span> strips</td><td><span class="m">n</span> strips need <span class="m">n + 1</span> ordinates; interior ones are doubled</td></tr>
+        <tr><td>Discrete variables</td><td>Reading "at least one" as <span class="m">Pr(X = 1)</span></td><td><span class="m">1 − Pr(X = 0)</span>; and <span class="m">&lt;</span> is not <span class="m">≤</span> for a discrete variable</td></tr>
+        <tr><td>Conditional probability</td><td>Using the wrong numerator</td><td>Write <span class="m">Pr(A ∩ B)</span> out as an explicit range before dividing</td></tr>
+        <tr><td>Probability density</td><td>Keeping a root that makes <span class="m">f</span> negative</td><td>Both conditions must hold; reject roots outside the stated support or parameter domain</td></tr>
+        <tr><td>Normal distribution</td><td>Feeding the variance to the calculator</td><td><span class="m">N(μ, σ</span><sup>2</sup><span class="m">)</span> quotes the variance; every formula wants <span class="m">σ</span></td></tr>
+        <tr><td>Inverse normal</td><td>Passing a right-tail area straight in</td><td>Sketch, shade, convert to a left-tail area first</td></tr>
+        <tr><td>Sample proportions</td><td>Writing <span class="m">sd(P̂) = √(p(1 − p))/n</span></td><td>The <span class="m">n</span> is inside the root: <span class="m">√(p(1 − p)/n)</span></td></tr>
+        <tr><td>Confidence intervals</td><td>"95% chance <span class="m">p</span> is in this interval"</td><td>95% of intervals built this way contain <span class="m">p</span>; <span class="m">p</span> itself is fixed</td></tr>
+        <tr><td>Sample size</td><td>Rounding <span class="m">n</span> down</td><td><span class="m">n</span> is a count — always round up</td></tr>
+        <tr><td>Algorithms</td><td>Reporting the last passing counter value</td><td>The loop exits on the first <b>failing</b> test; that is the value it holds afterwards</td></tr>
+        <tr><td>Newton's method</td><td>Rounding between iterations</td><td>Full precision throughout; round only the final iterate</td></tr>
+      </table>
+    </div>
+  </div>
+
+  <div class="grid2">
+    <div class="blk">
+      <h3>10.4 Section A — twenty questions, sixty minutes of the paper</h3>
+      <ul class="tight">
+        <li>Roughly 1.5 minutes each. If a question passes three minutes, mark it and move on.</li>
+        <li><b>Substitute a test value</b> rather than manipulating algebra: for transformations, inverses and composites, one well-chosen point eliminates three options at once.</li>
+        <li>Check the <b>form</b> of the options before solving — if they differ only in a sign or a factor of 2, find the step that decides that and do only that step.</li>
+        <li>Domain and range answers can be tested at the endpoints.</li>
+        <li>Never leave one blank. There is no penalty for a wrong answer.</li>
+        <li>Confirm the option count on the front of the paper: 2023 and the 2024 NHT paper used A–E; the recent papers use A–D.</li>
+      </ul>
+    </div>
+    <div class="blk">
+      <h3>10.5 Section B and Exam 1 — where the method marks are</h3>
+      <ul class="tight">
+        <li>Write the <b>rule you are using</b> before substituting; that line frequently carries a mark on its own.</li>
+        <li>A later part almost always depends on an earlier one. If you cannot get part (a), assume a plausible result, say so, and carry it forward — consequential marks are available.</li>
+        <li>Answer in the units and the variable the question uses.</li>
+        <li>Cross out rejected work rather than erasing it — anything not crossed out is marked, and a contradictory second answer can lose the mark you already earned.</li>
+        <li>Do not stop at the derivative when the question asks for a coordinate, a value of <span class="m">k</span>, or an interval.</li>
+        <li>On Exam 2, quote the calculator's result to full precision in your working before rounding in the answer line.</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="box method">
+    <span class="lbl">Method — the thirty-second check before you move on</span>
+    <p>Does the answer have the right <b>sign</b>? The right <b>units</b>? Is it <b>in the domain</b> that was given? Is it the <b>quantity asked for</b> — a probability between 0 and 1, an integer where a count was wanted, both coordinates where a point was wanted? Four of the twenty-four traps above are caught by that check alone.</p>
+  </div>
+</section>
+
+</div>
+
+</body>
+</html>
