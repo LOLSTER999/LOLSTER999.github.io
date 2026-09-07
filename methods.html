@@ -12801,15 +12801,21 @@ function applyAccent(id){
   else document.documentElement.removeAttribute('data-accent');
 }
 
-function applyTheme(t){
-  if(t === 'dark') document.documentElement.setAttribute('data-theme','dark');
-  else if(t === 'light') document.documentElement.setAttribute('data-theme','light');
-  else document.documentElement.removeAttribute('data-theme');
+/* `t` is 'dark', 'light', or null meaning "follow the system".
+   The null case only clears the attribute when asked to at runtime — on a
+   cold boot with no stored choice we leave whatever is already on the root
+   alone, because a host page (a published artifact, say) may have stamped
+   its own viewer's theme there and that is a better default than ignoring it. */
+function applyTheme(t, boot){
+  const el = document.documentElement;
+  if(t === 'dark')       el.setAttribute('data-theme','dark');
+  else if(t === 'light') el.setAttribute('data-theme','light');
+  else if(!boot)         el.removeAttribute('data-theme');
 }
 
 function boot(){
   Progress.load();
-  applyTheme(Progress.state.theme);
+  applyTheme(Progress.state.theme, true);
   /* Award anything already deserved without firing a wall of toasts. */
   Progress.checkLevel();
   Progress.checkBadges();
