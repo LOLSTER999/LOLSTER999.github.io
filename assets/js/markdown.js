@@ -17,7 +17,7 @@
   function inline(s) {
     return esc(s)
       .replace(/`([^`]+)`/g, function (_, c) { return '<code>' + c + '</code>'; })
-      .replace(/\*\*([^*]+)\*\*/g, '<strong>$1</strong>')
+      .replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>')   // non-greedy so *italics* can nest inside
       .replace(/(^|[^*])\*([^*\n]+)\*/g, '$1<em>$2</em>')
       .replace(/\[([^\]]+)\]\(([^)]+)\)/g, '<a href="$2">$1</a>');
   }
