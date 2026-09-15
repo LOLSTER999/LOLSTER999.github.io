@@ -1,0 +1,726 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>U4O2 SAC Cheat Sheet · VCE Software Development</title>
+<style>
+/* ============================================================
+   Double-sided A4 reference for the Unit 4 Outcome 2 SAC.
+   Print-first: the two .sheet blocks are sized to exactly one
+   A4 page each. On screen they are shown as two stacked cards.
+   Self-contained — deliberately does not use main.css, so what
+   prints does not depend on the site's theme.
+   ============================================================ */
+
+@page { size: A4; margin: 5.5mm 5.5mm 5mm; }
+
+:root {
+  --ink:      #14161a;
+  --dim:      #4a5058;
+  --faint:    #767d86;
+  --rule:     #c8ccd2;
+  --hair:     #e3e6ea;
+  --accent:   #8a1f2d;   /* headings — dark enough to read in greyscale */
+  --accent-2: #1b4f72;   /* key skills */
+  --tint:     #f4f1ec;
+  --tint-2:   #eef2f6;
+  --page:     #fff;
+}
+
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  background: #6c7079;
+  color: var(--ink);
+  font: 400 6.15pt/1.24 "Helvetica Neue", Helvetica, Arial, sans-serif;
+  -webkit-text-size-adjust: 100%;
+}
+
+.sheet {
+  position: relative;
+  width: 210mm;
+  min-height: 297mm;
+  padding: 5.5mm 5.5mm 5mm;
+  margin: 0 auto;
+  background: var(--page);
+  columns: 3;
+  column-gap: 3.8mm;
+  column-fill: balance;
+}
+
+.screen-note { display: block; }
+
+/* ---- masthead spans all three columns ---- */
+.mast {
+  column-span: all;
+  display: flex;
+  align-items: baseline;
+  gap: 6px;
+  border-bottom: 1.4pt solid var(--accent);
+  padding-bottom: 1.6mm;
+  margin-bottom: 1.9mm;
+}
+.mast h1 {
+  margin: 0;
+  font-size: 10.5pt;
+  letter-spacing: -0.2pt;
+  color: var(--accent);
+}
+.mast .side {
+  margin-left: auto;
+  font-size: 6.4pt;
+  font-weight: 700;
+  color: var(--faint);
+  text-transform: uppercase;
+  letter-spacing: 0.6pt;
+  white-space: nowrap;
+}
+.mast .sub { font-size: 6.6pt; color: var(--dim); }
+
+/* ---- a block of content; never split across a column ---- */
+.box {
+  break-inside: avoid;
+  margin: 0 0 1.7mm;
+  padding: 1.1mm 1.4mm 1.3mm;
+  border: 0.4pt solid var(--hair);
+  border-left: 1.6pt solid var(--accent-2);
+  background: #fff;
+}
+.box.tint  { background: var(--tint); border-left-color: var(--accent); }
+.box.plain { border: 0; border-left: 0; padding: 0 0 0.6mm; }
+
+h2 {
+  margin: 0 0 1.1mm;
+  font-size: 6.9pt;
+  color: var(--accent-2);
+  letter-spacing: 0.1pt;
+}
+h2 .ks {
+  display: inline-block;
+  background: var(--accent-2);
+  color: #fff;
+  font-size: 5.8pt;
+  font-weight: 700;
+  padding: 0.3mm 1mm;
+  border-radius: 1.2pt;
+  margin-right: 1.2mm;
+  vertical-align: 1px;
+}
+.box.tint h2 { color: var(--accent); }
+.box.tint h2 .ks { background: var(--accent); }
+
+h3 {
+  margin: 1.1mm 0 0.5mm;
+  font-size: 6.2pt;
+  color: var(--ink);
+  text-transform: uppercase;
+  letter-spacing: 0.4pt;
+}
+h3:first-child { margin-top: 0; }
+
+p { margin: 0 0 0.75mm; }
+p:last-child { margin-bottom: 0; }
+
+ul, ol { margin: 0 0 0.9mm; padding-left: 3.1mm; }
+li { margin-bottom: 0.35mm; }
+ul.tight li { margin-bottom: 0.2mm; }
+
+b, strong { font-weight: 700; }
+em { font-style: italic; }
+.q { color: var(--dim); font-style: italic; }
+.sig { color: var(--accent-2); font-style: italic; }
+.warn { color: var(--accent); font-weight: 700; }
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 0 0 1mm;
+  font-size: 5.8pt;
+  line-height: 1.18;
+}
+th, td {
+  text-align: left;
+  vertical-align: top;
+  padding: 0.45mm 0.9mm 0.45mm 0;
+  border-bottom: 0.3pt solid var(--hair);
+}
+th {
+  font-size: 5.5pt;
+  text-transform: uppercase;
+  letter-spacing: 0.3pt;
+  color: var(--faint);
+  border-bottom: 0.5pt solid var(--rule);
+  font-weight: 700;
+}
+tr:last-child td { border-bottom: 0; }
+td:last-child, th:last-child { padding-right: 0; }
+
+/* band scale strip */
+.bands { display: flex; gap: 0.8mm; margin: 0 0 1mm; }
+.bands div {
+  flex: 1;
+  text-align: center;
+  padding: 0.7mm 0.2mm;
+  background: var(--tint-2);
+  border-radius: 1.2pt;
+  line-height: 1.15;
+}
+.bands b { display: block; font-size: 6.2pt; }
+.bands span { font-size: 5.6pt; color: var(--dim); }
+.bands div:last-child { background: #dfe8ef; }
+
+/* the three-move / verb ladders */
+.ladder { margin: 0; padding: 0; list-style: none; counter-reset: rung; }
+.ladder li {
+  position: relative;
+  padding-left: 4.2mm;
+  margin-bottom: 0.6mm;
+}
+.ladder li::before {
+  counter-increment: rung;
+  content: counter(rung);
+  position: absolute;
+  left: 0;
+  top: 0.1mm;
+  width: 3.3mm;
+  height: 3.3mm;
+  border-radius: 50%;
+  background: var(--accent-2);
+  color: #fff;
+  font-size: 5.4pt;
+  font-weight: 700;
+  text-align: center;
+  line-height: 3.35mm;
+}
+.box.tint .ladder li::before { background: var(--accent); }
+
+/* quotable sentence frames */
+.frame {
+  border-left: 1.2pt solid var(--rule);
+  padding: 0.3mm 0 0.3mm 1.5mm;
+  margin: 0 0 0.9mm;
+  color: var(--dim);
+  font-style: italic;
+}
+.frame b { color: var(--ink); font-style: normal; }
+
+/* risk matrix */
+.matrix td, .matrix th { text-align: center; padding: 0.5mm 0.3mm; border: 0.3pt solid var(--hair); }
+.matrix th:first-child, .matrix td:first-child { text-align: left; font-weight: 700; }
+.m-l { background: #f2f4f6; }
+.m-m { background: #e4e9ee; }
+.m-h { background: #d2dae2; font-weight: 700; }
+.m-x { background: #bcc7d2; font-weight: 700; }
+
+.checklist { list-style: none; margin: 0; padding: 0; }
+.checklist li { padding-left: 3.4mm; position: relative; margin-bottom: 0.55mm; }
+.checklist li::before {
+  content: "";
+  position: absolute;
+  left: 0; top: 0.5mm;
+  width: 2.3mm; height: 2.3mm;
+  border: 0.5pt solid var(--dim);
+  border-radius: 0.6pt;
+}
+
+/* Deliberately NOT column-span: a spanning element needs room after every
+   column, which pushes it onto a second page. It sits at the foot of the
+   last column instead. */
+.foot {
+  break-inside: avoid;
+  border-top: 0.4pt solid var(--rule);
+  margin-top: 1.2mm;
+  padding-top: 0.9mm;
+  font-size: 5.5pt;
+  color: var(--faint);
+}
+.foot span { display: block; }
+.foot span + span { margin-top: 0.4mm; font-style: italic; }
+
+/* ---------- screen presentation ---------- */
+@media screen {
+  body { padding: 18px 12px 40px; }
+  .sheet {
+    box-shadow: 0 10px 34px rgba(0,0,0,.36);
+    margin-bottom: 20px;
+    border-radius: 2px;
+  }
+  .screen-note {
+    max-width: 210mm;
+    margin: 0 auto 14px;
+    color: #f0f1f3;
+    font-size: 12px;
+    line-height: 1.5;
+    background: rgba(0,0,0,.24);
+    border-radius: 6px;
+    padding: 10px 13px;
+  }
+  .screen-note b { color: #fff; }
+  .screen-note button {
+    font: inherit;
+    font-weight: 600;
+    margin-left: 8px;
+    padding: 4px 11px;
+    border: 0;
+    border-radius: 5px;
+    background: #fff;
+    color: #14161a;
+    cursor: pointer;
+  }
+}
+
+@media print {
+  body { background: #fff; padding: 0; }
+  .screen-note { display: none; }
+  .sheet {
+    width: auto;
+    min-height: 0;
+    padding: 0;
+    margin: 0;
+    box-shadow: none;
+    break-after: page;
+  }
+  .sheet:last-child { break-after: auto; }
+}
+
+/* phones: let it reflow rather than force a 210mm page */
+@media screen and (max-width: 840px) {
+  body { font-size: 11px; }
+  .sheet { width: auto; min-height: 0; columns: 1; padding: 14px; }
+  table { font-size: 10px; }
+  h2 { font-size: 13px; } h3 { font-size: 11px; } .mast h1 { font-size: 18px; }
+  .mast { flex-wrap: wrap; gap: 2px 8px; }
+  .mast h1 { flex: 1 0 100%; }
+  .mast .side { margin-left: 0; }
+}
+</style>
+</head>
+<body>
+
+<div class="screen-note">
+  <b>Double-sided A4.</b> Print at 100% scale with background graphics on, two-sided, flip on the long edge.
+  Side 1 is analysis and evaluation (KS1–KS3); side 2 is consequences, recommendations and the sentence frames.
+  <button onclick="window.print()">Print</button>
+</div>
+
+<!-- ==================== SIDE 1 ==================== -->
+<section class="sheet">
+
+  <div class="mast">
+    <h1>U4O2 — Cyber Security SAC</h1>
+    <div class="sub">100 marks · case study response · SD Units 3&amp;4</div>
+    <div class="side">Side 1 · Analyse &amp; Evaluate</div>
+  </div>
+
+  <div class="box tint">
+    <h2>The task, in one line</h2>
+    <p><b>Analyse</b> the organisation's development practices → <b>identify and evaluate</b> its security
+    controls and threats → <b>recommend</b> improvements. Three verbs, three sections, five key skills.</p>
+    <div class="bands">
+      <div><b>V.low</b><span>1–20</span></div>
+      <div><b>Low</b><span>21–40</span></div>
+      <div><b>Med</b><span>41–60</span></div>
+      <div><b>High</b><span>61–80</span></div>
+      <div><b>V.high</b><span>81–100</span></div>
+    </div>
+    <p><b>The content barely changes between bands — the verb does.</b>
+    <span class="q">identifies → outlines → describes/discusses → explains/analyses/applies → analyses/justifies</span></p>
+  </div>
+
+  <div class="box">
+    <h2>The linkage moves that carry the top band</h2>
+    <p>Almost every Very high descriptor asks you to connect back to something. If a section names none of
+    these, it is capped below Very high however correct it is.</p>
+    <table>
+      <tr><td><b>KS1</b></td><td>→ the organisation's <b>goals and objectives</b></td></tr>
+      <tr><td><b>KS2</b></td><td>→ <b>impact on the organisation</b> (money, contracts, notification)</td></tr>
+      <tr><td><b>KS3</b></td><td>→ criteria <b>applied</b>, measured, documented</td></tr>
+      <tr><td><b>KS4</b></td><td>→ <b>viable</b> resolutions, named back to an Act or framework</td></tr>
+      <tr><td><b>KS5</b></td><td>→ Med: <b>legal obligations</b> · High: <b>goals &amp; objectives</b> · V.high: <b>industry frameworks</b></td></tr>
+    </table>
+    <p>Before submitting, highlight every goal, objective, Act and framework you have named.</p>
+  </div>
+
+  <div class="box">
+    <h2><span class="ks">KS1</span>Analyse the current practices</h2>
+    <p>Four things to cover: <b>goals and objectives</b> · <b>in-house vs external</b> development ·
+    <b>security controls</b> · <b>threat modelling principles</b>. If no measurable objectives are stated,
+    <b>say so and infer one</b> — without a goal to link to, KS1 and KS5 are capped.</p>
+    <h3>In-house vs external</h3>
+    <table>
+      <tr><th>In-house</th><th>External</th></tr>
+      <tr>
+        <td>Control of delivery, domain knowledge and client relationships stay inside; changes are cheap</td>
+        <td>Buys specialist capability (incl. security) the organisation lacks; scales quickly</td>
+      </tr>
+      <tr>
+        <td>No specialist security capability; cost of maintaining the team; capacity limits</td>
+        <td>Third-party exposure, IP and licence questions, less control, contractor practices unverified</td>
+      </tr>
+    </table>
+  </div>
+
+  <div class="box">
+    <h2>The six security controls → what each closes</h2>
+    <p>For each: does the organisation <b>have</b> it, how does it <b>protect</b> the practice <em>and</em>
+    the data, and later — recommend it where missing.</p>
+    <table>
+      <tr><th>Control</th><th>Closes</th><th>E8 / ISM</th></tr>
+      <tr><td><b>Version control / repository</b></td><td>Ineffective code review; insider threats; lost code</td><td>Backups</td></tr>
+      <tr><td><b>Identity &amp; access management</b></td><td>Poor IAM; insiders; credential reuse</td><td>MFA; restrict admin</td></tr>
+      <tr><td><b>Encryption</b></td><td>Man-in-the-middle; exposure after a breach</td><td>—</td></tr>
+      <tr><td><b>Code review</b></td><td>Unreviewed defects; insiders; third-party code</td><td>—</td></tr>
+      <tr><td><b>Updates and patches</b></td><td>Unpatched software; malware</td><td>Patch apps + OS</td></tr>
+      <tr><td><b>Separated dev/test/prod</b></td><td>Combined environments; prod data in dev</td><td>ISM dev/test/prod</td></tr>
+    </table>
+    <p><b>IAM has four parts</b> — strong/multi-factor authentication · role-based access on <b>least
+    privilege</b> · prompt deprovisioning · logging and review.
+    <b>MFA</b> = two different kinds of evidence: something you <b>know</b> / <b>have</b> / <b>are</b>.</p>
+    <p><b>Encryption has two states</b> — in transit (TLS) and at rest. Case studies often have one and not
+    the other: <span class="q">"TLS on the portal but an unencrypted production database"</span> is a specific,
+    markable finding.</p>
+    <p class="q">A control they <b>have but do not enforce</b> is worth more marks than one they simply lack —
+    it lets you write about the gap between policy and practice.</p>
+  </div>
+
+  <div class="box">
+    <h2>Threat modelling — the three principles</h2>
+    <p class="warn">Named in the Medium, High and Very high descriptors of KS1, and in every band of KS5 from
+    Medium up. If your response never uses the phrase, you have capped yourself.</p>
+    <table>
+      <tr><th>Principle</th><th>Ask the case study</th><th>Usual finding</th></tr>
+      <tr><td><b>1. Define security requirements</b></td><td>Were they written down <em>before</em> building?</td><td>Absent — issues fixed as customers report them</td></tr>
+      <tr><td><b>2. Identify &amp; mitigate threats</b></td><td>Systematic, or reactive?</td><td>Reactive — no risk register</td></tr>
+      <tr><td><b>3. Confirm mitigation</b></td><td>Is anything audited, tested, reviewed after?</td><td>Absent entirely</td></tr>
+    </table>
+    <p>A control designed but never verified is not a mitigation, it is an assumption. Principle 3 is the one
+    almost every organisation skips — saying so is free marks.</p>
+    <p class="frame">Because they perform none of the three principles, their controls were not chosen against
+    identified threats — <b>they accumulated by habit</b>. That is why the controls they do have protect
+    against risks they never faced, while the risk that materialised had no control at all.</p>
+  </div>
+
+  <div class="box tint">
+    <h2><span class="ks">KS2</span>Vulnerability, threat, risk</h2>
+    <p>The descriptors use all three and markers notice when they are treated as synonyms.</p>
+    <table>
+      <tr><td><b>Vulnerability</b></td><td>A weakness in a system or practice</td></tr>
+      <tr><td><b>Threat</b></td><td>Something or someone that could exploit it</td></tr>
+      <tr><td><b>Risk</b></td><td>A threat exploiting a vulnerability, with a <b>likelihood</b> and an <b>impact</b></td></tr>
+    </table>
+    <p>A vulnerability is a fact. A risk is a <b>judgement</b> — and judgements are what get marked at the
+    higher bands.</p>
+  </div>
+
+  <div class="box">
+    <h2>The ten vulnerabilities → what plants them</h2>
+    <table>
+      <tr><th>Vulnerability</th><th>Signal phrases in the case study</th></tr>
+      <tr><td><b>1. Use of APIs</b></td><td class="sig">"integrates a third-party service", "cloud-based", "sends requests to" — and APP 8 if offshore</td></tr>
+      <tr><td><b>2. Malware</b></td><td class="sig">"clicked a link", "downloaded an attachment", "systems were encrypted", a found USB</td></tr>
+      <tr><td><b>3. Unpatched software</b></td><td class="sig">"two versions behind", "updates applied when there is time", "not restarted in months"</td></tr>
+      <tr><td><b>4. Poor identity &amp; access management</b></td><td class="sig">"the team shares a login", "no MFA", "still has access", "everyone has admin"</td></tr>
+      <tr><td><b>5. Man-in-the-middle</b></td><td class="sig">"public Wi-Fi", "no VPN", "unencrypted connection", "the invoice details had changed"</td></tr>
+      <tr><td><b>6. Insider threats</b></td><td class="sig">"a developer changed the configuration", "copied the data", "took files when they left"</td></tr>
+      <tr><td><b>7. Cyber security incidents</b></td><td class="sig">Anything already compromised — this is your <b>evidence of impact</b> for the top band. Use it.</td></tr>
+      <tr><td><b>8. Third-party software</b></td><td class="sig">"a free library", "open-source component", "nobody checked the licence"</td></tr>
+      <tr><td><b>9. Ineffective code review</b></td><td class="sig">"merged as soon as it compiles", "reviews when there is time", "no record is kept"</td></tr>
+      <tr><td><b>10. Combined dev/test/prod</b></td><td class="sig">"all on the same server", "the test database contains live data", "work directly on the live site"</td></tr>
+    </table>
+    <p><b>Insiders need not be malicious.</b> A developer copying the live customer table into a test database
+    to get realistic data is a careless insider threat — and in most case studies that is exactly what
+    happened. If the insider risk is only <em>potential</em>, say it is <b>latent rather than
+    materialised</b>.</p>
+    <p><b>Combined environments is usually the most serious finding</b>, because it multiplies every other
+    weakness: untested code reaches live, real customer data sits in dev, any dev machine reaches production.</p>
+  </div>
+
+  <div class="box">
+    <h2>Turning one vulnerability into a full-band answer</h2>
+    <ol class="ladder">
+      <li><b>Name</b> it in study-design language → <span class="q">Very low / Low</span></li>
+      <li><b>Explain the mechanism</b> — how it compromises the practice <em>or the data</em> → <span class="q">High</span></li>
+      <li><b>State the organisational impact</b> — the money, the contract, the notification → <span class="q">Very high</span></li>
+    </ol>
+    <p class="frame">Because the repository is protected by passwords alone, a single phished credential gives
+    commit access to the codebase <b>[mechanism]</b> — which is how the March breach began, and it cost the
+    Northern Logistics renewal <b>[impact]</b>.</p>
+    <p><b>Go deep on three or four, not shallow on nine.</b></p>
+  </div>
+
+  <div class="box">
+    <h2>Rating the risk</h2>
+    <table class="matrix">
+      <tr><th></th><th>Low prob.</th><th>Med prob.</th><th>High prob.</th></tr>
+      <tr><td>Major impact</td><td class="m-m">Medium</td><td class="m-h">High</td><td class="m-x">Extreme</td></tr>
+      <tr><td>Moderate</td><td class="m-l">Low</td><td class="m-m">Medium</td><td class="m-h">High</td></tr>
+      <tr><td>Minor</td><td class="m-l">Lowest</td><td class="m-l">Low</td><td class="m-m">Medium</td></tr>
+    </table>
+    <p>The lowest rating needs <b>both</b> minor impact and low probability. Rating lets you <b>prioritise</b>,
+    and a prioritised list is what makes Section 3 read as analysis rather than a checklist.</p>
+  </div>
+
+  <div class="box tint">
+    <h2><span class="ks">KS3</span>Criteria — propose, then <em>apply</em></h2>
+    <p>The Medium/High line is the word <b>applies</b>. Medium proposes criteria and says how they could be
+    measured; <b>High runs them against the case study and reaches a verdict</b>; Very high adds accurate
+    measurement and clear documentation.</p>
+    <h3>Anatomy — all three parts, or you lose a band</h3>
+    <ol class="ladder">
+      <li><b>The question</b>, phrased so it can be answered yes / partially / no</li>
+      <li><b>The measure</b> — what you would count, compare or inspect</li>
+      <li><b>The data source</b> — where that measurement comes from</li>
+    </ol>
+    <p><span class="q">Weak:</span> "Is the code secure?" — unanswerable, so it cannot be applied.<br>
+    <span class="q">Strong:</span> "Is all code reviewed by a second developer before release?" · proportion of
+    merges with a recorded reviewer · repository merge history.</p>
+  </div>
+
+  <div class="box">
+    <h2>A criteria set that covers the outcome</h2>
+    <p>Pick five or six that match practices the case study <em>actually describes</em>.</p>
+    <table>
+      <tr><th>Criterion (as a question)</th><th>Measure · source</th></tr>
+      <tr><td>Are dev, test and production separated?</td><td>Shared hardware? prod data in non-prod? · architecture docs</td></tr>
+      <tr><td>Is repository access restricted to current, authorised staff?</td><td>Accounts vs staff register; MFA enrolment · audit logs</td></tr>
+      <tr><td>Is all code reviewed before release, and recorded?</td><td>Merges with a named reviewer · merge history</td></tr>
+      <tr><td>Are OS and applications patched promptly?</td><td>Mean days release → deployment · patch records</td></tr>
+      <tr><td>Is personal information encrypted in transit and at rest?</td><td>TLS enforcement; DB encryption setting · config</td></tr>
+      <tr><td>Do developers complete secure-development training?</td><td>Completion rate; phishing click rate · training records</td></tr>
+      <tr><td>Are security requirements defined and verified?</td><td>Security requirements in the SRS; any audit · SRS, reports</td></tr>
+      <tr><td>Is data disposed of when no longer needed?</td><td>Retention schedule; age of oldest records · policy</td></tr>
+    </table>
+    <h3>Document it as a table, one verdict per row</h3>
+    <p>Use <b>three</b> verdicts, not two: <b>met / partially met / not met</b>. "Partially met" is the right
+    answer whenever a practice exists but is not enforced, not recorded, or covers only part of what it should
+    — which describes most real organisations.</p>
+    <p class="frame">Six criteria were applied and none was fully met: three failed outright, three partially.
+    The failures cluster into <b>environment separation</b> and <b>access management</b>, and those two groups
+    together account for the entire March incident chain. Current practices are therefore not effective at
+    protecting either the development process or the data held in the product.</p>
+    <p><b>Efficiency</b> = resources consumed (patching speed, time-to-detect). <b>Effectiveness</b> = how
+    well it does its job. Most security criteria are effectiveness measures — saying which is which shows you
+    know the difference.</p>
+  </div>
+
+  <div class="foot">
+    <span><b>Side 1</b> · KS1 practices · KS2 vulnerabilities · KS3 criteria — turn over →</span>
+  </div>
+
+</section>
+
+<!-- ==================== SIDE 2 ==================== -->
+<section class="sheet">
+
+  <div class="mast">
+    <h1>U4O2 — Cyber Security SAC</h1>
+    <div class="sub">Legal &amp; ethical · recommendations · frames</div>
+    <div class="side">Side 2 · Consequences &amp; Fixes</div>
+  </div>
+
+  <div class="box tint">
+    <h2><span class="ks">KS4</span>Legal <em>and</em> ethical</h2>
+    <p>Most students write only the legal half, so <b>the ethical half is where marks are easiest to gain</b>.</p>
+    <table>
+      <tr><th></th><th>Legal</th><th>Ethical</th></tr>
+      <tr><td><b>Source</b></td><td>An Act of Parliament</td><td>Professional &amp; community expectations</td></tr>
+      <tr><td><b>Test</b></td><td>Did they break the law?</td><td>Was it the right thing to do?</td></tr>
+      <tr><td><b>Consequence</b></td><td>Investigation, penalty, enforceable undertaking</td><td>Reputational damage, loss of trust, censure</td></tr>
+    </table>
+    <p>The strongest examples are <b>both at once</b>, because you can analyse them twice.</p>
+  </div>
+
+  <div class="box">
+    <h2>Privacy Act 1988 (Cwlth) — the named APPs</h2>
+    <table>
+      <tr><td><b>APP 1</b></td><td>Open and transparent management — a clear, current privacy policy</td></tr>
+      <tr><td><b>APP 3</b></td><td>Collect only what is reasonably necessary</td></tr>
+      <tr><td><b>APP 6</b></td><td>Use or disclose only for the purpose collected <span class="q">(prod data used for testing; data pasted into an AI tool)</span></td></tr>
+      <tr><td><b>APP 8</b></td><td>Reasonable steps before disclosing <b>overseas</b> <span class="q">(offshore API or cloud)</span></td></tr>
+      <tr><td><b>APP 9</b></td><td>Do not adopt government-related identifiers as your own</td></tr>
+      <tr><td><b>APP 11</b></td><td><b>Secure</b> personal information, and <b>destroy or de-identify</b> it once no longer needed</td></tr>
+    </table>
+    <p><b>APP 11 is the workhorse.</b> "Reasonable steps" scales with the sensitivity of the data, the harm a
+    breach would cause, and the organisation's size and resources — which is what makes it arguable, and
+    arguable is what the discussion bands want.</p>
+    <p class="frame">For a company holding licence numbers, reasonable steps under APP 11 would clearly
+    include encryption at rest and MFA — both inexpensive and standard. They had neither, so <b>this is not a
+    marginal judgement call</b>.</p>
+    <h3>Notifiable Data Breaches scheme</h3>
+    <p>Breach likely to cause <b>serious harm</b> and not remediated → notify <b>affected individuals and the
+    OAIC as soon as practicable</b>. Two reasons it is rich: the <b>delay is a separate breach</b> from the
+    original failure, and it is simultaneously legal <em>and</em> ethical — both halves of KS4 in one example.</p>
+  </div>
+
+  <div class="box">
+    <h2>The other instruments</h2>
+    <p><b>Privacy and Data Protection Act 2014 (Vic)</b> — Victorian public sector <em>and contracted service
+    providers handling their data</em>. If there is a state government client, this applies and most students
+    miss it. IPPs 1, 2, 4, 5, 9 — <b>IPP 4 (data security)</b> is the counterpart of APP 11.</p>
+    <p><b>Copyright Act 1968 (Cwlth)</b> — protects the expression of ideas, including source code;
+    automatic, no registration. Appears as a library used outside its licence <b>(open source is licensed, not
+    obligation-free)</b>, code copied from a previous employer, or AI-generated code reproducing training
+    material.</p>
+    <h3>Legislation vs framework</h3>
+    <table>
+      <tr><td><b>Legislation</b></td><td>Binding by law; penalties, investigation, enforceable undertakings</td></tr>
+      <tr><td><b>Framework</b></td><td>Not law — but <b>contractually</b> binding the moment a client writes it in. Failure = lost contracts, failed audits</td></tr>
+    </table>
+  </div>
+
+  <div class="box">
+    <h2>Choosing the instrument under pressure</h2>
+    <table>
+      <tr><th>The case study describes…</th><th>Cite</th></tr>
+      <tr><td>Personal information leaked or poorly secured</td><td><b>Privacy Act</b>, APP 11</td></tr>
+      <tr><td>Data kept long after it was needed</td><td><b>Privacy Act</b>, APP 11.2</td></tr>
+      <tr><td>A breach not reported, or reported late</td><td><b>Privacy Act</b>, NDB scheme</td></tr>
+      <tr><td>Data sent to an overseas service or API</td><td><b>Privacy Act</b>, APP 8</td></tr>
+      <tr><td>Data used for something other than why it was collected</td><td><b>Privacy Act</b>, APP 6</td></tr>
+      <tr><td>A Victorian government client or agency</td><td><b>PDP Act 2014</b>, IPP 4</td></tr>
+      <tr><td>Someone else's code, library or content reused</td><td><b>Copyright Act 1968</b></td></tr>
+      <tr><td>A baseline set of technical controls wanted</td><td><b>Essential Eight</b></td></tr>
+      <tr><td>Secure development practice specifically</td><td><b>ISM</b>, Guidelines for Software Development</td></tr>
+    </table>
+  </div>
+
+  <div class="box">
+    <h2>The four ethical issues</h2>
+    <ul class="tight">
+      <li><b>Ineffective security practices.</b> Those exposed had no way to assess the risk and no realistic
+      alternative — that asymmetry places a heightened obligation on the organisation, <em>independent of the
+      law</em>.</li>
+      <li><b>Use of AI in development.</b> <b>Over-reliance</b> — losing the ability to review, debug and
+      maintain (<em>this</em> is the ethical issue, not AI use itself) · <b>data disclosure</b> to a third
+      party · <b>provenance</b> · <b>accountability</b> — "the AI wrote it" is no answer to a regulator.</li>
+      <li><b>Intellectual property.</b> Who owns the code, designs and data; open-source licence terms; IP
+      settled in the contract when development is outsourced.</li>
+      <li><b>Copyright.</b> Images, code, libraries or fonts used without a licence — "nobody would find out"
+      is not a defence.</li>
+    </ul>
+    <h3>Two more that case studies plant</h3>
+    <p><b>Disclosure and transparency</b> — delaying or downplaying a breach to protect reputation. Usually
+    the strongest available: the harm is concrete (people cannot freeze credit or watch for fraud) and it is
+    <em>also</em> an NDB breach. <b>Real customer data in development</b> — APP 6 and APP 11 legally;
+    ethically, they consented to a service, not to a test database.</p>
+  </div>
+
+  <div class="box">
+    <h2>Structuring an ethical answer — four moves</h2>
+    <ol class="ladder">
+      <li><b>Name</b> the issue precisely</li>
+      <li><b>Explain</b> why it is ethically problematic — <em>who is harmed, and how</em></li>
+      <li><b>Apply</b> it to the specific actions in the case study</li>
+      <li><b>Consequence</b> — legal (which Act, what penalty) <em>and</em> non-legal (reputation, trust, lost customers)</li>
+    </ol>
+    <p><b>Resolutions must be viable</b> — this organisation, with its stated resources, could actually do
+    it. Name <b>what</b> changes, <b>who</b> does it, <b>which obligation</b> it satisfies. "Be more ethical"
+    is not a resolution; <span class="q">"an incident-response plan naming a breach assessor, with a 72-hour
+    escalation deadline"</span> is.</p>
+  </div>
+
+  <div class="box tint">
+    <h2><span class="ks">KS5</span>Recommend and justify</h2>
+    <p>All three top bands want the <b>same three ingredients</b> — security controls, threat modelling
+    principles, improvement strategies. What changes is what you tie them to:</p>
+    <table>
+      <tr><td><b>Medium</b></td><td>recommends + describes feasible methods → <b>legal obligations</b></td></tr>
+      <tr><td><b>High</b></td><td>analyses their <b>impact</b> → <b>goals and objectives</b></td></tr>
+      <tr><td><b>Very high</b></td><td><b>justifies</b> them → <b>industry frameworks</b></td></tr>
+    </table>
+    <p>Hit all three linkages and you have covered every band above Low.</p>
+    <h3>The two named improvement strategies — both must appear</h3>
+    <p><b>1. Onboarding / induction and ongoing developer training.</b> Policies and <em>why</em> they exist;
+    what data may be used in development; credentials; what may go to AI assistants; secure coding and review;
+    phishing; <b>refreshers, not one session on day one</b>, measured by phishing simulation. <em>Why it
+    works:</em> most incidents involve human behaviour, not a control failing — training addresses the
+    <b>cause</b>, controls contain the symptom.</p>
+    <p><b>2. A documented risk management plan.</b> Identifies each risk · rates likelihood and impact ·
+    assigns a mitigation · <b>names an owner</b> · sets a review cycle. <em>Why it works:</em> survives staff
+    turnover, and creates the documentation an auditor asks for.</p>
+  </div>
+
+  <div class="box">
+    <h2>Mitigation menu — match it to what they actually have</h2>
+    <p class="q">Recommending a control for a problem the organisation does not have reads as a memorised list.</p>
+    <table>
+      <tr><th>Vulnerability</th><th>Mitigation</th></tr>
+      <tr><td>Combined environments</td><td>Separate infrastructure; <b>de-identified or synthetic test data</b></td></tr>
+      <tr><td>Poor IAM</td><td>Individual accounts; <b>MFA</b>; least privilege; deprovisioning; access logs + review</td></tr>
+      <tr><td>Unpatched software</td><td>Defined schedule with a <b>maximum deployment window</b>; automation</td></tr>
+      <tr><td>Ineffective code review</td><td>Mandatory second reviewer <b>enforced by the tooling</b>, and recorded</td></tr>
+      <tr><td>Third-party software</td><td>Vet dependencies before integration; licence register; monitor advisories</td></tr>
+      <tr><td>Malware</td><td>Application control; anti-malware; app hardening; restrict admin</td></tr>
+      <tr><td>Man-in-the-middle</td><td>Enforce TLS everywhere; VPN for remote access</td></tr>
+      <tr><td>Insider threats</td><td>Least privilege; logging and monitoring; separation of duties; offboarding</td></tr>
+      <tr><td>Unmanaged AI assistants</td><td>Written AI-use policy: what may be shared, human review, provenance</td></tr>
+      <tr><td>Data retained too long</td><td>Retention schedule with secure disposal</td></tr>
+      <tr><td>No verification</td><td>Scheduled access reviews, application security testing, audit-log review</td></tr>
+    </table>
+  </div>
+
+  <div class="box">
+    <h2>Sequence the recommendations, and say why</h2>
+    <ol class="ladder">
+      <li><b>Contain the biggest exposure</b> — environment separation; production data out of development</li>
+      <li><b>Close the entry point</b> — identity and access management; most incidents begin with a credential</li>
+      <li><b>Stop the recurrence</b> — enforced code review, patching schedule</li>
+      <li><b>Make it durable</b> — threat modelling in the lifecycle, training, risk management plan</li>
+      <li><b>Verify</b> — audits, access reviews, <b>re-run your Section 2 criteria</b></li>
+    </ol>
+    <p class="warn">Step 5 is the one almost nobody writes — and it is explicitly the third threat modelling
+    principle. Ending with <em>how the organisation will confirm the mitigations worked</em> closes the loop on
+    your own evaluation.</p>
+  </div>
+
+  <div class="box">
+    <h2>The two frameworks</h2>
+    <p><b>Essential Eight</b> (ACSC): application control · patch applications · configure Office macro
+    settings · user application hardening · restrict administrative privileges · patch operating systems ·
+    multi-factor authentication · regular backups. <b>Maturity levels 0–3</b> say how completely each is
+    implemented — contracts often specify "Maturity Level 2".</p>
+    <p><b>ISM</b> (ACSC) — Guidelines for Software Development, three named: <b>development, testing and
+    production environments</b> (separated; no production data in dev/test) · <b>secure software design and
+    development</b> · <b>application security testing</b>. These map onto the most common SAC findings —
+    usually the strongest framework to cite.</p>
+  </div>
+
+  <div class="box tint">
+    <h2>Sentence frames</h2>
+    <p class="frame"><b>KS1 → goal.</b> This practice supports the objective of … because …</p>
+    <p class="frame"><b>KS2 → impact.</b> This vulnerability allowed … which resulted in … costing the
+    organisation …</p>
+    <p class="frame"><b>KS3 → verdict.</b> Applying the criterion "…", the evidence shows … therefore this is
+    <b>partially met</b>.</p>
+    <p class="frame"><b>KS4 → both halves.</b> Legally this breaches … under …; ethically, the harm falls on
+    … who had no say in it.</p>
+    <p class="frame"><b>KS5 → framework.</b> Implementing … addresses …, satisfies … under …, and aligns them
+    with … (Essential Eight / ISM), which the client's contract requires.</p>
+  </div>
+
+  <div class="box">
+    <h2>Before you hand it in</h2>
+    <ul class="checklist">
+      <li>Goals <em>and</em> objectives named — and linked back to in KS1 and KS5</li>
+      <li>In-house vs external: advantages <em>and</em> disadvantages</li>
+      <li>All six controls: present or absent, protecting practices <em>and data</em></li>
+      <li><b>Threat modelling</b> named, all three principles, in KS1 <em>and</em> KS5</li>
+      <li>Vulnerabilities carry mechanism <em>and</em> organisational impact</li>
+      <li>Criteria <b>applied</b> in a table, a verdict per row, plus a synthesis</li>
+      <li>Legal <em>and</em> ethical, with viable specific resolutions</li>
+      <li>Recommendations sequenced: controls + threat modelling + strategies</li>
+      <li>KS5 references legal obligations, goals/objectives <em>and</em> a framework</li>
+      <li>Verification step — how they confirm it worked</li>
+    </ul>
+  </div>
+
+  <div class="foot">
+    <span><b>Side 2</b> · KS4 consequences · KS5 recommendations — VSV descriptors + study design (2025)</span>
+  </div>
+
+</section>
+
+</body>
+</html>

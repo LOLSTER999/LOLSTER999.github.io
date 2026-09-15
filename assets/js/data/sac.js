@@ -31,6 +31,11 @@
         provides**. You are not being asked to recall the study design — you are being asked to *apply* it to one
         specific organisation.
 
+        > [tip] **Printable:** everything in this section is condensed onto a
+        [double-sided A4 cheat sheet](sac-cheatsheet.html) — the ten vulnerabilities and the phrases that plant
+        them, the six controls, the APPs, the mitigation menu and the sentence frames. Check whether notes are
+        permitted in your SAC before you take it in.
+
         @[sac-outcome]
 
         Read that sentence carefully, because it is the task: **analyse** the organisation's practices,
