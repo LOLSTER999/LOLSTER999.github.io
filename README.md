@@ -6,7 +6,7 @@ Built from the exam revision folder: the study design's key knowledge / key skil
 
 ## What's in it
 
-**47 articles** across six categories, each tagged with the key knowledge and key skills it revises:
+**49 articles** across six categories, each tagged with the key knowledge and key skills it revises:
 
 | Category | Covers |
 | --- | --- |
@@ -14,7 +14,7 @@ Built from the exam revision folder: the study design's key knowledge / key skil
 | Unit 3 · AoS 2 | Analysis and design — why organisations develop software, briefs, Gantt charts, context diagrams / DFDs / use case diagrams, the SRS, legal requirements, file management, ideation, evaluation criteria, UX, design principles |
 | Unit 4 · AoS 1 | Development and evaluation — efficient and effective solutions, repositories and APIs, alpha and beta testing, evaluation strategies, project monitoring |
 | Unit 4 · AoS 2 | Cyber security — organisations, vulnerabilities, security controls, threat modelling, evaluating practices, legislation and frameworks, ethics, improving practices |
-| **U4O2 SAC** | **The cyber security school-assessed coursework — how it is marked, section-by-section technique, and a full worked case study** |
+| **U4O2 SAC** | **The cyber security school-assessed coursework — how it is marked, section-by-section technique, your course's CodeWave case study, and two full worked case studies** |
 | Exam skills | Exam structure and timing, command terms, answering technique |
 
 ### Unit 4 Outcome 2 SAC
@@ -31,7 +31,7 @@ Unit 4 AoS 2 itself is written to SAC depth rather than exam depth: the vulnerab
 
 ### Practice
 
-**175 questions**, every one taken from a real paper, tagged by area of study and by the article that covers it:
+**186 questions**, every one taken from a real paper or your course's own activity sheets, tagged by area of study and by the article that covers it:
 
 | Paper | Notes |
 | --- | --- |
