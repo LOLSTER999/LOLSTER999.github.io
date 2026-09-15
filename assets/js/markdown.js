@@ -96,7 +96,7 @@
       // inline SVG figure registered in DIAGRAMS (see data/diagrams.js).
       var dref = line.match(/^@\[([\w-]+)\]\s*$/);
       if (dref) {
-        var fig = (global.DIAGRAMS || {})[dref[1]];
+        var fig = (global.DIAGRAMS || {})[dref[1]] || (global.RUBRIC || {})[dref[1]];
         out.push(fig || '<p class="diagram-missing">[missing diagram: ' + esc(dref[1]) + ']</p>');
         i++;
         continue;

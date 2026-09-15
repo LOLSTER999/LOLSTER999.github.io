@@ -1753,207 +1753,265 @@ const CURRICULUM = [
   id: 'u4a2',
   code: 'Unit 4 · AoS 2',
   title: 'Cyber security: secure software development practices',
-  blurb: 'Vulnerabilities in development environments, the controls that close them, the law that governs them and the ethics around them.',
+  blurb: 'The whole of the Outcome 2 knowledge base — organisations, vulnerabilities, controls, threat modelling, evaluation, law, ethics and improvement. Written deep enough for the SAC, not just the exam.',
   color: 'var(--u4a2)',
   lessons: [
 
   {
     id: 'organisations',
-    title: 'Organisational goals, objectives and where software comes from',
-    summary: 'Goals vs objectives, and in-house vs external development.',
+    title: 'Organisations, goals and where software comes from',
+    summary: 'Goals vs objectives, and the in-house / external decision — the foundation of every SAC answer.',
     kk: ['U4A2 KK1', 'U4A2 KK2'],
     body: `
+      Everything in this area of study is assessed **against a specific organisation**. That makes this article
+      the foundation: if you cannot state what the organisation is trying to achieve, you cannot analyse whether
+      its practices support it, and you cannot reach the top band of any key skill.
+
       ## Goals and objectives
 
-      - A **goal** is a broad, long-term aim. Not necessarily measurable. *"Become the leading rental management
-        provider in Australia."*
-      - An **objective** is a **specific and measurable** target that contributes to a goal. *"Increase active users
-        by 20% this financial year."*
-
-      Objectives make goals achievable and let progress be assessed. A 3-mark question on the difference wants:
-      objectives are measurable; goals are not necessarily measurable; and an example from the case study showing
-      an objective serving a goal.
-
-      ## Developing in-house vs externally
-
-      | | Advantages | Disadvantages |
+      | | Goal | Objective |
       | --- | --- | --- |
-      | **In-house** | Full control over the process and the code; developers understand the organisation's needs, workflows and data; **sensitive data never leaves the organisation**; easier ongoing maintenance and changes; retains the intellectual property and the expertise | Higher up-front cost to employ and train staff; may lack specialist skills; slower if the team is small; diverts staff from other work |
-      | **External** | Access to specialist expertise the organisation lacks; often faster to deliver; no need to employ permanent staff; predictable contracted cost | **Personal information is exposed to a third party** (a Privacy Act risk); external developers may claim intellectual property rights; less direct control and slower response to changes; ongoing dependence on the contractor; risk from software acquired from third parties |
+      | **Scope** | Broad, long-term direction | Specific, short-term target |
+      | **Measurable?** | Not necessarily | **Always** |
+      | **Time frame** | Years | Usually this quarter or this financial year |
+      | **Example** | "Become the leading provider of fleet-management software in Australia" | "Win three further government contracts this financial year" |
 
-      ## Justifying in-house development for a case study
+      **Objectives exist to make goals achievable and assessable.** A goal states a direction; an objective is a
+      checkpoint you can tick or fail. Every objective should serve a goal, and a good answer says which one it
+      serves.
 
-      A 4-mark "justify why in-house is better here" question needs reasons drawn from the stimulus, not generic
-      ones:
+      > [exam] The 3-mark version of this question wants three things: (1) objectives are measurable; (2) goals
+      are not necessarily measurable; (3) an example from the case study showing an objective serving a goal.
+      Miss the third and you cap at 2.
 
-      - The team **already understands the existing processes** across all 60 agencies, having just analysed them.
-      - The system handles **tenants' and owners' personal and financial information**, which stays inside the
-        organisation and reduces Privacy Act exposure.
-      - Requirements will keep changing as agencies migrate, and in-house developers can respond immediately.
-      - The company **retains the code and the knowledge**, so future maintenance and extensions do not depend on
-        an external contract.
+      ### Finding them in a case study
 
-      > [exam] Note that the same paper can ask you to argue in-house (Section C, based on the case study) and to
-      list advantages of external development (a different paper's Section C). Know both sides.
+      They are usually stated, but not always labelled. Look for:
 
-      ## Off-the-shelf vs custom
+      - **Goal language:** "aims to", "wants to become", "our vision", "over the next five years".
+      - **Objective language:** any **number** — a percentage, a count, a deadline, a service level. "Grow the
+        subscriber base by 25%", "maintain 99.9% availability", "reduce support tickets by half".
 
-      Custom software — whether built in-house or externally — is **tailored to the organisation's exact workflows**
-      and gives full control over features, updates and integrations. Off-the-shelf is cheaper and faster but forces
-      the organisation to adapt to the software.
+      If the case study gives you only goals, you can reasonably infer objectives from the numbers mentioned
+      elsewhere — but say that you are inferring.
+
+      ## Medium and large organisations
+
+      The study design specifies **medium and large** organisations, and size genuinely changes the analysis:
+
+      - **More people means more insider risk** — not because staff are malicious, but because access is harder
+        to keep to the minimum each role needs.
+      - **Formal process becomes necessary.** A three-person team can review each other's code informally; a
+        180-person company cannot, so it needs a recorded process.
+      - **Regulatory exposure rises.** Larger organisations hold more personal information, so a breach affects
+        more people, and the "reasonable steps" expected under the Privacy Act scale with the organisation's
+        size and resources.
+      - **Turnover creates orphaned access.** Accounts of departed staff and finished contractors are one of the
+        most common findings in a SAC case study.
+
+      ## Developing in-house or externally
+
+      Named explicitly in the Medium band of KS1, and a guaranteed source of marks because the descriptor asks
+      for **advantages and disadvantages**.
+
+      ### In-house
+
+      | Advantages | Disadvantages |
+      | --- | --- |
+      | Full control over the process, the code and the release schedule | Higher up-front cost to employ, train and retain developers |
+      | Developers understand the organisation's workflows, data and customers | May lack specialist skills — security expertise especially |
+      | **Sensitive data never leaves the organisation**, reducing Privacy Act exposure | Slower if the team is small; diverts staff from other work |
+      | Retains the intellectual property *and* the expertise | Capability walks out the door when a key developer leaves |
+      | Requirements can change without renegotiating a contract | No external perspective challenging bad habits |
+
+      ### External
+
+      | Advantages | Disadvantages |
+      | --- | --- |
+      | Access to specialist expertise the organisation does not employ | **Personal information is disclosed to a third party** — a Privacy Act risk under APP 6 and APP 8 |
+      | Often faster to deliver | The contractor may claim intellectual property rights unless the contract says otherwise |
+      | No permanent headcount; predictable contracted cost | Less direct control; slower response to change |
+      | Brings practices and standards from other clients | Ongoing dependence on the contractor's availability and pricing |
+      | | **Supply-chain risk** — their code, their libraries, their security practices become yours |
+
+      ### Writing it for a SAC
+
+      Do not reproduce the table. Pick the three or four rows that **this organisation's case study actually
+      demonstrates**, and quote the evidence:
+
+      > *"Kestrel's in-house model has delivered the domain understanding the case study credits for FleetLink's
+      > success, and keeps driver and payment data inside the organisation. But the disadvantage is equally
+      > visible: with no specialist security capability, Kestrel never defined security requirements for the
+      > platform and performs no threat modelling. Using external contractors to cover peak periods then
+      > reintroduces exactly the third-party exposure the in-house model was meant to avoid — the March breach
+      > entered through a shared contractor credential."*
+
+      That single paragraph covers advantages, disadvantages and case-study evidence, and sets up the
+      vulnerability analysis that follows.
+
+      ## Custom versus off-the-shelf
+
+      A related decision that sometimes appears. Custom software — in-house or contracted — is **tailored to the
+      organisation's actual workflows** and gives control over features, integrations and the upgrade path.
+      Off-the-shelf is cheaper and faster but forces the organisation to adapt its process to the software, and
+      its security posture is the vendor's decision, not yours.
     `
   },
 
   {
     id: 'vulnerabilities',
     title: 'Vulnerabilities and risks in development environments',
-    summary: 'The ten named weaknesses and how to spot them in a case study.',
+    summary: 'The ten named weaknesses, how to recognise each in a case study, and how to turn one into a full answer.',
     kk: ['U4A2 KK3', 'U4A2 KS3'],
     body: `
-      The study design names ten types of vulnerability and risk. Learn to recognise each from a description, since
-      that is exactly how they are examined.
+      This is the single highest-value article in the area of study. KS2 is assessed on it directly, KS3
+      evaluates against it, KS4's consequences flow from it and KS5's recommendations must close it.
 
-      | Vulnerability | What it looks like in a case study |
-      | --- | --- |
-      | **Use of APIs** | The solution sends data to a third-party service; the API's own security and availability now affect yours, and data leaves your control |
-      | **Malware** | Ransomware, spyware, viruses or trojans on development machines — often arriving via phishing or an untrusted download |
-      | **Unpatched software** | Known vulnerabilities left unfixed because updates were not applied |
-      | **Poor identity and access management** | Shared logins, no MFA, developers with access to production customer data they do not need, accounts left active after staff leave |
-      | **Man-in-the-middle attacks** | Data intercepted in transit because it is not encrypted, e.g. over unsecured Wi-Fi |
-      | **Insider threats** | A person **inside** the organisation causing harm — deliberately or accidentally. E.g. a developer changing the environment's configuration so that code and data become publicly accessible |
-      | **Cyber security incidents** | An actual breach: data exposed, systems compromised, accounts taken over |
-      | **Risks from software acquired from third parties** | Libraries, packages or applications from outside that contain vulnerabilities or malicious code — a supply-chain risk |
-      | **Ineffective code review practices** | Code merged without another developer checking it, so defects and insecure patterns reach production |
-      | **Combined development, testing and production environments** | Development, testing and live systems on the same hardware, sharing data |
+      ## Vulnerability, threat, risk — three different words
 
-      ## Insider threat — the definitional trap
+      The descriptors use all three and markers notice when students treat them as synonyms.
 
-      An **insider** threat comes from someone *within* the organisation. In 2025 VCAA, the correct example was a
-      **developer modifying the development environment configuration so that code and data became publicly
-      accessible**. The distractors — an external phishing campaign, external consultants' scripts being blocked,
-      an electrical fire — are respectively an external attack, a control working correctly, and a physical/hardware
-      incident.
+      | Term | Definition | Example |
+      | --- | --- | --- |
+      | **Vulnerability** | A weakness in a system or practice | The repository is protected by a password only |
+      | **Threat** | Something or someone that could exploit that weakness | An attacker running a phishing campaign |
+      | **Risk** | A threat exploiting a vulnerability, with a **likelihood** and an **impact** | "An attacker phishes a developer credential and pushes malicious code — moderate likelihood, major impact" |
 
-      Note that an insider threat need not be malicious. A careless or untrained employee is still an insider risk,
-      which is why **developer training and onboarding** is a named mitigation.
+      A vulnerability on its own is a fact. A risk is a judgement, and judgements are what get marked at the
+      higher bands.
 
-      ## Combined environments — why it is so serious
+      ## The ten named vulnerabilities
 
-      Running development, testing and production together means:
+      ### 1. Use of application programming interfaces (APIs)
 
-      - Untested code can affect the **live** system that the business depends on.
-      - **Real customer data ends up in the development environment**, where more people can access it and where
-        protections are weaker — a Privacy Act problem.
-      - A compromise of a developer's machine reaches production directly.
-      - Updates cannot be trialled safely before they go live.
+      **What it is.** The solution depends on an external service it does not control.
 
-      > [exam] "Frank is applying updates while the business is still using the software, on a combined development,
-      testing and production environment. Identify and explain two risks." Strong answers: (1) untested changes go
-      straight to the live system, so a fault stops day-to-day operations with no tested version to fall back on;
-      (2) real customer data is present in the development environment where it is exposed to people who do not need
-      it, risking a breach. **Identify + explain the consequence** — a bare label is one mark at best.
-    `
-  },
+      **How it compromises development.** The API's own security, availability and pricing become yours. Data
+      sent to it leaves the organisation — engaging **APP 8** if it is processed overseas. A change to the API
+      can break your product without warning.
 
-  {
-    id: 'security-controls',
-    title: 'Security controls',
-    summary: 'The six controls that protect development practices and stored data.',
-    kk: ['U4A2 KK4', 'U4A2 KK9'],
-    body: `
-      Six controls are named. Each maps to specific vulnerabilities from the previous article — questions often ask
-      you to **explain how a named control protects the practice or the data**.
+      **Case-study signals:** "integrates a third-party service", "sends requests to", "uses a cloud-based".
 
-      ## Version control and code repositories
+      ### 2. Malware
 
-      **How it protects:** every change is recorded with its author and timestamp, creating an audit trail; malicious
-      or faulty changes can be identified and **rolled back** to a known-good version; code is stored centrally
-      rather than on individual machines or flash drives; access to the repository can be restricted and logged.
+      **What it is.** Ransomware, spyware, viruses, trojans and keyloggers on development machines or servers.
 
-      ## Robust identity and access management
+      **How it compromises development.** Source code can be stolen or encrypted; credentials captured; a
+      compromised build machine can inject malicious code into the product itself, which then ships to every
+      customer.
 
-      **How it protects:** only authenticated, authorised people can reach the development environment, the source
-      code and the data. Includes strong passwords, **multi-factor authentication**, role-based access on the
-      **principle of least privilege** (each person gets only what their role requires), and prompt removal of
-      access when someone leaves. This directly limits both external attackers and insider threats.
+      **Case-study signals:** "clicked a link", "downloaded an attachment", "a USB drive found in the car park",
+      "systems were encrypted".
 
-      **Multi-factor authentication** requires two or more different kinds of evidence:
+      ### 3. Unpatched software
 
-      - Something you **know** — password or PIN
-      - Something you **have** — phone, security token, SMS code
-      - Something you **are** — fingerprint, facial recognition
+      **What it is.** Known vulnerabilities left open because updates have not been applied.
 
-      Even if an attacker steals the password, they are very unlikely to also hold the second factor.
+      **How it compromises development.** When a vendor releases a patch, the vulnerability it fixes becomes
+      **public knowledge** — attackers read patch notes. Unpatched systems are then exploitable using documented,
+      often automated, techniques. Two of the Essential Eight address this specifically.
 
-      ## Encryption
+      **Case-study signals:** "two versions behind", "updates are applied when there is time", "the server has
+      not been restarted in months".
 
-      **How it protects:** converts data into an unreadable form that requires a key to decrypt. Data **at rest**
-      (stored in the database or on backups) and **in transit** (moving over the network) are both encrypted, so
-      intercepted or stolen data is useless to the attacker. This is the primary control for **sensitive personal
-      information**.
+      ### 4. Poor identity and access management practices
 
-      ## Code review
+      **What it is.** Shared logins, no multi-factor authentication, excessive permissions, accounts left active
+      after people leave.
 
-      **How it protects:** another developer examines code before it is merged, catching defects, insecure patterns
-      and hard-coded credentials that the author missed. It also spreads knowledge across the team and deters
-      malicious insider changes.
+      **How it compromises development.** A shared credential **destroys accountability** — you cannot tell who
+      did what. Password-only authentication means one phished credential equals full access. Excessive
+      permissions mean any single compromise reaches everything.
 
-      ## Regular updates and patches
+      **Case-study signals:** "the team shares a login", "no MFA", "still has access", "everyone has admin",
+      "the password is written on a whiteboard".
 
-      **How it protects:** closes known vulnerabilities before they can be exploited. Unpatched software is one of
-      the most commonly exploited weaknesses, which is why patching applications and operating systems appears twice
-      in the **Essential Eight**.
+      ### 5. Man-in-the-middle attacks
 
-      ## Separated development, testing and production environments
+      **What it is.** Communication between two parties is intercepted by a third.
 
-      **How it protects:** untested code cannot affect the live system; real customer data need never appear in
-      development (use de-identified or generated test data instead); a compromise in development does not reach
-      production; and changes can be validated in testing before release.
+      **How it compromises development.** Credentials, source code and customer data can be read in transit, and
+      the attacker can **alter** what is delivered — the altered-invoice scenario, or a modified package
+      download.
 
-      > [exam] A 4-mark "explain how each security control would protect the software development practices or the
-      data" question gives 2 marks per control. Each 2 marks = **what the control does** + **the specific threat it
-      stops in this case study**.
-    `
-  },
+      **Case-study signals:** "public Wi-Fi", "no VPN", "unencrypted connection", "the details on the invoice had
+      changed".
 
-  {
-    id: 'threat-modelling',
-    title: 'Threat modelling',
-    summary: 'Defining requirements, identifying and mitigating threats, confirming mitigation.',
-    kk: ['U4A2 KK5'],
-    body: `
-      **Threat modelling** is a structured process for finding security weaknesses in a design *before* they are
-      built, and confirming they have been dealt with. The study design names three principles, and they run in
-      order.
+      ### 6. Insider threats
 
-      ## 1. Defining security requirements
+      **What it is.** Harm originating from someone **inside** the organisation — an employee, contractor or
+      anyone with legitimate access.
 
-      Decide what must be protected and to what standard, before design begins. What data does the solution hold?
-      How sensitive is it? What laws apply? What would a breach cost? These requirements go into the SRS alongside
-      functional and non-functional requirements.
+      **How it compromises development.** Insiders are already past the perimeter controls. They can exfiltrate
+      code or data, weaken configuration, or introduce malicious changes.
 
-      ## 2. Identifying and mitigating threats
+      **The distinction that earns marks:** an insider threat need not be malicious. A developer who copies the
+      live customer table into a test database to get realistic data is a careless insider threat, and in most
+      SAC case studies that is exactly what has happened.
 
-      Systematically work out what could go wrong, and design controls to prevent it.
+      **Case-study signals:** "a developer changed the configuration", "copied the data", "a disgruntled
+      employee", "took files when they left".
 
-      - **Identify** — who might attack, what they would want, and where the solution is weak. Consider each
-        vulnerability from the KK3 list against your own design.
-      - **Assess** — rate each threat by **likelihood** and **impact**. A risk-assessment matrix multiplies the two,
-        so *minor impact + low probability* is the lowest-rated risk and *major impact + high probability* the
-        highest. Rate before you spend money.
-      - **Mitigate** — apply controls to reduce or eliminate the threat: encryption, access management, separated
-        environments, code review, patching.
+      ### 7. Cyber security incidents
 
-      ## 3. Confirming threats have been mitigated
+      **What it is.** An event that has actually compromised confidentiality, integrity or availability.
 
-      Verify that the controls actually work — through testing, code review, penetration testing, and reviewing
-      audit logs and configuration settings. A control that was designed but never verified is not a mitigation.
+      **Why it matters for the SAC:** an incident in the stimulus is your **evidence of impact**, which is what
+      the Very high band of KS2 asks for. Use it.
 
-      > [exam] If a question says "after security requirements have been defined, state a threat modelling principle
-      that could be used", the answer is the **next** principle in sequence: **identifying and mitigating threats**.
-      Read where in the sequence the question places you.
+      ### 8. Risks present from software acquired by third parties
 
-      ## Risk-assessment matrix
+      **What it is.** Libraries, packages, frameworks and applications brought in from outside — a supply-chain
+      risk.
+
+      **How it compromises development.** Once integrated, third-party code runs with your product's privileges.
+      Its vulnerabilities become your vulnerabilities, and its licence terms bind you under the **Copyright Act
+      1968**. Open-source is not the same as safe or unencumbered.
+
+      **Case-study signals:** "downloaded a free library", "open-source component", "nobody checked the licence",
+      "a package from a public repository".
+
+      ### 9. Ineffective code review practices
+
+      **What it is.** Code reaching production without another person examining it — or reviews that happen but
+      are not enforced or recorded.
+
+      **How it compromises development.** Defects, insecure patterns and hard-coded credentials ship unexamined,
+      and a malicious change through a compromised account passes unnoticed. If reviews are unrecorded, the
+      organisation cannot **evidence** them to a client or auditor even when they did happen.
+
+      **Case-study signals:** "merged as soon as it compiles", "reviews happen when there is time", "no record is
+      kept".
+
+      ### 10. Combined development, testing and production environments
+
+      **What it is.** Development, testing and live systems sharing infrastructure and data.
+
+      **How it compromises development.** This is usually the most serious finding in a case study, because it
+      multiplies every other weakness:
+
+      - Untested code can reach the live system with no gate in between.
+      - **Real customer data ends up in development**, where protections are weaker and far more people have
+        access than their role requires.
+      - A compromise of any development machine reaches production directly.
+      - Updates cannot be trialled safely before release.
+
+      **Case-study signals:** "all systems run on the same server", "the test database contains live data", "the
+      developers work directly on the live site".
+
+      ## Turning a vulnerability into a full-band answer
+
+      Three moves, three bands:
+
+      | Move | Band it reaches | What it sounds like |
+      | --- | --- | --- |
+      | **Name** it in study-design language | Very low / Low | "Kestrel has poor identity and access management practices." |
+      | **Explain the mechanism** — how it compromises the practice or the data | High | "A shared contractor login removes accountability, and password-only authentication means a single phished credential grants full repository access." |
+      | **State the organisational impact** | Very high | "This is how the March breach began; it cost Kestrel the Northern Logistics renewal and triggered a notifiable data breach assessment." |
+
+      ## Rating the risk
+
+      A risk-assessment matrix combines **likelihood** and **impact**:
 
       | | Low probability | Medium probability | High probability |
       | --- | --- | --- | --- |
@@ -1961,26 +2019,396 @@ const CURRICULUM = [
       | **Moderate impact** | Low | Medium | High |
       | **Minor impact** | **Lowest** | Low | Medium |
 
-      Lowest-rated risk = minor impact **and** low probability. A minor-impact risk with very high probability still
-      rates above it, because it will actually happen.
+      The lowest-rated risk needs **both** minor impact and low probability. A minor-impact risk that is almost
+      certain still rates higher, because it will actually happen.
+
+      Rating your vulnerabilities lets you **prioritise** them, and a prioritised list is what makes Section 3
+      of a SAC read as analysis rather than a checklist.
+    `
+  },
+
+  {
+    id: 'security-controls',
+    title: 'Security controls',
+    summary: 'The six named controls, the vulnerability each one closes, and how to explain them.',
+    kk: ['U4A2 KK4', 'U4A2 KK9'],
+    body: `
+      Six controls are named in the study design. For the SAC you need to do three things with each: say whether
+      the organisation has it, explain **how it protects** the practice or the data, and later recommend it where
+      it is missing.
+
+      ## The control-to-vulnerability map
+
+      This table is the one to memorise, because it lets you answer "what should they do about it?" instantly.
+
+      | Control | Closes | Essential Eight / ISM link |
+      | --- | --- | --- |
+      | Version control and code repositories | Ineffective code review; insider threats; loss of code | Regular backups |
+      | Robust identity and access management | Poor IAM; insider threats; malware spread; man-in-the-middle credential reuse | MFA; restrict administrative privileges |
+      | Encryption | Man-in-the-middle; data exposure after a breach | — |
+      | Code review | Ineffective code review; insider threats; third-party code risk | — |
+      | Regular updates and patches | Unpatched software; malware | Patch applications; patch operating systems |
+      | Separated development, testing and production environments | Combined environments; insider access to production data | ISM *Development, testing and production environments* |
+
+      ## 1. Version control and code repositories
+
+      **How it protects.** Every change is recorded with its author and timestamp, producing an **audit trail**.
+      A faulty or malicious change can be identified and **rolled back** to a known-good version. Code lives
+      centrally rather than on individual machines, so a lost laptop does not lose the work, and access to the
+      repository can be restricted and logged in one place. Multiple developers' changes are **merged** rather
+      than overwriting each other.
+
+      **What it is not.** Version control is not a backup — its purpose is change management. Say this if a
+      question compares them.
+
+      ## 2. Robust identity and access management
+
+      **How it protects.** Only authenticated, authorised people reach the development environment, the source
+      code and the data. It is the control that limits both external attackers and insider threats.
+
+      Four components, and a strong answer names them:
+
+      - **Strong authentication**, ideally **multi-factor**.
+      - **Role-based access** on the **principle of least privilege** — each person gets only what their role
+        requires, and nothing more.
+      - **Prompt deprovisioning** when someone leaves or a contract ends.
+      - **Logging and review** of who accessed what.
+
+      ### Multi-factor authentication
+
+      Requires two or more **different kinds** of evidence:
+
+      - Something you **know** — password, PIN
+      - Something you **have** — phone, security token, SMS code
+      - Something you **are** — fingerprint, facial recognition
+
+      Because the factors are different in kind, an attacker who obtains the password — typically by phishing or
+      from a breach of another site — still cannot log in. This is why MFA is the highest-value single
+      recommendation in most case studies: it defeats the attack that actually happened.
+
+      ## 3. Encryption
+
+      **How it protects.** Converts data into a form that is unreadable without the key, so intercepted or
+      stolen data is useless to the attacker.
+
+      Two states, and the distinction matters:
+
+      - **In transit** — data moving across a network, protected by TLS. Defeats man-in-the-middle interception.
+      - **At rest** — data stored in a database, on disk or in backups. Defeats an attacker who has already got
+        in, and is what limits the harm of a breach.
+
+      Case studies very often have one and not the other. "TLS on the customer portal but an unencrypted
+      production database" is a specific, markable finding.
+
+      ## 4. Code review
+
+      **How it protects.** Another developer examines the code before it is merged, catching defects, insecure
+      patterns and hard-coded credentials. It deters malicious changes, because the author knows someone will
+      look. It spreads knowledge across the team, reducing the risk concentrated in one person. And when the
+      reviewer is **recorded**, it produces evidence for clients and auditors.
+
+      To be a real control it must be **mandatory and enforced by the tooling**, not dependent on goodwill or
+      spare time.
+
+      ## 5. Regular updates and patches
+
+      **How it protects.** Closes known vulnerabilities before they can be exploited. The urgency comes from the
+      fact that a patch **announces** the vulnerability it fixes, so the window between release and deployment
+      is a window of known, documented exposure.
+
+      A real control has a **defined schedule and a maximum deployment window**, not "when there is time".
+
+      ## 6. Separated development, testing and production environments
+
+      **How it protects.**
+
+      - Untested code cannot affect the live system — deployment becomes a deliberate promotion between
+        environments rather than a save.
+      - **Real customer data need never appear in development.** Use de-identified or synthetically generated
+        test data instead.
+      - A compromise in development does not reach production.
+      - Changes can be validated in testing before release.
+
+      This is the control that most often does the most work in a SAC, because combined environments is usually
+      the most serious finding.
+
+      ## Writing about controls for the SAC
+
+      The Low descriptor asks you to outline controls protecting **both** the development practices **and the
+      data stored within the applications**. Cover both halves explicitly.
+
+      The Very high descriptor asks you to **analyse how the practices support goals and objectives**. So:
+
+      > *"Role-based access control on the deployment pipeline protects the production environment by ensuring
+      > only release engineers can push a build* **[how it protects the practice]** *and protects customer records
+      > by preventing developers from reading production data their role does not require* **[how it protects the
+      > data]**. *This supports the 99.9% availability objective, because an unreviewed build reaching production
+      > is the most likely cause of an unplanned outage."* **[link to objective]**
+
+      > [tip] A control the organisation **has but does not enforce** is worth more marks than one it simply
+      lacks — it lets you write about the gap between policy and practice, which is exactly the kind of nuance
+      the top bands reward.
+    `
+  },
+
+  {
+    id: 'threat-modelling',
+    title: 'Threat modelling',
+    summary: 'The three principles — named explicitly in the rubric from Medium upwards.',
+    kk: ['U4A2 KK5'],
+    body: `
+      **Threat modelling** is a structured process for finding security weaknesses in a design *before* they are
+      built, and confirming they have been dealt with.
+
+      > [exam] Threat modelling appears by name in the **Medium, High and Very high** descriptors of KS1, and
+      again in every band of KS5 from Medium up. It is the single most commonly forgotten requirement in this
+      outcome. If your SAC response never uses the phrase "threat modelling", you have capped yourself.
+
+      ## The three principles
+
+      They run in order, and each depends on the one before.
+
+      ### 1. Defining security requirements
+
+      Decide **what must be protected, and to what standard**, before design begins.
+
+      - What data will the solution hold, and how sensitive is it?
+      - Who should be able to reach it, and who should not?
+      - What laws and frameworks apply — Privacy Act, PDP Act, Essential Eight, ISM?
+      - What would a breach cost, in money, reputation and contracts?
+
+      These requirements go into the software requirements specification **alongside** the functional and
+      non-functional requirements. If security is only considered after the product works, it is retrofitted,
+      and retrofitted security is both weaker and more expensive.
+
+      ### 2. Identifying and mitigating threats
+
+      Systematically work out what could go wrong, and design controls to prevent it.
+
+      - **Identify** — who might attack, what they would want, and where the design is weak. Walk the KK3
+        vulnerability list against your own system.
+      - **Assess** — rate each threat by **likelihood** and **impact** using a risk matrix, so effort goes where
+        the risk actually is. Rate before you spend.
+      - **Mitigate** — apply controls that reduce or eliminate the threat.
+
+      ### 3. Confirming threats have been mitigated
+
+      **Verify that the controls actually work** — through testing, code review, application security testing,
+      penetration testing, and reviewing audit logs and configuration settings.
+
+      A control that was designed but never verified is not a mitigation; it is an assumption. This third
+      principle is the one almost every case-study organisation skips, and saying so explicitly is free marks.
+
+      ## Diagnosing an organisation's threat modelling
+
+      For a SAC, work through the three principles and give a verdict on each:
+
+      | Principle | Question to ask the case study | Typical finding |
+      | --- | --- | --- |
+      | Defining security requirements | Were security requirements written down before building? | Absent — "security issues are fixed as customers report them" |
+      | Identifying and mitigating threats | Is there a systematic process, or is it reactive? | Reactive — no risk register, no threat assessment |
+      | Confirming mitigation | Is anything audited, tested or reviewed after the fact? | Absent entirely |
+
+      Then state the consequence: *"Because Kestrel performs none of the three principles, its controls were not
+      chosen against identified threats — they accumulated by habit. That is why the controls it does have
+      (a repository, TLS) protect against risks it never faced, while the risks that materialised in March
+      (credential compromise reaching production data) had no control at all."*
+
+      That sentence is analysis, and it is the difference between the Medium and Very high descriptors.
+
+      ## Where it belongs in each SAC section
+
+      | Section | How threat modelling appears |
+      | --- | --- |
+      | **KS1 — analysis** | Describe which principles the organisation performs, and how they protect practices and data |
+      | **KS2 — vulnerabilities** | Absent threat modelling is itself a root-cause weakness: it explains *why* the other vulnerabilities exist |
+      | **KS3 — evaluation** | "Are security requirements defined and verified?" is a legitimate evaluation criterion |
+      | **KS5 — recommendations** | Named as a required ingredient: recommend all three principles, not just controls |
+    `
+  },
+
+  {
+    id: 'evaluating-practices',
+    title: 'Evaluating security practices with criteria',
+    summary: 'KS3 in full — writing criteria that can be measured, then actually applying them.',
+    kk: ['U4A2 KK6', 'U4A2 KS2'],
+    body: `
+      A whole section of the SAC is marked on this, and it is the one students most often half-do. The key
+      knowledge is short — *criteria for evaluating the security of software development practices within an
+      organisation* — but the skill behind it carries 20 marks.
+
+      ## Why criteria, and not just an opinion
+
+      "Their security is bad" is a judgement with nothing behind it. A criterion turns a judgement into a
+      **test**: something you can point at evidence for, and that someone else applying the same criterion would
+      reach the same answer on.
+
+      ## The anatomy of a usable criterion
+
+      Three parts. Missing any one of them costs a band.
+
+      1. **The question** — phrased so it can be answered, ideally yes / no / partially.
+      2. **The measure** — what you would actually count, compare or inspect.
+      3. **The data source** — where that measurement comes from.
+
+      | | Weak | Strong |
+      | --- | --- | --- |
+      | Question | "Is the code secure?" | "Is all code reviewed by a second developer before release?" |
+      | Measure | — | Proportion of merges with a recorded second reviewer |
+      | Source | — | Repository merge history for the last six months |
+
+      The weak version cannot be answered, so it cannot be applied — which caps you at the Low band no matter
+      how many you write.
+
+      ## A criteria set that covers the outcome
+
+      Choose five or six that match the practices the case study actually describes. Each one below maps to a
+      named security control or vulnerability, which is what makes it *relevant* rather than generic.
+
+      | Criterion | Measure | Data source |
+      | --- | --- | --- |
+      | Are development, testing and production environments separated? | Whether they share hardware; whether production data appears in non-production databases | Architecture documentation; database inspection |
+      | Is repository access restricted to current, authorised personnel? | Accounts with write access vs current staff register; MFA enrolment rate | Repository audit logs; access configuration |
+      | Is all code reviewed before release, and recorded? | Proportion of merges with a named reviewer | Repository merge history |
+      | Are operating systems and applications patched promptly? | Mean days between patch release and deployment | Patch-management records |
+      | Is personal information encrypted in transit and at rest? | TLS enforcement on all endpoints; database encryption setting | Configuration settings; network logs |
+      | Do developers complete secure-development training? | Completion rate; phishing-simulation click rate | Training records; simulation results |
+      | Are security requirements defined and verified? | Whether an SRS records security requirements; whether any audit confirms them | SRS; audit and test reports |
+      | Is data disposed of when no longer needed? | Existence of a retention schedule; age of oldest records held | Retention policy; database query |
+
+      > [tip] Criteria are conventionally phrased as **questions**. It makes the "apply" step obvious, because
+      applying a question means answering it.
+
+      ## Applying them — where High and Very high live
+
+      The Medium descriptor stops at *proposing* criteria and *describing how they could be measured*. **High
+      requires you to apply them.** Very high requires the application to be accurate, measured and **documented
+      clearly**.
+
+      "Documented clearly" has a concrete meaning: a table, one row per criterion, with a verdict in every row.
+
+      | Criterion | Evidence from the case study | Finding |
+      | --- | --- | --- |
+      | Environments separated? | All three on one server cluster; live driver table copied into test | **Not met** |
+      | Repository access controlled? | Shared contractor login; password only; two departed accounts active | **Not met** |
+      | Code reviewed and recorded? | Reviews happen "when there is time"; no records kept | **Partially met** |
+      | Patching prompt? | OS two major versions behind; patched once or twice yearly | **Not met** |
+      | Data encrypted? | TLS on the portal; production database unencrypted at rest | **Partially met** |
+      | Training ongoing? | One induction session at hire; no refresher | **Partially met** |
+
+      ### Use three verdicts, not two
+
+      **Met / partially met / not met** is more sophisticated than pass/fail, and it is usually more accurate.
+      "Partially met" is the right answer whenever a practice exists but is not enforced, not recorded, or covers
+      only part of what it should — which describes most real organisations.
+
+      ## The overall judgement
+
+      Finish with two or three sentences that synthesise the table. This is what "accurately evaluate and
+      measure" means at the top band — a marker should not have to add up your rows themselves.
+
+      > *"Six criteria were applied and none was fully met: three failed outright and three were met only
+      > partially. The failures cluster into two groups — environment separation and access management — and
+      > those two groups together account for the entire March incident chain, from the phished shared credential
+      > to the exfiltration of production data. Kestrel's current practices are therefore not effective at
+      > protecting either the development process or the data held in FleetLink."*
+
+      Notice what that does: counts the findings, groups them, connects them to the evidence, and answers the
+      actual question.
+
+      ## Efficiency and effectiveness
+
+      If a question asks you to classify criteria rather than security-specific ones, the general distinction
+      still applies:
+
+      - **Efficiency** — resources consumed: time, cost, effort. *"How long does it take to deploy a patch?"*
+      - **Effectiveness** — how well it does its job: completeness, accuracy, usability, maintainability.
+        *"Does the control actually prevent the threat it was chosen for?"*
+
+      Most security criteria are effectiveness measures, but patching speed and time-to-detect are efficiency
+      measures, and saying which is which shows you understand the distinction.
     `
   },
 
   {
     id: 'legislation-frameworks',
     title: 'Legislation and industry frameworks',
-    summary: 'Essential Eight, the ISM, Copyright Act, Privacy Act and the PDP Act.',
+    summary: 'The Acts, the APPs, the Essential Eight and the ISM — and how to argue their relevance.',
     kk: ['U4A2 KK7'],
     body: `
-      Five documents are named. Questions test whether you can pick the right one for a situation and outline what
-      it contains.
+      Five instruments are named in the study design. Naming them is the Low band; **discussing their relevance
+      to this organisation** is Medium; using them to justify resolutions and recommendations is Very high.
+
+      ## Privacy Act 1988 (Cwlth)
+
+      Governs how organisations handle **personal information** — information about an identified or reasonably
+      identifiable individual. It applies to most organisations with turnover above $3 million, and to all
+      health service providers.
+
+      The study design names **APP 1, 3, 6, 8, 9 and 11** for this area of study:
+
+      | APP | Requirement | When it appears in a case study |
+      | --- | --- | --- |
+      | **APP 1** | Open and transparent management — have a clear, current privacy policy | The organisation has no privacy policy, or does not follow the one it has |
+      | **APP 3** | Collect only personal information reasonably necessary for your functions | Collecting licence numbers or dates of birth with no stated need |
+      | **APP 6** | Use or disclose only for the purpose it was collected | Customer data pasted into an AI tool; production data used for testing |
+      | **APP 8** | Take reasonable steps before disclosing overseas | A third-party API or cloud service processing data offshore |
+      | **APP 9** | Do not adopt or use government-related identifiers as your own | Using driver licence numbers as account identifiers |
+      | **APP 11** | **Take reasonable steps to secure** personal information, and destroy or de-identify it when no longer needed | Almost every case study — this is the workhorse |
+
+      ### APP 11 is the one to master
+
+      Two obligations in one principle:
+
+      1. **Protect** the information from misuse, interference, loss and unauthorised access, modification or
+         disclosure.
+      2. **Destroy or de-identify** it once it is no longer needed for the purpose it was collected.
+
+      "Reasonable steps" is deliberately relative — it scales with the **sensitivity of the data, the harm a
+      breach would cause, and the organisation's size and resources**. That is what makes it arguable, and
+      arguable is what the discussion bands want:
+
+      > *"For a 180-staff company holding driver licence numbers, reasonable steps under APP 11 would clearly
+      > include encryption at rest and multi-factor authentication — both are inexpensive and standard practice.
+      > Kestrel had neither, so its failure is not a marginal judgement call."*
+
+      ### The Notifiable Data Breaches scheme
+
+      Part of the Privacy Act. Where a data breach is likely to result in **serious harm** and cannot be
+      remediated, the organisation must notify **affected individuals and the OAIC as soon as practicable**.
+
+      Two things make this a rich source of marks: delay is a **separate breach** from the original failure, and
+      it is simultaneously a **legal and an ethical** issue — which lets you cover both halves of KS4 with one
+      example.
+
+      ## Privacy and Data Protection Act 2014 (Vic)
+
+      Applies to **Victorian public sector** organisations — and, importantly for case studies, to **contracted
+      service providers handling their data**. If the organisation has a state government client, this Act is
+      relevant and most students miss it.
+
+      Named Information Privacy Principles for this area of study: **IPP 1, 2, 4, 5, 9** — collection, use and
+      disclosure, **data security**, openness, and transborder data flows. **IPP 4 (data security)** is the
+      counterpart of APP 11.
+
+      ## Copyright Act 1968 (Cwlth)
+
+      Protects the **expression of ideas**, including source code, text, images and designs. Copyright exists
+      automatically; no registration is needed.
+
+      Breaches that appear in case studies:
+
+      - Using a third-party library without complying with its licence terms — **open source is licensed, not
+        free of obligations**.
+      - Copying code from another employer, a previous project or a colleague at a different company.
+      - Modifying a vendor's code without permission.
+      - Shipping AI-generated code that reproduces copyrighted training material.
 
       ## The Essential Eight
 
-      Eight mitigation strategies published by the **Australian Cyber Security Centre** to protect organisations
-      against cyber threats:
+      Eight mitigation strategies published by the **Australian Cyber Security Centre**:
 
-      1. **Application control** — only approved applications can execute
+      1. **Application control** — only approved applications may execute
       2. **Patch applications**
       3. **Configure Microsoft Office macro settings**
       4. **User application hardening**
@@ -1989,160 +2417,271 @@ const CURRICULUM = [
       7. **Multi-factor authentication**
       8. **Regular backups**
 
-      > [exam] Multiple choice regularly offers a plausible-sounding non-member: "secure personal information",
-      "prevent scope creep", "develop evaluation criteria", "include detailed internal documentation". None of those
-      are in the Essential Eight. **Perform regular backups** is.
+      There are also **maturity levels** (0 to 3) describing how completely each strategy is implemented, which
+      is why contracts often specify "Essential Eight Maturity Level 2" rather than just "the Essential Eight".
+
+      > [exam] Multiple choice loves offering a plausible non-member — "secure personal information", "prevent
+      scope creep", "develop evaluation criteria", "include internal documentation". None are in the Essential
+      Eight.
 
       ## Information Security Manual (ISM)
 
-      Also from the ACSC. It provides a cyber security framework organisations can apply to protect their systems
-      and data. The study design names three specific guidelines from the **Guidelines for Software Development**:
+      Also from the ACSC. A comprehensive cyber security framework organisations apply to protect systems and
+      data — principles for governing, protecting, detecting and responding.
 
-      - **Development, testing and production environments** — keep them separated, and do not use real production
+      The study design names three guidelines from its **Guidelines for Software Development**:
+
+      - **Development, testing and production environments** — keep them separated, and do not use production
         data in development or testing.
-      - **Secure software design and development** — build security in from the design stage: threat modelling,
-        secure coding practices, code review.
-      - **Application security testing** — test the application specifically for security weaknesses, not only for
-        functionality.
+      - **Secure software design and development** — build security in from design: threat modelling, secure
+        coding, code review.
+      - **Application security testing** — test the application specifically for security weaknesses, not only
+        for functionality.
 
-      If a question asks you to *name and outline* an industry framework to guide a team in mitigating
-      vulnerabilities, either the **ISM** or the **Essential Eight** earns the naming mark; the second mark is for a
-      one-sentence outline of what it provides.
+      Those three map almost exactly onto the most common SAC findings, which is why the ISM is usually the
+      strongest framework to cite.
 
-      ## Copyright Act 1968 (Cwlth)
+      ## Legislation versus framework
 
-      Protects the expression of ideas, including source code. Relevant to: using third-party code or libraries
-      without a licence, editing someone else's code without permission, and AI-generated code that reproduces
-      copyrighted work.
+      A distinction worth making explicitly in a SAC:
 
-      ## Privacy Act 1988 (Cwlth)
+      | | Legislation | Framework |
+      | --- | --- | --- |
+      | Examples | Privacy Act 1988, PDP Act 2014, Copyright Act 1968 | Essential Eight, ISM |
+      | Binding? | Yes — by law, with penalties | Not by law — but often **contractually** binding |
+      | Consequence of failure | Investigation, enforceable undertakings, civil penalties | Lost contracts, failed audits, lost certification |
 
-      For U4 AoS 2 the named APPs are **1, 6, 8, 9 and 11**. APP 11 — taking reasonable steps to secure personal
-      information — is the one that applies when a case study describes leaked passwords or personal identification
-      information.
+      Frameworks become effectively mandatory the moment a client writes them into a contract — which is exactly
+      what case studies set up when they mention a government client asking for evidence of compliance.
 
-      ## Privacy and Data Protection Act 2014 (Vic)
+      ## Choosing the right instrument under pressure
 
-      Applies to Victorian public sector organisations. Named IPPs for this area of study: **1, 2, 4, 5, 9**.
-
-      > [tip] Decision rule under time pressure. Personal information leaked or poorly secured → **Privacy Act 1988**
-      (or PDP Act 2014 if it is a Victorian government body). Someone else's code or content copied or modified →
-      **Copyright Act 1968**. Asked for a *framework* rather than a law → **Essential Eight** or **ISM**.
+      | The case study describes… | Cite |
+      | --- | --- |
+      | Personal information leaked, or poorly secured | **Privacy Act 1988**, APP 11 |
+      | A breach not reported, or reported late | **Privacy Act 1988**, Notifiable Data Breaches scheme |
+      | Data kept long after it was needed | **Privacy Act 1988**, APP 11.2 |
+      | Data sent to an overseas service or API | **Privacy Act 1988**, APP 8 |
+      | Data used for something other than why it was collected | **Privacy Act 1988**, APP 6 |
+      | A Victorian government client or agency | **PDP Act 2014**, IPP 4 |
+      | Someone else's code, library or content reused | **Copyright Act 1968** |
+      | A baseline set of technical controls is wanted | **Essential Eight** |
+      | Secure development practice specifically | **ISM**, Guidelines for Software Development |
     `
   },
 
   {
     id: 'ethics',
     title: 'Ethical issues in software development',
-    summary: 'Security practices, AI, intellectual property and copyright.',
+    summary: 'The four named issues, how ethics differs from law, and how to write about both.',
     kk: ['U4A2 KK8', 'U4A2 KS4'],
     body: `
-      Four ethical issues are named. The distinction to hold onto: **legal** means required by law; **ethical**
-      means the right thing to do, whether or not the law compels it. Many exam answers need both.
+      KS4 asks for legal **and** ethical consequences. Most students write only the legal half, so the ethical
+      half is where marks are most easily gained.
 
-      ## Ineffective security practices
+      ## The distinction
 
-      Beyond any legal breach, an organisation that fails to protect data it was trusted with has acted unethically.
-      Users had no way to assess the risk and no alternative but to trust the organisation. Consequences to name:
-      financial loss, reputational damage, legal penalties, and loss of customer and stakeholder trust.
+      | | Legal | Ethical |
+      | --- | --- | --- |
+      | Source | An Act of Parliament | Professional and community expectations of right conduct |
+      | Test | Did they break the law? | Was it the right thing to do? |
+      | Consequence | Investigation, penalty, enforceable undertaking | Reputational damage, loss of trust, professional censure |
 
-      ## Use of AI during development
+      They overlap but neither contains the other. Some things are legal and unethical — shipping code you know
+      is insecure because the contract does not require otherwise. Some things are illegal but widely
+      considered harmless. **The most powerful examples for a SAC are the ones that are both**, because you can
+      analyse them twice.
 
-      - **Over-reliance** — generating all initial code with AI risks a team that cannot review, debug or maintain
-        what it ships. This is the ethical issue: not that AI was used, but that the organisation may be too
-        dependent on it and unable to take responsibility for its own product.
-      - **Data given to AI tools** — pasting customer data or proprietary code into an external assistant discloses
-        it to a third party.
-      - **Provenance** — AI output may reproduce copyrighted training data.
-      - **Transparency and accountability** — someone must remain answerable for what the software does.
+      ## The four named ethical issues
 
-      > [exam] For "why is using AI to write all initial code an ethical issue?", the answer is that the
-      **organisation may be too reliant on AI**. Distractors that say "any use of AI is unethical", "the code might
-      not be efficient" or "the AI might not write meaningful comments" describe quality problems, not ethical ones.
+      ### 1. Ineffective security practices
 
-      ## Intellectual property
+      Beyond any legal breach, an organisation that fails to protect data it was trusted with has acted
+      unethically. The argument that earns marks:
 
-      Who owns the code, the designs and the data? Ethically, contributors' work should be acknowledged and their
-      rights respected — including open-source licence terms, which are legally binding but also carry a community
-      expectation of attribution. When development is outsourced, IP ownership must be agreed in the contract or
-      the external developer may claim rights to the solution.
+      > *The people whose data was exposed generally had no way to assess the risk and no realistic alternative.
+      > Drivers did not choose Kestrel — their employers did. That asymmetry places a heightened obligation on
+      > the organisation holding the data, independent of what the law requires.*
 
-      ## Copyright issues
+      Consequences to name: financial loss, reputational damage, legal penalties, and loss of trust from
+      customers, staff and partners.
+
+      ### 2. Use of artificial intelligence during development
+
+      Four distinct problems, and naming several shows range:
+
+      - **Over-reliance.** A team that generates most of its code with AI may lose the understanding needed to
+        review, debug and maintain it. The organisation still bears responsibility for what it ships, but becomes
+        less able to explain or fix it. *This is the ethical issue* — not that AI is used at all.
+      - **Data disclosure.** Pasting customer data or proprietary source into an external assistant discloses it
+        to a third party, usually without consent and often offshore.
+      - **Provenance.** Generated code may reproduce copyrighted training material, and nobody can tell.
+      - **Accountability.** Someone must remain answerable for what the software does. "The AI wrote it" is not
+        an answer to a regulator or a customer.
+
+      > [exam] For "why is using AI to write all initial code an ethical issue?", the answer is **over-reliance**.
+      Options saying "any use of AI is unethical" or "the code might not be efficient" describe absolutism and
+      quality respectively, not ethics.
+
+      ### 3. Intellectual property
+
+      Who owns the code, the designs and the data? Ethically, contributors' work should be acknowledged and
+      their rights respected — including **open-source licence terms**, which are legally binding *and* carry a
+      community expectation of attribution and reciprocity. When development is outsourced, IP ownership must be
+      settled in the contract, or the external developer may have a legitimate claim.
+
+      ### 4. Copyright issues
 
       Using images, code, libraries, fonts or content without a licence. Ethically this deprives creators of
-      recognition and income even where enforcement is unlikely.
+      recognition and income even where enforcement is unlikely — "nobody would ever find out" is not a defence.
+
+      ## Two more that case studies plant
+
+      Not named in the study design as separate dot points, but they arise directly from the named issues and
+      markers reward them:
+
+      **Disclosure and transparency.** Delaying or downplaying a breach to protect reputation. This is the
+      strongest ethical example available in most case studies, because the harm is concrete: for every week of
+      delay, affected people cannot freeze credit, change passwords or watch for fraud. And it is
+      *simultaneously* a legal breach of the Notifiable Data Breaches scheme.
+
+      **Use of real customer data in development.** Legally an APP 6 and APP 11 problem. Ethically, the customer
+      consented to their data being used to deliver a service, not to sit in a test database so a developer
+      could see realistic values.
 
       ## Structuring an ethical-issues answer
 
+      Four moves:
+
       1. **Name** the issue precisely.
-      2. **Explain** why it is ethically problematic — who is harmed, and how.
-      3. **Apply** it to the case study.
-      4. If asked for consequences, cover both **legal** (which Act, what penalty) and **non-legal** (reputation,
-         trust, loss of customers) outcomes.
+      2. **Explain** why it is ethically problematic — *who is harmed, and how*.
+      3. **Apply** it to the specific actions in the case study.
+      4. **Give the consequence**, covering both **legal** (which Act, what penalty) and **non-legal**
+         (reputation, trust, lost customers).
+
+      Worked:
+
+      > *"Kestrel's six-week delay in notifying affected drivers is its clearest ethical failure. For six weeks,
+      > 4,000 people whose licence numbers were in criminal hands could not freeze credit, watch for identity
+      > fraud or replace their licences — because Kestrel prioritised assessing its own reputational exposure
+      > over their ability to protect themselves. The people harmed had no say in the decision and no knowledge
+      > it was being made on their behalf. This is also unlawful: the Notifiable Data Breaches scheme requires
+      > notification as soon as practicable, and reputational management is not a permitted ground for delay. The
+      > non-legal consequence has already materialised in the loss of the Northern Logistics contract."*
+
+      That single paragraph covers the ethical issue, the harm, the case-study application, the legal breach and
+      the commercial consequence — all four moves, both halves of KS4.
+
+      ## Resolutions must be viable
+
+      The Very high descriptor asks for **viable** resolutions. Viable means this organisation, with its stated
+      resources, could actually do it — and it names **what** changes, **who** does it, and **which obligation
+      it satisfies**.
+
+      "Be more ethical" is not a resolution. "Adopt a documented incident-response plan that names a breach
+      assessor and sets a 72-hour internal escalation deadline, with the notification decision removed from the
+      team responsible for reputation" is.
     `
   },
 
   {
     id: 'improving-security',
     title: 'Improving secure development practices',
-    summary: 'Training, onboarding, risk management plans and evaluation criteria.',
-    kk: ['U4A2 KK6', 'U4A2 KK10', 'U4A2 KS2', 'U4A2 KS5'],
+    summary: 'KS5 content — mitigation measures, training, risk management plans, and justification.',
+    kk: ['U4A2 KK6', 'U4A2 KK9', 'U4A2 KK10', 'U4A2 KS5'],
     body: `
-      ## Strategies named in the study design
+      The final key skill asks you to **recommend and justify** improvements. This article covers what to
+      recommend; the SAC section article covers how to structure and justify it.
 
-      ### Onboarding / induction practices and developer training
+      ## The two named strategies
 
-      New developers — especially novices — do not automatically know an organisation's security expectations. A
-      structured induction covers:
+      The study design names exactly two strategies for improving the security of software development
+      practices. Both must appear in a full-mark answer.
 
-      - The organisation's security policies, protocols and procedures.
-      - Practical rules: what data may be used in development, how to handle credentials, what may be given to AI
-        assistants.
+      ### 1. Onboarding / induction practices and developer training
+
+      New developers — especially novices and contractors — do not automatically know an organisation's security
+      expectations. A structured induction covers:
+
+      - Security policies, protocols and procedures, and **why** they exist.
+      - Practical rules: **what data may be used in development**, how credentials are handled, what may be given
+        to AI assistants.
       - Secure coding practices and the code review process.
-      - How to recognise and report phishing, suspicious requests and incidents.
-      - Ongoing refresher training, not just a single session at the start.
+      - How to recognise and report phishing, social engineering and suspicious requests.
+      - **Ongoing refreshers**, not a single session on day one, plus phishing simulation to measure whether it
+        worked.
 
-      **Why it works:** most incidents involve human behaviour — a clicked phishing link, real customer data copied
-      into a test environment, credentials committed to a repository. Training addresses the cause rather than
-      patching the symptom.
+      **Why it works — the argument that earns marks:** most incidents involve human behaviour, not a technical
+      control failing. A clicked phishing link, production data copied into a test database, credentials
+      committed to a repository. Training addresses the **cause**; controls only contain the symptom. If a case
+      study's incidents were caused by people doing the wrong thing while trying to do their jobs, say so and
+      make training a priority recommendation.
 
-      ### Development of risk management plans
+      ### 2. Development of risk management plans
 
-      A documented plan that identifies risks, rates them by likelihood and impact, assigns mitigation measures and
-      names who is responsible for each, and sets a schedule for review. It turns ad-hoc security into a process
-      that survives staff turnover.
+      A documented plan that:
 
-      ## Criteria for evaluating security of development practices
+      - **Identifies** each risk to the organisation and its development environment.
+      - **Rates** each by likelihood and impact.
+      - **Assigns** a mitigation measure to each.
+      - **Names an owner** responsible for it.
+      - **Sets a review cycle**, so the plan stays current.
 
-      You may be asked to **propose a criterion** and then **describe how it would be measured**.
+      **Why it works:** it turns ad-hoc security into a repeatable process that survives staff turnover — which
+      matters especially for organisations relying on rotating contractors. It also creates the documentation a
+      client or auditor asks for.
 
-      | Criterion (often phrased as a question) | How it is measured — and the data to collect |
+      ## Mitigation measures — the full menu
+
+      Pick the ones that match the vulnerabilities the case study actually has. Recommending a control for a
+      problem the organisation does not have reads as a memorised list.
+
+      | Vulnerability | Mitigation |
       | --- | --- |
-      | Is the code repository only accessed by authorised personnel? | Review repository **audit logs** and access-configuration settings against the current staff list |
-      | Is data transmitted only over secure protocols? | Check configuration settings and network logs for use of encrypted protocols |
-      | Are development, testing and production environments separated? | Inspect system architecture documentation and server configuration; check whether production data appears in dev databases |
-      | Is all code reviewed before release? | Count merges with a recorded reviewer as a proportion of total merges in the repository history |
-      | Are systems patched promptly? | Measure the average time between a patch's release and its deployment, from patch-management records |
-      | Do staff complete security training? | Training completion records and phishing-simulation click rates |
+      | Combined environments | Separate development, testing and production onto distinct infrastructure; use de-identified or synthetic test data |
+      | Poor identity and access management | Individual accounts; **MFA**; role-based access on least privilege; immediate deprovisioning; access logging and periodic review |
+      | Unpatched software | Defined patching schedule with a maximum deployment window; automated patch management |
+      | Ineffective code review | Mandatory second reviewer enforced by the repository, with the reviewer recorded |
+      | Third-party software risk | Vet dependencies before integration; maintain a licence register; monitor for vulnerability advisories |
+      | Malware | Application control; anti-malware; user application hardening; restrict administrative privileges |
+      | Man-in-the-middle | Enforce TLS everywhere; require a VPN for remote access; certificate pinning |
+      | Insider threats | Least privilege; logging and monitoring; separation of duties; training; offboarding process |
+      | Unmanaged AI assistants | Written AI-use policy: what data may be shared, mandatory human review, provenance recorded |
+      | Data retained too long | Retention schedule with secure disposal |
+      | No verification | Scheduled access reviews, application security testing, penetration testing, audit-log review |
 
-      > [exam] Two marks: one for a **measurement procedure**, one for naming the **specific data** you would
-      collect — audit logs, configuration settings, repository history, patch records. Say what you would look at.
+      ## Criteria for evaluating the improvements
 
-      ## Mitigation measures — a checklist to draw from
+      KK6 asks for criteria to evaluate the security of development practices — and the same criteria that
+      measured the *current* state measure whether your recommendations worked. Say this explicitly: re-running
+      the Section 2 criteria after six months is how the organisation confirms the threats have actually been
+      mitigated, which is the **third threat modelling principle**.
 
-      When asked to recommend improvements, pick the measures that match the vulnerabilities the case study
-      actually describes:
+      | Criterion | How it is measured | Data to collect |
+      | --- | --- | --- |
+      | Is the repository accessed only by authorised personnel? | Compare access list against staff register; check MFA enrolment | Audit logs; access configuration |
+      | Are environments separated? | Check whether production data appears in dev/test | Architecture docs; database inspection |
+      | Is all code reviewed? | Proportion of merges with a recorded reviewer | Repository history |
+      | Are systems patched promptly? | Mean days from patch release to deployment | Patch-management records |
+      | Has training been effective? | Completion rates; phishing-simulation click rate over time | Training records; simulation results |
+      | Are threats verified as mitigated? | Number and severity of findings per audit, tracked over successive audits | Audit and penetration-test reports |
 
-      - Separate development, testing and production environments; use de-identified test data.
-      - Enforce MFA and role-based access on the principle of least privilege.
-      - Encrypt sensitive data at rest and in transit.
-      - Require code review before any merge.
-      - Apply patches on a defined schedule.
-      - Maintain and test backups.
-      - Log and monitor access; review audit logs regularly.
-      - Train staff on phishing and secure development; induct new starters properly.
-      - Vet third-party libraries and applications before use.
-      - Set a policy governing AI assistant use and what data may be shared with them.
+      ## Sequencing recommendations
+
+      A strong set of recommendations is **ordered**, and says why. Lead with what closes the most serious
+      finding.
+
+      1. **Contain the biggest exposure first** — usually environment separation and removing production data
+         from development.
+      2. **Close the entry point** — identity and access management, because most incidents begin with a
+         credential.
+      3. **Stop the recurrence** — code review, patching schedule.
+      4. **Make it durable** — threat modelling built into the lifecycle, training, risk management plan.
+      5. **Verify** — audits, access reviews, re-running the evaluation criteria.
+
+      > [tip] Step 5 is the one almost nobody writes, and it is explicitly the third threat modelling principle.
+      Ending your recommendations with *how the organisation will confirm the mitigations worked* closes the loop
+      on your own evaluation and signals that you understand security as a process rather than a shopping list.
     `
   }
   ]

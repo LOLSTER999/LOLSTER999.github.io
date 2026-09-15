@@ -71,10 +71,25 @@
     return { label: 'Start with the articles — this material needs a first pass.', color: 'var(--bad)' };
   }
 
-  /* Data files append to QUESTIONS after questions.js builds its index,
-     so rebuild it here — once every script has run. */
+  /* Data files append to CURRICULUM and QUESTIONS after their own modules
+     have built their indexes, so rebuild both here — once every script has run. */
   Object.keys(QUESTION_INDEX).forEach(function (k) { delete QUESTION_INDEX[k]; });
   QUESTIONS.forEach(function (q) { QUESTION_INDEX[q.id] = q; });
+
+  LESSON_INDEX.length = 0;
+  CURRICULUM.forEach(function (unit) {
+    unit.lessons.forEach(function (lesson, i) {
+      LESSON_INDEX.push({
+        key: unit.id + '/' + lesson.id,
+        unitId: unit.id,
+        unitCode: unit.code,
+        unitTitle: unit.title,
+        color: unit.color,
+        index: i,
+        lesson: lesson
+      });
+    });
+  });
 
   /* Total lesson count for progress */
   const TOTAL_LESSONS = LESSON_INDEX.length;
@@ -312,6 +327,13 @@
         </a>
       </div>
 
+      <div class="callout exam" style="margin-bottom:26px">
+        <p><strong>Sitting the Unit 4 Outcome 2 SAC?</strong> The
+        <a href="#/unit/sac">cyber security SAC section</a> has the full performance descriptors with a band
+        filter, a section-by-section guide to what each key skill is marked on, and a complete worked case study
+        with model responses for all five key skills.</p>
+      </div>
+
       <div class="callout exam" style="margin-top:26px">
         <p><strong>Exam shape:</strong> 15 minutes reading, 2 hours writing, 100 marks. Section A is 20 multiple-choice
         questions (20 marks), Section B is short answer (20 marks), Section C is a case study worth 60 marks.
@@ -354,13 +376,16 @@
 
   /* Exam-question practice for one area of study, shown at the end of the unit */
   function aosPracticeSection(unit) {
-    const all = questionsForUnit(unit.id);
+    const borrowed = !questionsForUnit(unit.id).length && !!unit.practiceFrom;
+    const sourceUnit = borrowed ? getUnit(unit.practiceFrom) : unit;
+    if (!sourceUnit) return '';
+    const all = questionsForUnit(sourceUnit.id);
     if (!all.length) return '';
 
     const mcq = all.filter(function (q) { return q.type === 'mcq'; });
     const written = all.filter(function (q) { return q.type === 'short'; });
     const marks = all.reduce(function (t, q) { return t + (q.marks || 1); }, 0);
-    const best = store.bestQuiz('aos:' + unit.id + ':all');
+    const best = store.bestQuiz('aos:' + sourceUnit.id + ':all');
 
     const modes = [
       { id: 'all', icon: '📝', title: 'Every question', n: all.length,
@@ -376,10 +401,11 @@
         <div class="aos-practice-head">
           <div>
             <div class="eyebrow" style="margin-bottom:6px"><span class="dot" style="background:${unit.color}"></span>End of ${esc(unit.code)}</div>
-            <h2 class="section-title" style="margin-bottom:6px">Exam questions for this area of study</h2>
+            <h2 class="section-title" style="margin-bottom:6px">Exam questions${borrowed ? ' on this material' : ' for this area of study'}</h2>
             <p class="section-note" style="margin:0">
-              ${all.length} real questions worth ${marks} marks, drawn from all six papers and covering only
-              ${esc(unit.title.toLowerCase())}. <strong>The order is reshuffled every attempt</strong>, so you
+              ${all.length} real questions worth ${marks} marks, drawn from all six papers and covering
+              ${esc(sourceUnit.title.toLowerCase())}.${borrowed ? ' The SAC itself is an extended response, but these test the same knowledge and are the fastest way to find your gaps before you write.' : ''}
+              <strong>The order is reshuffled every attempt</strong>, so you
               practise recognising the question rather than remembering its position.
             </p>
           </div>
@@ -389,7 +415,7 @@
 
     modes.forEach(function (mode) {
       html += `
-        <a class="card" href="#/aos/${unit.id}/${mode.id}">
+        <a class="card" href="#/aos/${sourceUnit.id}/${mode.id}">
           <h3>${mode.icon} ${esc(mode.title)}</h3>
           <p>${esc(mode.desc)}</p>
           <div class="card-meta"><span class="pill">${mode.n} question${mode.n > 1 ? 's' : ''}</span></div>
@@ -1083,6 +1109,19 @@
 
     highlightNav();
   }
+
+  /* Rubric band filter — delegated so it survives every re-render */
+  document.addEventListener('click', function (e) {
+    const btn = e.target.closest('[data-band-btn]');
+    if (!btn) return;
+    const rubric = btn.closest('.rubric');
+    if (!rubric) return;
+    const band = btn.getAttribute('data-band-btn');
+    rubric.setAttribute('data-active-band', band);
+    $$('[data-band-btn]', rubric).forEach(function (b) {
+      b.classList.toggle('is-on', b === btn);
+    });
+  });
 
   window.addEventListener('hashchange', route);
 
