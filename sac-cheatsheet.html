@@ -79,7 +79,7 @@ body {
 }
 .mast .sub { font-size: 6.6pt; color: var(--dim); }
 
-/* ---- a block of content; never split across a column ---- */
+/* ---- a block of content; kept whole in a column where it fits ---- */
 .box {
   break-inside: avoid;
   margin: 0 0 1.7mm;
@@ -110,6 +110,14 @@ h2 .ks {
 }
 .box.tint h2 { color: var(--accent); }
 h2.risk { color: var(--accent); }
+
+/* Tall boxes on a crowded side are allowed to run over a column boundary —
+   keeping every one whole wastes more space than the split costs. Headings
+   and table rows still never split. */
+.sheet.flow .box { break-inside: auto; }
+.sheet.flow .box.span { break-inside: avoid; }
+.sheet.flow h2, .sheet.flow h3 { break-after: avoid; }
+.sheet.flow tr, .sheet.flow li, .sheet.flow .frame { break-inside: avoid; }
 
 /* A block that spans all three columns — used for the one table wide enough
    to need it. Balanced columns resume after it. */
@@ -542,7 +550,7 @@ td:last-child, th:last-child { padding-right: 0; }
 </section>
 
 <!-- ==================== SIDE 2 ==================== -->
-<section class="sheet">
+<section class="sheet flow">
 
   <div class="mast">
     <h1>U4O2 — Cyber Security SAC</h1>
@@ -572,27 +580,23 @@ td:last-child, th:last-child { padding-right: 0; }
       <tr><td>Is all code reviewed before release, and recorded?</td><td>Merges with a named reviewer · merge history</td></tr>
       <tr><td>Are OS and applications patched promptly?</td><td>Mean days release → deployment · patch records</td></tr>
       <tr><td>Is personal information encrypted in transit and at rest?</td><td>TLS enforcement; DB encryption setting · config</td></tr>
-      <tr><td>Are security requirements defined and verified?</td><td>Security requirements in the SRS; any audit · SRS, reports</td></tr>
-      <tr><td>Do developers complete secure-development training?</td><td>Completion rate; phishing click rate · training records</td></tr>
     </table>
     <h3>Document it as a table, one verdict per row</h3>
     <p>Use <b>three</b> verdicts: <b>met / partially met / not met</b>. "Partially met" is right whenever a
     practice exists but is not enforced, not recorded, or covers only part of what it should — which describes
     most real organisations.</p>
-    <p class="frame">Six criteria were applied and none was fully met: three failed outright, three partially.
-    The failures cluster into <b>environment separation</b> and <b>access management</b>, which together
-    account for the entire incident chain. Current practices are therefore not effective at protecting the
-    development process or the data.</p>
+    <p class="frame">Six criteria were applied and none was fully met: three failed outright, three
+    partially. The failures cluster into <b>environment separation</b> and <b>access management</b>, which
+    together account for the whole incident chain.</p>
   </div>
 
   <div class="box tint">
     <h2><span class="ks">KS4</span>Legal <em>and</em> ethical</h2>
     <p>Most students write only the legal half, so <b>the ethical half is where marks are easiest to gain</b>.</p>
-    <p><b>Legal</b> — source: an Act of Parliament · test: did they break the law? · consequence:
-    investigation, penalty, enforceable undertaking.<br>
-    <b>Ethical</b> — source: professional and community expectations · test: was it the right thing to do? ·
-    consequence: reputational damage, loss of trust, censure.</p>
-    <p>The strongest examples are <b>both at once</b>, because you can analyse them twice.</p>
+    <p><b>Legal</b> — an Act of Parliament · did they break the law? · investigation, penalty, enforceable
+    undertaking. <b>Ethical</b> — professional and community expectations · was it the right thing to do? ·
+    reputational damage, loss of trust. The strongest examples are <b>both at once</b>: you analyse them
+    twice.</p>
   </div>
 
   <div class="box">
@@ -606,11 +610,10 @@ td:last-child, th:last-child { padding-right: 0; }
       <tr><td><b>APP 11</b></td><td><b>Secure</b> personal information, and <b>destroy or de-identify</b> it once no longer needed</td></tr>
     </table>
     <p><b>APP 11 is the workhorse.</b> "Reasonable steps" scales with the sensitivity of the data, the harm a
-    breach would cause, and the organisation's size and resources — which is what makes it arguable, and
-    arguable is what the discussion bands want.</p>
-    <p class="frame">For a company holding licence numbers, reasonable steps under APP 11 would clearly
-    include encryption at rest and MFA — both inexpensive and standard. They had neither, so <b>this is not a
-    marginal judgement call</b>.</p>
+    breach would cause and the organisation's resources — which is what makes it arguable, and arguable is
+    what the discussion bands want.</p>
+    <p class="frame">Reasonable steps under APP 11 for a company holding licence numbers would clearly
+    include encryption at rest and MFA — both inexpensive and standard. <b>Not a marginal judgement call.</b></p>
     <h3>Notifiable Data Breaches scheme</h3>
     <p>Breach likely to cause <b>serious harm</b> and not remediated → notify <b>affected individuals and the
     OAIC as soon as practicable</b>. The <b>delay is a separate breach</b> from the original failure, and it is
@@ -620,14 +623,13 @@ td:last-child, th:last-child { padding-right: 0; }
   <div class="box">
     <h2>The other instruments</h2>
     <p><b>Privacy and Data Protection Act 2014 (Vic)</b> — Victorian public sector <em>and contracted service
-    providers handling their data</em>. A state government client makes it relevant, and most students miss
-    it. IPPs 1, 2, 4, 5, 9 — <b>IPP 4 (data security)</b> is the counterpart of APP 11.</p>
+    providers handling their data</em>, so a state government client makes it relevant. IPPs 1, 2, 4, 5, 9 —
+    <b>IPP 4 (data security)</b> is the counterpart of APP 11.</p>
     <p><b>Copyright Act 1968 (Cwlth)</b> — protects the expression of ideas, including source code; automatic,
     no registration. Appears as a library used outside its licence <b>(open source is licensed, not
     obligation-free)</b>, or AI-generated code reproducing training material.</p>
-    <p><b>Legislation</b> binds by law — penalties, investigation, enforceable undertakings.
-    <b>Frameworks</b> are not law, but bind <b>contractually</b> the moment a client writes one in; failure
-    costs contracts and audits.</p>
+    <p><b>Legislation</b> binds by law. <b>Frameworks</b> are not law, but bind <b>contractually</b> the moment
+    a client writes one in.</p>
   </div>
 
   <div class="box">
@@ -636,7 +638,7 @@ td:last-child, th:last-child { padding-right: 0; }
       <tr><th>The case study describes…</th><th>Cite</th></tr>
       <tr><td>Personal information leaked or poorly secured</td><td><b>Privacy Act</b>, APP 11</td></tr>
       <tr><td>Data kept long after it was needed</td><td><b>Privacy Act</b>, APP 11.2</td></tr>
-      <tr><td>A breach not reported, or reported late</td><td><b>Privacy Act</b>, NDB scheme</td></tr>
+      <tr><td>A breach unreported or reported late</td><td><b>Privacy Act</b>, NDB scheme</td></tr>
       <tr><td>Data sent to an overseas service or API</td><td><b>Privacy Act</b>, APP 8</td></tr>
       <tr><td>Data used for something other than why it was collected</td><td><b>Privacy Act</b>, APP 6</td></tr>
       <tr><td>A Victorian government client or agency</td><td><b>PDP Act 2014</b>, IPP 4</td></tr>
@@ -651,26 +653,21 @@ td:last-child, th:last-child { padding-right: 0; }
     <ul class="tight">
       <li><b>Ineffective security practices.</b> Those exposed had no way to assess the risk and no realistic alternative — that asymmetry places a heightened obligation on the organisation, <em>independent of the law</em>.</li>
       <li><b>Use of AI in development.</b> <b>Over-reliance</b> — losing the ability to review, debug and
-      maintain (<em>this</em> is the ethical issue, not AI use itself) · <b>data disclosure</b> to a third
-      party · <b>provenance</b> · <b>accountability</b> — "the AI wrote it" is no answer to a regulator.</li>
+      maintain (<em>this</em> is the ethical issue, not AI use itself) · <b>data disclosure</b> ·
+      <b>provenance</b> · <b>accountability</b>.</li>
       <li><b>Intellectual property.</b> Who owns the code, designs and data; open-source licence terms; IP
       settled in the contract when development is outsourced.</li>
       <li><b>Copyright.</b> Images, code, libraries or fonts used without a licence.</li>
     </ul>
     <h3>Two more that case studies plant</h3>
-    <p><b>Disclosure and transparency</b> — delaying or downplaying a breach to protect reputation. Usually
-    the strongest available: the harm is concrete and it is <em>also</em> an NDB breach. <b>Real customer data
-    in development</b> — APP 6 and APP 11 legally; ethically, they consented to a service, not to a test
-    database.</p>
-  </div>
-
-  <div class="box">
-    <h2>Writing the ethical half</h2>
-    <p><b>Four moves:</b> <b>name</b> the issue → <b>explain</b> why it is ethically problematic (<em>who is
-    harmed, and how</em>) → <b>apply</b> it to the case study → <b>consequence</b>, legal <em>and</em> non-legal.</p>
-    <p><b>Resolutions must be viable</b> — name <b>what</b> changes, <b>who</b> does it, <b>which
-    obligation</b> it satisfies. "Be more ethical" is not a resolution; <span class="q">"an incident-response
-    plan naming a breach assessor, with a 72-hour escalation deadline"</span> is.</p>
+    <p><b>Disclosure and transparency</b> — delaying a breach notification to protect reputation. Usually the
+    strongest available: concrete harm, and <em>also</em> an NDB breach. <b>Real customer data in
+    development</b> — APP 6 and APP 11 legally; ethically, they consented to a service, not a test database.</p>
+    <p><b>Writing it:</b> <b>name</b> the issue → <b>explain</b> why it is ethically problematic (<em>who is
+    harmed, and how</em>) → <b>apply</b> it to the case study → <b>consequence</b>, legal <em>and</em>
+    non-legal. <b>Resolutions must be viable</b>: name <b>what</b> changes, <b>who</b> does it and <b>which
+    obligation</b> it satisfies — <span class="q">"an incident-response plan naming a breach assessor, with a
+    72-hour escalation deadline"</span>, not "be more ethical".</p>
   </div>
 
   <div class="box tint">
@@ -686,12 +683,11 @@ td:last-child, th:last-child { padding-right: 0; }
     <h3>The two named improvement strategies — both must appear</h3>
     <p><b>1. Onboarding / induction and ongoing developer training.</b> Policies and <em>why</em> they exist;
     what data may be used in development; credentials; what may go to AI assistants; secure coding, review and
-    phishing; <b>refreshers, not one session on day one</b>. <em>Why it works:</em> most incidents involve
-    human behaviour, not a control failing — training addresses the <b>cause</b>, controls contain the
-    symptom.</p>
+    phishing; <b>refreshers, not one session on day one</b>. <em>Why:</em> most incidents involve human
+    behaviour, not a control failing — training addresses the <b>cause</b>.</p>
     <p><b>2. A documented risk management plan.</b> Identifies each risk · rates likelihood and impact ·
-    assigns a mitigation · <b>names an owner</b> · sets a review cycle. <em>Why it works:</em> survives staff
-    turnover and produces what an auditor asks for.</p>
+    assigns a mitigation · <b>names an owner</b> · sets a review cycle. <em>Why:</em> survives staff turnover
+    and produces what an auditor asks for.</p>
   </div>
 
   <div class="box">
@@ -704,50 +700,67 @@ td:last-child, th:last-child { padding-right: 0; }
       <tr><td>Unpatched software</td><td>Defined schedule with a <b>maximum deployment window</b>; automation</td></tr>
       <tr><td>Ineffective code review</td><td>Mandatory second reviewer <b>enforced by the tooling</b>, and recorded</td></tr>
       <tr><td>Third-party software</td><td>Vet dependencies before integration; licence register; monitor advisories</td></tr>
-      <tr><td>Malware</td><td>Application control; anti-malware; app hardening; restrict admin</td></tr>
-      <tr><td>Man-in-the-middle</td><td>Enforce TLS everywhere; VPN for remote access</td></tr>
+      <tr><td>Malware / man-in-the-middle</td><td>Application control; anti-malware; app hardening; restrict admin · TLS everywhere; VPN for remote access</td></tr>
       <tr><td>Insider threats</td><td>Least privilege; logging and monitoring; separation of duties; offboarding</td></tr>
       <tr><td>Unmanaged AI assistants</td><td>Written AI-use policy: what may be shared, human review, provenance</td></tr>
-      <tr><td>Data retained too long / no verification</td><td>Retention schedule with secure disposal; scheduled access reviews, application security testing, audit-log review</td></tr>
+      <tr><td>Retained data / no verification</td><td>Retention schedule with secure disposal; access reviews, application security testing, audit-log review</td></tr>
     </table>
   </div>
 
   <div class="box">
     <h2>Sequence them, and say why</h2>
-    <p><b>1. Contain the biggest exposure</b> — environment separation, production data out of development.
-    <b>2. Close the entry point</b> — IAM, because most incidents begin with a credential.
-    <b>3. Stop the recurrence</b> — enforced code review, patching schedule.
-    <b>4. Make it durable</b> — threat modelling in the lifecycle, training, risk management plan.
-    <b>5. Verify</b> — audits, access reviews, <b>re-run your Section 2 criteria</b>.</p>
-    <p class="warn">Step 5 is the one almost nobody writes — and it is explicitly the third threat modelling
-    principle. Ending with <em>how they will confirm the mitigations worked</em> closes the loop on your own
-    evaluation.</p>
+    <p><b>1. Contain the biggest exposure</b> — environment separation, production data out of development ·
+    <b>2. Close the entry point</b> — IAM, since most incidents begin with a credential · <b>3. Stop the
+    recurrence</b> — enforced code review, patching schedule · <b>4. Make it durable</b> — threat modelling in
+    the lifecycle, training, risk management plan · <b>5. Verify</b> — audits, access reviews, <b>re-run your
+    Section 2 criteria</b>.</p>
+    <p class="warn">Step 5 is the one almost nobody writes, and it is explicitly the third threat modelling
+    principle.</p>
+  </div>
+
+  <div class="box tint">
+    <h2>The Essential Eight</h2>
+    <p>Eight mitigation strategies from the <b>Australian Cyber Security Centre</b>. Not law — but routinely
+    written into contracts, which makes them <b>effectively mandatory</b> and the thing to cite for KS5's
+    Very high band.</p>
+    <table>
+      <tr><th>Strategy</th><th>What it stops</th></tr>
+      <tr><td><b>1. Application control</b></td><td>Only approved applications execute — malicious programs cannot run at all</td></tr>
+      <tr><td><b>2. Patch applications</b></td><td>Closes known, published vulnerabilities in the software the team uses</td></tr>
+      <tr><td><b>3. Configure Office macro settings</b></td><td>Blocks the macro-in-a-document route malware arrives by</td></tr>
+      <tr><td><b>4. User application hardening</b></td><td>Turns off risky browser and application features — the easy entry points</td></tr>
+      <tr><td><b>5. Restrict admin privileges</b></td><td>Limits what one compromised account reaches — least privilege in practice</td></tr>
+      <tr><td><b>6. Patch operating systems</b></td><td>As #2 for the OS, where an unpatched flaw means full control of the machine</td></tr>
+      <tr><td><b>7. Multi-factor authentication</b></td><td>A phished password alone is no longer enough to log in</td></tr>
+      <tr><td><b>8. Regular backups</b></td><td>Recovery after ransomware or destructive loss — the <b>availability</b> control</td></tr>
+    </table>
+    <p><b>Maturity levels 0–3</b> say how completely each is implemented, from <b>0</b> (not aligned) to
+    <b>3</b> (aligned against adaptive, targeted attackers) — which is why contracts specify
+    <span class="q">"Maturity Level 2"</span>, and why an organisation can claim to "follow" the Eight and
+    still fail an audit.</p>
+    <p class="warn">Not in the Eight: "secure personal information", "prevent scope creep", "develop evaluation
+    criteria", "include internal documentation".</p>
   </div>
 
   <div class="box">
-    <h2>The two frameworks</h2>
-    <p><b>Essential Eight</b> (ACSC): application control · patch applications · configure Office macro
-    settings · user application hardening · restrict administrative privileges · patch operating systems ·
-    multi-factor authentication · regular backups. <b>Maturity levels 0–3</b> — contracts often specify
-    "Maturity Level 2".</p>
-    <p><b>ISM</b> (ACSC) — Guidelines for Software Development, three named: <b>development, testing and
-    production environments</b> (separated; no production data in dev/test) · <b>secure software design and
-    development</b> · <b>application security testing</b>. These map onto the most common SAC findings —
-    usually the strongest framework to cite.</p>
+    <h2>The Information Security Manual (ISM)</h2>
+    <p>Also ACSC, and much broader — a full framework for protecting systems and data, organised around
+    <b>governing</b>, <b>protecting</b>, <b>detecting</b> and <b>responding</b>. Three guidelines from its
+    <b>Guidelines for Software Development</b> are named for this outcome:</p>
+    <table>
+      <tr><td><b>Development, testing and production environments</b></td><td>Keep them separated, and <b>do not use production data</b> in development or testing</td></tr>
+      <tr><td><b>Secure software design and development</b></td><td>Build security in from design — threat modelling, secure coding, code review — rather than retrofitting it</td></tr>
+      <tr><td><b>Application security testing</b></td><td>Test the application <em>for security weaknesses</em>, not only for whether it works</td></tr>
+    </table>
+    <p>These map almost exactly onto the most common SAC findings — the case study has already handed you the
+    failure each one addresses.</p>
+    <p class="frame"><b>Citing one properly.</b> Do not just name it. Say which guideline, what it requires,
+    and what in the case study breaches it: <span class="q">"Separating the environments would align them with
+    the ISM's guideline on development, testing and production environments, which the government client's
+    procurement requires evidence of — and which their current single-server setup fails outright."</span></p>
   </div>
 
 
-  <div class="box tint">
-    <h2>Sentence frames</h2>
-    <p class="frame"><b>KS1 → goal.</b> This practice supports the objective of … because …
-    <b>KS2 → impact.</b> This vulnerability allowed … which resulted in … costing the organisation …</p>
-    <p class="frame"><b>KS3 → verdict.</b> Applying the criterion "…", the evidence shows … therefore this is
-    <b>partially met</b>.</p>
-    <p class="frame"><b>KS4 → both halves.</b> Legally this breaches … under …; ethically, the harm falls on …
-    who had no say in it.</p>
-    <p class="frame"><b>KS5 → framework.</b> Implementing … addresses …, satisfies … under …, and aligns them
-    with … (Essential Eight / ISM), which the contract requires.</p>
-  </div>
 
   <div class="box">
     <h2 class="risk">Name what the risk threatens</h2>
