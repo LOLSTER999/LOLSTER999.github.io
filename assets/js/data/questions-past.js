@@ -49,7 +49,7 @@ Drivers can **purchase** parking time and **increase** parking time. Payment for
   ],
   optionDiagrams: ['uc-opt-a', 'uc-opt-b', 'uc-opt-c', 'uc-opt-d'],
   answer: 1,
-  explanation: 'Payment happens **whenever** a driver purchases *or* increases parking time — it is never optional — so both base use cases **«includes»** "Process payment". «extends» would mean payment only sometimes occurs (A, C). D has the arrows reversed: the *base* use case points at the included one, not the other way round.'
+  explanation: 'Payment happens **whenever** a driver purchases *or* increases parking time — it is never optional — so both base use cases **«includes»** "Process payment". «extends» would mean payment only sometimes occurs, which rules out both of the «extends» options. The option that puts "Process payment" on the left has its arrows reversed: the *base* use case points at the included one, not the other way round.'
 },
 {
   id: 'dltv25-c6', src: 'dltv25', section: 'C', type: 'short', marks: 4, unit: 'u3a2', topic: 'design-principles',
@@ -87,7 +87,7 @@ In this mock-up, each label is aligned directly above and to the left edge of it
     'Functions and methods are different. A function can be called at any time during a programming solution, whereas a method can only be called when an object that has been declared calls it.'
   ],
   answer: 3,
-  explanation: 'A **method** belongs to a class and operates on an object, so it can only be called through a declared object. A **function** is a standalone named block that can be called wherever it is in scope. Option C is close but wrong on one detail: a function does **not** have to take parameters or return a value.'
+  explanation: 'A **method** belongs to a class and operates on an object, so it can only be called through a declared object. A **function** is a standalone named block that can be called wherever it is in scope. The other "functions and methods are different" option is close but wrong on one detail: a function does **not** have to take parameters or return a value.'
 },
 {
   id: 'vcaa22-a4', src: 'vcaa22', section: 'A', type: 'mcq', unit: 'u4a2', topic: 'vulnerabilities',
@@ -455,7 +455,7 @@ End search
     '1, 4, 8, 13, 17, 19, 21, 23, 25, 27'
   ],
   answer: 3,
-  explanation: 'Three things must all hold: the list has **10 elements** (high starts at 9), it is **sorted** (binary search requires it), and `list[4] = 17` with `list[7] = 23`. Only option D satisfies all three — A has six elements, B is sorted but has the wrong values, and C is unsorted.'
+  explanation: 'Three things must all hold: the list has **10 elements** (high starts at 9), it is **sorted** (binary search requires it), and `list[4] = 17` with `list[7] = 23`. Only `1, 4, 8, 13, 17, 19, 21, 23, 25, 27` satisfies all three — the six-number list is too short, `0` to `9` is sorted but holds the wrong values, and the list starting `8, 27, 1` is unsorted.'
 },
 {
   id: 'vcaa23-a3', src: 'vcaa23', section: 'A', type: 'mcq', unit: 'u3a1', topic: 'language-features',
@@ -531,7 +531,7 @@ End search
     'disclose the precise storage location of all personal and sensitive data related to an individual, including data stored locally and in the cloud.'
   ],
   answer: 1,
-  explanation: 'APP 1 and APP 5 require **open and transparent handling** — telling individuals why their information is being collected. A is too absolute (data must be destroyed or de-identified only once no longer needed), C is the *opposite* of the access right, and D is not required.'
+  explanation: 'APP 1 and APP 5 require **open and transparent handling** — telling individuals why their information is being collected. "De-identify **all** sensitive or personal information" is too absolute — data must be destroyed or de-identified only once it is no longer needed. Withholding data despite a reasonable request is the *opposite* of the access right, and disclosing a precise storage location is not required at all.'
 },
 {
   id: 'vcaa23-a13', src: 'vcaa23', section: 'A', type: 'mcq', unit: 'u4a1', topic: 'evaluation',
@@ -584,7 +584,7 @@ value   5   10   22    6
     'data is transmitted across a network.'
   ],
   answer: 1,
-  explanation: 'A use case diagram shows **actors** — the roles that use the system — and the **use cases** they interact with. Option A describes a data flow diagram, and option C uses "external entities", which is DFD/context-diagram vocabulary, not use case vocabulary.'
+  explanation: 'A use case diagram shows **actors** — the roles that use the system — and the **use cases** they interact with. "Data is manipulated and flows through a system" describes a data flow diagram, and "external entities" is DFD/context-diagram vocabulary, not use case vocabulary.'
 },
 
 /* ==========================================================
@@ -816,7 +816,7 @@ This engages **APP 8 of the Privacy Act 1988**, which requires reasonable steps 
     'data entered is of a particular data type.'
   ],
   answer: 3,
-  explanation: '**Type checking** confirms the data is of the correct data type — that a numeric field contains a number, not text. Option A describes range checking and option B describes existence checking; the three are constantly swapped in distractors.'
+  explanation: '**Type checking** confirms the data is of the correct data type — that a numeric field contains a number, not text. "Falls within a certain range" is range checking and "the required field has data entered" is existence checking; the three are constantly swapped in distractors.'
 },
 {
   id: 'vcaa24-a2', src: 'vcaa24', section: 'A', type: 'mcq', unit: 'u4a1', topic: 'alpha-testing',
@@ -897,7 +897,7 @@ End
     'The process is efficient because a slower process is likely to be cheaper.'
   ],
   answer: 1,
-  explanation: '**Effectiveness** is about whether the process does its job — and validating the card correctly is exactly that, regardless of how long it takes. The five seconds is a question of *efficiency*, not effectiveness. Option D inverts the relationship: slower is not more efficient.'
+  explanation: '**Effectiveness** is about whether the process does its job — and validating the card correctly is exactly that, regardless of how long it takes. The five seconds is a question of *efficiency*, not effectiveness. The option calling the process efficient "because a slower process is likely to be cheaper" inverts the relationship: slower is not more efficient.'
 },
 {
   id: 'vcaa24-b3', src: 'vcaa24', section: 'B', type: 'short', marks: 4, unit: 'u3a2', topic: 'project-management',

@@ -101,7 +101,7 @@ The cash bonus calculation *should* work so that:
     '31 referrals will result in a higher cash bonus than 29 referrals.'
   ],
   answer: 2,
-  explanation: 'Trace it. 29 referrals → 5000 + (29−10)×600 = 5000 + 11 400 = **$16 400**. 31 referrals → 15 000 + (31−30)×700 = **$15 700**. So 29 referrals pays more than 31 — the tier boundaries produce a drop. (9 → $4500 vs 10 → $5000, and 10 → $5000 vs 11 → $5600, so A and B are false.)'
+  explanation: 'Trace it. 29 referrals → 5000 + (29−10)×600 = 5000 + 11 400 = **$16 400**. 31 referrals → 15 000 + (31−30)×700 = **$15 700**. So 29 referrals pays more than 31 — the tier boundaries produce a drop. (9 → $4500 vs 10 → $5000, and 10 → $5000 vs 11 → $5600, so the "9 beats 10" and "10 beats 11" claims are both false.)'
 },
 {
   id: 'vcaa25-a6', src: 'vcaa25', section: 'A', type: 'mcq', unit: 'u3a2', topic: 'ux',
@@ -137,7 +137,7 @@ Labels and their corresponding fields are not positioned together, and the butto
     'Input: date, income, tax-free threshold · Process: look up tax rate; if tax-free threshold claimed, subtract tax-free threshold amount from income; calculate tax · Output: tax'
   ],
   answer: 3,
-  explanation: 'The chart must list **every** input (including the checkbox) and must reflect the **conditional** behaviour. Only option D says "*if* tax-free threshold claimed, subtract…". Option A omits the checkbox; B has the processes out of order; C subtracts the threshold unconditionally.'
+  explanation: 'The chart must list **every** input (including the checkbox) and must reflect the **conditional** behaviour. Only one chart says "*if* tax-free threshold claimed, subtract…". The chart listing only date and income omits the checkbox; the one that calculates the tax *before* looking up the rate has its processes out of order; and the one that subtracts the threshold unconditionally ignores the checkbox altogether.'
 },
 {
   id: 'vcaa25-a8', src: 'vcaa25', section: 'A', type: 'mcq', unit: 'u3a2', topic: 'requirements',
@@ -233,7 +233,7 @@ Drivers access the application via their mobile phones. When logged into their a
     "an electrical fire caused by a hardware fault damages the organisation's network infrastructure."
   ],
   answer: 0,
-  explanation: 'An **insider** threat originates from someone *within* the organisation — here, a developer whose configuration change exposes code and data. B describes an external attack, C is a control working correctly, and D is a physical/hardware incident.'
+  explanation: 'An **insider** threat originates from someone *within* the organisation — here, a developer whose configuration change exposes code and data. The phishing campaign is an *external* attack, the anti-malware scan is a control working correctly, and the electrical fire is a physical/hardware incident.'
 },
 {
   id: 'vcaa25-a17', src: 'vcaa25', section: 'A', type: 'mcq', unit: 'u4a2', topic: 'security-controls',
@@ -277,7 +277,7 @@ Drivers access the application via their mobile phones. When logged into their a
     'the AI might not put meaningful comments in the code it writes.'
   ],
   answer: 2,
-  explanation: 'The ethical concern is **over-reliance** — the organisation may lose the capability to review, debug and take responsibility for its own product. Options A and D describe quality problems, not ethical ones, and B is far too absolute.'
+  explanation: 'The ethical concern is **over-reliance** — the organisation may lose the capability to review, debug and take responsibility for its own product. Inefficient code and missing comments are quality problems, not ethical ones, and "any use of AI to write code is unethical" is far too absolute.'
 },
 
 /* ==========================================================

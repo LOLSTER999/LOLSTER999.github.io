@@ -44,7 +44,9 @@ Unit 4 AoS 2 itself is written to SAC depth rather than exam depth: the vulnerab
 - **End-of-area-of-study practice.** Every AoS page finishes with its own exam questions, filterable to every question, multiple choice only, or written responses only. The SAC category borrows the Unit 4 AoS 2 bank.
 - Seven preset quizzes, per-topic quizzes, and six full papers sittable whole or section by section with the Section C case study insert alongside.
 
-**Question order is reshuffled on every attempt** in all practice modes, so you learn to recognise the question rather than its position. Full past papers keep their printed order. Questions that originally depended on a neighbour's stimulus carry their own copy of it.
+**Question order *and* multiple-choice option order are reshuffled on every attempt** in all practice modes, so you learn to recognise the answer rather than its position — neither "question 4" nor "the third one" survives as a cue. Full past papers keep their printed order, both of questions and of options, so a practice exam still reads exactly like the real paper. Questions that originally depended on a neighbour's stimulus carry their own copy of it.
+
+Option shuffling works because **no explanation refers to an option by letter** — each distractor is named by its text ("*'Falls within a certain range' is range checking*"), so the feedback stays true whatever order the options come out in. Picture options move with their text. `permuteOptions()` in `app.js` clones the question rather than mutating the bank, and remaps `answer` and `optionDiagrams` together.
 
 Multiple choice is auto-marked with an explanation. Written responses are self-marked against worked sample answers, with the marking notes from the original solution books where they exist.
 

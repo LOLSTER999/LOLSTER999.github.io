@@ -63,6 +63,25 @@
 
   function letter(i) { return 'ABCDEFGH'[i]; }
 
+  /* Reorder a multiple-choice question's options, returning a clone so the
+     question bank itself is never mutated. The answer index and any picture
+     options move with them. Explanations name each distractor by its text
+     rather than by its letter, so the feedback stays true after the shuffle. */
+  function permuteOptions(q) {
+    if (q.type !== 'mcq' || !q.options || q.options.length < 2) return q;
+    const order = shuffle(q.options.map(function (_, i) { return i; }));
+    const clone = Object.assign({}, q);
+    clone.options = order.map(function (o) { return q.options[o]; });
+    clone.answer = order.indexOf(q.answer);
+    if (q.optionDiagrams) {
+      clone.optionDiagrams = order.map(function (o) { return q.optionDiagrams[o]; });
+    }
+    return clone;
+  }
+
+  /* Practice modes reshuffle the questions and, within each one, the options. */
+  function shuffleQuestions(qs) { return shuffle(qs).map(permuteOptions); }
+
   function pctBand(p) {
     if (p >= 90) return { label: 'Outstanding — exam ready on this material.', color: 'var(--ok)' };
     if (p >= 75) return { label: 'Strong. Tidy up the misses and move on.', color: 'var(--ok)' };
@@ -405,8 +424,9 @@
             <p class="section-note" style="margin:0">
               ${all.length} real questions worth ${marks} marks, drawn from all six papers and covering
               ${esc(sourceUnit.title.toLowerCase())}.${borrowed ? ' The SAC itself is an extended response, but these test the same knowledge and are the fastest way to find your gaps before you write.' : ''}
-              <strong>The order is reshuffled every attempt</strong>, so you
-              practise recognising the question rather than remembering its position.
+              <strong>The questions and the multiple-choice options are both reshuffled every
+              attempt</strong>, so you practise recognising the answer rather than remembering
+              that it was &ldquo;the third one&rdquo;.
             </p>
           </div>
           ${best ? `<div class="aos-best"><b>${best.pct}%</b><span>best so far</span></div>` : ''}
@@ -486,9 +506,11 @@
     let html = `
       <div class="page-head">
         <h1>Practice quizzes</h1>
-        <p class="lede">Every question is taken from the 2025 VCAA examination or one of the two 2025 trial papers.
+        <p class="lede">Every question is taken from a real paper — the 2025 VCAA examination, the two 2025 trial
+        papers, the filtered 2022&ndash;2024 VCAA papers — or from your own course activity sheets.
         Multiple choice is marked instantly with an explanation; written responses come with worked sample answers to
-        mark yourself against.</p>
+        mark yourself against. Both the question order and the multiple-choice option order are reshuffled on every
+        attempt.</p>
       </div>
       <div class="grid">`;
 
@@ -772,7 +794,7 @@
       <div class="quiz-bar">
         <span class="qcount">Q ${state.i + 1} / ${state.questions.length}</span>
         <span class="bar"><i style="width:${progressPct}%"></i></span>
-        ${state.shuffled ? '<span class="shuffled" title="Reshuffled every attempt, so you cannot learn the order.">&#8646; shuffled</span>' : ''}
+        ${state.shuffled ? '<span class="shuffled" title="Questions and multiple-choice options are both reshuffled every attempt, so you cannot learn the order.">&#8646; shuffled</span>' : ''}
         <span class="qscore">${t.gained} / ${t.possible} marks</span>
       </div>
       <div class="quiz-body">
@@ -1002,7 +1024,7 @@
     if (!quiz) return viewNotFound();
 
     let qs = quiz.pick();
-    if (quiz.shuffle) qs = shuffle(qs);
+    if (quiz.shuffle) qs = shuffleQuestions(qs);
 
     startQuiz({
       id: 'quiz:' + quizId,
@@ -1030,7 +1052,7 @@
     startQuiz({
       id: 'aos:' + unitId + ':' + mode,
       title: unit.code + label,
-      questions: shuffle(qs),
+      questions: shuffleQuestions(qs),
       shuffled: true,
       backHref: '#/unit/' + unitId,
       backLabel: unit.code
@@ -1038,7 +1060,7 @@
   }
 
   function viewTopicQuiz(topicId) {
-    const qs = shuffle(questionsForTopic(topicId));
+    const qs = shuffleQuestions(questionsForTopic(topicId));
     const l = LESSON_INDEX.find(function (x) { return x.lesson.id === topicId; });
     startQuiz({
       id: 'topic:' + topicId,
@@ -1075,7 +1097,7 @@
     startQuiz({
       id: 'single:' + qid,
       title: 'Question · ' + SOURCES[q.src].short,
-      questions: [q],
+      questions: [permuteOptions(q)],
       backHref: '#/practice',
       backLabel: 'Practice'
     });
