@@ -34,7 +34,7 @@ body {
   margin: 0;
   background: #6c7079;
   color: var(--ink);
-  font: 400 6.15pt/1.24 "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font: 400 5.9pt/1.23 "Helvetica Neue", Helvetica, Arial, sans-serif;
   -webkit-text-size-adjust: 100%;
 }
 
@@ -92,8 +92,8 @@ body {
 .box.plain { border: 0; border-left: 0; padding: 0 0 0.6mm; }
 
 h2 {
-  margin: 0 0 1.1mm;
-  font-size: 6.9pt;
+  margin: 0 0 1mm;
+  font-size: 6.6pt;
   color: var(--accent-2);
   letter-spacing: 0.1pt;
 }
@@ -109,11 +109,19 @@ h2 .ks {
   vertical-align: 1px;
 }
 .box.tint h2 { color: var(--accent); }
+h2.risk { color: var(--accent); }
+
+/* A block that spans all three columns — used for the one table wide enough
+   to need it. Balanced columns resume after it. */
+.box.span { column-span: all; }
+.vulns td:first-child  { width: 17%; }
+.vulns td:nth-child(2) { width: 50%; }
+.vulns td:last-child   { width: 33%; }
 .box.tint h2 .ks { background: var(--accent); }
 
 h3 {
-  margin: 1.1mm 0 0.5mm;
-  font-size: 6.2pt;
+  margin: 1mm 0 0.45mm;
+  font-size: 6pt;
   color: var(--ink);
   text-transform: uppercase;
   letter-spacing: 0.4pt;
@@ -137,8 +145,8 @@ table {
   width: 100%;
   border-collapse: collapse;
   margin: 0 0 1mm;
-  font-size: 5.8pt;
-  line-height: 1.18;
+  font-size: 5.6pt;
+  line-height: 1.17;
 }
 th, td {
   text-align: left;
@@ -310,23 +318,8 @@ td:last-child, th:last-child { padding-right: 0; }
 
   <div class="mast">
     <h1>U4O2 — Cyber Security SAC</h1>
-    <div class="sub">100 marks · case study response · SD Units 3&amp;4</div>
-    <div class="side">Side 1 · Analyse &amp; Evaluate</div>
-  </div>
-
-  <div class="box tint">
-    <h2>The task, in one line</h2>
-    <p><b>Analyse</b> the organisation's development practices → <b>identify and evaluate</b> its security
-    controls and threats → <b>recommend</b> improvements. Three verbs, three sections, five key skills.</p>
-    <div class="bands">
-      <div><b>V.low</b><span>1–20</span></div>
-      <div><b>Low</b><span>21–40</span></div>
-      <div><b>Med</b><span>41–60</span></div>
-      <div><b>High</b><span>61–80</span></div>
-      <div><b>V.high</b><span>81–100</span></div>
-    </div>
-    <p><b>The content barely changes between bands — the verb does.</b>
-    <span class="q">identifies → outlines → describes/discusses → explains/analyses/applies → analyses/justifies</span></p>
+    <div class="sub">100 marks · V.low 1–20 · Low 21–40 · Med 41–60 · High 61–80 · <b>V.high 81–100</b></div>
+    <div class="side">Side 1 · Practices &amp; Risks</div>
   </div>
 
   <div class="box">
@@ -343,23 +336,38 @@ td:last-child, th:last-child { padding-right: 0; }
     <p>Before submitting, highlight every goal, objective, Act and framework you have named.</p>
   </div>
 
+  <div class="box tint">
+    <h2>Goals vs objectives — get this right first</h2>
+    <p>Both KS1 and KS5 are capped below the top band unless you name these and link back to them. They are
+    <b>not</b> the same thing, and markers check.</p>
+    <table>
+      <tr><th></th><th>Goal</th><th>Objective</th></tr>
+      <tr><td><b>Scope</b></td><td>Broad direction — <em>what</em> the organisation is trying to become</td><td>A specific step <em>towards</em> that goal</td></tr>
+      <tr><td><b>Wording</b></td><td>Qualitative, long-term, no number</td><td><b>Measurable</b> and usually time-bound (SMART)</td></tr>
+      <tr><td><b>Test</b></td><td>Could two people disagree about whether it was met?</td><td>Can you put a <b>number or a date</b> on it?</td></tr>
+      <tr><td><b>Example</b></td><td>"Become the leading provider of fleet software in Victoria"</td><td>"Win three government contracts this financial year"; "99.9% uptime"</td></tr>
+    </table>
+    <p><b>Finding them in a case study.</b> Goals sit in the opening paragraphs — <span class="sig">"small but
+    fast-growing", "taking on more high-profile clients"</span>. Objectives appear wherever there is a figure,
+    a percentage, a deadline or a contract target.</p>
+    <p><b>If no measurable objective is stated</b> — which is common — say so explicitly and <b>infer</b> one
+    that is consistent with the goal: <span class="q">"No measurable objectives are stated; an objective
+    consistent with this goal would be achieving the security posture high-profile clients require during
+    procurement."</span> That inference is not padding — every KS1 and KS5 linkage hangs off it.</p>
+    <p class="frame">Objectives are what make a security failure <b>quantifiable</b> — an outage breaches a
+    stated uptime objective; a failed security questionnaire costs a named contract. That is how a
+    vulnerability becomes an <b>impact</b> rather than an observation.</p>
+  </div>
+
   <div class="box">
     <h2><span class="ks">KS1</span>Analyse the current practices</h2>
     <p>Four things to cover: <b>goals and objectives</b> · <b>in-house vs external</b> development ·
     <b>security controls</b> · <b>threat modelling principles</b>. If no measurable objectives are stated,
     <b>say so and infer one</b> — without a goal to link to, KS1 and KS5 are capped.</p>
-    <h3>In-house vs external</h3>
-    <table>
-      <tr><th>In-house</th><th>External</th></tr>
-      <tr>
-        <td>Control of delivery, domain knowledge and client relationships stay inside; changes are cheap</td>
-        <td>Buys specialist capability (incl. security) the organisation lacks; scales quickly</td>
-      </tr>
-      <tr>
-        <td>No specialist security capability; cost of maintaining the team; capacity limits</td>
-        <td>Third-party exposure, IP and licence questions, less control, contractor practices unverified</td>
-      </tr>
-    </table>
+    <p><b>In-house:</b> control of delivery, domain knowledge and client relationships stay inside and
+    changes are cheap — but there is usually <b>no specialist security capability</b>, which is why nothing
+    gets vetted, patched or reviewed. <b>External:</b> buys that capability and scales quickly — but adds
+    third-party exposure, IP and licence questions, and contractor practices nobody verifies.</p>
   </div>
 
   <div class="box">
@@ -375,14 +383,12 @@ td:last-child, th:last-child { padding-right: 0; }
       <tr><td><b>Updates and patches</b></td><td>Unpatched software; malware</td><td>Patch apps + OS</td></tr>
       <tr><td><b>Separated dev/test/prod</b></td><td>Combined environments; prod data in dev</td><td>ISM dev/test/prod</td></tr>
     </table>
-    <p><b>IAM has four parts</b> — strong/multi-factor authentication · role-based access on <b>least
-    privilege</b> · prompt deprovisioning · logging and review.
-    <b>MFA</b> = two different kinds of evidence: something you <b>know</b> / <b>have</b> / <b>are</b>.</p>
+    <p><b>IAM has four parts</b> — multi-factor authentication · role-based access on <b>least privilege</b> ·
+    prompt deprovisioning · logging and review. <b>MFA</b> = two different kinds of evidence: something you
+    <b>know</b> / <b>have</b> / <b>are</b>, so a phished password alone is not enough.</p>
     <p><b>Encryption has two states</b> — in transit (TLS) and at rest. Case studies often have one and not
-    the other: <span class="q">"TLS on the portal but an unencrypted production database"</span> is a specific,
-    markable finding.</p>
-    <p class="q">A control they <b>have but do not enforce</b> is worth more marks than one they simply lack —
-    it lets you write about the gap between policy and practice.</p>
+    the other: <span class="q">"TLS on the portal but an unencrypted production database"</span>.</p>
+    <p class="q">A control they <b>have but do not enforce</b> is worth more marks than one they simply lack.</p>
   </div>
 
   <div class="box">
@@ -397,9 +403,9 @@ td:last-child, th:last-child { padding-right: 0; }
     </table>
     <p>A control designed but never verified is not a mitigation, it is an assumption. Principle 3 is the one
     almost every organisation skips — saying so is free marks.</p>
-    <p class="frame">Because they perform none of the three principles, their controls were not chosen against
-    identified threats — <b>they accumulated by habit</b>. That is why the controls they do have protect
-    against risks they never faced, while the risk that materialised had no control at all.</p>
+    <p class="frame">Because they perform none of the three principles, their controls were not chosen
+    against identified threats — <b>they accumulated by habit</b>. That is why the risk that actually
+    materialised had no control at all.</p>
   </div>
 
   <div class="box tint">
@@ -414,40 +420,105 @@ td:last-child, th:last-child { padding-right: 0; }
     higher bands.</p>
   </div>
 
-  <div class="box">
-    <h2>The ten vulnerabilities → what plants them</h2>
-    <table>
-      <tr><th>Vulnerability</th><th>Signal phrases in the case study</th></tr>
-      <tr><td><b>1. Use of APIs</b></td><td class="sig">"integrates a third-party service", "cloud-based", "sends requests to" — and APP 8 if offshore</td></tr>
-      <tr><td><b>2. Malware</b></td><td class="sig">"clicked a link", "downloaded an attachment", "systems were encrypted", a found USB</td></tr>
-      <tr><td><b>3. Unpatched software</b></td><td class="sig">"two versions behind", "updates applied when there is time", "not restarted in months"</td></tr>
-      <tr><td><b>4. Poor identity &amp; access management</b></td><td class="sig">"the team shares a login", "no MFA", "still has access", "everyone has admin"</td></tr>
-      <tr><td><b>5. Man-in-the-middle</b></td><td class="sig">"public Wi-Fi", "no VPN", "unencrypted connection", "the invoice details had changed"</td></tr>
-      <tr><td><b>6. Insider threats</b></td><td class="sig">"a developer changed the configuration", "copied the data", "took files when they left"</td></tr>
-      <tr><td><b>7. Cyber security incidents</b></td><td class="sig">Anything already compromised — this is your <b>evidence of impact</b> for the top band. Use it.</td></tr>
-      <tr><td><b>8. Third-party software</b></td><td class="sig">"a free library", "open-source component", "nobody checked the licence"</td></tr>
-      <tr><td><b>9. Ineffective code review</b></td><td class="sig">"merged as soon as it compiles", "reviews when there is time", "no record is kept"</td></tr>
-      <tr><td><b>10. Combined dev/test/prod</b></td><td class="sig">"all on the same server", "the test database contains live data", "work directly on the live site"</td></tr>
+  <div class="box tint span">
+    <h2>The ten vulnerabilities — why each is a risk, and what plants it</h2>
+    <p>Naming the weakness is the bottom band. <b>The middle column is where the marks are</b>: what an
+    attacker actually gains, or what actually breaks. The right column is what to look for in the stimulus.</p>
+    <table class="vulns">
+      <tr><th>Weakness</th><th>Why it is a security risk</th><th>Signal phrases in the case study</th></tr>
+      <tr>
+        <td><b>1. Use of APIs</b></td>
+        <td>The API's security, availability and pricing become <em>yours</em>. Data leaving the organisation engages <b>APP 8</b> if processed overseas, and a change to the API breaks your product without warning</td>
+        <td class="sig">"integrates a third-party service", "cloud-based", "sends requests to"</td>
+      </tr>
+      <tr>
+        <td><b>2. Malware</b></td>
+        <td>Source code stolen or encrypted; credentials captured. A compromised build machine can <b>inject malicious code into the product itself</b>, which then ships to every customer</td>
+        <td class="sig">"clicked a link", "downloaded an attachment", "systems were encrypted", a found USB</td>
+      </tr>
+      <tr>
+        <td><b>3. Unpatched software</b></td>
+        <td>A released patch <b>announces</b> the vulnerability it fixes — the gap between release and deployment is documented, automatable exposure. Two of the Essential Eight address this alone</td>
+        <td class="sig">"two versions behind", "updates applied when there is time", "not restarted in months"</td>
+      </tr>
+      <tr>
+        <td><b>4. Poor identity &amp; access management</b></td>
+        <td>A shared credential <b>destroys accountability</b> — you cannot tell who did what. Password-only means one phished credential is full access; excessive permissions mean one compromise reaches everything</td>
+        <td class="sig">"the team shares a login", "no MFA", "still has access", "everyone has admin"</td>
+      </tr>
+      <tr>
+        <td><b>5. Man-in-the-middle</b></td>
+        <td>Credentials, code and customer data are read in transit — and the attacker can <b>alter what is delivered</b> (the changed invoice, the modified package download)</td>
+        <td class="sig">"public Wi-Fi", "no VPN", "unencrypted connection", "the invoice details had changed"</td>
+      </tr>
+      <tr>
+        <td><b>6. Insider threats</b></td>
+        <td>Already <b>past the perimeter controls</b>: can exfiltrate code or data, weaken configuration, or introduce malicious changes that look routine. <b>Need not be malicious</b> — copying the live customer table into a test database for realistic data is a careless insider threat, and that is usually what has happened</td>
+        <td class="sig">"a developer changed the configuration", "copied the data", "took files when they left"</td>
+      </tr>
+      <tr>
+        <td><b>7. Cyber security incidents</b></td>
+        <td>Something already compromised — proof the risk is real rather than theoretical. This is your <b>evidence of impact</b> for the top band of KS2. Use it</td>
+        <td class="sig">any breach, infection or outage already described</td>
+      </tr>
+      <tr>
+        <td><b>8. Third-party software</b></td>
+        <td>Runs with <b>your product's privileges</b>, so its vulnerabilities become yours — a supply-chain risk. Its licence terms bind you under the <b>Copyright Act 1968</b>: open source is licensed, not obligation-free</td>
+        <td class="sig">"a free library", "open-source component", "nobody checked the licence"</td>
+      </tr>
+      <tr>
+        <td><b>9. Ineffective code review</b></td>
+        <td>Defects, insecure patterns and hard-coded credentials ship unexamined, and a malicious change made through a compromised account passes unnoticed. Unrecorded reviews cannot be <b>evidenced</b> to a client or auditor even when they happened</td>
+        <td class="sig">"merged as soon as it compiles", "reviews when there is time", "no record is kept"</td>
+      </tr>
+      <tr>
+        <td><b>10. Combined dev / test / prod</b></td>
+        <td><b>Usually the most serious finding</b> — it multiplies every other weakness rather than sitting beside them. See the box below</td>
+        <td class="sig">"all on the same server", "the test database contains live data", "work directly on the live site"</td>
+      </tr>
     </table>
-    <p><b>Insiders need not be malicious.</b> A developer copying the live customer table into a test database
-    to get realistic data is a careless insider threat — and in most case studies that is exactly what
-    happened. If the insider risk is only <em>potential</em>, say it is <b>latent rather than
-    materialised</b>.</p>
-    <p><b>Combined environments is usually the most serious finding</b>, because it multiplies every other
-    weakness: untested code reaches live, real customer data sits in dev, any dev machine reaches production.</p>
+    <p><b>Three moves, three bands, for every one of them:</b> <b>name</b> it in study-design language
+    <span class="q">(Very low)</span> → <b>explain the mechanism</b> from the middle column
+    <span class="q">(High)</span> → <b>state the organisational impact</b> <span class="q">(Very high)</span>.
+    Go deep on three or four rather than shallow on nine.</p>
   </div>
 
   <div class="box">
-    <h2>Turning one vulnerability into a full-band answer</h2>
-    <ol class="ladder">
-      <li><b>Name</b> it in study-design language → <span class="q">Very low / Low</span></li>
-      <li><b>Explain the mechanism</b> — how it compromises the practice <em>or the data</em> → <span class="q">High</span></li>
-      <li><b>State the organisational impact</b> — the money, the contract, the notification → <span class="q">Very high</span></li>
-    </ol>
-    <p class="frame">Because the repository is protected by passwords alone, a single phished credential gives
-    commit access to the codebase <b>[mechanism]</b> — which is how the March breach began, and it cost the
-    Northern Logistics renewal <b>[impact]</b>.</p>
-    <p><b>Go deep on three or four, not shallow on nine.</b></p>
+    <h2 class="risk">Combined dev / test / production — why it is the worst one</h2>
+    <p>Usually the most serious finding in a case study, and the one to go deepest on, because <b>it multiplies
+    every other weakness</b> rather than sitting beside them.</p>
+    <ul class="tight">
+      <li><b>No gate before live.</b> Untested code reaches the production system without a deliberate
+      promotion step, so a defect or a malicious change goes straight to customers.</li>
+      <li><b>Real customer data ends up in development</b>, where protections are weaker and far more people
+      have access than their role requires. That is an <b>APP 6</b> breach (used for a purpose other than the
+      one it was collected for) <em>and</em> an <b>APP 11</b> breach (not reasonably secured), before any
+      attacker is involved.</li>
+      <li><b>The blast radius becomes the whole business.</b> A compromise of <em>any</em> development
+      machine — one phished developer, one unpatched laptop — reaches production directly. The weakest
+      machine in the organisation sets the security of the live system.</li>
+      <li><b>No separation of duties.</b> Whoever writes the code can deploy it, so there is no point at which
+      a second person must agree.</li>
+      <li><b>Updates cannot be trialled safely</b>, so patching itself becomes risky — which is often <em>why</em>
+      the same organisation is also behind on patches. The two findings are causally linked; say so.</li>
+    </ul>
+    <p><b>The fix, in recommendation form:</b> distinct infrastructure per environment · <b>de-identified or
+    synthetically generated test data</b> · deployment as a deliberate promotion between environments, not a
+    save. The <b>ISM</b> names this specifically in its Guidelines for Software Development.</p>
+  </div>
+
+
+  <div class="box">
+    <h2 class="risk">What the breach actually costs</h2>
+    <p>KS2's top band asks how the vulnerabilities <b>impacted the organisation</b>. All five — most students
+    stop at the first.</p>
+    <table>
+      <tr><td><b>Financial</b></td><td>Remediation and forensics, lost revenue while systems are down, civil penalties</td></tr>
+      <tr><td><b>Legal</b></td><td>OAIC investigation, enforceable undertakings, penalties under the Privacy Act</td></tr>
+      <tr><td><b>Reputational</b></td><td>Lost trust, contracts not renewed, failed security questionnaires in future procurement</td></tr>
+      <tr><td><b>Operational</b></td><td>Releases halted, staff diverted to incident response, the roadmap slips</td></tr>
+      <tr><td><b>Harm to people</b></td><td>Identity fraud, exposure of sensitive data — the harm the law exists to prevent</td></tr>
+    </table>
   </div>
 
   <div class="box">
@@ -462,51 +533,10 @@ td:last-child, th:last-child { padding-right: 0; }
     and a prioritised list is what makes Section 3 read as analysis rather than a checklist.</p>
   </div>
 
-  <div class="box tint">
-    <h2><span class="ks">KS3</span>Criteria — propose, then <em>apply</em></h2>
-    <p>The Medium/High line is the word <b>applies</b>. Medium proposes criteria and says how they could be
-    measured; <b>High runs them against the case study and reaches a verdict</b>; Very high adds accurate
-    measurement and clear documentation.</p>
-    <h3>Anatomy — all three parts, or you lose a band</h3>
-    <ol class="ladder">
-      <li><b>The question</b>, phrased so it can be answered yes / partially / no</li>
-      <li><b>The measure</b> — what you would count, compare or inspect</li>
-      <li><b>The data source</b> — where that measurement comes from</li>
-    </ol>
-    <p><span class="q">Weak:</span> "Is the code secure?" — unanswerable, so it cannot be applied.<br>
-    <span class="q">Strong:</span> "Is all code reviewed by a second developer before release?" · proportion of
-    merges with a recorded reviewer · repository merge history.</p>
-  </div>
 
-  <div class="box">
-    <h2>A criteria set that covers the outcome</h2>
-    <p>Pick five or six that match practices the case study <em>actually describes</em>.</p>
-    <table>
-      <tr><th>Criterion (as a question)</th><th>Measure · source</th></tr>
-      <tr><td>Are dev, test and production separated?</td><td>Shared hardware? prod data in non-prod? · architecture docs</td></tr>
-      <tr><td>Is repository access restricted to current, authorised staff?</td><td>Accounts vs staff register; MFA enrolment · audit logs</td></tr>
-      <tr><td>Is all code reviewed before release, and recorded?</td><td>Merges with a named reviewer · merge history</td></tr>
-      <tr><td>Are OS and applications patched promptly?</td><td>Mean days release → deployment · patch records</td></tr>
-      <tr><td>Is personal information encrypted in transit and at rest?</td><td>TLS enforcement; DB encryption setting · config</td></tr>
-      <tr><td>Do developers complete secure-development training?</td><td>Completion rate; phishing click rate · training records</td></tr>
-      <tr><td>Are security requirements defined and verified?</td><td>Security requirements in the SRS; any audit · SRS, reports</td></tr>
-      <tr><td>Is data disposed of when no longer needed?</td><td>Retention schedule; age of oldest records · policy</td></tr>
-    </table>
-    <h3>Document it as a table, one verdict per row</h3>
-    <p>Use <b>three</b> verdicts, not two: <b>met / partially met / not met</b>. "Partially met" is the right
-    answer whenever a practice exists but is not enforced, not recorded, or covers only part of what it should
-    — which describes most real organisations.</p>
-    <p class="frame">Six criteria were applied and none was fully met: three failed outright, three partially.
-    The failures cluster into <b>environment separation</b> and <b>access management</b>, and those two groups
-    together account for the entire March incident chain. Current practices are therefore not effective at
-    protecting either the development process or the data held in the product.</p>
-    <p><b>Efficiency</b> = resources consumed (patching speed, time-to-detect). <b>Effectiveness</b> = how
-    well it does its job. Most security criteria are effectiveness measures — saying which is which shows you
-    know the difference.</p>
-  </div>
 
   <div class="foot">
-    <span><b>Side 1</b> · KS1 practices · KS2 vulnerabilities · KS3 criteria — turn over →</span>
+    <span><b>Side 1</b> · KS1 practices · KS2 vulnerabilities, risks and impact — turn over →</span>
   </div>
 
 </section>
@@ -516,19 +546,52 @@ td:last-child, th:last-child { padding-right: 0; }
 
   <div class="mast">
     <h1>U4O2 — Cyber Security SAC</h1>
-    <div class="sub">Legal &amp; ethical · recommendations · frames</div>
-    <div class="side">Side 2 · Consequences &amp; Fixes</div>
+    <div class="sub">Criteria · legal &amp; ethical · recommendations</div>
+    <div class="side">Side 2 · Evaluate &amp; Recommend</div>
+  </div>
+
+  <div class="box tint">
+    <h2><span class="ks">KS3</span>Criteria — propose, then <em>apply</em></h2>
+    <p>The Medium/High line is the word <b>applies</b>. Medium proposes criteria and says how they could be
+    measured; <b>High runs them against the case study and reaches a verdict</b>; Very high adds accurate
+    measurement, documented clearly.</p>
+    <p><b>Three parts, or you lose a band:</b> <b>the question</b> (answerable yes / partially / no) ·
+    <b>the measure</b> (what you count, compare or inspect) · <b>the data source</b>.</p>
+    <p><span class="q">Weak:</span> "Is the code secure?" — unanswerable, so it cannot be applied.
+    <span class="q">Strong:</span> "Is all code reviewed by a second developer before release?" · proportion of
+    merges with a recorded reviewer · repository merge history.</p>
+  </div>
+
+  <div class="box">
+    <h2>A criteria set that covers the outcome</h2>
+    <p>Pick five or six matching what the case study <em>actually describes</em>.</p>
+    <table>
+      <tr><th>Criterion (as a question)</th><th>Measure · source</th></tr>
+      <tr><td>Are dev, test and production separated?</td><td>Shared hardware? prod data in non-prod? · architecture docs</td></tr>
+      <tr><td>Is repository access restricted to current, authorised staff?</td><td>Accounts vs staff register; MFA enrolment · audit logs</td></tr>
+      <tr><td>Is all code reviewed before release, and recorded?</td><td>Merges with a named reviewer · merge history</td></tr>
+      <tr><td>Are OS and applications patched promptly?</td><td>Mean days release → deployment · patch records</td></tr>
+      <tr><td>Is personal information encrypted in transit and at rest?</td><td>TLS enforcement; DB encryption setting · config</td></tr>
+      <tr><td>Are security requirements defined and verified?</td><td>Security requirements in the SRS; any audit · SRS, reports</td></tr>
+      <tr><td>Do developers complete secure-development training?</td><td>Completion rate; phishing click rate · training records</td></tr>
+    </table>
+    <h3>Document it as a table, one verdict per row</h3>
+    <p>Use <b>three</b> verdicts: <b>met / partially met / not met</b>. "Partially met" is right whenever a
+    practice exists but is not enforced, not recorded, or covers only part of what it should — which describes
+    most real organisations.</p>
+    <p class="frame">Six criteria were applied and none was fully met: three failed outright, three partially.
+    The failures cluster into <b>environment separation</b> and <b>access management</b>, which together
+    account for the entire incident chain. Current practices are therefore not effective at protecting the
+    development process or the data.</p>
   </div>
 
   <div class="box tint">
     <h2><span class="ks">KS4</span>Legal <em>and</em> ethical</h2>
     <p>Most students write only the legal half, so <b>the ethical half is where marks are easiest to gain</b>.</p>
-    <table>
-      <tr><th></th><th>Legal</th><th>Ethical</th></tr>
-      <tr><td><b>Source</b></td><td>An Act of Parliament</td><td>Professional &amp; community expectations</td></tr>
-      <tr><td><b>Test</b></td><td>Did they break the law?</td><td>Was it the right thing to do?</td></tr>
-      <tr><td><b>Consequence</b></td><td>Investigation, penalty, enforceable undertaking</td><td>Reputational damage, loss of trust, censure</td></tr>
-    </table>
+    <p><b>Legal</b> — source: an Act of Parliament · test: did they break the law? · consequence:
+    investigation, penalty, enforceable undertaking.<br>
+    <b>Ethical</b> — source: professional and community expectations · test: was it the right thing to do? ·
+    consequence: reputational damage, loss of trust, censure.</p>
     <p>The strongest examples are <b>both at once</b>, because you can analyse them twice.</p>
   </div>
 
@@ -550,24 +613,21 @@ td:last-child, th:last-child { padding-right: 0; }
     marginal judgement call</b>.</p>
     <h3>Notifiable Data Breaches scheme</h3>
     <p>Breach likely to cause <b>serious harm</b> and not remediated → notify <b>affected individuals and the
-    OAIC as soon as practicable</b>. Two reasons it is rich: the <b>delay is a separate breach</b> from the
-    original failure, and it is simultaneously legal <em>and</em> ethical — both halves of KS4 in one example.</p>
+    OAIC as soon as practicable</b>. The <b>delay is a separate breach</b> from the original failure, and it is
+    legal <em>and</em> ethical at once — both halves of KS4 in one example.</p>
   </div>
 
   <div class="box">
     <h2>The other instruments</h2>
     <p><b>Privacy and Data Protection Act 2014 (Vic)</b> — Victorian public sector <em>and contracted service
-    providers handling their data</em>. If there is a state government client, this applies and most students
-    miss it. IPPs 1, 2, 4, 5, 9 — <b>IPP 4 (data security)</b> is the counterpart of APP 11.</p>
-    <p><b>Copyright Act 1968 (Cwlth)</b> — protects the expression of ideas, including source code;
-    automatic, no registration. Appears as a library used outside its licence <b>(open source is licensed, not
-    obligation-free)</b>, code copied from a previous employer, or AI-generated code reproducing training
-    material.</p>
-    <h3>Legislation vs framework</h3>
-    <table>
-      <tr><td><b>Legislation</b></td><td>Binding by law; penalties, investigation, enforceable undertakings</td></tr>
-      <tr><td><b>Framework</b></td><td>Not law — but <b>contractually</b> binding the moment a client writes it in. Failure = lost contracts, failed audits</td></tr>
-    </table>
+    providers handling their data</em>. A state government client makes it relevant, and most students miss
+    it. IPPs 1, 2, 4, 5, 9 — <b>IPP 4 (data security)</b> is the counterpart of APP 11.</p>
+    <p><b>Copyright Act 1968 (Cwlth)</b> — protects the expression of ideas, including source code; automatic,
+    no registration. Appears as a library used outside its licence <b>(open source is licensed, not
+    obligation-free)</b>, or AI-generated code reproducing training material.</p>
+    <p><b>Legislation</b> binds by law — penalties, investigation, enforceable undertakings.
+    <b>Frameworks</b> are not law, but bind <b>contractually</b> the moment a client writes one in; failure
+    costs contracts and audits.</p>
   </div>
 
   <div class="box">
@@ -589,42 +649,34 @@ td:last-child, th:last-child { padding-right: 0; }
   <div class="box">
     <h2>The four ethical issues</h2>
     <ul class="tight">
-      <li><b>Ineffective security practices.</b> Those exposed had no way to assess the risk and no realistic
-      alternative — that asymmetry places a heightened obligation on the organisation, <em>independent of the
-      law</em>.</li>
+      <li><b>Ineffective security practices.</b> Those exposed had no way to assess the risk and no realistic alternative — that asymmetry places a heightened obligation on the organisation, <em>independent of the law</em>.</li>
       <li><b>Use of AI in development.</b> <b>Over-reliance</b> — losing the ability to review, debug and
       maintain (<em>this</em> is the ethical issue, not AI use itself) · <b>data disclosure</b> to a third
       party · <b>provenance</b> · <b>accountability</b> — "the AI wrote it" is no answer to a regulator.</li>
       <li><b>Intellectual property.</b> Who owns the code, designs and data; open-source licence terms; IP
       settled in the contract when development is outsourced.</li>
-      <li><b>Copyright.</b> Images, code, libraries or fonts used without a licence — "nobody would find out"
-      is not a defence.</li>
+      <li><b>Copyright.</b> Images, code, libraries or fonts used without a licence.</li>
     </ul>
     <h3>Two more that case studies plant</h3>
     <p><b>Disclosure and transparency</b> — delaying or downplaying a breach to protect reputation. Usually
-    the strongest available: the harm is concrete (people cannot freeze credit or watch for fraud) and it is
-    <em>also</em> an NDB breach. <b>Real customer data in development</b> — APP 6 and APP 11 legally;
-    ethically, they consented to a service, not to a test database.</p>
+    the strongest available: the harm is concrete and it is <em>also</em> an NDB breach. <b>Real customer data
+    in development</b> — APP 6 and APP 11 legally; ethically, they consented to a service, not to a test
+    database.</p>
   </div>
 
   <div class="box">
-    <h2>Structuring an ethical answer — four moves</h2>
-    <ol class="ladder">
-      <li><b>Name</b> the issue precisely</li>
-      <li><b>Explain</b> why it is ethically problematic — <em>who is harmed, and how</em></li>
-      <li><b>Apply</b> it to the specific actions in the case study</li>
-      <li><b>Consequence</b> — legal (which Act, what penalty) <em>and</em> non-legal (reputation, trust, lost customers)</li>
-    </ol>
-    <p><b>Resolutions must be viable</b> — this organisation, with its stated resources, could actually do
-    it. Name <b>what</b> changes, <b>who</b> does it, <b>which obligation</b> it satisfies. "Be more ethical"
-    is not a resolution; <span class="q">"an incident-response plan naming a breach assessor, with a 72-hour
-    escalation deadline"</span> is.</p>
+    <h2>Writing the ethical half</h2>
+    <p><b>Four moves:</b> <b>name</b> the issue → <b>explain</b> why it is ethically problematic (<em>who is
+    harmed, and how</em>) → <b>apply</b> it to the case study → <b>consequence</b>, legal <em>and</em> non-legal.</p>
+    <p><b>Resolutions must be viable</b> — name <b>what</b> changes, <b>who</b> does it, <b>which
+    obligation</b> it satisfies. "Be more ethical" is not a resolution; <span class="q">"an incident-response
+    plan naming a breach assessor, with a 72-hour escalation deadline"</span> is.</p>
   </div>
 
   <div class="box tint">
     <h2><span class="ks">KS5</span>Recommend and justify</h2>
     <p>All three top bands want the <b>same three ingredients</b> — security controls, threat modelling
-    principles, improvement strategies. What changes is what you tie them to:</p>
+    principles, improvement strategies. Only the linkage changes:</p>
     <table>
       <tr><td><b>Medium</b></td><td>recommends + describes feasible methods → <b>legal obligations</b></td></tr>
       <tr><td><b>High</b></td><td>analyses their <b>impact</b> → <b>goals and objectives</b></td></tr>
@@ -633,13 +685,13 @@ td:last-child, th:last-child { padding-right: 0; }
     <p>Hit all three linkages and you have covered every band above Low.</p>
     <h3>The two named improvement strategies — both must appear</h3>
     <p><b>1. Onboarding / induction and ongoing developer training.</b> Policies and <em>why</em> they exist;
-    what data may be used in development; credentials; what may go to AI assistants; secure coding and review;
-    phishing; <b>refreshers, not one session on day one</b>, measured by phishing simulation. <em>Why it
-    works:</em> most incidents involve human behaviour, not a control failing — training addresses the
-    <b>cause</b>, controls contain the symptom.</p>
+    what data may be used in development; credentials; what may go to AI assistants; secure coding, review and
+    phishing; <b>refreshers, not one session on day one</b>. <em>Why it works:</em> most incidents involve
+    human behaviour, not a control failing — training addresses the <b>cause</b>, controls contain the
+    symptom.</p>
     <p><b>2. A documented risk management plan.</b> Identifies each risk · rates likelihood and impact ·
     assigns a mitigation · <b>names an owner</b> · sets a review cycle. <em>Why it works:</em> survives staff
-    turnover, and creates the documentation an auditor asks for.</p>
+    turnover and produces what an auditor asks for.</p>
   </div>
 
   <div class="box">
@@ -656,68 +708,69 @@ td:last-child, th:last-child { padding-right: 0; }
       <tr><td>Man-in-the-middle</td><td>Enforce TLS everywhere; VPN for remote access</td></tr>
       <tr><td>Insider threats</td><td>Least privilege; logging and monitoring; separation of duties; offboarding</td></tr>
       <tr><td>Unmanaged AI assistants</td><td>Written AI-use policy: what may be shared, human review, provenance</td></tr>
-      <tr><td>Data retained too long</td><td>Retention schedule with secure disposal</td></tr>
-      <tr><td>No verification</td><td>Scheduled access reviews, application security testing, audit-log review</td></tr>
+      <tr><td>Data retained too long / no verification</td><td>Retention schedule with secure disposal; scheduled access reviews, application security testing, audit-log review</td></tr>
     </table>
   </div>
 
   <div class="box">
-    <h2>Sequence the recommendations, and say why</h2>
-    <ol class="ladder">
-      <li><b>Contain the biggest exposure</b> — environment separation; production data out of development</li>
-      <li><b>Close the entry point</b> — identity and access management; most incidents begin with a credential</li>
-      <li><b>Stop the recurrence</b> — enforced code review, patching schedule</li>
-      <li><b>Make it durable</b> — threat modelling in the lifecycle, training, risk management plan</li>
-      <li><b>Verify</b> — audits, access reviews, <b>re-run your Section 2 criteria</b></li>
-    </ol>
+    <h2>Sequence them, and say why</h2>
+    <p><b>1. Contain the biggest exposure</b> — environment separation, production data out of development.
+    <b>2. Close the entry point</b> — IAM, because most incidents begin with a credential.
+    <b>3. Stop the recurrence</b> — enforced code review, patching schedule.
+    <b>4. Make it durable</b> — threat modelling in the lifecycle, training, risk management plan.
+    <b>5. Verify</b> — audits, access reviews, <b>re-run your Section 2 criteria</b>.</p>
     <p class="warn">Step 5 is the one almost nobody writes — and it is explicitly the third threat modelling
-    principle. Ending with <em>how the organisation will confirm the mitigations worked</em> closes the loop on
-    your own evaluation.</p>
+    principle. Ending with <em>how they will confirm the mitigations worked</em> closes the loop on your own
+    evaluation.</p>
   </div>
 
   <div class="box">
     <h2>The two frameworks</h2>
     <p><b>Essential Eight</b> (ACSC): application control · patch applications · configure Office macro
     settings · user application hardening · restrict administrative privileges · patch operating systems ·
-    multi-factor authentication · regular backups. <b>Maturity levels 0–3</b> say how completely each is
-    implemented — contracts often specify "Maturity Level 2".</p>
+    multi-factor authentication · regular backups. <b>Maturity levels 0–3</b> — contracts often specify
+    "Maturity Level 2".</p>
     <p><b>ISM</b> (ACSC) — Guidelines for Software Development, three named: <b>development, testing and
     production environments</b> (separated; no production data in dev/test) · <b>secure software design and
     development</b> · <b>application security testing</b>. These map onto the most common SAC findings —
     usually the strongest framework to cite.</p>
   </div>
 
+
   <div class="box tint">
     <h2>Sentence frames</h2>
-    <p class="frame"><b>KS1 → goal.</b> This practice supports the objective of … because …</p>
-    <p class="frame"><b>KS2 → impact.</b> This vulnerability allowed … which resulted in … costing the
-    organisation …</p>
+    <p class="frame"><b>KS1 → goal.</b> This practice supports the objective of … because …
+    <b>KS2 → impact.</b> This vulnerability allowed … which resulted in … costing the organisation …</p>
     <p class="frame"><b>KS3 → verdict.</b> Applying the criterion "…", the evidence shows … therefore this is
     <b>partially met</b>.</p>
-    <p class="frame"><b>KS4 → both halves.</b> Legally this breaches … under …; ethically, the harm falls on
-    … who had no say in it.</p>
+    <p class="frame"><b>KS4 → both halves.</b> Legally this breaches … under …; ethically, the harm falls on …
+    who had no say in it.</p>
     <p class="frame"><b>KS5 → framework.</b> Implementing … addresses …, satisfies … under …, and aligns them
-    with … (Essential Eight / ISM), which the client's contract requires.</p>
+    with … (Essential Eight / ISM), which the contract requires.</p>
   </div>
 
   <div class="box">
-    <h2>Before you hand it in</h2>
-    <ul class="checklist">
-      <li>Goals <em>and</em> objectives named — and linked back to in KS1 and KS5</li>
-      <li>In-house vs external: advantages <em>and</em> disadvantages</li>
-      <li>All six controls: present or absent, protecting practices <em>and data</em></li>
-      <li><b>Threat modelling</b> named, all three principles, in KS1 <em>and</em> KS5</li>
-      <li>Vulnerabilities carry mechanism <em>and</em> organisational impact</li>
-      <li>Criteria <b>applied</b> in a table, a verdict per row, plus a synthesis</li>
-      <li>Legal <em>and</em> ethical, with viable specific resolutions</li>
-      <li>Recommendations sequenced: controls + threat modelling + strategies</li>
-      <li>KS5 references legal obligations, goals/objectives <em>and</em> a framework</li>
-      <li>Verification step — how they confirm it worked</li>
-    </ul>
+    <h2 class="risk">Name what the risk threatens</h2>
+    <p>A <b>cyber security incident</b> is an event that has actually compromised one of these three — saying
+    <em>which</em> sharpens a vague answer instantly.</p>
+    <table>
+      <tr><td><b>Confidentiality</b></td><td>Only authorised people can read it — <span class="q">encryption, IAM, least privilege</span></td></tr>
+      <tr><td><b>Integrity</b></td><td>Data and code are not altered without authorisation — <span class="q">code review, version control, TLS</span></td></tr>
+      <tr><td><b>Availability</b></td><td>It is there when it is needed — <span class="q">backups, patching, separated environments</span></td></tr>
+    </table>
+    <h3>Chain the weaknesses together</h3>
+    <p>Single findings read as a checklist. A <b>chain</b> reads as analysis, and it is what the Very high
+    bands of KS2 and KS3 are describing:</p>
+    <p class="frame">phishing email <b>→</b> credential taken (no MFA) <b>→</b> repository reached (shared
+    login, no deprovisioning) <b>→</b> production data reached (<b>combined environments</b>) <b>→</b> data
+    readable (no encryption at rest) <b>→</b> notification delayed six weeks (no incident plan).</p>
+    <p>Every link is a separate named vulnerability, and a place one control would have stopped it — which is
+    how you justify the <b>sequence</b> of your recommendations.</p>
   </div>
 
+
   <div class="foot">
-    <span><b>Side 2</b> · KS4 consequences · KS5 recommendations — VSV descriptors + study design (2025)</span>
+    <span><b>Side 2</b> · KS3 criteria · KS4 consequences · KS5 recommendations — VSV descriptors + study design (2025)</span>
   </div>
 
 </section>
