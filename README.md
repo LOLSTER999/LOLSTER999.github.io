@@ -23,7 +23,9 @@ The SAC is a 100-mark response to a teacher-provided case study, marked against 
 
 - **The full performance descriptors** as an interactive grid — pick a band to read just that column, with a *"moving up a band"* note on every key skill explaining what actually separates it from the one below.
 - **Section-by-section technique** — KS1/KS2 analysis, KS3/KS4 evaluation, KS5 recommendations — including the three linkage targets that carry the top bands (legal obligations → goals and objectives → industry frameworks).
-- **A complete worked case study** (Kestrel Freight Systems) written for this site, containing one hook per key skill, with model responses for all five.
+- **Your course's own case study — CodeWave Solutions** (VSV Weeks 10–11) run through all five key skills as a SAC rehearsal, including a table mapping each of the ten named vulnerabilities to the sentence in the case study that plants it.
+- **Week 9 and 12 activity workouts** — the ethics scenarios, the Essential Eight / ISM situations, in-house vs external for the healthcare system, threat modelling in practice, and evaluating a development practice.
+- **A second complete worked case study** (Kestrel Freight Systems) written for this site, containing one hook per key skill, with model responses for all five.
 
 Unit 4 AoS 2 itself is written to SAC depth rather than exam depth: the vulnerability article maps each of the ten named weaknesses to the phrases that signal it in a case study, and `evaluating-practices` covers KS3 — writing criteria that can actually be *applied* — as a topic in its own right.
 
@@ -37,6 +39,7 @@ Unit 4 AoS 2 itself is written to SAC depth rather than exam depth: the vulnerab
 | DLTV Trial Exam 1, 2025 | Current study design, with sample solutions |
 | TSSM Trial Exam, 2025 | Current study design, with sample solutions |
 | VCAA 2024 / 2023 / 2022 | Previous study design — filtered (see below) |
+| VSV Unit 4 activities | Week 9–12 activity sheets — 11 written responses with worked answers |
 
 - **End-of-area-of-study practice.** Every AoS page finishes with its own exam questions, filterable to every question, multiple choice only, or written responses only. The SAC category borrows the Unit 4 AoS 2 bank.
 - Seven preset quizzes, per-topic quizzes, and six full papers sittable whole or section by section with the Section C case study insert alongside.
@@ -76,6 +79,7 @@ assets/
       diagrams.js        inline SVG diagrams, referenced as @[diagram-id]
       questions.js       question bank (VCAA 2025, DLTV 2025, TSSM 2025)
       questions-past.js  VCAA 2022-2024, filtered to the current study design
+      school.js          VSV Week 9-12 activities: CodeWave lessons + question bank
       exams.js           exam and quiz definitions, case study inserts
 ```
 
@@ -107,7 +111,8 @@ Those papers therefore carry fewer marks here than in print. **Worth spot-checki
 - One question (2025 Section A Q9) had four picture options that could not be reconstructed faithfully from the source PDF. It is rebuilt from the question stem, tests the same point, and is labelled **adapted** in the UI.
 - The VCAA sample questions PDF in the folder is image-only and extracts to nothing, so it is not included.
 - 2020 and 2021 papers are two study-design generations old and were not included.
-- The Kestrel Freight Systems case study is **written for this site as practice material** — it is not a VCAA or school paper, and is labelled as such in the app.
+- The Kestrel Freight Systems case study is **written for this site as practice material** — it is not a VCAA or school paper, and is labelled as such in the app. CodeWave Solutions, by contrast, is reproduced from the student's own VSV activity sheets.
+- The worked responses to the VSV activities are **revision material, not submission drafts** — each is framed as something to attempt first and compare against.
 - A StuDocu copy of another school's U4O2 SAC could not be used: the domain is blocked by the network proxy. The performance descriptors and the study design's key knowledge were used instead, which are the authoritative sources anyway.
 
 ---
