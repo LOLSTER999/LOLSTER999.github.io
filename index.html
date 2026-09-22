@@ -1,13 +1,59 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-        <link rel="stylesheet" type="text/css" href="index.css">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Interactive revision for VCE Applied Computing: Software Development Units 3 &amp; 4 — articles, practice quizzes, full trial exams and SAC preparation.">
+<title>SoftDev Revision · VCE Applied Computing Units 3 &amp; 4</title>
+<link rel="stylesheet" href="assets/css/main.css">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>&#128218;</text></svg>">
 </head>
 <body>
-   <h1 class='banner'>Dasmoto's Arts & Crafts</h1>
+
+<a class="skip-link" href="#main">Skip to content</a>
+
+<header class="topbar">
+  <button class="icon-btn nav-toggle" id="navToggle" aria-label="Toggle navigation" aria-expanded="false">
+    <span class="burger"></span>
+  </button>
+
+  <a class="brand" href="#/">
+    <span class="brand-mark">SD</span>
+    <span class="brand-text">
+      <strong>SoftDev Revision</strong>
+      <small>VCE Applied Computing · Units 3 &amp; 4</small>
+    </span>
+  </a>
+
+  <div class="search-wrap">
+    <input type="search" id="search" placeholder="Search articles and questions…" autocomplete="off" aria-label="Search">
+    <div class="search-results" id="searchResults" hidden></div>
+  </div>
+
+  <button class="icon-btn" id="themeToggle" aria-label="Toggle dark mode" title="Toggle dark mode">
+    <svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><path class="sun" d="M12 17a5 5 0 1 0 0-10 5 5 0 0 0 0 10zm0-13V2m0 20v-2m8-8h2M2 12h2m13.66-5.66 1.41-1.41M4.93 19.07l1.41-1.41m0-11.32L4.93 4.93m14.14 14.14-1.41-1.41" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+  </button>
+</header>
+
+<div class="layout">
+  <nav class="sidebar" id="sidebar" aria-label="Course navigation">
+    <div class="sidebar-inner" id="sidebarInner"><!-- built by app.js --></div>
+  </nav>
+  <div class="scrim" id="scrim" hidden></div>
+
+  <main id="main" class="main" tabindex="-1"><!-- built by app.js --></main>
+</div>
+
+<script src="assets/js/markdown.js"></script>
+<script src="assets/js/data/diagrams.js"></script>
+<script src="assets/js/data/rubric.js"></script>
+<script src="assets/js/data/curriculum.js"></script>
+<script src="assets/js/data/sac.js"></script>
+<script src="assets/js/data/questions.js"></script>
+<script src="assets/js/data/questions-past.js"></script>
+<script src="assets/js/data/questions-trials.js"></script>
+<script src="assets/js/data/school.js"></script>
+<script src="assets/js/data/exams.js"></script>
+<script src="assets/js/app.js"></script>
 </body>
-</html>                             
+</html>
