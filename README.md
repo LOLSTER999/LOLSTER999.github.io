@@ -32,18 +32,20 @@ Unit 4 AoS 2 itself is written to SAC depth rather than exam depth: the vulnerab
 
 ### Practice
 
-**186 questions**, every one taken from a real paper or your course's own activity sheets, tagged by area of study and by the article that covers it:
+**191 questions**, every one taken from a real paper or your course's own activity sheets, tagged by area of study and by the article that covers it:
 
 | Paper | Notes |
 | --- | --- |
 | VCAA 2025 | Current study design |
-| DLTV Trial Exam 1, 2025 | Current study design, with sample solutions |
-| TSSM Trial Exam, 2025 | Current study design, with sample solutions |
+| DLTV Trial Exam 1, 2025 | Current study design, with sample solutions — Sections A and B complete |
+| TSSM Trial Exam, 2025 | Current study design, with sample solutions — Sections A and B complete |
 | VCAA 2024 / 2023 / 2022 | Previous study design — filtered (see below) |
 | VSV Unit 4 activities | Week 9–12 activity sheets — 11 written responses with worked answers |
 
 - **End-of-area-of-study practice.** Every AoS page finishes with its own exam questions, filterable to every question, multiple choice only, or written responses only. The SAC category borrows the Unit 4 AoS 2 bank.
 - Seven preset quizzes, per-topic quizzes, and six full papers sittable whole or section by section with the Section C case study insert alongside.
+
+Coverage by area of study: **Unit 3 AoS 1 — 68** · **Unit 3 AoS 2 — 56** · **Unit 4 AoS 1 — 26** · **Unit 4 AoS 2 — 41**. The two company trial papers supply **73 of the 191**, spread across all four. Unit 4 AoS 1 is the thinnest, simply because the papers ask less of it; per-topic drills on the narrower key knowledge (naming conventions, internal documentation, AI in programming) are correspondingly short — those are the places more source papers would help most.
 
 **Question order *and* multiple-choice option order are reshuffled on every attempt** in all practice modes, so you learn to recognise the answer rather than its position — neither "question 4" nor "the third one" survives as a cue. Full past papers keep their printed order, both of questions and of options, so a practice exam still reads exactly like the real paper. Questions that originally depended on a neighbour's stimulus carry their own copy of it.
 
@@ -83,6 +85,7 @@ assets/
       diagrams.js        inline SVG diagrams, referenced as @[diagram-id]
       questions.js       question bank (VCAA 2025, DLTV 2025, TSSM 2025)
       questions-past.js  VCAA 2022-2024, filtered to the current study design
+      questions-trials.js  trial-paper Section C questions restored later
       school.js          VSV Week 9-12 activities: CodeWave lessons + question bank
       exams.js           exam and quiz definitions, case study inserts
 ```
@@ -114,6 +117,7 @@ Those papers therefore carry fewer marks here than in print. **Worth spot-checki
 - VCAA does not publish multiple-choice answers for the 2022–2025 papers, so those answers and explanations are worked from the pseudocode and the study design rather than an official key. DLTV and TSSM answers come from their published solution books.
 - One question (2025 Section A Q9) had four picture options that could not be reconstructed faithfully from the source PDF. It is rebuilt from the question stem, tests the same point, and is labelled **adapted** in the UI.
 - The VCAA sample questions PDF in the folder is image-only and extracts to nothing, so it is not included.
+- Five trial-paper Section C questions remain out, because each turns on a figure that would have to be invented rather than reproduced: DLTV C2 (naming tasks on a Gantt chart), DLTV C4 (an error planted in a use case diagram), TSSM C6 (a test table against classification pseudocode), TSSM C7 (completing pseudocode) and TSSM C3b (the purpose of that pseudocode's function). Sections A and B of both trials are complete.
 - 2020 and 2021 papers are two study-design generations old and were not included.
 - The Kestrel Freight Systems case study is **written for this site as practice material** — it is not a VCAA or school paper, and is labelled as such in the app. CodeWave Solutions, by contrast, is reproduced from the student's own VSV activity sheets.
 - The worked responses to the VSV activities are **revision material, not submission drafts** — each is framed as something to attempt first and compare against.

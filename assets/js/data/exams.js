@@ -261,8 +261,17 @@ function getQuiz(id) {
   return QUIZZES.find(function (q) { return q.id === id; }) || null;
 }
 
+/* Printed order, derived from the question number in the id rather than from
+   the order the questions happen to sit in the bank — so a question restored
+   later still sits where the paper put it. */
+function paperOrder(q) {
+  var sec = { A: 0, B: 1, C: 2 }[q.section];
+  var n = /-[a-z]+(\d+)/i.exec(q.id);
+  return (sec === undefined ? 3 : sec) * 1000 + (n ? Number(n[1]) : 0);
+}
+
 function examQuestions(examId, section) {
   return QUESTIONS.filter(function (q) {
     return q.src === examId && (!section || q.section === section);
-  });
+  }).sort(function (a, b) { return paperOrder(a) - paperOrder(b); });
 }
